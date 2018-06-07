@@ -1,0 +1,1189 @@
+﻿.landing-toolbar {
+            margin-top:37px;
+            padding: 9px 0px 0px 0px;
+            background-color: gray;
+            -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
+            -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
+            box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
+        }
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover {
+    color: #fff;
+    background-color: #FF6937 !important;
+}
+.closeorangebtn:hover {
+	background-color:#FC6B3B;
+}
+.closeorangebtn:active {
+	position:relative;
+	top:1px;
+}
+
+
+.graybtn:hover {
+	background-color:#797979;
+}
+.graybtn:active {
+	position:relative;
+	top:1px;
+}
+
+ .control-label {
+    font-size:13px !important;
+}
+.filterlabel {
+     font-size:12px !important;
+}
+.btn {
+ 
+    border: 1px solid #ddd;
+    font-size:12px;
+    /*border-radius:4px !important;*/
+}
+
+
+     #slider-range, #slider-range2, #slider-range3 {
+        background-color: #ffffff;
+            margin-top: 3%;
+    }
+     .ui-widget.ui-widget-content {
+    background: #d4d4d4!important;
+        border: 0px !important;
+        height:4px;
+}
+     .ui-slider .ui-slider-range {
+    background: #FC6B3B!important;
+    /*left : 0px !important;
+    width: 100% !important;*/
+   
+}
+    .ui-state-active, .ui-widget-content .ui-state-active {
+    border: 1px solid #fff;
+    background: #ddd;
+    font-weight: normal;
+    border-radius:88%;
+}
+       .ui-state-default, .ui-widget-content .ui-state-default {
+    /*border: 2px solid #ccc;*/
+    background: #FC6B3B;
+    font-weight: normal;
+    color: #454545;
+    border-radius:88%;
+        margin-top: -3px;
+        /*left:0px !important;*/
+        
+}
+.nav-tabs.nav-tabs-v1 a {
+    font-weight: bold;
+    font-size: 15px;
+}
+.nav-tabs.nav-tabs-v1 {
+   
+     padding: 0px !important; 
+}
+.form-control {
+    height: 30px !important;
+}
+.btn-group.btn-group-justified {
+     height: 30px !important;
+     
+}
+.alert-success {
+    color: #FF5D26 !important;
+    background-color: #FDEAE4 !important;
+    border-color: #ebccd1;
+}
+.steptabsround {
+        color: white;
+    width: 28px;
+    padding: 2px 7px 4px 8px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    background-color: #F8A57D;
+    border-radius: 25px;
+    margin: 0px 10px 0px 5px;
+}
+.hr2 {
+    margin-top: 12px;
+    margin-bottom:8px;
+    border: 0;
+    border-top: 2px solid gray;
+}
+
+.btn-group>a:hover {
+    background-color:#FC6B3B!important;
+    color:white!important;
+}
+.btn.mybtncls {
+       background-color:#FC6B3B!important;
+    color:white!important;
+}
+
+.btn-default.active{
+    color: white!important;
+    background-color: #FC6B3B!important;
+    border-color: #adadad;
+}
+.modal-footer {
+     border-top: 0px !important;
+}
+
+ #search {
+        height: 0px;
+        background-color: #FDEAE4;
+        border: 1px solid;
+        width: 200px;
+        margin-bottom: 7px;
+        font-size: 10px;
+        border-radius: 5px !important;
+        color: #FF5D26 !important;
+    }
+
+    /*small slider*/
+
+    .slider-sm {
+        height: 14px;
+        width: 27px;
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider-sm:before {
+            position: absolute;
+            content: "";
+            height: 10px;
+            width: 10px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-color: #FF5D26;
+        }
+        /* Rounder small sliders*/
+
+        .slider-sm.round {
+            border-radius: 25px;
+        }
+
+            .slider-sm.round:before {
+                border-radius: 50%;
+                border: 1px #FF5D26 solid;
+            }
+
+    /*Created Slider*/
+    input:checked + .slider-sm {
+        background-color: #FF5722;
+        border-color: #FF5D26;
+    }
+
+    input:focus + .slider-sm {
+        box-shadow: 0 0 1px #2196F3;
+        border-color: #FF5D26;
+    }
+
+    input:checked + .slider-sm:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(12px);
+    }
+
+    .iconsdiv {
+        background-color: grey;
+        color: #f5f5f5;
+        width: 30px;
+        height: 192px;
+        border-radius: 20px 20px 0px 25px;
+        padding-right: 0px;
+        padding-left: 1px;
+        text-align: center;
+        /*margin-right: -2%;*/
+        float: right;
+        margin-top: 10%;
+    }
+
+    .hrclass {
+        width: 80%;
+        border-color: #929191;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .ui-slider-handle .ui-state-default .ui-corner-all {
+        border-radius: 80px !important;
+    }
+
+    .pac-container {
+        z-index: 10000 !important;
+    }
+
+    #slider_tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+    }
+    /*Right SideView Div Scrolling options*/
+     #RightListView::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+    #RightListView::-webkit-scrollbar {
+        width: 3%;
+        background-color: #F5F5F5;
+    }
+
+    #RightListView::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #FF5D26;
+    }
+    /*//For map Options Collpsible*/
+    .header-menu-list {
+        background: none;
+        padding: 3px;
+        overflow: hidden;
+    }
+
+        .header-menu-list .btn-expand {
+            float: right;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+    .collapsible {
+        position: absolute;
+        right: 30px;
+        top: 84%;
+        display: none;
+        width: 462%;
+    }
+
+    
+    /*Scroll CSS*/
+      #SummaryDiv::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+    #SummaryDiv::-webkit-scrollbar {
+        width: 3%;
+        background-color: #F5F5F5;
+    }
+
+    #SummaryDiv::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #FF5D26;
+    }
+/*///////////////////////////////////////////*/
+  .dropbtn {
+        background-color: #ff6937;
+        color: white;
+        width: 145%;
+        height: 29px !important;
+        padding-top: 0px;
+        margin-top: 2px;
+        font-size: 12px;
+        border: 0 !important;
+        height: 28px;
+        padding-top: 5px;
+        border-radius: 5px;
+    }
+        /* Dropdown button on hover & focus */
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: #3e8e41;
+        }
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .myDropdownItems {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 125%;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 4px !important;
+    }
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                background-color: #f1f1f1;
+            }
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    .show {
+        display: block;
+    }
+
+   
+    .btnProperty {
+        height: 28px;
+        width: 136px;
+        
+        
+        border-left-width: 0px;
+        border-top-width: 0px;
+        border-bottom-width: 0px;
+       
+        border-right-width: 0px;
+        
+        background-color: #ffffff;
+        color: #565454;
+        border-radius: 3px;
+        text-decoration: none;
+    }
+        /* Dropdown button on hover & focus */
+        .btnProperty:hover, .btnProperty:focus {
+            background-color: white;
+            text-decoration: none;
+        }
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .myDropdownItems {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    /* Dropdown Content (Hidden by Default) */
+    .Property-dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width:190px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 4px !important;
+        right: 0;
+    }
+        /* Links inside the dropdown */
+        .Property-dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+            /* Change color of dropdown links on hover */
+            .Property-dropdown-content a:hover {
+                background-color: #f1f1f1;
+            }
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    
+    .lblcount {
+        font-weight: bold;
+        color: #f56331;
+    }
+ 
+        /*footer Styling*/
+        #footer {
+    position:absolute;
+    /*bottom:0;*/
+    top:94%;
+    width:100%;
+    height:30px;
+  
+}
+        .countno {
+    color: white;
+    width: 28px;
+    background-color: rgb(248, 165, 125);
+        padding: 0px 6px 1px 8px;
+    border-radius: 25px;
+    margin: 0px 10px 0px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*--------------k-----------------372line-------li5 li6 margintop remove--------------------*/
+
+
+        .list-group-item:last-child{
+
+    border-radius:0px!important;
+
+    }
+
+        .closeorangebtn {
+ -moz-box-shadow: 0px 1px 7px -2px #363636;
+ -webkit-box-shadow: 0px 1px 7px -2px #363636;
+ box-shadow: 0px 1px 7px -2px #363636;
+ background-color:#ff5c26;
+ -moz-border-radius:4px;
+ -webkit-border-radius:4px;
+ border-radius:4px;
+ border:1px solid #ff5c26;
+ display:inline-block;
+ cursor:pointer;
+ color:#ffffff;
+ font-family:Arial;
+ /*font-size:17px;*/
+ padding:5px 20px;
+ text-decoration:none;
+}
+.closeorangebtn:hover {
+ background-color:#FC6B3B;
+}
+.closeorangebtn:active {
+ position:relative;
+ top:1px;
+}
+
+.graybtn {
+ -moz-box-shadow: 0px 1px 7px -2px #363636;
+ -webkit-box-shadow: 0px 1px 7px -2px #363636;
+ box-shadow: 0px 1px 7px -2px #363636;
+ background-color:#646464;
+ -moz-border-radius:4px;
+ -webkit-border-radius:4px;
+ border-radius:4px;
+ border:1px solid #615F5E;
+ display:inline-block;
+ cursor:pointer;
+ color:#ffffff;
+ font-family:Arial;
+ /*font-size:17px;*/
+ padding:5px 20px;
+ text-decoration:none;
+}
+
+
+.search-div
+{
+    background:grey;display:table;width:100%;
+    padding: 5px 3px;
+    margin-top:-4px;
+}
+.searchul li
+{
+    list-style:none;
+    float:left;
+   
+}
+.searchul li .titletoolsicon
+{
+    margin:0 5px;
+}
+#btnsearch
+{
+    top: 12px;
+    height: 17px!important;
+    border: none;
+    position: absolute;
+    left: 207px;
+    background-color: white !important;
+    padding-top: 7px;
+}
+
+ .searchul li #searchfilters
+{
+     text-align: left;
+    height: 28px!important;
+    width: 120px;
+    padding-top: 1px;
+    margin-top: 0;
+    font-size: 12px;
+    padding-top: 6px;
+   
+}
+
+.searchul li #savesearchbtn
+{
+    background-color: #ff6937;
+    color: white;
+    height: 28px !important;
+    padding-top: 0px;
+    margin-top: 0px;
+  
+    font-size: 12px;
+    border: 0!important;
+    height: 28px;
+    padding-top: 5px;
+    width: auto;
+  
+}
+.searchul li .dropbtn
+{
+        background-color: #ff6937;
+    color: white;
+    width: 100%;
+    height: 28px !important;
+    padding-top: 0px;
+    position: relative;
+    margin-top: 0;
+    font-size: 12px;
+    border: 0!important;
+    height: 28px;
+    padding-top: 5px;
+    border-radius: 5px;
+    top: -9px;
+}
+.searchul
+{
+    margin-bottom:0px;
+}
+.searchul-li2
+{
+    margin-left:7%;
+}
+.searchul-li4
+{
+    margin-left:7%;margin-right:15px;
+}
+.searchul-li6
+{
+    margin-left:3%;
+}
+.searchul
+{
+    padding-left:23px;
+}
+
+.searchul-li1
+{
+    position:relative;
+    top: -2px;
+}
+.searchul-li1 #btnsearch
+{
+    position:absolute;
+    top: 8px;
+    left: 174px;
+}
+
+
+#PropHomes li
+{
+    width:100%;
+}
+
+.li100
+{
+    width:100%;
+}
+
+.btn-warning:hover
+{
+        background-color: #ff6937;
+        border:none;
+}
+.btn-warning
+{
+        background-color: #ff6937;
+        border:none!important;
+        border-radius:5px!important;
+}
+    .btn-warning.active.focus, .btn-warning.active:focus, .btn-warning.active:hover, .btn-warning:active.focus, .btn-warning:active:focus, .btn-warning:active:hover, .open > .dropdown-toggle.btn-warning.focus, .open > .dropdown-toggle.btn-warning:focus, .open > .dropdown-toggle.btn-warning:hover
+    {
+         background-color: #ff6937!important;
+        border:none!important;
+        border-radius:5px!important;
+        outline-offset:0px!important;
+    }
+
+
+    .dropdown-menu li
+    {
+        width:100%;
+    }
+
+
+.dropdownlowprice
+{
+        top: 26px;
+    left: 0px;
+    padding:0px;width:100px!important;min-width:0px;
+}
+.btn-warning.active,.btn-warning:active, .open > .dropdown-toggle.btn-warning
+{
+    background-color: #ff6937!important;
+        border:none!important;
+}
+.btn-warning:focus
+{
+    outline:none;
+    border:none!important;
+    background-color:#ff6937!important;
+}
+
+.btn:active
+{
+    box-shadow:none;border:none!important;
+}
+.dropdownlowprice li
+{
+    text-align:left;
+}
+.sortbtnsli7
+{
+    width:100px;
+}
+
+.searchul-li6, .searchul-li7
+{
+    float:right!important;
+}
+.searchul-li7
+{
+        margin-left: 15px;
+    margin-right: 10px;
+}
+
+
+
+/*media starts*/
+@media (min-width:1200px)
+{
+    
+
+   #tabs-demo2
+    {
+        margin-left:0px!important;margin-bottom:10px!important;
+    }
+    #tabs-demo2 li a
+    {
+            padding: 10px 35px 10px 10px;font-size:14px!important;
+    }
+    .control-label
+    {
+            font-size: 11px!important;
+   
+    }
+      .basicfilterpad0
+    {
+        margin-top:8px;margin-left:-2px;
+    }
+    .spanssliderpadding
+    {
+        margin-top:10px!important;
+    }
+    .masterbedroombtngroup a
+    {
+        font-size:10px;
+    }
+    #closebtn3, #resetbtn, #HFiltersApplyBtn
+    {
+        width:100%;text-decoration:none;text-align:center!important;padding:5px 20px;
+    }
+        #closebtn3:hover, #resetbtn:hover, #HFiltersApplyBtn:hover
+        {
+            color:white;
+        }
+
+
+}
+
+@media (min-width:1200px) and (max-width:1399px)
+{
+    .searchul
+    {
+        padding:0px!important;
+    }
+  
+    #search
+    {
+        width:159px!important;
+    }
+    #btnsearch {
+    left: 132px!important;
+    }
+
+
+
+}
+
+@media (min-width:1200px) and (max-width:1300px)
+{
+    .searchul-li11 {
+    margin-left: 13px;
+    }
+    .searchul-li4 .fa-caret-down
+    {
+            font-size: 12px;    padding-top: 11px!important;margin-top:0px;
+    }
+    
+}
+@media (min-width:1301px) and (max-width:1400px)
+{
+    .searchul-li11 {
+    margin-left: 5%;
+    }
+     .searchul-li4 .fa-caret-down
+    {
+            font-size: 12px;    padding-top: 11px!important;margin-top:0px;
+    }
+    
+}
+@media (min-width:1401px) and (max-width:1458px)
+{
+    .searchul-li11 {
+    margin-left: 5%;
+    }
+    
+}
+
+
+@media (min-width:993px) and (max-width:1199px)
+{
+    .searchul
+    {
+        padding:0px!important;
+    }
+    #btnsearch
+    {
+        left:127px!important;
+    }
+    .searchul-li6, .searchul-li4, .searchul-li2
+    {
+        margin-left:0px!important;
+    }
+    #search
+    {
+        width:154px!important;
+    }
+   
+    .searchul-li2 img
+    {
+        width:18px;
+        height:18px;
+    }
+    .searchul li .titletoolsicon
+    {
+        font-size:11px!important;
+    }
+    .searchul-li3 img
+    {
+        width:16px!important;
+        height:16px!important;
+        margin-bottom:0px;
+
+    }
+    .searchul-li4 .fa-caret-down
+    {
+          
+      margin-top: -8%!important;
+      padding-top: 13px; font-size:11px!important;
+    }
+   .searchul-li4 #PropertyTypes
+    {
+        width: 75px!important;padding:0 5px!important;
+    }
+   .searchul-li5 #searchfilters
+    {
+       width: 90px!important;
+    }
+  .searchul-li5 #searchfilters  .fa-caret-down
+    {
+        margin-left:4%!important;
+    }
+    #searchfilters img
+    {
+        height: 15px!important;
+    width: 15px!important;
+    }
+    #searchfilters,#PropSelected
+    {
+        font-size:11px!important;
+    }
+    .searchul-li6 #savesearchbtn
+    {
+        font-size:11px!important;
+        padding:6px 6px!important;
+    }
+    .searchul-li7 .glyphicon-menu-down
+    {
+        padding-left: 5px!important;
+    font-size: 9px!important;
+    }
+
+    .searchul-li7  .dropbtn
+    {
+        width:100%!important;
+    }
+    .searchul li
+    {
+        margin-right:6px!important;
+    }
+      
+        .searchul li #savesearchbtn
+        {
+            top:-3px!important;
+        }
+        .btnmargintop
+{
+    top:-1px!important;
+}
+    .sortbtnsli7
+    {
+        width:74px!important;
+    }
+    .dropdownlowprice
+    {
+            width: 74px!important;
+    }
+    .dropdownlowprice li a
+    {
+        font-size:10px!important;
+    }
+    .searchul-li7
+    {
+        margin-left:5px;
+    }
+    #PropSelected {
+    font-size: 11px!important;
+    width: 50px!important;
+    }
+    .savesearch-btn1
+    {
+        width:100%!important;font-size:13px!important;
+    }
+     .savesearch-btn2
+    {
+        width:100%!important;
+        margin-left:0px!important;font-size:13px!important;
+    }
+     
+
+   #tabs-demo2
+    {
+        margin-left:0px!important;margin-bottom:10px!important;
+    }
+    #tabs-demo2 li a
+    {
+            padding: 10px 50px 10px 10px;font-size:14px!important;
+    }
+    .control-label
+    {
+            font-size: 11px!important;
+   
+    }
+      .basicfilterpad0
+    {
+        margin-top:8px;margin-left:-2px;
+    }
+    .spanssliderpadding
+    {
+        margin-top:10px!important;
+    }
+    .masterbedroombtngroup a
+    {
+        font-size:10px;
+    }
+    #closebtn3, #resetbtn, #HFiltersApplyBtn
+    {
+        width:100%;text-decoration:none;text-align:center!important;padding:5px 20px;
+    }
+        #closebtn3:hover, #resetbtn:hover, #HFiltersApplyBtn:hover
+        {
+            color:white;
+        }
+
+  
+
+}
+
+
+@media (min-width:768px) and (max-width:992px)
+{
+        .searchul
+    {
+        padding:0px!important;
+    }
+    #btnsearch
+    {
+        left:174px!important;
+    }
+    .searchul-li6, .searchul-li4, .searchul-li2
+    {
+        margin-left:0px!important;
+    }
+    #search
+    {
+        width:104px!important;
+    }
+    #btnsearch {
+    left: 78px!important;
+    }
+    .searchul-li2 img
+    {
+        width:18px;
+        height:18px;
+    }
+    .searchul li .titletoolsicon
+    {
+        font-size:11px!important;
+    }
+    .searchul-li3 img
+    {
+        width:16px!important;
+        height:16px!important;
+        margin-bottom:0px;
+
+    }
+    .searchul-li4 .fa-caret-down
+    {
+            
+      margin-top: -4%!important;
+      padding-top: 10px;font-size:11px!important;    padding-top: 11px!important;
+    }
+   .searchul-li4 #PropertyTypes
+    {
+        width: 75px!important;padding:0 5px!important;
+    }
+   .searchul-li5 #searchfilters
+    {
+       width: 90px!important;
+    }
+  .searchul-li5 #searchfilters  .fa-caret-down
+    {
+        margin-left:4%!important;
+    }
+    #searchfilters img
+    {
+        height: 15px!important;
+    width: 15px!important;
+    }
+    #searchfilters,#PropSelected
+    {
+        font-size:11px!important;padding-top:7px!important;
+    }
+        #PropSelected {
+    width: 55px!important;
+    overflow: hidden;
+    }
+
+
+    
+    .searchul-li6 #savesearchbtn
+    {
+        font-size:11px!important;
+        padding:6px 6px!important;
+    }
+    .searchul-li7 .glyphicon-menu-down
+    {
+        padding-left: 5px!important;
+    font-size: 9px!important;
+    }
+
+    .searchul-li7  .dropbtn
+    {
+        width:100%!important;
+    }
+    .searchul li
+    {
+        margin-right:6px!important;
+    }
+        
+        .searchul li #savesearchbtn
+        {
+            top:-3px!important;
+        }
+    #dropdownselected
+    {
+        font-size:11px!important;
+    }
+
+.searchul-li7  .dropbtn1
+    {
+            background-color: #ff6937;
+        color: white;
+        width: 125%;
+        height: 28px !important;
+        padding-top: 0px;
+        margin-top: 2px;
+        font-size: 12px;
+        border: 0!important;
+        height: 28px;
+        padding-top: 1px!important;
+        border-radius: 5px;
+    }
+    .mapleftsearch
+    {
+            padding: 0px!important;
+    width: 294px!important;
+    }
+
+   .sortbtnsli7 {
+            position: relative;
+      
+    }
+   .dropdownlowprice {
+    top: 27px;
+    left: 0px;
+    padding: 0px;width:62px!important;
+}
+   .sortbtnsli7
+{
+    padding:6px 7px;
+}
+    .dropdown-menu
+    {
+        
+    }
+    .dropdownlowprice li a
+    {
+        font-size:8px!important;
+    }
+    .sortbtnsli7
+    {
+        width:61px!important;
+    }
+    .searchul-li7
+    {
+
+        margin-left:0px!important;
+    }
+    .savesearch-btn1
+    {
+        width:100%!important;font-size:13px!important;
+    }
+     .savesearch-btn2
+    {
+        width:100%!important;
+        margin-left:0px!important;font-size:13px!important;
+    }
+
+
+
+
+   #tabs-demo2
+    {
+        margin-left:0px!important;margin-bottom:10px!important;
+    }
+    #tabs-demo2 li a
+    {
+            padding: 10px 50px 10px 10px;font-size:14px!important;
+    }
+    .control-label
+    {
+            font-size: 11px!important;
+   
+    }
+      .basicfilterpad0
+    {
+        margin-top:8px;margin-left:-2px;
+    }
+    .spanssliderpadding
+    {
+        margin-top:10px!important;
+    }
+    .masterbedroombtngroup a
+    {
+        font-size:10px;
+    }
+    #closebtn3, #resetbtn, #HFiltersApplyBtn
+    {
+        width:100%;text-decoration:none;text-align:center!important;padding:5px 20px;
+    }
+        #closebtn3:hover, #resetbtn:hover, #HFiltersApplyBtn:hover
+        {
+            color:white;
+        }
+
+}
+
+@media (min-width:768px) and (max-width:870px)
+{
+    .searchul-li11
+    {
+        margin-left:2%!important;
+    }
+}
+@media (min-width:871px) and (max-width:992px)
+{
+    .searchul-li11
+    {
+        margin-left:5%!important;
+    }
+}
+
+
+@media (min-width:1051px) and (max-width:1199px)
+{
+    .searchul-li11
+    {
+        margin-left:3%!important;
+    }
+}
+
+/*media ends*/
+
+.nav-pills > li > a
+{
+    border-radius:0px;
+}
+#PropLotsLands li
+{
+    width:100%;
+}
+#myPropertyDropdown
+{
+    z-index: 2;
+    padding-bottom:10px;
+}
+.searchul-li4 #PropertyTypes
+{
+    padding:0 10px;
+}
+#PropSelected
+{
+    width:100px;
+    overflow:hidden;
+}
+.col-md-33
+{
+    text-align:center!important;
+}
+.dropdownlowprice li a:hover
+{
+    background:lightgrey;
+    border-radius:0px;    
+}
+.nav-tabs-v1 .nav-tabs>li.active>a,.nav-tabs-v1 .nav-tabs>li.active>a:focus,.nav-tabs-v1 .nav-tabs>li.active>a:hover
+{
+    color: white!important;
+    cursor: default;
+    background-color: #FC6B3B!important;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+.nav-tabs-v1 .nav-tabs > li > a:hover
+{
+      color: white!important;background-color: #FC6B3B!important;
+}

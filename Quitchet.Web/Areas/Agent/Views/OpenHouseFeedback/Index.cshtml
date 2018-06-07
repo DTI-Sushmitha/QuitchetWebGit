@@ -1,0 +1,460 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+@*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>*@
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Quitchet</title>
+<link rel="shortcut icon" href="/img/logomi.png">
+<style>
+    input[type='radio'] {
+        -webkit-appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        outline: none;
+        border: 1px solid gray;
+    }
+
+        input[type='radio']:before {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 60%;
+            margin: 20% auto;
+            border-radius: 50%;
+        }
+
+        input[type="radio"]:checked:before {
+            background: #ff5d26;
+        }
+
+        input[type="radio"]:checked {
+            border-color: #ff5d26;
+        }
+
+    body {
+        background-color: #fff;
+        font-size: 15px;
+    }
+
+    .topheader {
+        color: #ff5d26;
+        font-size: 18px;
+        text-align: center;
+        font-weight: bold;
+        padding: 10px;
+        border-bottom: 3px solid #ff5d26;
+    }
+
+    .mtop12 {
+        margin-top: 10px;
+    }
+
+    .bordertop {
+        margin-top: 12px;
+        border-top: 0.5px solid #ff5d26;
+        padding: 10px;
+    }
+
+    .labelbalckbod {
+        font-weight: bold;
+    }
+
+    .labelorangebold {
+        font-weight: bold;
+        color: #ff5d26;
+    }
+
+    .savebtn {
+        background-color: #ff5d26;
+        color: white;
+        font-size: 16px;
+    }
+    /*Scroll CSS*/
+    #divscroll::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+    #divscroll::-webkit-scrollbar {
+        width: 0.5%;
+        background-color: #F5F5F5;
+    }
+
+    #divscroll::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #FF5D26;
+    }
+</style>
+<div class="col-sm-12" style="background-image: url(/img/banner_quitchetemailFooter.png);background-repeat: no-repeat; background-size: 100%; height:80px">
+    <a href="/Customer/LandingPage/Index" class="navbar-brand">
+        <b>
+            <img src="/img/quitchetlogo_little.png" />
+        </b>
+    </a>
+</div>
+<div class="col-sm-4 col-md-3">&nbsp;</div>
+<div class="col-sm-6 mtop12 col-md-6" style="max-height:88vh;overflow:auto" id="divscroll">
+    <div class="col-sm-12 col-xs-12 col-md-12" style="box-shadow:0px 1px 5px 1px gray;">
+        <div class="col-sm-12 topheader"> Open House Feedback</div>
+        <div class="col-sm-12 mtop12">
+            <div class="col-sm-6 col-xs-12 col-md-6">
+                <img src="~/img/NoImage.png" style="height:120px" id="img_House" />
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12" style="top:20px">
+                <span id="SPN_AddressLineOne" style="font-weight:bold;font-size:16px"></span><br />
+                <span id="SPN_AddressLineTwo" style="font-size:14px;"></span><br />
+                <span id="SPN_MLSID" style="font-size:14px; font-weight:normal; color:grey;line-height:25px"></span>
+            </div>
+            <div class="col-xs-12" style="margin-bottom:10px;">
+            </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 bordertop">
+            <label class="labelbalckbod">
+                What are your general observations / comments on this home?
+            </label>
+        </div>
+        <div class="col-sm-12 col-xs-12">
+            @*<input type="text" class="form-control" style="height:50px;border:1px solid #ff5d26" placeholder="Enter Comments..." />*@
+            <textarea id="feddback_comments" class="form-control" style="height:60px;border:1px solid #ff5d26;resize:none;overflow:hidden" placeholder="Enter Comments..."></textarea>
+        </div>
+        <div class="col-sm-12 col-xs-12 mtop12">
+            <label class="labelbalckbod">
+                Is this home currently in your top 3?
+            </label>
+        </div>
+        <div class="col-sm-12 col-xs-12">
+            <div class="col-sm-6 col-xs-6">
+                <a class="rating" href="#"><img src="/img/Star_unfilled.png" id="ratingImage1" onclick="RatingFunctionality('one')" /></a>
+                <a class="rating" href="#"><img src="/img/Star_unfilled.png" id="ratingImage2" onclick="RatingFunctionality('two')" /></a>
+                <a class="rating" href="#"><img src="/img/Star_unfilled.png" id="ratingImage3" onclick="RatingFunctionality('three')" /></a>
+            </div>
+            <div class="col-sm-6 col-xs-6" style="text-align:right">
+                <label class="radio-inline" style="font-weight:bold;">
+                    <input type="radio" name="HoemRating" value="1" checked>Yes
+                </label>
+                <label class="radio-inline" style="font-weight:bold;">
+                    <input type="radio" name="HoemRating" value="2">No
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 mtop12">
+            <label class="labelorangebold">
+                How does the price compare to similar properties?
+            </label>
+        </div>
+        <div class="col-sm-12 col-xs-12">
+            <div class="col-sm-12 col-xs-12">
+                <span>At Market Value</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="PriceCompare" value="1" checked>
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Above Similar Homes</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="PriceCompare" value="2">
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Far Above Similar Homes</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="PriceCompare" value="3">
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 mtop12">
+            <label class="labelorangebold">
+                Exterior
+            </label>
+        </div>
+        <div class="col-sm-12 col-xs-12">
+            <div class="col-sm-12 col-xs-12">
+                <span>Excellent</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Exterior" value="1" checked>
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Average</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Exterior" value="2">
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Needs Improvement</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Exterior" value="3">
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 mtop12">
+            <label class="labelorangebold">
+                Interior
+            </label>
+        </div>
+        <div class="col-sm-12 col-xs-12">
+            <div class="col-sm-12 col-xs-12">
+                <span>Clean and Well kept</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Interior" value="1" checked>
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Average</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Interior" value="2">
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Needs Improvement</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Interior" value="3">
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 mtop12">
+            <label class="labelorangebold">
+                Landscaping
+            </label>
+        </div>
+        <div class="col-sm-12 col-xs-12">
+            <div class="col-sm-12 col-xs-12">
+                <span>Excellent</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Landscaping" value="1" checked>
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Average</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Landscaping" value="2">
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Needs Improvement</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Landscaping" value="3">
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 mtop12">
+            <label class="labelorangebold">
+                Considering an offer?
+            </label>
+        </div>
+        <div class="col-sm-12 col-xs-12">
+            <div class="col-sm-12 col-xs-12">
+                <span>Yes</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Offer" value="1" checked>
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Possibly/Just started search</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Offer" value="2">
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>No, not in consideration</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Offer" value="3">
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 mtop12">
+            <label class="labelorangebold">
+                Features that need improvement or updating?
+            </label>
+        </div>
+        <div class="col-sm-12 col-xs-12">
+            <div class="col-sm-12 col-xs-12">
+                <span>Paint</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Feature" value="1" checked>
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Cleaning</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Feature" value="2">
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Carpet</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Feature" value="3">
+                </label>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <span>Other</span>
+                <label class="radio-inline" style="float:right">
+                    <input type="radio" name="Feature" value="4">
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 bordertop">
+            <div class="col-sm-4 col-md-4 col-xs-4">
+                @*<button class="btn btn-sm savebtn form-control" id="btnSubmit">Send</button>*@&nbsp;
+            </div>
+            <div class="col-sm-4 col-md-4 col-xs-4" style="text-align:center">
+                <button class="btn btn-sm savebtn form-control" id="btnSubmit">Send</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-sm-12 col-xs-12 mtop12">&nbsp;</div>
+</div>
+@*Thnak you Pop-UP after post Request*@
+<div class="modal fade" id="ThankyouAlertPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 15%; width: 25%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;color:#ff6937;height:45px;padding-top:13px;border-bottom:0">
+                <label id="">
+                    <img src="~/img/checkmar_savedPopup.png" style="margin-bottom:0px !important;padding-bottom: 3px;" />&nbsp;&nbsp;Thank you!
+                </label>
+                <hr style="color:#ff6937;border: 0.5px solid;margin-top:7px;" />
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="modal-body">
+                <div class="col-md-12" style="text-align: center">
+                    <label id="" style="word-wrap: break-word;">
+                        Your Feedback was submitted successfully.<br /> Thank you!
+                    </label>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="modal-footer" style="border-top:0">
+                    <div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-10" style="text-align: center">
+                        <button type="button" id="OKbtn" onclick="self.close()" data-dismiss="modal" class="btn btn-primary closeorangebtn" style="border-radius: 5px 5px 5px 5px  !important; background-color: #ff6937!important; color: white;font-size: 15px;width:100%">OK</button>
+                    </div>
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var PrimaryKeyID = '';
+    var UserID = '';
+    var Arr_Images = [];
+    var MLSID = '';
+    var TopRatingValue = '0';
+    $(document).ready(function () {
+        //-- To scoll the to top of the page while page load, due to the reason, if scroll down previously its fixed in that in postion after open it freshly
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        //-- Read Primarykey and userid from URl
+        var Url = new URLSearchParams(window.location.search);
+        PrimaryKeyID = Url.get("PK_OpenHouseID");
+        UserID = Url.get("UserID");
+        GetDataByUserIDPkeyHomeID(PrimaryKeyID, UserID);
+    });
+
+    //To Get open house feed back data by using primary key home id and user id
+    function GetDataByUserIDPkeyHomeID(PrimaryKeyID, UserID) {
+        if (PrimaryKeyID.length > 0 || UserID.length > 0) {
+            $.ajax({
+                url: "/Agent/OpenHouseFeedback/GetDataByHomeID_UserID/",
+                type: "GET",
+                dataType: "json",
+                data: { PrimaryKeyID: PrimaryKeyID, UserID: UserID },
+                success: function (data) {
+                    if (data.length > 0) {
+                        MLSID = data[0].MLSID;
+                        $('#SPN_MLSID').html('MLS#' + data[0].MLSID);
+                        $('#SPN_AddressLineOne').html((data[0].PRP_ADDRESS).split(',')[0]);
+                        $('#SPN_AddressLineTwo').html((data[0].PRP_ADDRESS).split(',')[1]);
+                        Arr_Images = (data[0].PRP_IMAGES).split(',');
+                        $('#img_House').attr("src", Arr_Images[0]);
+                    }
+                    else {
+                        MLSID = '';
+                        $('#SPN_MLSID').html('');
+                        $('#SPN_AddressLineOne').html('');
+                        $('#SPN_AddressLineTwo').html('');
+                        Arr_Images = [];
+                        $('#img_House').attr("src", Arr_Images[0]);
+                    }
+                },
+                error: function () {
+                    alert('nodata');
+                }
+            });
+        }
+    }
+    function RatingFunctionality(position) {
+        if (position == 'one') {
+            TopRatingValue = 1;
+            var ImgSrc = $("#ratingImage1").attr("src");
+            if (ImgSrc == "/img/Star_unfilled.png") {
+                $("#ratingImage1").attr("src", "/img/star_Full.png");
+            }
+            else {
+                $("#ratingImage2").attr("src", "/img/Star_unfilled.png");
+                $("#ratingImage3").attr("src", "/img/Star_unfilled.png");
+                $("#ratingImage1").attr("src", "/img/star_Full.png");
+            }
+        }
+        if (position == 'two') {
+            TopRatingValue = 2;
+            var ImgSrc = $("#ratingImage2").attr("src");
+            if (ImgSrc == "/img/Star_unfilled.png") {
+                $("#ratingImage1").attr("src", "/img/star_Full.png");
+                $("#ratingImage2").attr("src", "/img/star_Full.png");
+            }
+            else {
+                $("#ratingImage3").attr("src", "/img/Star_unfilled.png");
+                $("#ratingImage2").attr("src", "/img/Star_unfilled.png");
+                TopRatingValue = 1;
+            }
+        }
+        if (position == 'three') {
+            TopRatingValue = 3;
+            var ImgSrc = $("#ratingImage3").attr("src");
+            if (ImgSrc == "/img/Star_unfilled.png") {
+                $("#ratingImage1").attr("src", "/img/star_Full.png");
+                $("#ratingImage3").attr("src", "/img/star_Full.png");
+                $("#ratingImage2").attr("src", "/img/star_Full.png");
+            }
+            else {
+                $("#ratingImage3").attr("src", "/img/Star_unfilled.png");
+                TopRatingValue = 2;
+            }
+        }
+    }
+    $('#btnSubmit').click(function () {
+        $.ajax({
+            url: "/OpenHouseFeedback/InsertOpenHouseFeedback",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json,charset=utf-8",
+            data: { HouseID: PrimaryKeyID, MlsID: MLSID, Comments: $('#feddback_comments').val(), Reating: $("input[name='HoemRating']:checked").val(), Top3: TopRatingValue, PriceCompare: $("input[name='PriceCompare']:checked").val(), Exterior: $("input[name='Exterior']:checked").val(), Interior: $("input[name='Interior']:checked").val(), Landscaping: $("input[name='Landscaping']:checked").val(), Consideringoffer: $("input[name='Offer']:checked").val(), FeatureToImprove: $("input[name='Feature']:checked").val() },
+            success: function (data) {
+                if (data = "1") {
+                    //$('#ThankyouAlertPopup').modal('show');
+                    alert('Your Feedback was submitted successfully.\n Thank you!');
+                    window.close();
+                }
+                else {
+                    alert("error:" + data);
+                }
+            },
+            error: function () {
+
+            }
+        });
+    })
+    $('#OKbtn').click(function () {
+    })
+</script>

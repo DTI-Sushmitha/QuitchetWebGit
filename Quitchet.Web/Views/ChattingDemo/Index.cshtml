@@ -1,0 +1,503 @@
+﻿<title>Quitchet</title>
+<link rel="shortcut icon" href="/img/logomi.png">
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+<link href='https://fonts.googleapis.com/css?family=Inder' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<link href="~/Content/LayOut.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="/img/logomi.png">
+<style>
+    #chat::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+    #chat::-webkit-scrollbar {
+        width: 0.5%;
+        background-color: #F5F5F5;
+    }
+
+    #chat::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #FF5D26;
+    }
+</style>
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+        font-family: 'Inder', sans-serif;
+        font-size: 12px;
+        background-color: #f0f3f4;
+        line-height: 1.42857143 !important;
+        color: #58666e !important;
+        text-rendering: optimizeLegibility;
+    }
+
+    .chat_box .chat_message_wrapper ul.chat_message > li + li {
+        margin-top: 4px;
+    }
+
+    .popup-box-on {
+        display: block !important;
+    }
+
+    a:focus {
+        outline: none;
+        outline-offset: 0px;
+    }
+
+    .popup-head-left.pull-left h1 {
+        color: #fff;
+        float: left;
+        font-family: oswald;
+        font-size: 18px;
+        margin: 2px 0 0 5px;
+    }
+
+    .popup-head-left a small {
+        display: table;
+        font-size: 11px;
+        color: #fff;
+        line-height: 4px;
+        opacity: 0.5;
+        padding: 0 0 0 7px;
+    }
+
+    .chat-header-button {
+        background: transparent none repeat scroll 0 0;
+        border: 1px solid #fff;
+        border-radius: 7px;
+        font-size: 15px;
+        height: 26px;
+        opacity: 0.9;
+        padding: 0;
+        text-align: center;
+        width: 26px;
+    }
+
+    .popup-head-right {
+        margin: 9px 0 0;
+    }
+
+    .popup-head .btn-group {
+        margin: -5px 3px 0 -1px;
+    }
+
+    .gurdeepoushan .dropdown-menu {
+        padding: 6px;
+    }
+
+        .gurdeepoushan .dropdown-menu li a span {
+            border: 1px solid;
+            border-radius: 50px;
+            display: list-item;
+            font-size: 19px;
+            height: 40px;
+            line-height: 36px;
+            margin: auto;
+            text-align: center;
+            width: 40px;
+        }
+
+        .gurdeepoushan .dropdown-menu li {
+            float: left;
+            text-align: center;
+            width: 33%;
+        }
+
+            .gurdeepoushan .dropdown-menu li a {
+                border-radius: 7px;
+                font-family: oswald;
+                padding: 3px;
+                transition: all 0.3s ease-in-out 0s;
+            }
+
+                .gurdeepoushan .dropdown-menu li a:hover {
+                    background: #304445 none repeat scroll 0 0 !important;
+                    color: #fff;
+                }
+
+    .popup-head {
+        background: #304445 none repeat scroll 0 0 !important;
+        border-bottom: 3px solid #ccc;
+        color: #fff;
+        display: table;
+        width: 100%;
+        padding: 8px;
+    }
+
+        .popup-head .md-user-image {
+            border: 2px solid #5a7172;
+            border-radius: 12px;
+            float: left;
+            width: 44px;
+        }
+
+    .uk-input-group-addon .glyphicon.glyphicon-send {
+        color: #ffffff;
+        font-size: 21px;
+        line-height: 36px;
+        padding: 0 6px;
+    }
+
+    .chat_box_wrapper.chat_box_small.chat_box_active {
+        height: 342px;
+        overflow-y: scroll;
+        /*width: 316px;*/
+    }
+
+    aside {
+        background-attachment: fixed;
+        background-clip: border-box;
+        background-color: rgba(0, 0, 0, 0);
+        background-image: url("https://scontent.fluh1-1.fna.fbcdn.net/v/t1.0-9/12670232_624826600991767_3547881030871377118_n.jpg?oh=226475bcd22faf19705858eb58e776cd&oe=59CE39E7");
+        background-origin: padding-box;
+        background-position: center top;
+        background-repeat: repeat;
+        border: 1px solid #304445;
+        bottom: 0;
+        display: none;
+        height: 466px;
+        position: fixed;
+        right: 70px;
+        width: 300px;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .chat_box {
+        padding: 16px;
+        background: rgb(223, 223, 223);
+    }
+
+        .chat_box .chat_message_wrapper::after {
+            clear: both;
+        }
+
+        .chat_box .chat_message_wrapper::after, .chat_box .chat_message_wrapper::before {
+            content: " ";
+            display: table;
+        }
+
+        .chat_box .chat_message_wrapper .chat_user_avatar {
+            float: left;
+        }
+
+        .chat_box .chat_message_wrapper {
+            margin-bottom: 32px;
+        }
+
+    .md-user-image {
+        border-radius: 50%;
+        width: 34px;
+    }
+
+    img {
+        border: 0 none;
+        box-sizing: border-box;
+        height: auto;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+
+    .chat_box .chat_message_wrapper ul.chat_message, .chat_box .chat_message_wrapper ul.chat_message > li {
+        list-style: outside none none;
+        padding: 0;
+    }
+
+    .chat_box .chat_message_wrapper ul.chat_message {
+        float: left;
+        margin: 0 0 0 20px;
+        max-width: 77%;
+    }
+
+    .chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li:first-child::before {
+        border-right-color: #616161;
+    }
+
+    .chat_box .chat_message_wrapper ul.chat_message > li:first-child::before {
+        border-color: transparent #ededed transparent transparent;
+        border-style: solid;
+        border-width: 0 16px 16px 0;
+        content: "";
+        height: 0;
+        left: -14px;
+        position: absolute;
+        top: 0px;
+        width: 0;
+    }
+
+    .chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li {
+        background: #FCFBF6 none repeat scroll 0 0;
+        color: #000000;
+    }
+
+    .open-btn {
+        border: 2px solid #189d0e;
+        border-radius: 32px;
+        color: #189d0e !important;
+        display: inline-block;
+        margin: 10px 0 0;
+        padding: 9px 16px;
+        text-decoration: none !important;
+        text-transform: uppercase;
+    }
+
+    .chat_box .chat_message_wrapper ul.chat_message > li {
+        background: #ededed none repeat scroll 0 0;
+        border-radius: 4px;
+        clear: both;
+        color: #212121;
+        display: block;
+        float: left;
+        font-size: 13px;
+        padding: 8px 16px;
+        position: relative;
+        word-break: break-all;
+    }
+
+    .chat_box .chat_message_wrapper ul.chat_message, .chat_box .chat_message_wrapper ul.chat_message > li {
+        list-style: outside none none;
+        padding: 0;
+    }
+
+        .chat_box .chat_message_wrapper ul.chat_message > li {
+            margin: 0;
+        }
+
+            .chat_box .chat_message_wrapper ul.chat_message > li p {
+                margin: 0;
+            }
+
+    .chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li .chat_message_time {
+        color: rgba(185, 186, 180, 0.9);
+    }
+
+    .chat_box .chat_message_wrapper ul.chat_message > li .chat_message_time {
+        color: #727272;
+        display: block;
+        font-size: 11px;
+        padding-top: 2px;
+        text-transform: uppercase;
+    }
+
+    .chat_box .chat_message_wrapper.chat_message_right .chat_user_avatar {
+        float: right;
+    }
+
+    .chat_box .chat_message_wrapper.chat_message_right ul.chat_message {
+        float: right;
+        margin-left: 0 !important;
+        margin-right: 24px !important;
+    }
+
+    .chat_box.chat_box_colors_a .chat_message_wrapper.chat_message_right ul.chat_message > li:first-child::before {
+        border-left-color: #E8FFD4;
+    }
+
+    .chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li:first-child::before {
+        border-right-color: #FCFBF6;
+    }
+
+    .chat_box .chat_message_wrapper.chat_message_right ul.chat_message > li:first-child::before {
+        border-color: transparent transparent transparent #ededed;
+        border-width: 0 0 29px 29px;
+        left: auto;
+        right: -14px;
+    }
+
+    .chat_box .chat_message_wrapper ul.chat_message > li:first-child::before {
+        border-color: transparent #ededed transparent transparent;
+        border-style: solid;
+        border-width: 0 29px 29px 0;
+        content: "";
+        height: 0;
+        left: -14px;
+        position: absolute;
+        top: 0px;
+        width: 0;
+    }
+
+    .chat_box.chat_box_colors_a .chat_message_wrapper.chat_message_right ul.chat_message > li {
+        background: #E8FFD4 none repeat scroll 0 0;
+    }
+
+    .chat_box .chat_message_wrapper ul.chat_message > li {
+        background: #ededed none repeat scroll 0 0;
+        border-radius: 5px;
+        clear: both;
+        color: #212121;
+        display: block;
+        float: left;
+        font-size: 13px;
+        padding: 8px 16px;
+        position: relative;
+    }
+
+    .gurdeep-chat-box {
+        background: #fff none repeat scroll 0 0;
+        border-radius: 5px;
+        float: left;
+        padding: 3px;
+    }
+
+    #submit_message {
+        background: transparent none repeat scroll 0 0;
+        border: medium none;
+        padding: 4px;
+    }
+
+    .gurdeep-chat-box i {
+        color: #333;
+        font-size: 21px;
+        line-height: 1px;
+    }
+
+    .chat_submit_box {
+        bottom: 0;
+        box-sizing: border-box;
+        left: 0;
+        overflow: hidden;
+        padding: 10px;
+        position: absolute;
+        width: 100%;
+    }
+
+    .uk-input-group {
+        border-collapse: separate;
+        display: table;
+        position: relative;
+    }
+</style>
+<div class="col-sm-12">&nbsp;</div>
+<div class="col-sm-12">&nbsp;</div>
+<div class="col-sm-12">&nbsp;</div>
+<div class='col-sm-12' style="padding:0px !important">
+    <div class='col-sm-4'>&nbsp;</div>
+    <div class='col-sm-4' style='text-align:center;background-color:#ff6937;padding:12px;border-radius:5px;'>
+        <img src='http://restapi.devobal.com/Images/quitchetlogo_little.png' style='width:100px;height:25px;'>
+    </div>
+    <div class='col-sm-4'>&nbsp;</div>
+</div>
+<div class="col-sm-4">&nbsp;</div>
+<div class='col-sm-4' style='padding:0px !important;padding-top:5px!important; border-radius:10px;'>
+    <div class='panel panel-default'>
+        <div class='panel-heading' style='text-align:center;background-color:#ff6937;color:white !important;'>
+            <h5>Messages</h5>
+        </div>
+        <div class='panel-body' style="padding:0px !important">
+            <div class="col-sm-12" style="padding:0px !important">
+                <div class="col-sm-12" id="MessageHeadingId" style="padding-top:3px;padding-bottom:3px; color:white !important;background-color: rgb(67, 31, 96);">
+                    <img src="https://pbs.twimg.com/profile_images/581115542976659456/Z6lWD7Ny.png" class="img-circle avatar" alt="user name" style="height: 40px; border: #ff5d26" id="ChattingHeaderImage">
+                    <label id="ChatHeaderFirstName" style="font-weight:bold">DevObal Technologies Pvt Ltd</label>
+                </div>
+            </div>
+            <div id="chat" class="col-sm-4 chat_box_wrapper chat_box_small chat_box_active" style="opacity: 1; display: block; transform: translateX(0px); width:100%;padding:0px !important">
+                <div id="ChattingSubDiv" class="chat_box touchscroll chat_box_colors_a"></div>
+            </div>
+            <div class="col-sm-12" style="padding:0px">
+                <div class="input-group" style="background-color:rgba(240, 151, 78, 0.84);">
+                    <input style="display: none" type="file" id="inp_FileUploads">
+                    <span class="input-group-addon" style="background-color: #ff6937; color: white;cursor:pointer" onclick="$('#inp_FileUploads').click()">
+                        <a href="#"><i class="material-icons" style="font-size: 15px;">attach_file</i></a>
+                    </span>
+                    <textarea rows="1" class="form-control" style="overflow:hidden; resize:none;border-radius: 0px 5px 5px 0px !important;" id="message_input"></textarea>
+                    <span class="input-group-addon" style="background-color:transparent; border:none;cursor:pointer" onclick="SendAndAppendMessage()">
+                        <a href="#" id="SendMessageIcon"><i class="material-icons" style="font-size: 15px; line-height: 1.3 !important; color: #ff6937;">send</i></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-4">&nbsp;</div>
+<script type="text/javascript">
+    var dt = new Date();
+    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+    var ChattingIdentity = '';
+    var UserIdentitiy = '';
+    var Os_TypeId = '';
+    $(document).ready(function () {
+        $('#message_input').focus();
+        var Url = new URLSearchParams(window.location.search);
+        ChattingIdentity = Url.get("ChatID");
+        UserIdentitiy = Url.get("UserID");
+        Os_TypeId = Url.get("Os_TypeID");
+        
+        for (var i = 0; i < 5; i++) {
+            AppendRightMessages('Right Message');
+            AppendLeftMessage('Left Message')
+        }
+    });
+    $(window).resize(function () {
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+    function AppendRightMessages(Message) {
+        var LeftMessage = ' <div class="chat_message_wrapper">'
+                            + '<div class="chat_user_avatar">'
+                            + '<img src="/img/addphotopic.png" class="md-user-image" alt="Img" id="userpicinchat">'
+                            + '</div>'
+                            + '<ul class="chat_message">'
+                            + '<li>'
+                            + '<p>' + Message + '</p>'
+                            + '<span class="chat_message_time">Haswanth varma</span>'
+                            + '<span class="chat_message_time">' + time + '</span>'                           
+                            + '</li>'
+                            + '</ul>'
+                            + ' </div>';
+        $('#ChattingSubDiv').append(LeftMessage);
+        var objDiv = document.getElementById("chat");
+        document.getElementById("chat").scrollTop = objDiv.scrollHeight;
+    };
+    function AppendLeftMessage(Message) {
+        var SenderMessage = ' <div class="chat_message_wrapper chat_message_right">'
+                       + '<div class="chat_user_avatar">'
+                       + '<img src="https://pbs.twimg.com/profile_images/581115542976659456/Z6lWD7Ny.png" alt="user name" style="height: 40px; border: #ff5d26; border-radius:50%" id="ChattingHeaderImage">'
+                       + '</div>'
+                       + '<ul class="chat_message">'
+                       + '<li>'
+                       + ' <p>' + Message + '</p>'
+                       + '<span class="chat_message_time">DevObal India</span>'
+                       + '<span class="chat_message_time">' + time + '</span>'
+                       + '</li>'
+                       + '</ul>'
+                       + '</div>';
+        $('#ChattingSubDiv').append(SenderMessage);
+        var objDiv = document.getElementById("chat");
+        document.getElementById("chat").scrollTop = objDiv.scrollHeight;
+    }
+    function SendAndAppendMessage() {
+        var SenderMessage = ' <div class="chat_message_wrapper chat_message_right">'
+                        + '<div class="chat_user_avatar">'
+                        + '<img src="https://pbs.twimg.com/profile_images/581115542976659456/Z6lWD7Ny.png" alt="user name" style="height: 40px; border: #ff5d26; border-radius:50%" id="ChattingHeaderImage">'
+                        + '</div>'
+                        + '<ul class="chat_message">'
+                        + '<li>'
+                        + ' <p>'
+                        + $('#message_input').val()
+                        + '<span class="chat_message_time">DevObal India</span>'
+                        + '<span class="chat_message_time">' + time + '</span>'
+                        + '</p>'
+                        + '</li>'
+                        + '</ul>'
+                        + '</div>';
+        $('#ChattingSubDiv').append(SenderMessage);
+        $('#message_input').val('');
+        var objDiv = document.getElementById("chat");
+        document.getElementById("chat").scrollTop = objDiv.scrollHeight;
+    };
+    $('#message_input').keyup(function (event) {
+        if ($('#message_input').val().trim() != null && $('#message_input').val().trim() != "" && $('#message_input').val().trim() != '') {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+                SendAndAppendMessage();
+            }
+        }
+        else {
+            $('#message_input').val('');
+        }
+    });
+</script>

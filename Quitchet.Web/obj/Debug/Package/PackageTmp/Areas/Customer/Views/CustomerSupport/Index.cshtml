@@ -1,0 +1,268 @@
+﻿@*CustomerSuppoprt Page Index*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+    var UserFirstName = "";
+    var UserLastName = "";
+    var PkeyUserId = "0";
+    var UserEmail = "";
+    var UserPassword = "";
+    var remember = "2";
+    var UserType_ID = "0";
+    if (Request.Cookies["UseridCookie"] != null)
+    {
+        if (Request.Cookies["UseridCookie"].Value != null)
+        {
+            PkeyUserId = Request.Cookies["UseridCookie"].Value;
+
+
+            if (Request.Cookies["UserFirstNameCookie"].Value != "")
+            {
+                UserFirstName = Request.Cookies["UserFirstNameCookie"].Value.ToString();
+            }
+            else
+            {
+                UserFirstName = "No";
+            }
+            if (Request.Cookies["UserTypeIDCookie"].Value != "")
+            {
+                UserType_ID = Request.Cookies["UserTypeIDCookie"].Value;
+            }
+            else
+            {
+                UserType_ID = "";
+            }
+            if (Request.Cookies["UserLastNameCookie"].Value != "")
+            {
+                UserLastName = Request.Cookies["UserLastNameCookie"].Value.ToString();
+            }
+            else
+            {
+                UserLastName = "Name";
+            }
+
+        }
+    }
+    if (Request.Cookies["RememberMyDeviceCookie"] != null)
+    {
+        if (Request.Cookies["RememberMyDeviceCookie"].Value == "1")
+        {
+            UserEmail = Request.Cookies["UserEmailCookie"].Value;
+            UserPassword = Request.Cookies["UserPasswordCookie"].Value;
+            remember = Request.Cookies["RememberMyDeviceCookie"].Value;
+        }
+    }
+}
+<style type="text/css">
+    body {
+        background-color: white;
+    }
+
+    .Headingone {
+        padding: 4px;
+        text-align: center;
+        color: #fff;
+        background: #525151;
+        line-height: 36px;
+        
+    }
+
+    hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 0;
+        border-top: 1px solid #f5b8a3;
+    }
+
+    /*.modal-content {
+        -webkit-border-radius: 0px !important;
+        -moz-border-radius: 0px !important;
+        border-radius: 0px !important;
+    }*/
+
+    input[type='radio']:after {
+        width: 17px;
+        height: 17px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #d1d3d1;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+    input[type='radio']:checked:after {
+        width: 10px;
+        height: 10px;
+        border-radius: 54px;
+        top: 1px;
+        left: 0.5px;
+        position: relative;
+        background-color: #f56331;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid #d1d3d1;
+    }
+
+    textarea {
+        resize: none;
+    }
+</style>
+@*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
+<div class="col-sm-12" style="padding: 0px;">
+    <div class="Headingone">Customer Support / Feedback</div>
+</div>
+<div class="col-sm-12" style="padding: 0;">
+    <div class="col-sm-12" style="text-align: center;">
+        <h5>
+            <img src="/asset/img/customerfeedback.png">
+            &nbsp &nbsp Have a question for our Customer Service Team?
+        </h5>
+    </div>
+    <div class="col-sm-3">&nbsp;</div>
+        <div class="col-sm-6">
+            <hr />
+            <label style="margin-top:10px;color:red;font-size:12px" id="error_msg"></label>
+        </div>
+    <div class="col-sm-3">&nbsp;</div>
+    <div class="col-sm-12">
+        <div class="col-sm-3">&nbsp;</div>
+        <div class="col-sm-6">
+           
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <p style="font-size:13px;font-weight:bold">How can we make Quitchet even more awesome?</p>
+                        <textarea class="form-control" placeholder="Leave Feedback..." rows="7" id="comment"></textarea>
+
+                    </div>
+                </form>
+            <div class="col-sm-12" style="text-align: center;">
+                <div class="form-group">
+                    <div class="col-sm-12" style="padding: 0;">Is this related to a "bug" / software issue?</div>
+                </div>
+                <div class="col-sm-12">
+                    &nbsp
+                </div>
+              
+                    <div class="col-sm-12">
+                        <div class="col-sm-6" style="text-align:right;">
+                            <input name="recommend" type="radio" class="custom-control-input" id="radio1" value="Yes">
+                            <span class="custom-control-description">Yes</span>
+                        </div>
+
+                        <div class="col-sm-6" style="text-align:left;">
+                            <input id="radio2" name="recommend" type="radio" class="custom-control-input" value="No" Checked>
+                            <span class="custom-control-description" >No</span>
+                        </div>
+                        
+                    </div>
+                <div class="col-sm-12">
+                    &nbsp
+                </div>
+                <div class="col-sm-12" style="text-align:center">
+                    <button type="submit" id="btn_SendFeedback" class="btn btn-sm" style="width: 85px;background-color:#ff6937; color:white; border-radius:5px !important ">SEND</button>
+                   
+                  </div>
+
+            </div>
+            <div id="DivError" class="col-sm-10"><label id="msg" style="color:red;font-size:12px;"></label></div>
+
+        </div>
+
+        
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-3">&nbsp;</div>
+            <div class="col-sm-6" style="padding:0px"><hr style="border:1px solid #ff6937"/></div>
+            <div class="col-sm-3">&nbsp;</div>
+            
+          
+        </div>
+        <div class="col-sm-12" style="padding: 0;">
+        
+        </div>
+    </div>
+<div class="col-sm-1">&nbsp;</div>
+<div class="modal fade" id="MessageAgent" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left:206px">
+    <div class="modal-dialog" role="document" style="padding-top:18%;width:25%;">
+        <div class="modal-content">
+            <div class="modal-body" style="text-align:center;">
+                <h4 style="text-align:center;color:#f56331; line-height: 30px; margin-top:-7px">
+                    <img src="~/img/checkmar_savedPopup.png" style="margin-bottom: 5px;" />
+               &nbsp;Thank you</h4>
+                <hr style="color:#f56331; margin-top:-6px; margin-bottom:16px" />
+                <p>Your Feedback has been sent.</p>
+                <div class="col-sm-12">&nbsp;</div>
+                <button type="button" id="okbtn" class="btn btn-sm" data-dismiss="modal" style="background-color:#f56331; color:white; width:250px; border-radius:5px !important">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //Script to avoid spaces
+    $("#comment").on("keypress", function (e)
+    {
+        if ((e.which === 32 && !this.value.length)) {
+            e.preventDefault();
+        }
+        else {
+            $('#btn_SendFeedback').attr("disabled", false);
+        }
+    });
+    //Reasy Event
+    $(document).ready(function () {
+        var userid="";
+        userid=@PkeyUserId;
+        $('#btn_SendFeedback').attr("disabled", true);
+        if(userid!="")
+        {   
+            $("#mymenu li").css("pointer-events", "auto");
+        }
+        else{
+            $("#mymenu li").css("pointer-events", "none");
+            $("#mymenu li a[href='/Customer/SearchFilter/Index']").css("pointer-events", "auto");
+        }
+    });
+    // Event To Send Data througj Ajax Call
+    $("#btn_SendFeedback").click(function () {
+        var ta = $('#comment').val();
+        if (ta.length == "") {
+            //    alert("Please Enter Comment");
+            //$("#heading").text("Alert!");
+            //$("#content_text").text("Please Enter Feedback ");
+            //$("#AlertPopup").modal("show");
+            $('#error_msg').text('Please Enter Feedback Comments');
+        }
+        else {
+            $('#error_msg').text('');
+            var bug = $('input[name = "recommend"]:checked').val();
+            if (bug == null || bug=="No")
+                bug = "false";
+            else
+                bug="true";
+
+            $.ajax({
+                url: "/CustomerSupport/InsertFeedback",
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json,charset=utf-8",
+                data: { comment: ta, bug: bug },
+                success: function (data) {
+                    if (data == "1") {
+                        $('#MessageAgent').modal('show');
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+    });
+    //Page Load When Click k In Thank You Popup
+    $("#okbtn").click(function () {
+        //location.reload();
+    });
+</script>

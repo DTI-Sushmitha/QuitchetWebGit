@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9FB8A3B4-9FC3-4C4A-BC0E-C0F6F8006F4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Quitchet.Core</RootNamespace>
+    <AssemblyName>Quitchet.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="smartystreets-dotnet-sdk, Version=7.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\smartystreets-dotnet-sdk.7.1.1\lib\net40\smartystreets-dotnet-sdk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Agent\AgentCloserModel.cs" />
+    <Compile Include="Models\Agent\AgentListingModel.cs" />
+    <Compile Include="Models\Agent\AgentlistPopUPFullDetails.cs" />
+    <Compile Include="Models\Agent\AgentReports.cs" />
+    <Compile Include="Models\Agent\AgentRequests_BuyersModel.cs" />
+    <Compile Include="Models\Agent\AgentSafetySettingsModel.cs" />
+    <Compile Include="Models\Agent\AgentShowingsModel.cs" />
+    <Compile Include="Models\Agent\MyCustomersModel.cs" />
+    <Compile Include="Models\Agent\OpenHouseFeedbackModel.cs" />
+    <Compile Include="Models\Agent\OpenHousesModel.cs" />
+    <Compile Include="Models\Agent\OutMessagesModel.cs" />
+    <Compile Include="Models\Agent\SafetyManagerReportModal.cs" />
+    <Compile Include="Models\Customer\AgentListingsModel.cs" />
+    <Compile Include="Models\Customer\ComparedHomeDetailsModel.cs" />
+    <Compile Include="Models\Customer\CurrentCityPropartyModel.cs" />
+    <Compile Include="Models\Customer\FeedbackModel.cs" />
+    <Compile Include="Models\Customer\ManageAgentSearchModel.cs" />
+    <Compile Include="Models\Customer\MyBasicNeedsAndWishListModel.cs" />
+    <Compile Include="Models\Customer\MyProfileModel.cs" />
+    <Compile Include="Models\Customer\MyWishListModel.cs" />
+    <Compile Include="Models\Customer\NotificationsModel.cs" />
+    <Compile Include="Models\Customer\PropertyDetailsModel.cs" />
+    <Compile Include="Models\Customer\RequestShowingsModel.cs" />
+    <Compile Include="Models\Customer\SavedSearchDeatails.cs" />
+    <Compile Include="Models\Customer\SellerToolsModel.cs" />
+    <Compile Include="Models\Customer\SellerTools_Feedback_Tab_Model.cs" />
+    <Compile Include="Models\Customer\UserSearchedelementsModal.cs" />
+    <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

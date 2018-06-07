@@ -1,0 +1,166 @@
+﻿@*CustomerSuppoprt Page Index*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    body {
+        background-color: white;
+    }
+
+    .Headingone {
+        padding: 5px;
+        text-align: center;
+        font-size: 20px;
+        color: #fff;
+        background: #525151;
+        line-height: 36px;
+        width: 1311px;
+    }
+
+    hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 0;
+        border-top: 1px solid #f5b8a3;
+    }
+
+    .modal-content {
+        -webkit-border-radius: 0px !important;
+        -moz-border-radius: 0px !important;
+        border-radius: 0px !important;
+    }
+
+    input[type='radio']:after {
+        width: 17px;
+        height: 17px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #d1d3d1;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+    input[type='radio']:checked:after {
+        width: 10px;
+        height: 10px;
+        border-radius: 54px;
+        top: -3px;
+        left: 1px;
+        position: relative;
+        background-color: #f56331;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid #d1d3d1;
+    }
+
+    textarea {
+        resize: none;
+    }
+</style>
+
+<div class="col-sm-11" style="padding: 0px; margin: 4% 0 0 4%;">
+    <div class="Headingone">Customer Support / Feedback</div>
+</div>
+<div class="col-sm-2">&nbsp;</div>
+<div class="col-sm-8" style="padding: 0;">
+    <div class="col-sm-12" style="text-align: center;">
+        <h5>
+            <img src="/asset/img/customerfeedback.png">
+            &nbsp &nbsp Have a question for our customer service team?
+        </h5>
+    </div>
+    <div class="col-sm-2">
+        &nbsp
+    </div>
+    <div class="col-sm-8">
+        <hr />
+    </div>
+    <div class="col-sm-2">
+        &nbsp
+    </div>
+
+    <div class="col-sm-12" style="text-align: left;">
+        <div class="col-sm-2">
+            &nbsp
+        </div>
+        <div class="col-sm-10">
+            <form class=" form-horizontal">
+                <div class="form-group">
+                    <p><strong>How can we make QuitChet even more awesome?</strong></p>
+                    <textarea class="form-control" placeholder="Leave Feedback..." rows="5" id="comment" style="width: 80%"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        &nbsp
+    </div>
+    <div class="col-sm-12" style="padding: 0;">
+        <div class="col-sm-12" style="text-align: center;">
+            <div class="form-group">
+                <div class="col-sm-12" style="padding: 0;">Is this related to a "bug" / software issue?</div>
+            </div>
+            <div class="col-sm-12">
+                &nbsp
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12" style="padding-left:102px">
+                    <div class="col-sm-4">
+                        &nbsp
+                    </div>
+                    <div class="col-sm-1" style="left:28px">
+                        <input name="recommend" type="radio" class="custom-control-input" id="radio1" checked>
+                        <span class="custom-control-description" style="margin-top: 0px;left: 49px;position:absolute;font-size: 14px;">Yes</span>
+                    </div>
+                    <div class="col-sm-2" style="width:2px">
+                        &nbsp;
+                    </div>
+                    <div class="col-sm-1">
+                        <input id="radio2" name="recommend" type="radio" class="custom-control-input">
+                        <span class="custom-control-description" style="margin-top: 0px;left: 49px;position:absolute;font-size: 14px;">No</span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    &nbsp
+                </div>
+            </div>
+            <div class="col-sm-12">
+                &nbsp
+            </div>
+            <div class="col-sm-12" style="text-align:center">
+                <button type="submit" id="btn_SendFeedback" data-dismiss="modal" data-toggle="modal" data-target="#MessageAgent" class="btn btn-sm" style="background-color:#ff6937; color:white; border-radius:5px !important ">SEND</button>
+            </div>
+            <div class="col-sm-1">
+                &nbsp;
+            </div>
+            <div class="col-sm-10">
+                <hr />
+            </div>
+            <div class="col-sm-1">
+                &nbsp;
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="col-sm-2">&nbsp;</div>
+<div class="modal fade" id="MessageAgent" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left:206px">
+    <div class="modal-dialog" role="document" style="padding-top:18%;width:25%;">
+        <div class="modal-content">
+            <div class="modal-body" style="text-align:center;">
+                <h4 style="text-align:center;color:#f56331; line-height: 30px; margin-top:-7px"><i class="fa fa-check" aria-hidden="true" style="text-align:center;color:#f56331;"></i>&nbsp;Thank you</h4>
+                <hr style="color:#f56331; margin-top:-6px; margin-bottom:16px" />
+                <p>Your Feedback has been sent.</p>
+                <div class="col-sm-12">&nbsp;</div>
+                <button type="button" class="btn btn-sm" data-dismiss="modal" style="background-color:#f56331; color:white; width:250px; border-radius:5px !important">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,148 @@
+﻿
+@{
+    //ViewBag.Title = "contact_layout";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+
+<link href="~/Content/myquitchet_layout_styles.css" rel="stylesheet" />
+<style>
+    .nav-pills > li > a {
+        border-radius: 0 !important;
+    }
+
+    .ul-contactdiv-li1 {
+        /*margin-right: 1% !important;*/
+    }
+
+    .ul-contactdiv li {
+        /*display:inline-block;*/
+        border-right: 1px solid #8e8c8c;
+        /*padding:10px;*/
+    }
+
+        .ul-contactdiv li:last-child {
+            border-right: none;
+        }
+
+        .ul-contactdiv li:nth-last-child(1) {
+            border-right: none;
+        }
+
+    .ImageRound {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+</style>
+<style>
+    .ul-contactdiv-li1 {
+    margin-top: 1px;
+}
+</style>
+<div class="col-sm-12" style="text-align: center !important;background-color: gray;padding: 8px;">
+   
+    <div class="col-sm-12">
+         <ul class="ul-contactdiv">
+            <li class="ul-contactdiv-li1 ul-contactdiv-li">
+                <a href="/Agent/MyCustomers/Index">
+                    <img src="~/img/ActiveCustomers_dashboard.png" class="ul-contactdiv-img" /><span>Active Customers</span>
+                </a>
+            </li>
+            <li class="ul-contactdiv-li1 ul-contactdiv-li">
+                <a href="/Agent/OpenHouses/Index">
+                    <img src="~/img/OpenHouse_dashboard.png" class="ul-contactdiv-img" /><span>Open Houses</span>
+                </a>
+            </li>
+            <li class="ul-contactdiv-li1 ul-contactdiv-li">
+             <a href="/Customer/ComparedHomes/Index">
+                <img src="~/img/CompareHomes_dashboard.png" class="ul-contactdiv-img" /><span>Compared Homes</span></a>
+            </li>
+            <li class="ul-contactdiv-li1 ul-contactdiv-li">
+             <a href="/Agent/AgentShowings/Index">
+                <img src="~/img/Showings_dashboard.png" class="ul-contactdiv-img" /><span>Showings</span></a>
+            </li>
+
+            <li class="ul-contactdiv-li1 ul-contactdiv-lir">
+             <a href="/Agent/AgentCloser/Index">
+                <img src="~/img/Closer_dashboard.png" class="ul-contactdiv-img" /><span>Closer</span></a>
+            </li>
+
+            <li class="ul-contactdiv-li1 ul-contactdiv-li">
+             <a href="/Agent/AgentListings/Index">
+                <img src="~/img/MyListings-1.png" class="ul-contactdiv-img" /><span>My Listings</span></a>
+            </li>
+             <li class="ul-contactdiv-li1 ul-contactdiv-li">
+                 <a href="/Agent/Reports/Index">
+                     <img src="~/img/ff.png" class="ul-contactdiv-img" /><span>Reports</span>
+                 </a>
+             </li>
+        </ul>
+    </div>
+    
+</div>
+@*<div class="col-sm-12" style="background-color:#646464;padding:10px">
+    <button class="btn btn-default btn-sm" style="padding:5px 20px;border:none;background-color:#ff5d26;color:#fff">Back</button>
+</div>*@
+@* Phone Call Popup*@
+<div class="modal" id="AgentPhoneCallDetailsModel" style="padding-left: 206px; z-index: 1500;">
+    <div class="modal-dialog" role="document" style="padding-top: 15%; width: 25%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center; border-bottom: none; padding-bottom: 0px;">
+                <h5 style="color: #FF6937; margin-top: -2%; font-weight: 600;">Phone Call</h5>
+                <img src="~/img/phone_icon_brand-1.png" />&nbsp <span id="span_name_phonecall" style="font-size: 12px; color: black; font-weight: bold; margin-top: 0px">Phone Call</span>
+                <hr style="border: 0 ! important; margin-top: 2%; margin-bottom: 5%; border-top: 1px solid  #FF6937 !important;" />
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <img style="margin-right: 1px;" src="~/img/mb.png" />&nbsp  <span style="font-size: 11px; color: #FF6937;">Mobile</span>
+                </div>
+                <div class="col-sm-6">
+                    <span id="agent_phonecall" style="font-size: 11px;">987654321</span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <hr style="margin-bottom: 2%; margin-top: 2%;" />
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <img style="margin-left: -2px;" src="~/img/office.png" />
+                    <span style="font-size: 11px; color: #FF6937;">Office</span>
+                </div>
+                <div class="col-sm-6">
+                    <span id="agent2_phonecall" style="font-size: 11px;">987654321</span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <hr style="margin-bottom: 2%; margin-top: 2%;" />
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-12" style="text-align: center">
+                    <a href="#" class="btn" id="phonecall_cancel" style="border-radius: 5px !important; background-color: gray; color: white; font-weight: 500; font-size: 11px;">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@RenderSection("featured", required: false)
+<section class="content-wrapper main-content clear-fix">
+    @RenderBody()
+</section>
+<script>
+    $('#mymenuli').addClass('active');
+    //Function to show Phone Details Popup of Agent From Agent HEader
+    $("#agentphonedetails,#agentphoneinpopup").click(function () {
+
+        $("#AgentPhoneCallDetailsModel").show();
+    })
+
+    $("#phonecall_cancel").click(function () {
+        $("#AgentPhoneCallDetailsModel").hide();
+    });
+    //$("#agentchat,#agentchatinpopup").click(function () {
+    //    //alert(agentid+"   "+agentname)
+    //   creatConnection(agentid, agentname, '1', agentpic, '');
+
+    //});
+  
+</script>

@@ -1,0 +1,189 @@
+.popup {
+  display: none;
+  position: absolute;
+ 
+  left: 35%;
+    margin-left: -50px;
+  top: 30%;
+  margin-top: -100px;
+  background: #FFF;
+  z-index: 100;
+	opacity: 100; /* Set the opacity for a slightly transparent Google Form */
+		background-color: #FFFFFF;
+	border: 1px solid #333333;
+	width: 50%;
+	height: auto;
+	-webkit-box-shadow: 0px 3px 20px 0px rgba(89, 89, 89, 0.24);
+	-moz-box-shadow: 0px 3px 20px 0px rgba(89, 89, 89, 0.24);
+	box-shadow: 0px 3px 20px 0px rgba(89, 89, 89, 0.24);
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	
+  }
+  
+  
+  .popup2 {
+  display: none;
+  position: absolute;
+ 
+  left: 35%;
+    margin-left: -50px;
+  top: 40%;
+  margin-top: -100px;
+  background: #FFF;
+  z-index: 100;
+	opacity: 100; /* Set the opacity for a slightly transparent Google Form */
+		background-color: white;
+	border: 1px solid #333333;
+	width: 30%;
+	height: 370px;
+	-webkit-box-shadow: 0px 3px 20px 0px rgba(89, 89, 89, 0.24);
+	-moz-box-shadow: 0px 3px 20px 0px rgba(89, 89, 89, 0.24);
+	box-shadow: 0px 3px 20px 0px rgba(89, 89, 89, 0.24);
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	
+  }
+  
+  
+    .popupmessage {
+  display: none;
+  position: absolute;
+ 
+  left: 40%;
+    margin-left: -50px;
+  top: 40%;
+  margin-top: -100px;
+  background: #FFF;
+  z-index: 100;
+	opacity: 100; /* Set the opacity for a slightly transparent Google Form */
+		background-color: #FFFFFF;
+	border: 1px solid #333333;
+	width: 30%;
+	height: auto;
+	-webkit-box-shadow: 0px 3px 20px 0px rgba(89, 89, 89, 0.24);
+	-moz-box-shadow: 0px 3px 20px 0px rgba(89, 89, 89, 0.24);
+	box-shadow: 0px 3px 20px 0px rgba(89, 89, 89, 0.24);
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	
+  }
+
+  .sepratorpopup {
+	width: 98%;
+		
+	border-bottom:3px #F05C1C solid;
+}
+
+  .popupcontainer {
+  
+  
+  padding: 15px;
+ 
+
+  }
+  
+    
+  .sharepopupcontainer {
+  
+  
+  padding: 25px;
+ text-align:center;
+
+  }
+  
+    .delconfirm {
+  
+  
+  padding: 4px;
+ text-align:center;
+
+  }
+
+#popup3 {
+  -webkit-box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+  box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+  z-index:2000;
+}
+
+
+#popup1 {
+  -webkit-box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+  box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+  z-index:2000;
+}
+
+#popup2:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: -2;
+}
+
+#popup2:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #FFF;
+  z-index: -1;
+}
+
+.popupblackhedr
+ {
+	     background-color: #565453;
+    height: 45px;
+    width: 100%;
+    padding-top: 9px;
+    margin: 0 auto;
+    text-align: center;
+    color: #FFFFFF;
+	margin:-10px 0px 0px 0px;
+		-webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+ }
+ 
+ .popupblackhedr2
+ {
+	     background-color: #565453;
+    height: 55px;
+    width: 100%;
+    padding-top: 9px;
+    margin: 0 auto;
+    text-align: center;
+    color: #FFFFFF;
+	margin:-10px 0px 0px 0px;
+		-webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+ }
+ 
+ 
+ .popupcleanhedr
+ {
+	     background-color: #FFFFFF;
+    height: 55px;
+	line-height:45px;
+    width: 100%;
+    padding-top: 9px;
+    margin: 0 auto;
+    text-align: center;
+    color: #F96504;
+	font-size:21px;
+	font-weight:500;
+	margin:-10px 0px 0px 0px;
+		-webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+ }
+ 

@@ -1,0 +1,196 @@
+﻿  .maincontactheader {
+        background-color: #59294C;
+        text-align: center;
+        color: white;
+        height: 65px;
+    }
+
+    .maincontactheader1 {
+        background-color: #FF6937 !important;
+    }
+
+    .adh2 {
+        display: block;
+    }
+    .hr2 {
+    margin-top: 250px;
+    margin-bottom:8px;
+    border: 0;
+    border-top: 1px solid gray;
+    width: 100%;
+}
+    .hr3 {
+        margin-top: 13px;
+    margin-bottom: 8px;
+    border: 0;
+    border-top: 1px solid #ca9696;
+    width: 100%;
+    }
+    #tabs-demo2 li a {
+        padding: 14px 38px;
+        color: white;
+    }
+    .bedndbathno {
+        color:#FF5D26; font-size:13px;font-weight:bold;
+
+    }
+    .sqft{
+        color:#FF5D26; font-size:13px;font-weight:bold;
+    }
+    .arrow{
+        float: right;margin-right: -223%;margin-top: 23px;
+    }
+   .bedndbath{
+       color:#878a8c !important;font-size:13px;
+    }
+
+    #tabs-demo2 {
+       margin-left: 2%;
+    }
+
+        #tabs-demo2 > li.active > a, #tabs-demo2 > li.active > a:focus, #tabs-demo2 > li.active > a:hover {
+            background-color: white;
+            color: #FF6937 !important;
+        }
+
+        #tabs-demo2 > li > a:hover {
+            background-color: white !important;
+            color: #FF6937 !important;
+        }
+
+    .shareicon {
+        width: 23px;
+        height: 25px;
+        margin-top: -8px;
+    }
+
+    .imggic {
+        float: right;
+        margin-top: 20px;
+        margin-right:10px;
+        
+    }
+
+    .ralty {
+        font-size: 10px;
+        padding-right: 20px;
+        margin-top: -18px;
+    }
+
+    .maindiv {
+        float: left;
+        text-align: right;
+      padding-top:8px;
+    }
+    .avatar1{
+            height: 50px;
+    width: 50px;
+    margin-top: 0px;
+    }
+    .buyer{
+        border:1px solid #FF6937 !important;
+         color:#FF6937;
+         border-radius: 5px;
+         padding:7px 50px;
+         background-color: white;
+    }
+    li::before {
+  
+  color: red; /* or whatever color you prefer */
+}
+    .listing{
+        border:1px solid #FF6937 !important;
+        color:#FF6937;
+        border-radius: 5px;
+        padding:7px 50px;
+        background-color: white;
+    }
+    .about{
+        /*text-align: center;*/
+         border:1px solid #FF6937 !important;
+          /*color: #FF6937;*/
+           overflow: auto;
+            border-radius: 5px; 
+            height: 95px;
+             overflow-y: auto;
+              overflow-x: hidden;
+    }
+    .agentwebs{
+        background-color: #FF6937 !important;
+         color:white;
+         border-radius: 5px;
+         width:100%;
+    }
+   .paragraph{
+       border:1px solid #FF6937 !important;
+       font-size:12px;
+       border-radius:5px;
+   }
+/*-------------------------------*/
+/*      Code snippet by          */
+/*      @maridlcrmn              */
+/*-------------------------------*/
+
+
+section {
+   
+    padding-bottom: 0px;
+}
+
+.quote {
+    color: rgba(0,0,0,.1);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/*-------------------------------*/
+/*    Carousel Fade Transition   */
+/*-------------------------------*/
+
+#fade-quote-carousel.carousel {
+  
+}
+#fade-quote-carousel.carousel .carousel-inner .item {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+      -ms-transition-property: opacity;
+          transition-property: opacity;
+}
+#fade-quote-carousel.carousel .carousel-inner .active {
+  opacity: 1;
+  -webkit-transition-property: opacity;
+      -ms-transition-property: opacity;
+          transition-property: opacity;
+}
+#fade-quote-carousel.carousel .carousel-indicators {
+  bottom: -20px;
+  margin-left:-50%;
+  text-align:left;
+}
+#fade-quote-carousel.carousel .carousel-indicators > li {
+    background-color: #fbf8f8;
+    border: 1px solid #ff5d26;
+}
+.carousel-indicators .active {
+    background-color: #ff5d26 !important;
+    border: none !important;
+}
+
+
+#fade-quote-carousel blockquote {
+    text-align: center;
+    border: none;
+    padding-left:0;
+    padding-right:0;
+}
+#fade-quote-carousel .profile-circle {
+   width: 40px;
+    height: 40px;
+    /* margin: 0 auto; */
+    float: right;
+    border-radius: 100px;
+}
+.col-md-offset-2{
+    margin-left:0px;
+}
+

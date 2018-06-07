@@ -1,0 +1,2134 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<title>Quitchet::Landing</title>
+<link rel="shortcut icon" href="/img/logomi.png">
+<link href="https://fonts.googleapis.com/css?family=Inder" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Inder" rel="stylesheet">
+<style>
+    .RoundEdgespn {
+        display: inline-block;
+        min-width: 10px;
+        padding: 3px 7px;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        background-color: #777;
+        border-radius: 4px;
+    }
+
+    .btnInactiveClass {
+        border: none !important;
+        color: black !important;
+        width: 100%;
+        background-color: #ffffff !important;
+        font-size: 14px;
+        left: 10px;
+    }
+
+    .btnActiveClass {
+        border: none !important;
+        color: white !important;
+        width: 100%;
+        background-color: #f56331 !important;
+        font-size: 14px;
+    }
+
+    .firstLabel {
+        font-weight: bold;
+    }
+
+    .SecondLabelRed {
+        font-weight: bold;
+        color: #f56331;
+    }
+
+    .EminitiesSecondLabelRed {
+        font-weight: bold;
+        color: #f56331;
+    }
+
+    .listPointer {
+        font-weight: bold;
+        font-size: 25px;
+        color: #f56331;
+        position: relative;
+        left: -6px;
+    }
+
+    .textlimit {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .removetextlimit {
+        overflow: hidden;
+        white-space: normal;
+    }
+
+    .CustomerPopUpModel {
+        background-color: #f56331;
+        color: white;
+        text-align: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 0px;
+        padding-right: 0px;
+        position: relative;
+        margin-top: -0.5%;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .MainToggleDivision {
+        position: relative;
+        /*width: 100.6%;*/
+        background-color: #ffffff;
+    }
+     /*styles for listing image backgrounds in div - Start*/
+         .bgimage{
+	background-size:contain !important;
+	background-position:center !important;
+	background-repeat:no-repeat !important;
+     /*position:relative; background-size: 100% 100%; background-repeat: no-repeat;*/
+    }
+</style>
+<div class="col-sm-offset-1 col-sm-10" style="padding:15px">
+    <div class="modal-content" style="background-color: #FFFFFF;font-family: 'Inder', sans-serif" id="CustomerHomeListingView">
+        <div class="modal-header CustomerPopUpModel" style="">
+            @*<button id="Customer_ListDetails_Close" type="button" class="btn btn-sm" data-dismiss="modal" style="border:1px solid!important;background-color: #f56331; color: white; height: 25px; padding-top: 2px; padding-bottom: 2px; float: right">Close</button>*@
+            <h4 class="modal-title" style="font-family: 'Inder', sans-serif;margin-left:7%;"><span id="HR_Txt_pop_heading">Rental Details</span></h4>
+        </div>
+        <div class="col-sm-4" style="padding:0 !important">
+            <div class="col-sm-12" style="padding-left: 0px;background-color: #59294C;">
+                <div class="col-sm-3">
+                    <img src="/img/addphotopic.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 50px; width: 50px; margin-top: 8px!important; border: #ff5d26" id="HR_BuyerAgent_pic">
+                </div>
+                <div class="col-sm-8">
+                    <label id="HR_Buyer_AgentName" style="padding-top: 15%!important; text-align: center; font-size: large; color: aliceblue; margin-bottom: 0!important"></label>
+                </div>
+                <div class="col-sm-1">&nbsp;</div>
+                <div class="col-sm-12" style=" padding-top 3%">
+                    <div class="col-sm-12" style="padding:0px">
+                        <span id="HR_Buyer_AgentOfficeName" style="text-align: left; font-size: 10px; color: aliceblue; display: -webkit-box; padding-top: 3%"></span>
+                    </div>
+
+                </div>
+                <div class="col-sm-8" style="padding-bottom: 6%">
+                    &nbsp;
+                </div>
+                <div class="col-sm-2">
+                    <a id="HR_Buyer_phone_img" href="#">
+                        <img src="~/img/mbwhite.png" />
+                    </a>
+                </div>
+                <div class="col-sm-2">
+                    <a id="HR_Buyer_Message_Image" href="#">
+                        <img src="~/img/chat_iconMyAgent_MP.png" />
+                    </a>
+                    <label hidden="hidden" id="lbl_hdn_mlsid"></label>
+                    <label hidden="hidden" id="lbl_hdn_addr1"></label>
+                    <label hidden="hidden" id="lbl_hdn_addr2"></label>
+                    <label hidden="hidden" id="lbl_hdn_photo"></label>
+                </div>
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="col-sm-12" style="padding:0px">
+                <div class="col-sm-8">&nbsp;</div>
+                <div class="col-sm-3" style="">
+                    <span id="HR_Home_Type" class="RoundEdgespn"></span>
+                </div>
+                <div class="col-sm-1">&nbsp;</div>
+            </div>
+            <div class="col-sm-12">
+                <label id="HR_Property_Price" style="color: #f56331; font-size: x-large; font-weight:200;"></label>
+            </div>
+            <div class="col-sm-12" style="padding:0px">
+                <div class="col-sm-2" style="float:right; padding:0px">
+                    <img src="~/img/hearticon.png" id="HR_Fav_Img" onclick="Fun_Fav_Change('HR_Fav_Img')" style="cursor:pointer" />
+                </div>
+                <div class="col-sm-2" style="float:right;padding:0px">
+                    <img src="~/img/viewedicon.png" id="HR_View_Img" />
+                </div>
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="col-sm-12">
+                <label class="textlimit" id="HR_Prop_AddOne" style="font-size: initial; font-weight: bold; color: #1C1C1B;"></label>
+            </div>
+            <div class="col-sm-12">
+                <label class="textlimit" id="HR_Prop_AddTwo" style="font-size: medium;font-size:16px;"></label>
+            </div>
+            <div class="col-sm-12">
+                <label class="textlimit" id="HR_Prop_MLSID" style="font-size: 11px; font-weight: bold;line-height:3"></label>
+            </div>
+            <div class="col-sm-12">
+                <hr />
+            </div>
+            <div class="col-sm-6">
+                <button type="button" id="HR_DriveBY" class="btn btn-sm" style="background-color: #f56331; color: white; width:100px; border-radius: 4px !important">Drive by</button>
+            </div>
+            <div class="col-sm-6">
+                <button type="button" id="HR_StreetView" class="btn btn-sm" style="background-color: #f56331; width:100px; color: white; border-radius: 4px !important">Street View</button>
+            </div>
+        </div>
+        <div class="col-sm-8" style="padding:0px">
+            <div id="HR_divPropImage" class="bgimage" style="background: url(/img/NoImage.png); height: 68vh; width: 100%">
+                <div class="col-sm-12" style="margin-top: 25%;padding:0">
+                    <a href="#">
+                        <img src="/img/SliderBackArrow.png" width="21" height="36" alt="" style="" onclick="HR_PopupSlideImage('Previous', 'HR_divPropImage', 'HR_DivImg_PrevBtn', 'HR_DivImg_NextButton', 'HR_ImageCurrentNo')" id="HR_DivImg_PrevBtn" hidden="hidden">
+                    </a>
+                    <a href="#">
+                        <img src="/img/SliderNextArrow.png" width="21" height="36" alt="" style="float: right;" onclick="HR_PopupSlideImage('Next', 'HR_divPropImage', 'HR_DivImg_PrevBtn', 'HR_DivImg_NextButton', 'HR_ImageCurrentNo')" id="HR_DivImg_NextButton" hidden="hidden">
+                    </a>
+                </div>
+                <div class="col-sm-12" style="background: rgba(0, 0, 0, 0.55);  position:absolute;bottom:0; text-align: center; width: 100%; margin-left: 0%">
+                    <span style="color: white" id="HR_ImageCurrentNo"></span>
+                    <span style="color: white">&nbsp;of&nbsp;</span>
+                    <span style="color: white" id="HR_TotalImageCount"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12" style="background-color: #434343;padding-top: .5%;padding-bottom: .5%;">
+            <div class="col-sm-5" style="padding-left:0;">
+                <button type="button" onclick="HR_OpenMultiFileUploader()" class="btn btn-sm" style="background-color: #f56331; border-color: #f56331; color: white; border-radius: 3px !important"><span class="glyphicon glyphicon-camera" style="color: #FF9B79;"></span>&nbsp; &nbsp; Add Photos Or Videos</button>
+                <button id="HR_Btn_MyNotes" type="button" class="btn btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#" style="background-color: #f56331; border-color: #f56331; color: white; border-radius: 3px !important"><img src="~/img/notes_icon.png" style="height: 14px" />&nbsp; My Notes</button>
+                <div hidden="hidden">
+                    <input type="file" id="Btn_MultiUploader" name="fileUpload" multiple="multiple" hidden="hidden" accept="image/*,video/*" onchange="HR_readMultiUploadFiles(this)" />
+                </div>
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-4" style="text-align:right;padding-right:0;">
+                <button type="button" class="btn btn-sm" onclick='PrintListing();' style="background-color: #f56331; border-color: #f56331; color: white; font-weight: bold; border-radius: 3px !important"><span class="glyphicon glyphicon-print" style="color: #FF9B79;"></span>&nbsp; &nbsp; Print</button>
+                <button type="button" class="btn btn-sm" id="HR_BTN_SharePop_UP" style="background-color: #f56331; border-color: #f56331; color: white; font-weight: bold; border-radius: 3px !important">
+                    <img src="~/img/shareicon2.png" style="height: 14px" />&nbsp;Share
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-12" style="background-color: #7D7D7C; padding:0px;text-align:center">
+            <span style="color: white; font-size: 12px;">Days On Quitchet: &nbsp;</span><span id="HR_LBLDaysInQuitChet" style="color: #ef8f6e; font-size: 11px;"></span>
+        </div>
+        @*-------------------------------------------------------Collapse Divs-------------------------------------------------------*@
+        @*-------------------------------------------------------Start: Agent Remarks-------------------------------------------------------*@
+        <div class="col-sm-12 MainToggleDivision" id="HR_Tog_AgentRemarks" onclick="Fun_CSTCollapsableToogle('HR_Tog_AgentRemarks', 'HR_FaAgentremarks', 'HR_BTNAgentReamrks', 'textCT_agentheading')">
+            <a class="btn btn-danger btnInactiveClass" data-toggle="collapse" id="HR_BTNAgentReamrks" data-target="#agentremarks" aria-expanded="false" aria-controls="collapseExample">
+                <span id="textCT_agentheading">Agent Remarks</span>
+                <span id="HR_FaAgentremarks" class="" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12">
+            <div id="agentremarks" class="collapse">
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12" style="text-align:justify">
+                    <span id="HR_SpnAgentRemarks" style="font-size: 13px; display: -webkit-box; font-weight: bold;line-height:1.8"></span>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+        </div>
+        @*-------------------------------------------------------End: Agent Remarks-------------------------------------------------------*@
+        @*-------------------------------------------------------Start: Main Features-------------------------------------------------------*@
+        <div class="col-sm-12 MainToggleDivision" id="HR_Tog_MainFeatures" onclick="Fun_CSTCollapsableToogle('HR_Tog_MainFeatures', 'HR_FamainFeatures', 'HR_BtnMainFeatures')">
+            <a class="btn btn-danger btnInactiveClass" data-toggle="collapse" id="HR_BtnMainFeatures" data-target="#div_collapse_mainfetures1" aria-expanded="false" aria-controls="collapseExample">
+                Main Features
+                <span id="HR_FamainFeatures" class="" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12" style="padding:0px">
+            <div id="div_collapse_mainfetures1" class="collapse">
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12">
+                    <div class="col-sm-3" style="line-height: 2;">
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <label class="firstLabel">Type:</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <label id="HR_lblHomeType" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <label class="firstLabel">Year Built:</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label id="HR_lblYearbuilt" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <label class="firstLabel">Lot Size:</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <label id="HR_lblLotSize" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -10%;height: 80px;width: 3px;position:  relative;left: 36px;margin-top: 0%;">
+                    </div>
+                    <div class="col-sm-3" style="line-height: 2;">
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <label class="firstLabel">Subdivision:</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label id="HR_lblSubDivision" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-7">
+                                <label class="firstLabel"># of Stories:</label>
+                            </div>
+                            <div class="col-sm-5">
+                                <label id="HR_lblStories" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-7">
+                                <label class="firstLabel">Approx Age:</label>
+                            </div>
+                            <div class="col-sm-5">
+                                <label id="HR_lblApproxage" class="SecondLabelRed textlimit">06-223</label>
+                            </div>
+                        </div>
+                        <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -10%;height: 80px;width: 3px;position:  relative;left: 25px;">
+                        <div class="col-sm-12">&nbsp;</div>
+                    </div>
+                    <div class="col-sm-3" style="line-height: 2;">
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <label class="firstLabel">Bedrooms:</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <label id="HR_lblNoBedrooms" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <label class="firstLabel">Bathrooms:</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <label id="HR_NoBathrooms" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <label class="firstLabel">Sqft:</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <label id="HR_lblSqrt" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -10%;height: 80px;width: 3px;position:  relative;left: 20px;">
+                        <div class="col-sm-12">&nbsp;</div>
+                    </div>
+
+                    <div class="col-sm-3" style="line-height: 2;">
+                        <div class="col-sm-6">
+                            <label class="firstLabel">Garage Type:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label id="HR_lblGarageType" class="SecondLabelRed textlimit"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="firstLabel">Garage Capacity:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label id="HR_lblGarageCapacity" class="SecondLabelRed textlimit"></label>
+                        </div>
+                        <div class="col-sm-12">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                @*Start: room sizes *@
+                <div class="col-sm-12 mainfeaturediv" style="background-color: #FFE8E0; width: 100%;">
+                    <a class="btn btn-primary" data-toggle="collapse" id="AGL_roomsizesicon" data-target="#div_collapse_mainfetures2" aria-expanded="false" aria-controls="collapseExample" style="color: rgba(244, 99, 49, 1) !important; width: 100%; background-color:#FFE8E0 !important ; border:none;  ">
+                        Room Sizes
+                        <span class="fa fa-angle-down" style="color: #f56331; float: right; font-size: 20px;"></span>
+                    </a>
+                </div>
+                <div class="col-sm-12 mainfeaturediv">
+                    <hr style="margin-top: 0%; margin-bottom: 0%" />
+                </div>
+                <div id="div_collapse_mainfetures2" class="col-sm-12 collapse">
+                    <div class="col-sm-12">&nbsp;</div>
+                    <div class="col-sm-3 mainfeatureheadderdiv mainfeaturediv" style="line-height: 2;">
+                        <div class="col-sm-9">
+                            <label class="firstLabel">Living Rm:</label>
+                        </div>
+                        <div class="col-sm-3" style="left: -24%;">
+                            <label id="HR_lbllivingRoom" class="SecondLabelRed"></label>
+                        </div>
+                        <div class="col-sm-9">
+                            <label class="firstLabel">Dining Rm:</label>
+                        </div>
+                        <div class="col-sm-3" style="left: -24%;">
+                            <label id="HR_lblDiningRoom" class="SecondLabelRed"></label>
+                        </div>
+                        <div class="col-sm-9">
+                            <label class="firstLabel">Breakfast Rm:</label>
+                        </div>
+                        <div class="col-sm-3" style="left: -24%;">
+                            <label id="HR_lblBreakFast" class="SecondLabelRed"></label>
+                        </div>
+                        <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -10%;height: 65px;width: 3px;position:  relative;left: 2%;">
+                    </div>
+                    <div class="col-sm-3 mainfeatureheadderdiv mainfeaturediv" style="left:-4%;line-height:2">
+                        <div class="col-sm-9">
+                            <label class="firstLabel">Sun Rm:</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label id="HR_lblSunRoom" class="SecondLabelRed"></label>
+                        </div>
+                        <div class="col-sm-9">
+                            <label class="firstLabel">Bonus Rm:</label>
+                        </div>
+                        <div class="col-sm-3" style="left: -33%;">
+                            <label id="HR_lblBonusRoom" class="SecondLabelRed"></label>
+                        </div>
+                        <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -10%;height: 65px;width: 3px;position:  relative;left: -6%;">
+                    </div>
+                    <div class="col-sm-4 mainfeatureheadderdiv mainfeaturediv" style="left: -9%;line-height:2">
+                        <div class="col-sm-6">
+                            <div class="col-sm-10">
+                                <label class="firstLabel">Master BR:</label>
+                            </div>
+                            <div class="col-sm-2" style="margin-left: -14%;">
+                                <label id="HR_lblMasterBR" class="SecondLabelRed"></label>
+                            </div>
+                            <div class="col-sm-10">
+                                <label class="firstLabel">Bedroom #2:</label>
+                            </div>
+                            <div class="col-sm-2" style="margin-left: -14%;">
+                                <label id="HR_lblBRTwo" class="SecondLabelRed"></label>
+                            </div>
+                            <div class="col-sm-10">
+                                <label class="firstLabel">Bedroom #3:</label>
+                            </div>
+                            <div class="col-sm-2" style="margin-left: -14%;">
+                                <label id="HR_lblBRThree" class="SecondLabelRed"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="left:-2%">
+                            <div class="col-sm-10">
+                                <label class="firstLabel">Bedroom #4:</label>
+                            </div>
+                            <div class="col-sm-2" style="margin-left: -10%;">
+                                <label id="HR_lblBRFour" class="SecondLabelRed"></label>
+                            </div>
+                            <div class="col-sm-10">
+                                <label class="firstLabel">Bedroom #5:</label>
+                            </div>
+                            <div class="col-sm-2" style="margin-left: -10%;">
+                                <label id="HR_lblBRFive" class="SecondLabelRed"></label>
+                            </div>
+                        </div>
+
+                        <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -10%;height: 65px;width: 3px;position:  relative;left: 15%;">
+                    </div>
+                    <div class="col-sm-2" style="position:relative; left:-3%; line-height:2">
+                        <div class="col-sm-11" style="position:relative; left:-23%">
+                            <label class="firstLabel">Screened Porch:</label>
+                        </div>
+                        <div class="col-sm-1" style="margin-left: -24%;">
+                            <label id="HR_lblScreenedPorch" class="SecondLabelRed"></label>
+                        </div>
+                        <div class="col-sm-11" style="position:relative; left:-23%">
+                            <label class="firstLabel">Deck:</label>
+                        </div>
+                        <div class="col-sm-1" style="margin-left: -24%;">
+                            <label id="HR_lblDeck" class="SecondLabelRed"></label>
+                        </div>
+                        <div class="col-sm-11" style="position:relative; left:-23%">
+                            <label class="firstLabel">Patio:</label>
+                        </div>
+                        <div class="col-sm-1" style="margin-left: -24%;">
+                            <label id="HR_lblPatio" class="SecondLabelRed"></label>
+                        </div>
+                        <div class="col-sm-11" style="position:relative; left:-23%">
+                            <label class="firstLabel">Laundry rm:</label>
+                        </div>
+                        <div class="col-sm-1" style="margin-left: -24%;">
+                            <label id="HR_lblLaundryRoom" class="SecondLabelRed"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">&nbsp;</div>
+                </div>
+                @*End: room sizes *@
+            </div>
+        </div>
+        @*-------------------------------------------------------End: Main Features-------------------------------------------------------*@
+        @*-------------------------------------------------------Start Schoolsv-------------------------------------------------------*@
+        <div class="col-sm-12 MainToggleDivision" id="HR_TogSchool" onclick="Fun_CSTCollapsableToogle('HR_TogSchool', 'HR_FaSchool', 'HR_BtnSchool')">
+            <a class="btn btn-danger btnInactiveClass" data-toggle="collapse" id="HR_BtnSchool" data-target="#div_schools_collapse" aria-expanded="false" aria-controls="collapseExample">
+                Schools
+                <span class="" id="HR_FaSchool" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12">
+            <div id="div_schools_collapse" class="collapse">
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-4 mainfeatureheadderdiv1">
+                    <div class="col-sm-12">
+                        <div class="col-sm-4 mainfeaturediv">
+                            <label class="firstLabel">Elementary:</label>
+                        </div>
+                        <div class="col-sm-8 mainfeaturediv">
+                            <label id="HR_lblElementary" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 mainfeatureheadderdiv1">
+                    <div class="col-sm-12">
+                        <div class="col-sm-4 mainfeaturediv">
+                            <label class="firstLabel">Middle:</label>
+                        </div>
+                        <div class="col-sm-8 mainfeaturediv">
+                            <label id="HR_lblMiddle" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 mainfeatureheadderdiv1">
+                    <div class="col-sm-12">
+                        <div class="col-sm-5 mainfeaturediv">
+                            <label class="firstLabel">High school:</label>
+                        </div>
+                        <div class="col-sm-7 mainfeaturediv">
+                            <label id="HR_lblHighschool" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+        </div>
+        @*-------------------------------------------------------Start Schoolsv-------------------------------------------------------*@
+        @*-------------------------------------------------------Start Features and Eminities-------------------------------------------------------*@
+        <div class="col-sm-12 MainToggleDivision" id="HR_TogHomeFeatures" onclick="Fun_CSTCollapsableToogle('HR_TogHomeFeatures', 'HR_FaHomeFeatures', 'HR_btnHomeFeatures')">
+            <a class="btn btn-danger btnInactiveClass" id="HR_btnHomeFeatures" data-toggle="collapse" data-target="#collapse122" aria-expanded="false" aria-controls="collapseExample">
+                <span id="AGL_text_Renatlfeatues">Home Features & Amenities</span>
+                <span class="" id="HR_FaHomeFeatures" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12" style="padding:0px">
+            <div id="collapse122" class="collapse">
+                @*Interior Home *@
+                <div class="col-sm-12 mainfeaturediv" style="background-color: #FFE8E0; width: 100%;">
+                    <a class="btn btn-primary" data-toggle="collapse" id="interiorhome" data-target="#div_collapse_interior" aria-expanded="false" aria-controls="collapseExample" style="color: rgba(244, 99, 49, 1) !important; width: 100%; background-color:#FFE8E0 !important ; border:none;  ">
+                        Interior Home
+                        <span class="fa fa-angle-down" style="color: #f56331; float: right; font-size: 20px;"></span>
+                    </a>
+                </div>
+                <div class="col-sm-12">
+                    <hr style="margin-top: 0%; margin-bottom: 0%" />
+                </div>
+                <div class="col-sm-12">
+                    <div id="div_collapse_interior" class="collapse">
+                        <div class="col-sm-12">&nbsp;</div>
+                        <div class="col-sm-12" style="background-color:#fdfcfb; width:100%;">
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-4 mainfeaturediv">
+                                    <label class="firstLabel">Appliances:</label>
+                                </div>
+                                <div class="col-sm-8 mainfeaturediv">
+                                    <label id="HR_lblAppliances" class="SecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-5 mainfeaturediv">
+                                    <label class="firstLabel">Fireplace:</label>
+                                </div>
+                                <div class="col-sm-7 mainfeaturediv">
+                                    <label id="HR_lblFirePlace" class="EminitiesSecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="background-color:none; width:100%">
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-4 mainfeaturediv">
+                                    <label class="firstLabel">Floor:</label>
+                                </div>
+                                <div class="col-sm-8 mainfeaturediv">
+                                    <label id="HR_lblFloor" style="font-weight:bold; color:#f56331"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-5 mainfeaturediv">
+                                    <label class="firstLabel">Garage:</label>
+                                </div>
+                                <div class="col-sm-7 mainfeaturediv">
+                                    <label id="Hr_LblGarage" class="EminitiesSecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="background-color:#fdfcfb; width:100%">
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-4 mainfeaturediv">
+                                    <label class="firstLabel">Master Br features:</label>
+                                </div>
+                                <div class="col-sm-8 mainfeaturediv">
+                                    <label id="HR_MasterBRFea" class="EminitiesSecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-5 mainfeaturediv">
+                                    <label class="firstLabel">Basement:</label>
+                                </div>
+                                <div class="col-sm-7 mainfeaturediv">
+                                    <label id="HR_lblBasement" class="EminitiesSecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="background-color:none; width:100%">
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-4 mainfeaturediv">
+                                    <label class="firstLabel">Laundry:</label>
+                                </div>
+                                <div class="col-sm-8 mainfeaturediv">
+                                    <label id="HR_lbllanduary" class="EminitiesSecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-5 mainfeaturediv">
+                                    <label class="firstLabel">Storage space:</label>
+                                </div>
+                                <div class="col-sm-7 mainfeaturediv">
+                                    <label id="HR_lblStorageSpace" class="EminitiesSecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="background-color:#fdfcfb; width:100%">
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-4 mainfeaturediv">
+                                    <label class="firstLabel">Speciality Room:</label>
+                                </div>
+                                <div class="col-sm-8 mainfeaturediv">
+                                    <label id="HR_lblSpecialityRoom" style="font-weight:bold; color:#f56331"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-5 mainfeaturediv">
+                                    <label class="firstLabel">Other interior features:</label>
+                                </div>
+                                <div class="col-sm-7 mainfeaturediv">
+                                    <label id="HR_OtherIntFea" class="EminitiesSecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">&nbsp;</div>
+                    </div>
+                </div>
+                @* Exterior Home *@
+                <div class="col-sm-12 mainfeaturediv" style="background-color: #FFE8E0; width: 100%;">
+                    <a class="btn btn-primary" data-toggle="collapse" id="exteriorhome" data-target="#div_collapse_exterior" aria-expanded="false" aria-controls="collapseExample" style="color: rgba(244, 99, 49, 1) !important; width: 100%; background-color:#FFE8E0 !important ; border:none;  ">
+                        Exterior Home
+                        <span class="fa fa-angle-down" style="color: #f56331; float: right; font-size: 20px;"></span>
+                    </a>
+                </div>
+                <div class="col-sm-12 mainfeaturediv">
+                    <hr style="margin-top: 0%; margin-bottom: 0%" />
+                </div>
+                <div class="col-sm-12">
+                    <div id="div_collapse_exterior" class="collapse">
+                        <div class="col-sm-12">&nbsp;</div>
+                        <div class="col-sm-12" style="background-color:#fdfcfb; width:100%">
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-4 mainfeaturediv">
+                                    <label class="firstLabel">Lot Description:</label>
+                                </div>
+                                <div class="col-sm-8 mainfeaturediv">
+                                    <label id="HR_LbllotDesc" class="EminitiesSecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-5 mainfeaturediv">
+                                    <label class="firstLabel">Roof:</label>
+                                </div>
+                                <div class="col-sm-7 mainfeaturediv">
+                                    <label id="HR_lblRoof" class="EminitiesSecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="background-color:none; width:100%">
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-4 mainfeaturediv">
+                                    <label class="firstLabel">Foundation:</label>
+                                </div>
+                                <div class="col-sm-8 mainfeaturediv">
+                                    <label id="HR_LblFoundation" style="font-weight:bold; color:#f56331"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-5 mainfeaturediv">
+                                    <label class="firstLabel">Driveway</label>
+                                </div>
+                                <div class="col-sm-7 mainfeaturediv">
+                                    <label id="HR_lblDriveWay" class="EminitiesSecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="background-color:#fdfcfb; width:100%">
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-4 mainfeaturediv">
+                                    <label class="firstLabel">Exterior Finish:</label>
+                                </div>
+                                <div class="col-sm-8 mainfeaturediv">
+                                    <label id="HR_lblExtFinish" style="font-weight:bold; color:#f56331"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="line-height: 2;">
+                                <div class="col-sm-5 mainfeaturediv">
+                                    <label class="firstLabel">Other Exterior Features:</label>
+                                </div>
+                                <div class="col-sm-7 mainfeaturediv">
+                                    <label id="HR_lblOtherExtFea" class="EminitiesSecondLabelRed textlimit"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">&nbsp;</div>
+                    </div>
+                </div>
+                @* aminities*@
+                <div class="col-sm-12 mainfeaturediv" style="background-color: #FFE8E0; width: 100%;">
+                    <a class="btn btn-primary" data-toggle="collapse" id="aminities" data-target="#div_collapse_aminities" aria-expanded="false" aria-controls="collapseExample" style="color: rgba(244, 99, 49, 1) !important; width: 100%; background-color:#FFE8E0 !important ; border:none;  ">
+                        Amenities
+                        <span class="fa fa-angle-down" style="color: #f56331; float: right; font-size: 20px;"></span>
+                    </a>
+                </div>
+                <div class="col-sm-12 mainfeaturediv">
+                    <hr style="margin-top: 0%; margin-bottom: 0%" />
+                </div>
+                <div class="col-sm-12" style="padding:0px">
+                    <div id="div_collapse_aminities" class="collapse" style="line-height:2">
+                        <div class="col-sm-12">&nbsp;</div>
+                        <div class="col-sm-12" style="background-color:#fbf8f7; width:100%">
+                            <div class="col-sm-5">
+                                <label class="firstLabel">HOA/Community Amenities:</label>
+                            </div>
+                            <div class="col-sm-7" style="position:relative;left:-22%">
+                                <label id="HR_lblHoaCommunity" style="font-weight:bold; color:#f56331"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="background-color:none; width:100%">
+                            <div class="col-sm-5">
+                                <label class="firstLabel">Condo Amenities Included:</label>
+                            </div>
+                            <div class="col-sm-7" style="position:relative;left:-22%">
+                                <label id="HR_lblCondoIncluded" style="font-weight:bold; color:#f56331"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*-------------------------------------------------------End Features and Eminities-------------------------------------------------------*@
+        @*-------------------------------------------------------Start: Heating and Cooling-------------------------------------------------------*@
+        <div class="col-sm-12 MainToggleDivision" id="HR_TogHeaingCooling" onclick="Fun_CSTCollapsableToogle('HR_TogHeaingCooling', 'HR_FaHeaatingCooling', 'HR_BtnHeatingCooling')">
+            <a class="btn btn-danger btnInactiveClass" id="HR_BtnHeatingCooling" data-toggle="collapse" data-target="#div_collapse_heatingandcooling" aria-expanded="false" aria-controls="collapseExample">
+                <span id="text_heatingandcooling">Utilities / Heating & Cooling</span>
+                <span class="" id="HR_FaHeaatingCooling" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12">
+            <div id="div_collapse_heatingandcooling" class="collapse">
+                <div class="col-sm12">&nbsp;</div>
+                <div class="col-sm-12" style=" width:106.5%;position:relative;left:-33px">
+                    <div class="col-sm-4" style="line-height: 2;">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">Water:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="HR_lblWater" style="font-weight:bold; color:#f56331"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="line-height: 2;">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">Garbage Pickup:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="HR_lblGaragepickUp" style="font-weight:bold; color:#f56331"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="line-height: 2;">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">Heating System:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="HR_lblHeatingSystem" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="background-color:none; width:106.5%;position:relative;left:-33px">
+                    <div class="col-sm-4" style="line-height: 2;">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">Sewer:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="HR_lblSewer" style="font-weight:bold; color:#f56331"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="line-height: 2;">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">Water heater:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="HR_lblWaerHeater" style="font-weight:bold; color:#f56331"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="line-height: 2;">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">Cooling System:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="HR_lblCoolingsystem" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm12">&nbsp;</div>
+            </div>
+        </div>
+        @*-------------------------------------------------------End: Heating and Cooling-------------------------------------------------------*@
+        @*-------------------------------------------------------Start: Financial Info-------------------------------------------------------*@
+        <div class="col-sm-12 MainToggleDivision" id="HR_TogFinanceInfo" onclick="Fun_CSTCollapsableToogle('HR_TogFinanceInfo', 'HR_FaFinance', 'HR_BtnFinance')">
+            <a class="btn btn-danger btnInactiveClass" id="HR_BtnFinance" data-toggle="collapse" data-target="#div_collapse_financialinfo" aria-expanded="false" aria-controls="collapseExample">
+                Financial Info
+                <span class="" id="HR_FaFinance" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12" style="padding:0px">
+            <div id="div_collapse_financialinfo" class="collapse">
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12" style="background-color:none; width:106.5%;position:relative;left:-33px">
+                    <div class="col-sm-4">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">HOA Fee:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="HR_lblHoaFee" style="font-weight:bold; color:#f56331"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="col-sm-6">
+                            <label class="firstLabel">Additional Fee:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label id="HR_lblHoaAddFee" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="col-sm-6">
+                            <label class="firstLabel">Tax Information:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label id="HR_lblTaxInfo" style="font-weight:bold; color:#f56331"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="background-color:none; width:106.5%;position:relative;left:-33px">
+                    <div class="col-sm-4">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">HOA Fee Term:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="HR_lblHoaFeeTerm" style="font-weight:bold; color:#f56331"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="col-sm-6">
+                            <label class="firstLabel">Special Finance Options:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label id="HR_lblFinanceOpt" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+        </div>
+        @*-------------------------------------------------------End: Financial Info-------------------------------------------------------*@
+        @*-------------------------------------------------------Start: Listing Agent-------------------------------------------------------*@
+        <div class="col-sm-12 MainToggleDivision" id="HR_TogLiistingAgent" style="background-color: #ffffff" onclick="Fun_CSTCollapsableToogle('HR_TogLiistingAgent', 'HR_FaListingAgent', 'HR_btnListingAgent')">
+            <a class="btn btn-danger btnInactiveClass" id="HR_btnListingAgent" data-toggle="collapse" data-target="#div_collapse_listingagent" aria-expanded="false" aria-controls="collapseExample">
+                Listing Agent
+                <span class="" id="HR_FaListingAgent" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12" style="padding:0px;top: 3px;">
+            <div id="div_collapse_listingagent" class="collapse" style="padding:0px">
+                <div class="col-sm-12" style="background-color: #B40101; margin-top: -.1%; width: 100%; text-align: center; padding-bottom: 2%">
+                    <span style="font-size: 10px; color: white;">Listing Provided By: </span>
+                    <img src="/img/addphotopic.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 50px; width: 50px; margin-top: 15px!important;" id="HR_listingAgentIMG">
+                    <span id="HR_ListingAgentName" style="color: white;left: 10px;position: relative;"></span>
+                    <div class="col-sm-12" style="margin-top: -3%; margin-left: 9.5%; line-height:1">
+                        <label id="HR_ListingAgentOffice" style="font-size: 10px;color: white;padding-left: 0px;position:  relative;left: 8px;top: 10px;"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*-------------------------------------------------------END Listing Agent-------------------------------------------------------*@
+        @*-------------------------------------------------------Start Logo-------------------------------------------------------*@
+        <div class="col-sm-12" style="background-color: #525151;text-align: center;padding-top: 1.1%;height: 44px;border-bottom-left-radius:  5px;border-bottom-right-radius: 5px;top: 2.516px;">
+            <img style="height: 20px;" src="~/img/quitchetlogo_little.png" />
+        </div>
+        @*-------------------------------------------------------END Logo-------------------------------------------------------*@
+        <div class="modal-footer" style="padding-bottom:0px">
+        </div>
+    </div>
+</div>
+@*End: Home Rentals Pop up*@
+
+@*Start: Home Lots Pop up*@
+<div class="col-sm-offset-1 col-sm-10" style="padding:15px">
+    <div class="modal-content" style="background-color: #FFFFFF;font-family: 'Inder', sans-serif" id="lotslandListingView">
+        <div class="modal-header CustomerPopUpModel" style="background-color:#554f4a !important">
+            @*<button id="LSL_ListDetails_Close" type="button" class="btn btn-sm" data-dismiss="modal" style="border:1px solid!important;background-color: #f56331; color: white; height: 25px; padding-top: 2px; padding-bottom: 2px; float: right">Close</button>*@
+            <h4 class="modal-title" style="font-family: 'Inder', sans-serif;margin-left:7%;"><span>Lots / Land Details</span></h4>
+        </div>
+        <div class="col-sm-4" style="padding:0 !important">
+            <div class="col-sm-12" style="padding-left: 0px;background-color: #59294C;">
+                <div class="col-sm-3">
+                    <img src="/img/addphotopic.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 50px; width: 50px; margin-top: 8px!important; border: #ff5d26" id="LSL_BuyerAgent_pic">
+                </div>
+                <div class="col-sm-8">
+                    <label id="LSL_Buyer_AgentName" style="padding-top: 15%!important; text-align: center; font-size: large; color: aliceblue; margin-bottom: 0!important"></label>
+                </div>
+                <div class="col-sm-1">&nbsp;</div>
+                <div class="col-sm-12" style=" padding-top 3%">
+                    <div class="col-sm-12" style="padding:0px">
+                        <span id="LSL_Buyer_AgentOfficeName" style="text-align: left; font-size: 10px; color: aliceblue; display: -webkit-box; padding-top: 3%"></span>
+                    </div>
+
+                </div>
+                <div class="col-sm-8" style="padding-bottom: 6%">
+                    &nbsp;
+                </div>
+                <div class="col-sm-2">
+                    <a id="LSL_Buyer_phone_img" href="#">
+                        <img src="~/img/mbwhite.png" />
+                    </a>
+                </div>
+                <div class="col-sm-2">
+                    <a id="LSL_Buyer_Message_Image" href="#">
+                        <img src="~/img/chat_iconMyAgent_MP.png" />
+                    </a>
+                    <label hidden="hidden" id="lbl_hdn_mlsid"></label>
+                    <label hidden="hidden" id="lbl_hdn_addr1"></label>
+                    <label hidden="hidden" id="lbl_hdn_addr2"></label>
+                    <label hidden="hidden" id="lbl_hdn_photo"></label>
+                </div>
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="col-sm-12" style="padding:0px">
+                <div class="col-sm-8">&nbsp;</div>
+                <div class="col-sm-3" style="">
+                    <span id="LSL_Home_Type" class="RoundEdgespn">For Sale</span>
+                </div>
+                <div class="col-sm-1">&nbsp;</div>
+            </div>
+            <div class="col-sm-12">
+                <label id="LSL_Property_Price" style="color: #f56331; font-size: x-large; font-weight:200;"></label>
+            </div>
+            <div class="col-sm-12" style="padding:0px">
+                <div class="col-sm-2" style="float:right; padding:0px">
+                    <img src="~/img/hearticon.png" id="LSL_Fav_Img" onclick="Fun_Fav_Change('LSL_Fav_Img')" style="cursor:pointer" />
+                </div>
+                <div class="col-sm-2" style="float:right;padding:0px">
+                    <img src="~/img/viewedicon.png" id="LSL_View_Img" />
+                </div>
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="col-sm-12">
+                <label class="textlimit" id="LSL_Prop_AddOne" style="font-size: initial; font-weight: bold; color: #1C1C1B;"></label>
+            </div>
+            <div class="col-sm-12">
+                <label class="textlimit" id="LSL_Prop_AddTwo" style="font-size: medium;font-size:16px;"></label>
+            </div>
+            <div class="col-sm-12">
+                <label class="textlimit" id="LSL_Prop_MLSID" style="font-size: 11px; font-weight: bold;line-height:3"></label>
+            </div>
+            <div class="col-sm-12">
+                <hr />
+            </div>
+            <div class="col-sm-6">
+                <button type="button" id="LSL_DriveBY" class="btn btn-sm" style="background-color: #f56331; color: white; width:100px; border-radius: 4px !important">Drive by</button>
+            </div>
+            <div class="col-sm-6">
+                <button type="button" id="LSL_StreetView" class="btn btn-sm" style="background-color: #f56331; width:100px; color: white; border-radius: 4px !important">Street View</button>
+            </div>
+        </div>
+        <div class="col-sm-8" style="padding:0px">
+            <div id="LSL_divPropImage" class="bgimage" style="background: url(/img/NoImage.png);height: 68vh; width: 100%">
+                <div class="col-sm-12" style="margin-top: 25%;padding:0">
+                    <a href="#">
+                        <img src="/img/SliderBackArrow.png" width="21" height="36" alt="" style="" onclick="HR_PopupSlideImage('Previous', 'LSL_divPropImage', 'LSL_DivImg_PrevBtn', 'LSL_DivImg_NextButton', 'LSL_ImageCurrentNo')" id="LSL_DivImg_PrevBtn" hidden="hidden">
+                    </a>
+                    <a href="#">
+                        <img src="/img/SliderNextArrow.png" width="21" height="36" alt="" style="float: right;" onclick="HR_PopupSlideImage('Next', 'LSL_divPropImage', 'LSL_DivImg_PrevBtn', 'LSL_DivImg_NextButton', 'LSL_ImageCurrentNo')" id="LSL_DivImg_NextButton" hidden="hidden">
+                    </a>
+                </div>
+                <div class="col-sm-12" style="background: rgba(0, 0, 0, 0.55);  position:absolute;bottom:0; text-align: center; width: 100%; margin-left: 0%">
+                    <span style="color: white" id="LSL_ImageCurrentNo"></span>
+                    <span style="color: white">&nbsp;of&nbsp;</span>
+                    <span style="color: white" id="LSL_TotalImageCount"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12" style="background-color: #434343;padding-top: .5%;padding-bottom: .5%;">
+            <div class="col-sm-5" style="padding-left:0;">
+                <button type="button" onclick="HR_OpenMultiFileUploader()" class="btn btn-sm" style="background-color: #f56331; border-color: #f56331; color: white; border-radius: 3px !important"><span class="glyphicon glyphicon-camera" style="color: #FF9B79;"></span>&nbsp; &nbsp; Add Photos Or Videos</button>
+                <button id="LSL_Btn_MyNotes" type="button" class="btn btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#" style="background-color: #f56331; border-color: #f56331; color: white; border-radius: 3px !important"><img src="~/img/notes_icon.png" style="height: 14px" />&nbsp; My Notes</button>
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-4" style="text-align:right;padding-right:0;">
+                <button type="button" class="btn btn-sm" onclick='PrintListing();' style="background-color: #f56331; border-color: #f56331; color: white; font-weight: bold; border-radius: 3px !important"><span class="glyphicon glyphicon-print" style="color: #FF9B79;"></span>&nbsp; &nbsp; Print</button>
+                <button type="button" class="btn btn-sm" id="LL_BTN_SharePop_UP" style="background-color: #f56331; border-color: #f56331; color: white; font-weight: bold; border-radius: 3px !important">
+                    <img src="~/img/shareicon2.png" style="height: 14px" />&nbsp;Share
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-12" style="background-color: #7D7D7C; padding:0px;text-align:center">
+            <span style="color: white; font-size: 12px;">Days On Quitchet: &nbsp;</span><span id="LSL_LBLDaysInQuitChet" style="color: #ef8f6e; font-size: 11px;"></span>
+        </div>
+        @*-------------------------------------------------------Collapse Divs-------------------------------------------------------*@
+        @*-------------------------------------------------------Start: Agent Remarks-------------------------------------------------------*@
+        <div class="col-sm-12 MainToggleDivision" id="LSL_Tog_AgentRemarks" onclick="Fun_CSTCollapsableToogle('LSL_Tog_AgentRemarks', 'LSL_FaAgentremarks', 'LSL_BTNAgentReamrks')">
+            <a class="btn btn-danger btnInactiveClass" data-toggle="collapse" id="LSL_BTNAgentReamrks" data-target="#lslagentremarks" aria-expanded="false" aria-controls="collapseExample">
+                <span id="textCT_agentheading">Agent Remarks</span>
+                <span id="LSL_FaAgentremarks" class="" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12">
+            <div id="lslagentremarks" class="collapse">
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12" style="text-align:justify">
+                    <span id="LSL_SpnAgentRemarks" style="font-size: 13px; display: -webkit-box; font-weight: bold;line-height:1.8"></span>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+        </div>
+        @*-------------------------------------------------------End: Agent Remarks-------------------------------------------------------*@
+        @*-------------------------------------------------------Start: Main Features-------------------------------------------------------*@
+        <div class="col-sm-12 MainToggleDivision" id="LSL_Tog_PROPFeatures" onclick="Fun_CSTCollapsableToogle('LSL_Tog_PROPFeatures', 'LSL_FamainFeatures', 'LSL_BtnPROPFeatures')">
+            <a class="btn btn-danger btnInactiveClass" data-toggle="collapse" id="LSL_BtnPROPFeatures" data-target="#div_collapse_lslpropfetures1" aria-expanded="false" aria-controls="collapseExample">
+                Main Features
+                <span id="LSL_FamainFeatures" class="" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12" style="padding:0px">
+            <div id="div_collapse_lslpropfetures1" class="collapse">
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12">
+                    <div class="col-sm-3" style="line-height: 2;">
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <label class="firstLabel">Type:</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <label id="LSL_lblHomeType" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <label class="firstLabel">Lot Acreage:</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label id="LBL_lbllotAcreage" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        @*<img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -10%;height: 80px;width: 3px;position:  relative;left: 36px;margin-top: 0%;">*@
+                    </div>
+                    <div class="col-sm-3" style="line-height: 2;">
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <label class="firstLabel">Subdivision:</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label id="LSL_lblSubDivision" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        @*<img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -10%;height: 80px;width: 3px;position:  relative;left: 25px;">*@
+                        <div class="col-sm-12">&nbsp;</div>
+                    </div>
+                    <div class="col-sm-6" style="line-height: 2;">
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <label class="firstLabel">Property Description:</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label id="LSL_PropertyDescription" class="SecondLabelRed textlimit"></label>
+                            </div>
+                        </div>
+                        @*<img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -10%;height: 80px;width: 3px;position:  relative;left: 25px;">*@
+                        <div class="col-sm-12">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                @*Start: Lake Property features *@
+                <div class="col-sm-12 mainfeaturediv" style="background-color: #FFE8E0; width: 100%;">
+                    <a class="btn btn-primary" data-toggle="collapse" id="AGLot_roomsizesicon" data-target="#LSL_div_collapse_LakeProperty" aria-expanded="false" aria-controls="collapseExample" style="color: rgba(244, 99, 49, 1) !important; width: 100%; background-color:#FFE8E0 !important ; border:none;  ">
+                        Lake Property Features
+                        <span class="fa fa-angle-down" style="color: #f56331; float: right; font-size: 20px;"></span>
+                    </a>
+                </div>
+                <div class="col-sm-12 mainfeaturediv">
+                    <hr style="margin-top: 0%; margin-bottom: 0%" />
+                </div>
+                <div id="LSL_div_collapse_LakeProperty" class="col-sm-12 collapse">
+                    <div class="col-sm-12">&nbsp;</div>
+                    <div class="col-sm-12" id="LSL_LakeProperty"></div>
+                    <div class="col-sm-12">&nbsp;</div>
+                </div>
+                @*End: Lake Property *@
+                @*Start: Equestrian Property features *@
+                <div class="col-sm-12 mainfeaturediv" style="background-color: #FFE8E0; width: 100%;">
+                    <a class="btn btn-primary" data-toggle="collapse" id="AGLot_roomsizesicon" data-target="#LSL_div_collapse_Equestrian" aria-expanded="false" aria-controls="collapseExample" style="color: rgba(244, 99, 49, 1) !important; width: 100%; background-color:#FFE8E0 !important ; border:none;  ">
+                        Equestrian Property Features
+                        <span class="fa fa-angle-down" style="color: #f56331; float: right; font-size: 20px;"></span>
+                    </a>
+                </div>
+                <div class="col-sm-12 mainfeaturediv">
+                    <hr style="margin-top: 0%; margin-bottom: 0%" />
+                </div>
+                <div id="LSL_div_collapse_Equestrian" class="col-sm-12 collapse">
+                    <div class="col-sm-12">&nbsp;</div>
+                    <div class="col-sm-12" id="LSLLot_Equestrian"></div>
+                    <div class="col-sm-12">&nbsp;</div>
+                </div>
+                @*End: Equestrian Property *@
+                @*Start: Road Frontage*@
+                <div class="col-sm-12 mainfeaturediv" style="background-color: #FFE8E0; width: 100%;">
+                    <a class="btn btn-primary" data-toggle="collapse" id="LSL_roomsizesicon" data-target="#LSL_div_collapse_RoadFrontage" aria-expanded="false" aria-controls="collapseExample" style="color: rgba(244, 99, 49, 1) !important; width: 100%; background-color:#FFE8E0 !important ; border:none;  ">
+                        Road Frontage
+                        <span class="fa fa-angle-down" style="color:#f56331; float:right; font-size:20px;"></span>
+                    </a>
+                </div>
+                <div class="col-sm-12 mainfeaturediv">
+                    <hr style="margin-top: 0%; margin-bottom: 0%" />
+                </div>
+                <div id="LSL_div_collapse_RoadFrontage" class="col-sm-12 collapse">
+                    <div class="col-sm-12">&nbsp;</div>
+                    <div class="col-sm-12" id="LSL_RoadFrontage"></div>
+                    <div class="col-sm-12">&nbsp;</div>
+                </div>
+                @*End: Road Frontage *@
+                @*Start: Topography*@
+                <div class="col-sm-12 mainfeaturediv" style="background-color: #FFE8E0; width: 100%;">
+                    <a class="btn btn-primary" data-toggle="collapse" id="AGLot_roomsizesicon" data-target="#LSL_div_collapse_Topography" aria-expanded="false" aria-controls="collapseExample" style="color: rgba(244, 99, 49, 1) !important; width: 100%; background-color:#FFE8E0 !important ; border:none;  ">
+                        Topography
+                        <span class="fa fa-angle-down" style="color: #f56331; float: right; font-size: 20px;"></span>
+                    </a>
+                </div>
+                <div class="col-sm-12 mainfeaturediv">
+                    <hr style="margin-top: 0%; margin-bottom: 0%" />
+                </div>
+                <div id="LSL_div_collapse_Topography" class=" col-sm-12 collapse">
+                    <div class="col-sm-12">&nbsp;</div>
+                    <div class="col-sm-12" id="LSLLot_Topography"></div>
+                    <div class="col-sm-12">&nbsp;</div>
+                </div>
+                @*End: Topography*@
+                @*Start: Amenities*@
+                <div class="col-sm-12 mainfeaturediv" style="background-color: #FFE8E0; width: 100%;">
+                    <a class="btn btn-primary" data-toggle="collapse" id="AGLot_roomsizesicon" data-target="#LSL_div_collapse_Amenities" aria-expanded="false" aria-controls="collapseExample" style="color: rgba(244, 99, 49, 1) !important; width: 100%; background-color:#FFE8E0 !important ; border:none;  ">
+                        Amenities
+                        <span class="fa fa-angle-down" style="color: #f56331; float: right; font-size: 20px;"></span>
+                    </a>
+                </div>
+                <div class="col-sm-12 mainfeaturediv">
+                    <hr style="margin-top: 0%; margin-bottom: 0%" />
+                </div>
+                <div id="LSL_div_collapse_Amenities" class=" col-sm-12 collapse">
+                    <div class="col-sm-12">&nbsp;</div>
+                    <div class="col-sm-12" id="LSL_Aminities"></div>
+                    <div class="col-sm-12">&nbsp;</div>
+                </div>
+                @*End: Amenities*@
+            </div>
+        </div>
+        @*End: Main Features*@
+        @* Schools *@
+        <div class="col-sm-12 MainToggleDivision" id="AGLSlot_div_tog_school" onclick="Fun_CSTCollapsableToogle('AGLSlot_div_tog_school', 'Lotaschool', 'AGLSlot_btn_school')">
+            <a class="btn btn-danger btnInactiveClass" data-toggle="collapse" id="AGLSlot_btn_school" data-target="#LSL_div_schools_collapse" aria-expanded="false" aria-controls="collapseExample">
+                Schools
+                <span class="" id="Lotaschool" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12">
+            <div id="LSL_div_schools_collapse" class="collapse">
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-4 mainfeatureheadderdiv1">
+                    <div class="col-sm-12">
+                        <div class="col-sm-4 mainfeaturediv">
+                            <label class="firstLabel">Elementary:</label>
+                        </div>
+                        <div class="col-sm-8 mainfeaturediv">
+                            <label id="LSLot_school_elementry" class="SecondLabelRed textlimit"></label>
+                            <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="height: 33px;width: 3px;margin-top: -19%;left: 86px;position:  relative;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 mainfeatureheadderdiv1">
+                    <div class="col-sm-12">
+                        <div class="col-sm-4 mainfeaturediv">
+                            <label class="firstLabel">Middle:</label>
+                        </div>
+                        <div class="col-sm-8 mainfeaturediv">
+                            <label id="LSLot_school_middle" class="SecondLabelRed textlimit"></label>
+                            <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="height: 33px;width: 3px;margin-top: -19%;left: 86px;position:  relative;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 mainfeatureheadderdiv1">
+                    <div class="col-sm-12">
+                        <div class="col-sm-4 mainfeaturediv">
+                            <label class="firstLabel">Elementary:</label>
+                        </div>
+                        <div class="col-sm-8 mainfeaturediv">
+                            <label id="LSLot_school_highschool" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+        </div>
+        @*End: schools*@
+
+        @*start: Convenants & Restrictions*@
+        <div class="col-sm-12 MainToggleDivision" id="AGLSlot_div_tog_ConventsAndRestricitons" onclick="Fun_CSTCollapsableToogle('AGLSlot_div_tog_ConventsAndRestricitons', 'LotaConvenants', 'AGLSlot_btn_Convenants')">
+            <a class="btn btn-danger btnInactiveClass" data-toggle="collapse" id="AGLSlot_btn_Convenants" data-target="#Lot_div_Convenants" aria-expanded="false" aria-controls="collapseExample">
+                Convenants & Restrictions
+                <span class="" id="LotaConvenants" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12">
+            <div id="Lot_div_Convenants" class="collapse" style="text-align:center">
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-6 mainfeatureheadderdiv1">
+                    <div class="col-sm-12">
+                        <div class="col-sm-2 mainfeaturediv">
+                            <label class="firstLabel">Convenants:</label>
+                            <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="height: 60px;width: 3px;position:  relative;left: 36px;margin-top: -72%;left:890%">
+                        </div>
+                        <div class="col-sm-10 mainfeaturediv">
+                            <label id="LSLot_Convenants" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mainfeatureheadderdiv1">
+                    <div class="col-sm-12">
+                        <div class="col-sm-2 mainfeaturediv">
+                            <label class="firstLabel">Restrictions:</label>
+                        </div>
+                        <div class="col-sm-10 mainfeaturediv">
+                            <label id="LSLLot_Restrictions" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+        </div>
+        @*End: Convenants & Restrictions*@
+
+        @*start: Utilities / Heating and Cooling*@
+        <div class="col-sm-12 MainToggleDivision" id="AGLSlot_div_tog_Restrictions" onclick="Fun_CSTCollapsableToogle('AGLSlot_div_tog_Restrictions', 'LotaRestrcitions', 'AGLSlot_btn_Restrict')">
+            <a class="btn btn-danger btnInactiveClass" data-toggle="collapse" id="AGLSlot_btn_Restrict" data-target="#Lot_div_Restrictions" aria-expanded="false" aria-controls="collapseExample">
+                Utilities / Heating and Cooling
+                <span class="" id="LotaRestrcitions" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12">
+            <div id="Lot_div_Restrictions" class="collapse">
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-6 mainfeatureheadderdiv1">
+                    <div class="col-sm-12">
+                        <div class="col-sm-2 mainfeaturediv">
+                            <label class="firstLabel">Water:</label>
+                        </div>
+                        <div class="col-sm-10 mainfeaturediv">
+                            <label id="LSLot_RestrctionsWater" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mainfeatureheadderdiv1">
+                    <div class="col-sm-12">
+                        <div class="col-sm-2 mainfeaturediv">
+                            <label class="firstLabel">Sewer:</label>
+                        </div>
+                        <div class="col-sm-10 mainfeaturediv">
+                            <label id="LSLot_RestrictSewer" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+        </div>
+        @*End: Utilities / Heating and Cooling*@
+
+        @*   Financial info*@
+        <div class="col-sm-12 MainToggleDivision" id="AGLot_div_tog_finance" onclick="Fun_CSTCollapsableToogle('AGLot_div_tog_finance', 'AGLot_afinance', 'AGLot_btn_finance')">
+            <a class="btn btn-danger btnInactiveClass" id="AGLot_btn_finance" data-toggle="collapse" data-target="#Lot_div_collapse_financialinfo" aria-expanded="false" aria-controls="collapseExample">
+                Financial Info
+                <span class="" id="AGLot_afinance" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12" style="padding:0px">
+            <div id="Lot_div_collapse_financialinfo" class="collapse">
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12" style="background-color:none; width:106.5%;position:relative;left:-33px">
+                    <div class="col-sm-6">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">HOA Fee:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="LSLot_FinanceHoaFee" style="font-weight:bold; color:#f56331"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">Additional Fee:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="LSLot_Finance_addFee" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="background-color:none; width:106.5%;position:relative;left:-33px">
+                    <div class="col-sm-6">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">HOA Fee Term:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="LSLot_FinanceHoaFeeTerm" style="font-weight:bold; color:#f56331"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-5">
+                            <label class="firstLabel">Special Finance Options:</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="LSLot_Finance_SPFinanceOptions" class="SecondLabelRed textlimit"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+        </div>
+        @* Listing Agent*@
+        <div class="col-sm-12 MainToggleDivision" id="AGLot_div_tog_listing" style="background-color: #ffffff" onclick="Fun_CSTCollapsableToogle('AGLot_div_tog_listing', 'AGLot_listing', 'AGLot_btn_listing')">
+            <a class="btn btn-danger btnInactiveClass" id="AGLot_btn_listing" data-toggle="collapse" data-target="#Lot_div_collapse_listingagent" aria-expanded="false" aria-controls="collapseExample">
+                Listing Agent
+                <span class="" id="AGLot_listing" style="color: #f56331; float: right; font-size: 20px;"></span>
+            </a>
+        </div>
+        <div class="col-sm-12 mainfeaturediv">
+            <hr style="margin-top: 0%; margin-bottom: 0%" />
+        </div>
+        <div class="col-sm-12" style="padding:0px;top: 3px;">
+            <div id="Lot_div_collapse_listingagent" class="collapse" style="padding:0px">
+                <div class="col-sm-12" style="background-color: #B40101; margin-top: -.1%; width: 100%; text-align: center; padding-bottom: 2%">
+                    <span style="font-size: 10px; color: white;">Listing Provided By: </span>
+                    <img src="/img/addphotopic.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 50px; width: 50px; margin-top: 15px!important;" id="LSLot_AgntImageTwo">
+                    <span id="LSLot_Listing_usernameTWO" style="color: white;left: 10px;position: relative;"></span>
+                    <div class="col-sm-12" style="margin-top: -3%; margin-left: 9.5%; line-height:1">
+                        <label id="LSLot_Listing_agent_office" style="font-size: 10px;color: white;padding-left: 0px;position:  relative;left: -4px;top: 10px;"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* logo*@
+        <div class="col-sm-12" style="background-color: #525151;text-align: center;padding-top: 1.1%;height: 44px;border-bottom-left-radius:  5px;border-bottom-right-radius: 5px;top: 2.516px;">
+            <img style="height: 20px;" src="~/img/quitchetlogo_little.png" />
+        </div>
+        <div class="modal-footer" style="padding-bottom:0px">
+        </div>
+    </div>
+</div>
+@*End: Home Lots Pop up*@
+
+@* User My Note PopUp*@
+<div class="modal fade" id="Customer_MyNotePopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px;font-family: 'Inder', sans-serif">
+    <div class="modal-dialog" role="document" style="padding-top: 15%; width: 25%">
+        <div class="modal-content">
+            <div class="col-sm-12" style="margin-top: 3%">
+                <label for="inputEmail3" class="control-label" style="width: 100%; color: #FF6937 !important;">Note</label>
+            </div>
+            <div class="col-sm-12">
+                @Html.TextArea("MYCustomerNotes", "", new { @class = "form-control ", @placeholder = "Please Enter", style = "height:120px!important;border: 1px solid #f56331;background-color: rgba(245, 99, 49, 0.12);" })
+                <div id="note"><span id="span_mynote" style="color: red; font-size: 10px"></span></div>
+            </div>
+            <div class="col-sm-12">
+                <hr style="border: 0 ! important; margin-top: 2%; margin-bottom: 5%; border-top: 1px solid  #FF6937 !important;" />
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-6" style="text-align: left; padding-left: 0px">
+                    <a href="#" class="btn" id="Customer_Mynote_Cancel" style="border-radius: 5px !important; background-color: gray; color: white; font-weight: 500; font-size: 11px;">Cancel</a>
+                </div>
+                <div class="col-sm-6" style="text-align: right; padding-right: 0px">
+                    <a href="#" class="btn" id="Customer_Mynote_Save" style="border-radius: 5px !important; background-color: #FF6937 !important; color: white; font-weight: 500; font-size: 11px;">Done</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* END User My Note PopUp*@
+@* Phone Call Popup*@
+<div class="modal" id="Customer_PhoneCallModel" style="padding-left: 206px; z-index: 1500;font-family: 'Inder', sans-serif">
+    <div class="modal-dialog" role="document" style="padding-top: 15%; width: 25%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center; border-bottom: none; padding-bottom: 0px;">
+                <h5 style="color: #FF6937; margin-top: -2%; font-weight: 600;">Phone Call</h5>
+                <img src="~/img/phone_icon_brand-1.png" />&nbsp; <span id="span_name_phonecall" style="font-size: 12px; color: black; font-weight: bold; margin-top: 0px">Phone Call</span>
+                <hr style="border: 0 ! important; margin-top: 2%; margin-bottom: 5%; border-top: 1px solid  #FF6937 !important;" />
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <img style="margin-right: 1px;" src="~/img/mb.png" />&nbsp;  <span style="font-size: 11px; color: #FF6937;">Mobile</span>
+                </div>
+                <div class="col-sm-6">
+                    <span id="AgentPhoneOne" style="font-size: 11px;"></span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <hr style="margin-bottom: 2%; margin-top: 2%;" />
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <img style="margin-left: -2px;" src="~/img/office.png" />
+                    <span style="font-size: 11px; color: #FF6937;">Office</span>
+                </div>
+                <div class="col-sm-6">
+                    <span id="AgentPhoneTwo" style="font-size: 11px;"></span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <hr style="margin-bottom: 2%; margin-top: 2%;" />
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-12" style="text-align: center">
+                    <a href="#" class="btn" id="Customer_phonecall_popup_cancel" style="border-radius: 5px !important; background-color: gray; color: white; font-weight: 500; font-size: 11px;">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* End Phone Call Popup*@
+@*//Share Property Popup*@
+<div class="modal" id="POP_UPShareProp_Popup" style="padding-left:206px;font-family: 'Inder', sans-serif">
+    <div class="modal-dialog" role="document" style="padding-top: 8%; width: 25%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align:center;background-color:#5d5a5a;color:#fff;height:45px;padding-top:7px;border-top-right-radius:5px; border-top-left-radius:5px;">
+                <span>
+                    <img src="/img/share2.png" width="24" height="30" alt="" style="margin-top:-2%" />
+                </span> Share
+            </div>
+            <div class="modal-body" style="min-height: 200px;">
+                <div class="col-md-12" style="text-align: center">
+                    <a href="#" id="Prop_message_from_popup2">
+                        <img src="/img/newmessagge.png" width="83" height="65" alt="" />
+                    </a>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-2" style="text-align: center;padding-left:0px">
+
+                    @*<a href="#" class="fb-share">Share on Facebook</a>*@
+                    <div id="fb-root"></div>
+                    <a href="javascript:fb_prop_Share()">
+                        <img class="shareiconpads" src="/img/facebook.png" />
+                    </a>
+                </div>
+
+                <div class="col-md-2 twocolumrem" style="padding-left:5px">
+                    <a href="javascript:Share_prop_twitter('', 'Twitter Share', 'Twitter share popup', 'http://googl.com', 520, 350)">
+                        <img class="shareiconpads" src="/img/twitter.png" width="36" height="36" alt="" />
+                    </a>
+                </div>
+                <div class="col-md-2 twocolumrem" style="padding-left:10px">
+                    <a href="javascript:Share_prop_google('', 'Google Share', 'Google share popup', 'http://googl.com', 520, 350)">
+                        <img class="shareiconpads" src="/img/gplus.png" width="36" height="36" alt="" />
+                    </a>
+                </div>
+                <div class="col-md-2 twocolumrem">
+                    <a href="javascript:Share_prop_linkedin('', 'linkedin Share', 'linkedin share popup', 'http://googl.com', 520, 350)">
+                        <img class="shareiconpads" src="/img/linkedin.png" width="36" height="36" alt="" />
+                    </a>
+                </div>
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-sm-12" style="text-align: center;color:#808080;padding-top: 15px;padding-bottom: 15px;font-size:12px">OR</div>
+                <div class="col-md-12" style="text-align: center">
+                    <a href="#" id="AGL_prop_copylink" class="mycopy" data-clipboard-action="copy" data-clipboard-target="#AGL_proplink">
+                        <img src="/img/copybtn.png" width="245" height="31" alt="" />
+                    </a>
+                </div>
+                <div class="row btnsrowmargin">
+                    <div class="col-md-12" style="text-align:center">
+                        <label id="AGL_proplink" style="font-size:12px !important;word-wrap: break-word;"></label>
+                    </div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="modal-footer">
+                    <div class="col-md-12" style="text-align: center">
+                        <a href="#" class="btn" id="AGL_cancel_prop_sharebtn" data-dismiss="modal" style="width: 120px; border-radius: 5px !important; background-color: gray; color: white; font-weight: 500; font-size: 17px;">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* User My Note PopUp*@
+<script type="text/javascript">
+    var Arr_PropertyPhotos = []; var CurrentImageCount = 1; var CurrentPhotosCount = 0; var IS_PropFavourite = ''; var Prop_MlsID = ''; var Latitude = ''; var Longitude = ''; var HR_Arr_MultiUploadImages = [];
+    var Arr_lakeProperties = []; var Arr_Equestrian = []; var Arr_RoadFrontage = []; var Arr_Topography = []; var Arr_Aminities = []; var Arr_PropertyDescription = [];
+    $(document).ready(function () {
+        var Url = new URLSearchParams(window.location.search);
+        Prop_MlsID = Url.get("MLSID");
+        USERID = Url.get("UserID");
+        CustomerFullViewListing(Prop_MlsID);
+    });
+    function CustomerFullViewListing(MlsID) {
+        Prop_MlsID = MlsID;
+        MakeMlsSaved(Prop_MlsID);
+        $.ajax({
+            url: "/FullDetails/GetCustomerListingDetails/",
+            type: "GET",
+            dataType: "json",
+            data: { MLSID: MlsID, UserID: USERID },
+            success: function (data) {
+                jQuery('.collapse').collapse('hide');
+                EmptyLotParameters();
+                $('#HR_Tog_AgentRemarks,#HR_Tog_MainFeatures,#HR_TogSchool,#HR_TogHomeFeatures,#HR_TogHeaingCooling,#HR_TogFinanceInfo,#HR_TogLiistingAgent').css("background-color", "white");
+                $('#HR_FaAgentremarks,#HR_FamainFeatures,#HR_FaSchool,#HR_FaHomeFeatures,#HR_FaHeaatingCooling,#HR_FaFinance,#HR_FaListingAgent').attr('class', 'fa fa-angle-down').css('color', '#f56331');
+                $('#HR_BTNAgentReamrks,#HR_BtnMainFeatures,#HR_BtnSchool,#HR_btnHomeFeatures,#HR_BtnHeatingCooling,#HR_BtnFinance,#HR_btnListingAgent').attr('class', 'btn btn-danger btnInactiveClass');
+
+                $('#LSL_Tog_PROPFeatures,#LSL_Tog_AgentRemarks,#AGLSlot_div_tog_school,#AGLSlot_div_tog_ConventsAndRestricitons,#AGLSlot_div_tog_Restrictions,#AGLot_div_tog_finance,#AGLot_div_tog_listing').css("background-color", "white");
+                $('#LSL_FamainFeatures,#LSL_FaAgentremarks,#Lotaschool,#LotaConvenants,#LotaRestrcitions,#AGLot_afinance,#AGLot_listing').attr('class', 'fa fa-angle-down').css('color', '#f56331');
+                $('#LSL_BtnPROPFeatures,#LSL_BTNAgentReamrks,#AGLSlot_btn_school,#AGLSlot_btn_Convenants,#AGLSlot_btn_Restrict,#AGLot_btn_finance,#AGLot_btn_listing').attr('class', 'btn btn-danger btnInactiveClass');
+                if (data[0].Class == "Residential" || data[0].Class == "Rental") {
+                    BindCustomerHomeRentalsData(data);
+                    $('#CustomerHomeListingView').show();
+                    $('#lotslandListingView').hide();
+                }
+                if (data[0].Class == "Lots/Land") {
+                    BindCustomerLotsLandsData(data);
+                    $('#CustomerHomeListingView').hide();
+                    $('#lotslandListingView').show();
+                }
+            },
+            error: function () {
+                alert('nodata');
+            }
+        });
+    };
+    function EmptyLotParameters() {
+        Arr_lakeProperties = []; Arr_Equestrian = []; Arr_RoadFrontage = []; Arr_Topography = []; Arr_Aminities = []; Arr_PropertyDescription = [];
+        $('#LSL_PropertyDescription,#LSL_LakeProperty,#LSLLot_Equestrian,#LSL_RoadFrontage,#LSLLot_Topography,#LSL_Aminities').empty();
+    }
+    function BindCustomerLotsLandsData(data) {
+        if (data[0].Have_Agent == "YES") {
+            if (data[0].UserAgent_Image != "" && data[0].UserAgent_Image != "," && data[0].UserAgent_Image != null)
+                $('#LSL_BuyerAgent_pic').attr('src', data[0].UserAgent_Image);
+            else
+                $('#LSL_BuyerAgent_pic').attr("src", "/img/addphotopic.png");
+            $('#LSL_Buyer_AgentName').html(data[0].UserAgent_FirstName + ' ' + data[0].UserAgent_LastName);
+            $('#LSL_Buyer_AgentOfficeName').html(data[0].UserAgent_OfficeName);
+            $('#AgentPhoneOne').html(data[0].UserAgent_PhonoNo);
+        }
+        else {
+            if (data[0].AGENT_IMAGE != "" && data[0].AGENT_IMAGE != "," && data[0].AGENT_IMAGE != null)
+                $('#LSL_BuyerAgent_pic').attr('src', data[0].AGENT_IMAGE);
+            else
+                $('#LSL_BuyerAgent_pic').attr("src", "/img/addphotopic.png");
+            $('#LSL_Buyer_AgentName').html(data[0].AGENT_FIRSTNAME + ' ' + data[0].AGENT_LASTNAME);
+            $('#LSL_Buyer_AgentOfficeName').html(data[0].AGENT_OFFICENAME);
+            $('#AgentPhoneOne').html(data[0].AGENT_PHONONO);
+        }
+        var PropertyPrice = "$ " + (data[0].ListPrice + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        $('#LSL_Property_Price').html(PropertyPrice);
+        if (data[0].Is_Favorite == "NO") {
+            $("#LSL_Fav_Img").attr("src", "/img/heartmi.png");
+        }
+        else {
+            $("#LSL_Fav_Img").attr("src", "/img/hearticon.png");
+        }
+        if (data[0].Is_Viewd == "NO") {
+            $('#LSL_View_Img').hide();
+        }
+        else {
+            $('#LSL_View_Img').show();
+        }
+        $('#LSL_Prop_AddOne').html(data[0].Address);
+        var post = '';
+        if (data[0].Status == "Active") {
+            $('.RoundEdgespn').css('background-color', 'green');
+            $('#LSL_Home_Type').html('For Sale');
+        }
+        else if (data[0].Status == "Sold") {
+            $('.RoundEdgespn').css('background-color', 'red');
+            $('#LSL_Home_Type').html('Sold');
+        }
+        else if (data[0].Status == "Pending" || data[0].Sale_Rent == "Contingency Contract") {
+            $('.RoundEdgespn').css('background-color', '#f0e243');
+            $('#LSL_Home_Type').html('Under Contract');
+        }
+        else if (data[0].Status == "OpenHouse") {
+            $('.RoundEdgespn').css('background-color', 'blue');
+            $('#LSL_Home_Type').html('Open House');
+        }
+        if (data[0].Class == "Rental") {
+            $('.RoundEdgespn').css('background-color', 'gray');
+            $('#LSL_Home_Type').html('Rental');
+        }
+        if (data[0].GeoPostCd != null && data[0].GeoPostCd != "" && data[0].GeoPostCd != ",")
+            post = "," + data[0].GeoPostCd
+        $('#LSL_Prop_AddTwo').html(data[0].GeoSecCity + " " + data[0].GeoSubdiv + post);
+        $('#LSL_Prop_MLSID').html('MLS#' + data[0].MLSNo);
+        $('#LSL_ImageCurrentNo').html('1');
+        Arr_PropertyPhotos = []; CurrentPhotosCount = 0;
+        if (data[0].PHOTOLOCATION != '' && data[0].PHOTOLOCATION != ',' && data[0].PHOTOLOCATION != null) {
+            if (data[0].PHOTOLOCATION.indexOf(',') > -1) {
+                Arr_PropertyPhotos = data[0].PHOTOLOCATION.split(',');
+            }
+            else {
+                Arr_PropertyPhotos[0] = data[0].PHOTOLOCATION;
+            }
+        }
+        else {
+            Arr_PropertyPhotos[0] = '/img/picture_area.png';
+        }
+       // Arr_PropertyPhotos = data[0].PHOTOLOCATION.split(',');
+        CurrentPhotosCount = Arr_PropertyPhotos.length;
+        if (Arr_PropertyPhotos.length > 1) {
+            $('#LSL_DivImg_NextButton').show();
+        }
+        $('#LSL_divPropImage').css('background-image', 'url(' + Arr_PropertyPhotos[0] + ')');
+        $('#LSL_TotalImageCount').html(Arr_PropertyPhotos.length);
+        $('#LSL_LBLDaysInQuitChet').html(data[0].DaysInQuitchet);
+        $('#LSL_SpnAgentRemarks').html(data[0].ConsRmks);
+        $('#LSL_lblHomeType').html(data[0].Type);
+        $('#LBL_lbllotAcreage').html(data[0].LotSzOrAg);
+        $('#LSL_lblSubDivision').html(data[0].Subdiv);
+        if (data[0].PRPDSCRPTN.length > 0) {
+            if (data[0].PRPDSCRPTN.indexOf(',') > 0) {
+                Arr_PropertyDescription = data[0].PRPDSCRPTN.split(',');
+                $.each(Arr_PropertyDescription, function (i, item) {
+                    $('#LSL_PropertyDescription').append('<div class="col-sm-6"><label class="SecondLabelRed">' + Arr_PropertyDescription[i] + '</label>');
+                });
+            }
+            else {
+                var ExterDesc = '<div class="col-sm-3">'
+                                + '<label class="SecondLabelRed">' + data[0].PRPDSCRPTN + '</label>'
+                                + '</div>';
+                $('#LSL_PropertyDescription').append(ExterDesc);
+            }
+        }
+        if (data[0].LAKPRPFTRS.length > 0) {
+            if (data[0].LAKPRPFTRS.indexOf(',') > 0) {
+                Arr_lakeProperties = data[0].LAKPRPFTRS.split(',');
+                $.each(Arr_lakeProperties, function (i, item) {
+                    $('#LSL_LakeProperty').append('<div class="col-sm-3"><label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + Arr_lakeProperties[i] + '</div>');
+                });
+            }
+            else {
+                var Lakes = '<div class="col-sm-3">'
+                                + '<label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + data[0].AGLot_LakeProperty + '</label>'
+                                + '</div>';
+                $('#LSL_LakeProperty').append(Lakes);
+            }
+        }
+        if (data[0].EQSTRNPRPF.length > 0) {
+            if (data[0].EQSTRNPRPF.indexOf(',') > 0) {
+                Arr_Equestrian = data[0].EQSTRNPRPF.split(',');
+                $.each(Arr_Equestrian, function (i, item) {
+                    $('#LSLLot_Equestrian').append('<div class="col-sm-3"><label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + Arr_Equestrian[i] + '</div>');
+                });
+            }
+            else {
+                var Equ = '<div class="col-sm-3">'
+                               + '<label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + data[0].EQSTRNPRPF + '</label>'
+                               + '</div>';
+                $('#LSLLot_Equestrian').append(Equ);
+            }
+        }
+        if (data[0].ROADFRONTG.length > 0) {
+            if (data[0].ROADFRONTG.indexOf(',') > 0) {
+                Arr_RoadFrontage = data[0].ROADFRONTG.split(',');
+                $.each(Arr_RoadFrontage, function (i, item) {
+                    $('#LSL_RoadFrontage').append('<div class="col-sm-3"><label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + Arr_RoadFrontage[i] + '</div>');
+                });
+            }
+            else {
+                var Road = '<div class="col-sm-3">'
+                                   + '<label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + data[0].ROADFRONTG + '</label>'
+                                   + '</div>';
+                $('#LSL_RoadFrontage').append(Road);
+            }
+        }
+        if (data[0].TOPOGRAPHY.length > 0) {
+            if (data[0].TOPOGRAPHY.indexOf(',') > 0) {
+                Arr_Topography = data[0].TOPOGRAPHY.split(',');
+                $.each(Arr_Topography, function (i, item) {
+                    $('#LSLLot_Topography').append('<div class="col-sm-3"><label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + Arr_Topography[i] + '</div>');
+                });
+            }
+            else {
+                var Topography = '<div class="col-sm-3">'
+                                   + '<label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + data[0].TOPOGRAPHY + '</label>'
+                                   + '</div>';
+                $('#LSLLot_Topography').append(Topography);
+            }
+        }
+        if (data[0].AMENTSNCLD.length > 0) {
+            if (data[0].AMENTSNCLD.indexOf(',') > 0) {
+                Arr_Aminities = data[0].AMENTSNCLD.split(',');
+                $.each(Arr_Aminities, function (i, item) {
+                    $('#LSL_Aminities').append('<div class="col-sm-3"><label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + Arr_Aminities[i] + '</div>');
+                });
+            }
+            else {
+                var Amenities = '<div class="col-sm-3">'
+                                  + '<label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + data[0].AMENTSNCLD + '</label>'
+                                  + '</div>';
+                $('#LSL_Aminities').append(Amenities);
+            }
+        }
+        $('#LSLot_school_elementry').html(data[0].Elementary);
+        $('#LSLot_school_middle').html(data[0].Middle);
+        $('#LSLot_school_highschool').html(data[0].High);
+        $('#LSLot_Convenants').html(data[0].COVENANTS);
+        $('#LSLLot_Restrictions').html(data[0].RESTRICTNS);
+        Latitude = data[0].GeoLat;
+        Longitude = data[0].GeoLong;
+        $('#LSLot_RestrctionsWater').html(data[0].WATER);
+        $('#LSLot_RestrictSewer').html(data[0].SEWER);
+        $('#LSLot_FinanceHoaFee').html(data[0].HAOrRegime);
+        $('#LSLot_Finance_addFee').html(data[0].ADITIONLFS);
+        $('#LSLot_FinanceHoaFeeTerm').html(data[0].HOATerm);
+        $('#LSLot_Finance_SPFinanceOptions').html(data[0].SPECLFNNCS);
+        $('#LSLot_AgntImageTwo').attr("src", data[0].AGENT_IMAGE);
+        $('#LSLot_Listing_usernameTWO').html(data[0].AGENT_FIRSTNAME + ' ' + data[0].AGENT_LASTNAME);
+        $('#LSLot_Listing_agent_office').html(data[0].AGENT_OFFICENAME);
+    }
+    function BindCustomerHomeRentalsData(data) {
+        if (data[0].Class == "Residential") {
+            $('#HR_Txt_pop_heading').html('Home Details');
+            $('#HR_Home_Type').html('For Sale');
+        }
+        if (data[0].Class == "Rental") {
+            $('#HR_Home_Type').html('For Rent');
+            $('#HR_Txt_pop_heading').html('Rental Details');
+        }
+        if (data[0].Have_Agent == "YES") {
+            if (data[0].UserAgent_Image != "" && data[0].UserAgent_Image != "," && data[0].UserAgent_Image != null)
+                $('#HR_BuyerAgent_pic').attr('src', data[0].UserAgent_Image);
+            else
+                $('#HR_BuyerAgent_pic').attr("src", "/img/addphotopic.png");
+            $('#HR_Buyer_AgentName').html(data[0].UserAgent_FirstName + ' ' + data[0].UserAgent_LastName);
+            $('#HR_Buyer_AgentOfficeName').html(data[0].UserAgent_OfficeName);
+            $('#AgentPhoneOne').html(data[0].UserAgent_PhonoNo);
+        }
+        else {
+            if (data[0].AGENT_IMAGE != "" && data[0].AGENT_IMAGE != "," && data[0].AGENT_IMAGE != null)
+                $('#HR_BuyerAgent_pic').attr('src', data[0].AGENT_IMAGE);
+            else
+                $('#HR_BuyerAgent_pic').attr("src", "/img/addphotopic.png");
+            $('#HR_Buyer_AgentName').html(data[0].AGENT_FIRSTNAME + ' ' + data[0].AGENT_LASTNAME);
+            $('#HR_Buyer_AgentOfficeName').html(data[0].AGENT_OFFICENAME);
+            $('#AgentPhoneOne').html(data[0].AGENT_PHONONO);
+        }
+        var PropertyPrice = "$ " + (data[0].ListPrice + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        $('#HR_Property_Price').html(PropertyPrice);
+        if (data[0].Is_Favorite == "NO") {
+            $("#HR_Fav_Img").attr("src", "/img/heartmi.png");
+        }
+        else {
+            $("#HR_Fav_Img").attr("src", "/img/hearticon.png");
+        }
+        if (data[0].Is_Viewd == "NO") {
+            $('#HR_View_Img').hide();
+        }
+        else {
+            $('#HR_View_Img').show();
+        }
+        $('#HR_Prop_AddOne').html(data[0].Address);
+        //$('#HR_Prop_AddTwo').html(data[0].GeoSecCity + " " + data[0].GeoSubdiv + "," + data[0].GeoPostCd);
+        if (data[0].GeoPostCd != "" && data[0].GeoPostCd != null && data[0].GeoPostCd != " " && data[0].GeoPostCd != ",")
+            $('#HR_Prop_AddTwo').html(data[0].GeoSecCity + ' ' + data[0].GeoSubdiv + ',' + data[0].GeoPostCd);
+        else
+            $('#HR_Prop_AddTwo').html(data[0].GeoSecCity + ' ' + data[0].GeoSubdiv);
+        $('#HR_Prop_MLSID').html('MLS#' + data[0].MLSNo);
+        $('#HR_ImageCurrentNo').html('1');
+        if (data[0].Status == "Active") {
+            $('.RoundEdgespn').css('background-color', 'green');
+            $('#HR_Home_Type').html('For Sale');
+        }
+        else if (data[0].Status == "Sold") {
+            $('.RoundEdgespn').css('background-color', 'red');
+            $('#HR_Home_Type').html('Sold');
+        }
+        else if (data[0].Status == "Pending" || data[0].Sale_Rent == "Contingency Contract") {
+            $('.RoundEdgespn').css('background-color', '#f0e243');
+            $('#HR_Home_Type').html('Under Contract');
+        }
+        else if (data[0].Status == "OpenHouse") {
+            $('.RoundEdgespn').css('background-color', 'blue');
+            $('#HR_Home_Type').html('Open House');
+        }
+        if (data[0].Class == "Rental") {
+            $('.RoundEdgespn').css('background-color', 'gray');
+            $('#HR_Home_Type').html('Rental');
+        }
+
+        if (data[0].PHOTOLOCATION != '' && data[0].PHOTOLOCATION != ',' && data[0].PHOTOLOCATION != null) {
+            if (data[0].PHOTOLOCATION.indexOf(',') > -1) {
+                Arr_PropertyPhotos = data[0].PHOTOLOCATION.split(',');
+            }
+            else {
+                Arr_PropertyPhotos[0] = data[0].PHOTOLOCATION;
+            }
+        }
+        else {
+            Arr_PropertyPhotos[0] = '/img/picture_area.png';
+        }
+        $('#HR_TotalImageCount').html(Arr_PropertyPhotos.length);
+        CurrentPhotosCount = Arr_PropertyPhotos.length;
+        $('#HR_divPropImage').css('background-image', 'url(' + Arr_PropertyPhotos[0] + ')');
+
+        if (Arr_PropertyPhotos.length > 1) {
+            $('#HR_DivImg_NextButton').show();
+        }
+        $('#HR_LBLDaysInQuitChet').html(data[0].DaysInQuitchet);
+        $("#HR_listingAgentIMG").attr("src", data[0].AGENT_IMAGE);
+        $('#HR_ListingAgentName').html(data[0].LA1FirstNm + " " + data[0].LA1LastNam);
+        $('#HR_ListingAgentOffice').html(data[0].LO1OfcName);
+        $('#HR_SpnAgentRemarks').html(data[0].ConsRmks);
+        $('#HR_lblHomeType').html(data[0].Type);
+        $('#HR_lblYearbuilt').html(data[0].ApxYrBlt);
+        $('#HR_lblLotSize').html(data[0].LotSzOrAg);
+        $('#HR_lblSubDivision').html(data[0].Subdiv);
+        $('#HR_lblStories').html(data[0].NoStor);
+        $('#HR_lblApproxage').html(data[0].Age);
+        $('#HR_lblNoBedrooms').html(data[0].NoBR);
+        $('#HR_NoBathrooms').html(parseInt(data[0].NoHB) + parseInt(data[0].NoFB));
+        $('#HR_lblSqrt').html(data[0].SqFt);
+        $('#HR_lblGarageType').html(data[0].GarType);
+        $('#HR_lblGarageCapacity').html(data[0].GarCap);
+        $('#HR_lbllivingRoom').html(data[0].LivRmSz);
+        $('#HR_lblDiningRoom').html(data[0].DinRmSz);
+        $('#HR_lblBreakFast').html(data[0].BrkftSz);
+        $('#HR_lblSunRoom').html(data[0].SunRSz);
+        $('#HR_lblBonusRoom').html(data[0].BOrRSz);
+        $('#HR_lblMasterBR').html(data[0].MstrBdSz);
+        $('#HR_lblBRTwo').html(data[0].Bed2Sz);
+        $('#HR_lblBRThree').html(data[0].Bed3Sz);
+        $('#HR_lblBRFour').html(data[0].Bed4Sz);
+        $('#HR_lblBRFive').html(data[0].Bed5Sz);
+        $('#HR_lblScreenedPorch').html(data[0].PorchSz);
+        $('#HR_lblDeck').html(data[0].DeckSz);
+        $('#HR_lblPatio').html(data[0].Patio);
+        $('#HR_lblLaundryRoom').html(data[0].LnSz);
+        $('#HR_lblElementary').html(data[0].Elementary);
+        $('#HR_lblMiddle').html(data[0].Middle);
+        $('#HR_lblHighschool').html(data[0].High);
+        $('#HR_lblAppliances').html(data[0].APPLIANCES_NEW);
+        $('#HR_lblFirePlace').html(data[0].FIREPLACE);
+        $('#HR_lblFloor').html(data[0].FLOORS);
+        $('#Hr_LblGarage').html(data[0].GarType);
+        $('#HR_MasterBRFea').html(data[0].MRBEDFETRS);
+        $('#HR_lblBasement').html(data[0].BASEMENT);
+        $('#HR_lbllanduary').html(data[0].LAUNDRY);
+        $('#HR_lblStorageSpace').html(data[0].STORAGESPC);
+        $('#HR_lblSpecialityRoom').html(data[0].SPECILTYRM);
+        $('#HR_OtherIntFea').html(data[0].INTERRFTRS_NEW);
+        $('#HR_LbllotDesc').html(data[0].LOTDSCRPTN);
+        $('#HR_lblRoof').html(data[0].ROOF);
+        $('#HR_LblFoundation').html(data[0].FOUNDATION);
+        $('#HR_lblDriveWay').html(data[0].DRIVEWAY);
+        $('#HR_lblExtFinish').html(data[0].EXTERRFNSH);
+        $('#HR_lblOtherExtFea').html(data[0].EXTERRFTRS_NEW);
+        $('#HR_lblHoaCommunity').html(data[0].HCMNTYMNTS);
+        $('#HR_lblCondoIncluded').html(data[0].CNDRGMNCLD);
+        $('#HR_lblWater').html(data[0].WATER);
+        $('#HR_lblGaragepickUp').html(data[0].GARBAGPCKP);
+        $('#HR_lblHeatingSystem').html(data[0].HETNGSYSTM);
+        $('#HR_lblSewer').html(data[0].SEWER);
+        $('#HR_lblWaerHeater').html(data[0].WATERHEATR);
+        $('#HR_lblCoolingsystem').html(data[0].COLNGSYSTM);
+        $('#HR_lblHoaFee').html(data[0].HAOrRegime);
+        $('#HR_lblHoaAddFee').html(data[0].ADITIONLFS);
+        var price = "$ " + (data[0].TotalTax + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        $('#HR_lblTaxInfo').html(price + "; " + data[0].TaxYear);
+        $('#HR_lblHoaFeeTerm').html(data[0].HOATerm);
+        $('#HR_lblFinanceOpt').html(data[0].SPECLFNNCS);
+        Latitude = data[0].GeoLat;
+        Longitude = data[0].GeoLong;
+    }
+    $('#Customer_ListDetails_Close').click(function () {
+        $('#CustomerHomeListingView').hide();
+    });
+    function Fun_CSTCollapsableToogle(divID, SpnAngle, btnClass) {
+        if ($('#' + SpnAngle).attr('class') == 'fa fa-angle-down') {
+            $("#" + divID).css("background-color", "#f56331");
+            $("#" + SpnAngle).attr('class', 'fa fa-angle-up').css('color', 'white');
+            $("#" + btnClass).attr('class', 'btn btn-primary btnActiveClass');
+        }
+        else {
+            $("#" + btnClass).attr('class', 'btn btn-danger btnInactiveClass');
+            $("#" + divID).css("background-color", "white");
+            $("#" + SpnAngle).attr('class', 'fa fa-angle-down').css('color', '#f56331');
+        }
+    }
+    function Fun_Fav_Change(imageID) {
+        if ($('#' + imageID).attr('src') == "/img/heartmi.png") {
+            $("#" + imageID).attr("src", "/img/hearticon.png");
+            IS_PropFavourite = 'true';
+        }
+        else {
+            $("#" + imageID).attr("src", "/img/heartmi.png");
+            IS_PropFavourite = 'false';
+        }
+        HR_PROPFavImageChanges(Prop_MlsID, IS_PropFavourite)
+    }
+    function HR_PROPFavImageChanges(Prop_MlsID, Favourite) {
+        $.ajax({
+            url: "/FullDetails/FavrouriteChanges/",
+            type: "POST",
+            dataType: "json",
+            data: { MLSId: Prop_MlsID, Fav: Favourite },
+            success: function (data) {
+
+            },
+            error: function () {
+            }
+        });
+    }
+    function HR_PopupSlideImage(ClickStatus, DIvisionID, PreviousButton, NextButton, ImageCountShow) {
+        if (ClickStatus == 'Next') {
+            CurrentImageCount = parseInt(CurrentImageCount + 1);
+            $('#' + DIvisionID).css('background-image', 'url(' + Arr_PropertyPhotos[CurrentImageCount - 1] + ')');
+            $('#' + PreviousButton).show();
+            if (parseInt(CurrentImageCount) == parseInt(CurrentPhotosCount))
+                $('#' + NextButton).hide();
+        }
+        if (ClickStatus == 'Previous') {
+            CurrentImageCount = CurrentImageCount - 1;
+            if (parseInt(CurrentImageCount) == 1)
+                $('#' + PreviousButton).hide();
+            $('#' + NextButton).show();
+            $('#' + DIvisionID).css('background-image', 'url(' + Arr_PropertyPhotos[CurrentImageCount - 1] + ')');
+        }
+        $('#' + ImageCountShow).html(CurrentImageCount);
+    }
+    $(".textlimit").hover(function () {
+        if ($(this).hasClass("removetextlimit")) {
+            $(this).removeClass("removetextlimit").addClass("textlimit");
+        }
+        else {
+            $(this).removeClass("textlimit").addClass("removetextlimit");
+        }
+    });
+
+    $('#HR_DriveBY,#LSL_DriveBY').click(function () {
+        var street = "https://www.google.com/maps/dir/?api=1&destination=" + Latitude + "," + Longitude + "&travelmode=drving";
+        window.open(street, '_blank');
+    });
+    $('#HR_StreetView,#LSL_StreetView').click(function () {
+        var street = "https://www.google.com/maps/" + String.fromCharCode(64) + "?api=1&map_action=pano&viewpoint=" + Latitude + "," + Longitude + "&heading=-45&pitch=38&fov=80";
+        window.open(street, '_blank');
+    });
+    function HR_OpenMultiFileUploader() {
+        $('#Btn_MultiUploader').click();
+    }
+    function EmptyParameters() {
+        Arr_PropertyPhotos = []; CurrentImageCount = 1; CurrentPhotosCount = 0; IS_PropFavourite = ''; Prop_MlsID = ''; Latitude = ''; Longitude = ''; HR_Arr_MultiUploadImages = [];
+    }
+    function HR_readMultiUploadFiles(input) {
+        var length = input.files.length;
+        for (var i = 0; i < length; i++) {
+            if (input.files && input.files[i]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    HR_Arr_MultiUploadImages.push((e.target.result).split(',')[1]);
+                    var BaseString = ((e.target.result).split(',')[1]);
+                    $.ajax({
+                        url: "/FullDetails/PostAGLMultiUploadImages/",
+                        type: "POST",
+                        dataType: "json",
+                        data: { AgentID: "", MLSID: Prop_MlsID, PhotoBase: BaseString },
+                        success: function (data) {
+                            CustomerFullViewListing(Prop_MlsID);
+                        },
+                        error: function () {
+                        }
+                    });
+                }
+                reader.readAsDataURL(input.files[i]);
+            }
+            var file = input.files[i];
+        }
+    };
+    $('#HR_Btn_MyNotes,#LSL_Btn_MyNotes').click(function () {
+        $.ajax({
+            url: "/Customer/SearchFilter/GetUserNoteData",
+            type: "POST",
+            dataType: "json",
+            data: { MLSID: Prop_MlsID },
+            success: function (data) {
+                $('#MYCustomerNotes').val(data[0].UserNote);
+            }
+        });
+        $("#Customer_MyNotePopup").modal("show");
+    });
+    $('#Customer_Mynote_Cancel').click(function () {
+        $('#MYCustomerNotes').val('');
+        $("#Customer_MyNotePopup").modal("hide");
+    });
+    $('#Customer_Mynote_Save').click(function () {
+        var MyNote = $('#MYCustomerNotes').val();
+        $.ajax({
+            url: "/Customer/SearchFilter/UserNoteUpdate/",
+            type: "POST",
+            dataType: "json",
+            data: { MLSId: Prop_MlsID, UserNote: MyNote },
+            success: function (data) {
+                if (data == "Sucess") {
+                    $('#Customer_MyNotePopup').modal("hide");
+                }
+                else {
+
+                }
+            },
+            error: function () {
+
+            }
+        });
+        $("#AGL_MyNotePopup").modal("hide");
+    });
+    function MakeMlsSaved(MLSID) {
+        $.ajax({
+            url: "/Customer/SearchFilter/SaveMLSIDAsViewedByUser/",
+            type: "POST",
+            dataType: "json",
+            data: { MLSId: MLSID },
+            success: function (data) {
+                if (data == "Sucess") {
+                }
+                else {
+                }
+            },
+            error: function () {
+            }
+        });
+    };
+    $('#HR_Buyer_phone_img,#LSL_Buyer_phone_img').click(function () {
+        $('#Customer_PhoneCallModel').modal("show");
+    });
+    $('#Customer_phonecall_popup_cancel').click(function () {
+        $('#Customer_PhoneCallModel').modal("hide");
+    });
+    $('#HR_Tog_AgentRemarks').click(function () {
+        if ($('#HR_FaAgentremarks').attr('class') == 'fa fa-angle-down') {
+            $('#textCT_agentheading').html('Agent Remarks');
+        }
+        else {
+            $('#textCT_agentheading').html('Lisitng Agent Remarks');
+        }
+    });
+    $('#LSL_ListDetails_Close').click(function () {
+        $('#lotslandListingView').hide();
+    });
+    function PrintListing() {
+        var url = "/Customer/CustomerListingPrint?Mlsid=" + Prop_MlsID+"&UserID="+USERID;
+        window.open(url, '_blank')
+    };
+    $('#LL_BTN_SharePop_UP,#HR_BTN_SharePop_UP').click(function () {
+        $('#POP_UPShareProp_Popup').show();
+    });
+    //-------Start: Pop ups sharing-------//
+    function fb_prop_Share() {
+        AGL_SharePopURL = "http://webapp.quitchet.com/FullDetails/ExpandedView/?MLSID=" + Prop_MlsID;
+        var ShareLinkFb = 'https://www.facebook.com/sharer/sharer.php?u=' + FirstImage + '&quote=Mlsid=' + Prop_MlsID;
+        window.open(ShareLinkFb);
+    }
+    function Share_prop_twitter(title, descr, image) {
+        AGL_SharePopURL = "http://webapp.quitchet.com/FullDetails/ExpandedView/?MLSID=" + Prop_MlsID;
+        var quote = '';
+        var ShareLinktwitter = 'https://twitter.com/share?url=' + AGL_SharePopURL + '&picture=http://restapi.devobal.com/Images/logomi.png&title=' + title + '&quote=' + quote + '&description=' + descr + '';
+        window.open(ShareLinktwitter);
+    }
+    function Share_prop_google(title, descr, image) {
+        AGL_SharePopURL = "http://webapp.quitchet.com/FullDetails/ExpandedView/?MLSID=" + MlsID + "&AGENTID=" + AgentID;
+        var quote = '';
+        var ShareLinkgoogle = 'https://plus.google.com/share?url=' + AGL_SharePopURL + '';
+        window.open(ShareLinkgoogle);
+    }
+    function Share_prop_linkedin(title, descr, image) {
+        AGL_SharePopURL = "http://webapp.quitchet.com/FullDetails/ExpandedView/?MLSID=" + Prop_MlsID;
+        var quote = '';
+        var ShareLinkedIn = 'https://www.linkedin.com/shareArticle?mini=true&url=' + AGL_SharePopURL + '&picture=http://restapi.devobal.com/Images/logomi.png&title=' + title + '&quote=' + quote + '&description=' + descr + '';
+        window.open(ShareLinkedIn);
+    }
+    //-------End: Pop ups sharing-------//
+    //-------Copy link from share pop-up-------//
+    $("#AGL_prop_copylink,#AGLot_prop_copylink").click(function () {
+        $('#AGL_proplink').html('');
+        AGL_SharePopURL = "http://webapp.quitchet.com/FullDetails/CustomerExpandedView?MLSID=" + Prop_MlsID;
+        $('#AGL_proplink').text(AGL_SharePopURL);
+        var clipboard = new Clipboard('.mycopy')
+    });
+    $('#AGL_cancel_prop_sharebtn').click(function () {
+        $('#AGL_proplink').html('');
+        $('#POP_UPShareProp_Popup').hide();
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>

@@ -1,0 +1,1678 @@
+﻿@*My Wish List Index Page *@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    var StatusList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Approve", Value = "1" },
+        new SelectListItem { Text = "Pending", Value = "2" },
+        new SelectListItem { Text = "Close", Value = "3" },
+    };
+}
+<link rel="stylesheet" type="text/css" href="/asset_contacts/css/bootstrap.min.css">
+<link href="~/asset_contacts/css/popupstylesincontacts.css" rel="stylesheet" />
+<link href="~/css/wishliststyle.css" rel="stylesheet" />
+<style type="text/css">
+    #slider-range, #slider-range2, #slider-range3 {
+        background: #FF5D26;
+    }
+    .col-md-12 {
+        padding-right: 4px;
+        padding-left: 7px;
+    }
+    .btn-default:hover, .btn-default:active, .btn-default:focus {
+        color: #ffffff !important;
+        background-color: #FF5D26 !important;
+        border-color: #FF5D26 !important;
+    }
+    .btn-success, .label-success, .alert-success, .badge-success, .alert-heder {
+        color: #EB511E !important;
+        border-top: 2px solid #FF5F29;
+        border-bottom: 2px solid #FF5F29;
+        background-color: rgba(255, 141, 86, 0.40) !important;
+        text-align: center;
+        padding: 6px 0px 6px 0px;
+    }
+    .tab-content-v1 {
+        border-left: 0px solid #918C8C;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("#slider-range,#slider-range2,#slider-range3").slider({
+            range: true,
+            min: 0,
+            max: 500,
+
+            values: [75, 300],
+            slide: function (event, ui) {
+                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            }
+        });
+        $("#amount").val("$" + $("#slider-range,#slider-range2").slider("values", 0) +
+          " - $" + $("#slider-range,#slider-range2,#slider-range3").slider("values", 1));
+    });
+    $('.slider').slider({
+        handle: round,
+        tooltip: true,
+    });
+</script>
+    <!-- WishList Div-->
+    <div class="row headeraddressbook1">
+        <div class="adrbookbtn3 col-sm-12" style="text-align: right; padding-right: 15px;">
+            @*<img src="/img/Savechanges.png" width="160" height="30" alt="" />*@
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4" style="padding-top: 6px;">
+                <button id="savechangesBtn" type="button" class="  " style="width: 110px; height: 30px; border: 1px solid white; background-color: #FF6937; color: white; font-weight: 500; font-size: 13px;">
+                    Save Changes</button>
+            </div>
+        </div>
+    </div>
+    <div id="mywishlisttop">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group btn-group-justified">
+                    <a href="#" class="btn btn-default" id="mybasicneedbtn">My Basic Needs</a>
+                    <a href="#" class="active btn btn-default" id="mywishlistbtn">My Wishlist</a>
+                    <a href="#" class="btn btn-default" id="myphotosbtn">My Photos / Notes</a>
+                </div>
+                <hr>
+                <div class="row" id="listingtyperow">
+                    <div class="col-md-12 text-center">
+                        <div class="wellorange well-sm">
+                            <label class="control-label spanssliderpadding" for="exampleInputEmail1">Listing Type :</label>
+                            <div class="btn-group btn-group-sm">
+                                <select class="form-control" title="Rentals">
+
+                                    <option>Homes</option>
+                                    <option>Rentals </option>
+                                    <option>Lots / Land </option>
+
+                                </select>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Action</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Wish List Popup-->
+    <div id="wishlistpopup">
+        <div id="mywishlist">
+            <div id="tabsDemo2Content" class="tab-content tab-content-v1 col-md-12">
+                <div role="tabpanel" class="tab-pane active in tabcontent1" id="tabs-demo2-area1" style="height: auto;">
+                    <div class="col-md-12 row" style="padding-left: 20px;">
+                        <label>Driving Distance Filter</label>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+
+                                            <div class="col-sm-4">
+                                                @* <input type="number" class="form-control" id="inputEmail3" placeholder="Minutes…">*@
+                                                @Html.TextBox("inputMinutes", "", new { @style = "height: 35px", @class = "form-control ", @placeholder = " Minutes", @type = "number", @min = "0", @max = "60", @id = "inputMinutes" })
+                                            </div>
+                                            <div class="col-sm-2 removedpaddings">
+                                                <label for="inputEmail3" class="control-label" contenteditable="true">From</label>
+                                            </div>
+                                            <div class="col-sm-6 removedpaddings">
+                                                @* <input type="email" class="form-control" id="inputEmail3" placeholder="Address / Location…">*@
+                                                @Html.TextBox("inputAddress", "", new { @class = "form-control ", @placeholder = " Address / Location…", @style = "height: 35px" })
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-3">
+                                                <label for="inputEmail3" class="control-label ">Property Type</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                @Html.DropDownList("lotFeatures", StatusList, "--Select--", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "width:100%;height: 35px", @multiselection = "true" })
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <label class="control-label spanssliderpadding" for="exampleInputEmail1">Price</label>
+                                    <div id="slider-range"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label spanssliderpadding" for="exampleInputEmail1">Sqft</label>
+                                    <br>
+                                    <div id="slider-range2"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12" style="padding-top: 10px;">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label" for="exampleInputEmail1">Bedrooms</label>
+                                                <br>
+                                                <div class="btn-group btn-group-justified" style="height: 35px">
+                                                    <a href="#" class="btn btn-default">Any</a>
+                                                    <a href="#" class="btn btn-default">1+</a>
+                                                    <a href="#" class="btn btn-default">2+</a>
+                                                    <a href="#" class="btn btn-default">3+</a>
+                                                    <a href="#" class="btn btn-default">4+</a>
+                                                    <a href="#" class="btn btn-default">5+</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label" for="exampleInputEmail1">Bathrooms </label>
+                                                <br>
+                                                <div class="btn-group btn-group-justified" style="height: 35px" id="btns">
+                                                    <a href="#" class="btn btn-default">Any</a>
+                                                    <a href="#" class="btn btn-default">1+</a>
+                                                    <a href="#" class="btn btn-default">2+</a>
+                                                    <a href="#" class="btn btn-default">3+</a>
+                                                    <a href="#" class="btn btn-default">4+</a>
+                                                    <a href="#" class="btn btn-default">5+</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr class="hr2">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label class="control-label" for="exampleInputEmail1">Schools</label>
+                                            @*<input class="form-control" id="exampleInputEmail1"
+                                                                    placeholder="Search for Schools… " type="search">*@
+                                            @Html.TextBox("inputSchool", "", new { @class = "form-control ", @placeholder = "Search for Schools…", @type = "search", @style = "height: 35px" })
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label" for="exampleInputEmail1">Master Bedrooms</label>
+                                    <br>
+                                    <div class="btn-group btn-group-justified" style="height: 35px">
+                                        <a href="#" class="btn btn-default">Any</a>
+                                        <a href="#" class="btn btn-default">Main Floor</a>
+                                        <a href="#" class="btn btn-default">Second Floor</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="exampleInputEmail1">Number of Stories</label>
+                                            <br>
+                                            <div class="col-md-12">
+                                                <label class="checkbox-inline">
+                                                    @* <input type="checkbox" value="">A*@
+                                                    @Html.CheckBox("check")Any</label>
+                                                <label class="checkbox-inline">
+                                                    @* <input type="checkbox" value="">*@
+                                                    @Html.CheckBox("check")1</label>
+                                                <label class="checkbox-inline">
+                                                    @* <input type="checkbox" value="">*@
+                                                    @Html.CheckBox("check")1.5</label>
+                                                <label class="checkbox-inline">
+                                                    @* <input type="checkbox" value="">*@
+                                                    @Html.CheckBox("check")2
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    @*<input type="checkbox" value="">*@
+                                                    @Html.CheckBox("check")Tri / Split</label>
+                                                <label class="checkbox-inline">
+                                                    @* <input type="checkbox" value="">*@
+                                                    @Html.CheckBox("check")3+</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label spanssliderpadding" for="exampleInputEmail1" style="padding-bottom: 10px;">Lot Acreage</label>
+                                            <br>
+                                            @*<div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 60%;"></div>
+                                                </div>*@
+                                            <div id="slider-range3"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row" style="padding-top: 10px;">
+                                                <div class="col-md-6">
+
+
+                                                    <label class="control-label" for="exampleInputEmail1">Garage Capacity</label>
+                                                    <br>
+
+                                                    <div class="btn-group btn-group-justified" style="height: 35px">
+                                                        <a href="#" class="btn btn-default">Any</a>
+                                                        <a href="#" class="btn btn-default">1+</a>
+                                                        <a href="#" class="btn btn-default">2+</a>
+                                                    </div>
+
+
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="control-label" for="exampleInputEmail1">Garage Type</label>
+                                                    <br>
+                                                    <div class="btn-group btn-group-justified" style="height: 35px">
+                                                        <a href="#" class="btn btn-default">Any</a>
+                                                        <a href="#" class="btn btn-default">Carport</a>
+                                                        <a href="#" class="btn btn-default">Garage</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <label class="control-label" for="exampleInputEmail1">SubDivision</label>
+                                                    <br>
+                                                    @*          <input class="form-control" id="exampleInputEmail1"
+                                                            placeholder="Search for Subdivisions… " type="search">*@
+                                                    @Html.TextBox("inputAge", "", new { @class = "form-control ", @placeholder = "Search for Subdivisions…", @type = "search", @style = "height: 35px" })
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="control-label" for="exampleInputEmail1">Age</label>
+                                                    <br>
+                                                    @* <input class="form-control" id="exampleInputEmail1"
+                                                                            placeholder="Any, To be built, Under construction, New, 1-5, etc…" type="search">*@
+                                                    @Html.TextBox("inputAge", "", new { @class = "form-control ", @placeholder = "Any, To be built, Under construction", @type = "search", @style = "height: 35px" })
+                                                </div>
+
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="alert alert-dismissable alert-success">
+                                                        Advanced Filters
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Lot Features</label><br />
+                                        @Html.DropDownList("lotFeatures", StatusList, "--Select--", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "width:100%", @multiselection = "true" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Foundation Type</label>
+                                        <br>
+                                        <div class="btn-group btn-group-justified" style="height: 35px">
+                                            <a href="#" class="btn btn-default">Any</a>
+                                            <a href="#" class="btn btn-default">Basement</a>
+                                            <a href="#" class="btn btn-default">Crawl Space</a>
+                                            <a href="#" class="btn btn-default">Slab</a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Exterior Features</label>
+                                        @Html.DropDownList("lotFeatures", StatusList, "--Select--", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "width:100%", @multiselection = "true" })
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Interior Features</label>
+                                        @Html.DropDownList("lotFeatures", StatusList, "--Select--", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "width:100%", @multiselection = "true" })
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Flooring Type</label>
+                                        <br>
+                                        <div class="btn-group btn-group-justified" style="height: 35px">
+                                            <a href="#" class="btn btn-default">Any</a>
+                                            <a href="#" class="btn btn-default">Hardwood</a>
+                                            <a href="#" class="btn btn-default">Pine</a>
+                                            <a href="#" class="btn btn-default">Carpet</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 removedpaddings">
+                                        <label for="inputEmail3" class="control-label">Appliances</label><br />
+                                        @Html.DropDownList("lotFeatures", StatusList, "--Select--", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "width:100%", @multiselection = "true" })
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-6 removedpaddings">
+                                        <label for="inputEmail3" class="control-label">Master Features</label>
+                                        <div class="col-md-12">
+                                            <label class="checkbox-inline">
+                                                @Html.CheckBox("check")
+
+                                                @* <input type="checkbox" value="">*@Double Sink</label>
+                                            <label class="checkbox-inline">
+                                                @*  <input type="checkbox" value="">*@
+                                                @Html.CheckBox("check")Full Bath</label>
+                                            <label class="checkbox-inline">
+                                                @*<input type="checkbox" value="">*@
+                                                @Html.CheckBox("check")Walk-In Closest</label>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Laundry Room</label>
+                                        <br>
+                                        <div class="btn-group btn-group-justified" style="height: 35px">
+                                            <a href="#" class="btn btn-default">Any</a>
+                                            <a href="#" class="btn btn-default">Walk-In Only</a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Fire Place</label>
+                                        <br>
+                                        <div class="btn-group btn-group-justified" style="height: 35px">
+                                            <a href="#" class="btn btn-default">Any</a>
+                                            <a href="#" class="btn btn-default">Gas</a>
+                                            <a href="#" class="btn btn-default">Wood Burning</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Community Amenities</label>
+                                        <div class="col-md-12">
+                                            <label class="checkbox-inline">
+                                                @* <input type="checkbox" value="">*@
+                                                @Html.CheckBox("check")Gated Community</label>
+                                            <label class="checkbox-inline">
+                                                @* <input type="checkbox" value="">*@
+                                                @Html.CheckBox("check")Pool</label>
+                                            <label class="checkbox-inline">
+
+                                                @Html.CheckBox("check")Lawn Maintenanace</label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <hr class="hr2">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-dismissable alert-success">
+                                    Utility Filters
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Heating System</label>
+                                        <br>
+                                        <div class="btn-group btn-group-justified">
+                                            <a href="#" class="btn btn-default">Any</a>
+                                            <a href="#" class="btn btn-default">Gas</a>
+                                            <a href="#" class="btn btn-default">Eletric</a>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 removedpaddings">
+                                        <label for="inputEmail3" class="control-label">Water Type</label>
+                                        <br>
+                                        <div class="btn-group btn-group-justified">
+                                            <a href="#" class="btn btn-default">Any</a>
+                                            <a href="#" class="btn btn-default">Public</a>
+                                            <a href="#" class="btn btn-default">Well</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Water Type</label>
+                                        <br>
+                                        <div class="btn-group btn-group-justified">
+                                            <a href="#" class="btn btn-default">Any</a>
+                                            <a href="#" class="btn btn-default">Tankless</a>
+                                            <a href="#" class="btn btn-default">Gas</a>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Sewer Type</label>
+                                        <br>
+                                        <div class="btn-group btn-group-justified">
+                                            <a href="#" class="btn btn-default">Any</a>
+                                            <a href="#" class="btn btn-default">Public</a>
+                                            <a href="#" class="btn btn-default">Septic</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End of My wish list popup-->
+    <!-- Start My Basic needs Popup-->
+    <div id="basicneedspopup">
+        <div id="ii" class="tab-content tab-content-v1 col-md-12">
+            <div role="tabpanel" class="tab-pane active in tabcontent1" id="iii" style="height: auto;">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+
+                                        <div class="col-sm-4">
+                                            @* <input type="number" class="form-control" id="inputEmail3" placeholder="Minutes…">*@
+                                            @Html.TextBox("inputMinutes", "", new { @style = "height: 35px", @class = "form-control ", @placeholder = " Minutes", @type = "number", @min = "0", @max = "60", @id = "inputMinutes" })
+                                        </div>
+                                        <div class="col-sm-2 removedpaddings">
+                                            <label for="inputEmail3" class="control-label" contenteditable="true">From</label>
+                                        </div>
+                                        <div class="col-sm-6 removedpaddings">
+                                            @* <input type="email" class="form-control" id="inputEmail3" placeholder="Address / Location…">*@
+                                            @Html.TextBox("inputAddress", "", new { @class = "form-control ", @placeholder = " Address / Location…", @style = "height: 35px" })
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="inputEmail3" class="control-label ">Property Type</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            @Html.DropDownList("lotFeatures", StatusList, "--Select--", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "width:100%;height: 35px", @multiselection = "true" })
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <label class="control-label spanssliderpadding" for="exampleInputEmail1">Price</label>
+                                <div id="slider-range"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Bathrooms </label>
+                                <br>
+                                <div class="btn-group btn-group-justified" style="height: 35px" id="btns">
+                                    <a href="#" class="btn btn-default">Any</a>
+                                    <a href="#" class="btn btn-default">1+</a>
+                                    <a href="#" class="btn btn-default">2+</a>
+                                    <a href="#" class="btn btn-default">3+</a>
+                                    <a href="#" class="btn btn-default">4+</a>
+                                    <a href="#" class="btn btn-default">5+</a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12" style="padding-top: 10px;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="exampleInputEmail1">Bedrooms</label>
+                                            <br>
+                                            <div class="btn-group btn-group-justified" style="height: 35px">
+                                                <a href="#" class="btn btn-default">Any</a>
+                                                <a href="#" class="btn btn-default">1+</a>
+                                                <a href="#" class="btn btn-default">2+</a>
+                                                <a href="#" class="btn btn-default">3+</a>
+                                                <a href="#" class="btn btn-default">4+</a>
+                                                <a href="#" class="btn btn-default">5+</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" style="padding-top: 10px">
+                                            <label class="control-label spanssliderpadding" for="exampleInputEmail1">Sqft</label>
+                                            <br>
+                                            <div id="slider-range2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12" style="padding-top: 10px;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="exampleInputEmail1">Master Bedrooms</label>
+                                            <br>
+                                            <div class="btn-group btn-group-justified" style="height: 35px">
+                                                <a href="#" class="btn btn-default">Any</a>
+                                                <a href="#" class="btn btn-default">Main Floor</a>
+                                                <a href="#" class="btn btn-default">SD\econd Floor</a>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" style="padding-top: 10px">
+                                            <label class="control-label spanssliderpadding" for="exampleInputEmail1">Other Features </label>
+                                            <br />
+                                            <label class="checkbox-inline">
+                                                @Html.CheckBox("check")
+
+                                                Handicap Access</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of My Basic needs Popup-->
+    <!-- Start My Photos/ Notes PopUp -->
+    <div id="myphotospopup">
+        <div class="row">
+            <div class="col-md-12">
+                @*<div class="headeraddressbook">
+                    <div class="adrbookbtn1"><a href="#" onclick="show('popup3')">
+                        <img src="asset/img/previousbtn.png" width="127" height="37" alt="" /></a></a></div>
+                    <div class="adrnextbtn">
+                        <img src="asset/img/nextbtn.png" width="127" height="37" alt="" /></figure></div>
+                </div>*@
+                <div class="row">
+                    <div class="col-md-2 notesimagspace hover03">
+                        <a href="#" onclick="show('popup3')">
+                            <figure>
+                                <img src="/img/orangeboximge.png" width="185" height="150" id="addimagebtn">
+                            </figure>
+                        </a>
+                    </div>
+                    <div class="col-md-10 mynotesstip">
+                        <div class="row mynotestitle">
+                            <div class="col-md-1 mynotesh1">Notes</div>
+                            <div class="col-md-9"></div>
+                            <div class="col-md-2 mynotesh2">
+                                <img src="/img/datecelicon.png" width="29" height="29" alt="" />Date
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8 hover03" style="text-align: center;">
+                                <a href="#">
+                                    <figure>
+                                        <img src="/img/addnotes_btn.png" width="70" height="65" alt="" id="addnotesbtn" style="padding-top: 10px" />
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 notesimagspace hover03">
+                        <a href="#" onclick="show('popup3')">
+                            <figure class="shadowimage">
+                                <img src="/img/imagethumbnail.png" width="185" height="150" class="img-responisive">
+                            </figure>
+                        </a>
+                    </div>
+                    <div class="col-md-10 mynotesstripb">
+                        <div class="row" style="margin-right: -25px">
+                            <div class="col-sm-11">
+                                <div class="col-md-12 hover03" style="padding-top: 5px;">
+                                    <div class="col-sm-8 left">
+                                        <label style="color: #FF6937; font-weight: bold">Kitchen ideas</label>
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <label style="color: lightgray; font-weight: 500">01/01/2017</label>
+                                    </div>
+                                </div>
+                                <hr style="border: 1px solid lightgray" />
+                                <div class="col-md-12 hover03">
+                                    <a href="#"><span class="col-md-8 mynotesh3">I liked the chandelier and pendant lights in this kitchen</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-1" style="background-color: #FFDFDF; padding-left: 1px; padding-right: 0px; height: 150px; text-align: center">
+                                <div class="col-sm-12" style="background-color: #FF6937; color: #ffffff">Edit</div>
+
+                                <div class="editbox" style="padding-top: 5px;">
+                                    <a href="#" id="sharebtn">
+                                        <img src="/img/sharicon01.png" width="25" height="35" alt="" />
+                                        <div class="mynotesh4">Share</div>
+                                    </a>
+                                </div>
+                                <br />
+                                <input type="checkbox" name="remove1" id="remove1">
+                                <div class="mynotesh4">
+                                    Remove
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-md-1 editscontrol">
+                                <div class="editbox">
+                                    <img src="/img/sharicon01.png" width="25" height="35" alt="" />
+                                    <div class="mynotesh4">Share</div>
+                                </div>
+                                <div class="editboxb">
+                                    <div class="mynotesh4">
+                                        <input type="checkbox" name="checkbox" id="checkbox">
+                                        <label for="checkbox">
+                                            <br>
+                                            Remove</label>
+                                    </div>
+                                </div>
+                            </div>*@
+                </div>
+                <div class="row">
+                    <div class="col-md-2 notesimagspace hover03">
+                        <a href="#" onclick="show('popup3')">
+                            <figure class="shadowimage">
+                                <img src="/img/imagethumbnail.png" width="185" height="150" class="img-responisive">
+                            </figure>
+                        </a>
+                    </div>
+                    <div class="col-md-10 mynotesstripb">
+                        <div class="row" style="margin-right: -25px">
+                            <div class="col-sm-11">
+                                <div class="col-md-12 hover03" style="padding-top: 5px;">
+                                    <div class="col-sm-8 left">
+                                        <label style="color: #FF6937; font-weight: bold">Kitchen ideas</label>
+                                    </div>
+                                    <div class="col-sm-4" style="text-align: right">
+                                        <label style="color: lightgray; font-weight: 500">01/01/2017</label>
+                                    </div>
+                                </div>
+                                <hr style="border: 1px solid lightgray" />
+                                <div class="col-md-12 hover03">
+                                    <a href="#"><span class="col-md-8 mynotesh3">I liked the chandelier and pendant lights in this kitchen</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-1" style="background-color: #FFDFDF; padding-left: 1px; padding-right: 0px; height: 150px; text-align: center">
+                                <div class="col-sm-12" style="background-color: #FF6937; color: #ffffff">Edit</div>
+
+                                <div class="editbox" style="padding-top: 5px;">
+                                    <a href="#" id="sharebtn2">
+                                        <img src="/img/sharicon01.png" width="25" height="35" alt="" />
+                                        <div class="mynotesh4">Share</div>
+                                    </a>
+                                </div>
+                                <br />
+                                <input type="checkbox" name="remove2" id="remove2">
+                                <div class="mynotesh4">
+                                    Remove
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-md-1 editscontrol">
+                                <div class="editbox">
+                                    <img src="/img/sharicon01.png" width="25" height="35" alt="" />
+                                    <div class="mynotesh4">Share</div>
+                                </div>
+                                <div class="editboxb">
+                                    <div class="mynotesh4">
+                                        <input type="checkbox" name="checkbox" id="checkbox">
+                                        <label for="checkbox">
+                                            <br>
+                                            Remove</label>
+                                    </div>
+                                </div>
+                            </div>*@
+                </div>
+                @*<div class="row">
+                    <div class="col-md-2 notesimagspace hover03">
+                        <a href="#" onclick="show('popup3')">
+                            <figure class="shadowimage">
+                                <img src="/img/imagethumbnail.png" width="180" height="150">
+                            </figure>
+                        </a>
+                    </div>
+                    <div class="col-md-10 mynotesstripb">
+                        <div class="row">
+                            <div class="col-md-10 hover03">
+                                <a href="#"><span class="col-md-8 mynotesh3">I liked the chandelier and pendant lights in this kitchen</span>
+
+                                </a>
+                            </div>
+                            <div class="col-md-1 editscontrol">
+                                <div class="editbox">
+                                    <img src="/img/sharicon01.png" width="25" height="35" alt="" />
+                                    <div class="mynotesh4">Share</div>
+                                </div>
+                                <div class="editboxb">
+                                    <div class="mynotesh4">
+                                        <input type="checkbox" name="checkbox" id="checkbox">
+                                        <label for="checkbox">
+                                            <br>
+                                            Remove</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+
+    </div>
+    <!-- End of My Photos/Notes Popup -->
+<!--Start Add image popup-->
+<div class="popup3" id="selectimagepopup">
+    <div class="row popuporangehedr2">
+        <span>
+            <img src="/img/share2.png" width="24" height="34" alt="" /></span>Select Photo
+    </div>
+    <div class="myphotospopcontainer">
+        <div class="scrollbar" id="style-3">
+            <div class="force-overflow">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <a href="#">
+                                <img src="/media/1.png" width="144" height="111" alt="" /></a>
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/2.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/3.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/4.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/5.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/6.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/7.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/8.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/9.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/10.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/11.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/12.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/13.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/14.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/15.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/16.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/17.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/18.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/19.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/20.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/21.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/22.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/23.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/24.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/18.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2 hover03">
+                        <figure>
+                            @* <a href="#" onclick="hide('popup3')">
+                                        <img src="/img/cancel_btngray.png" width="151" height="43" alt="" /></a>*@
+                            <button id="cancelphotoBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                                Cancel</button>
+                        </figure>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-2 hover03">
+                        <figure>
+                            @* <a href="#" onclick="hide('popup3')">
+                                        <img src="/img/savebtn_orange.png" width="151" height="43" alt="" /></a>*@
+
+                            <button id="savephotoBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                                Save</button>
+
+                        </figure>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--End adding  image popup-->
+<!--Save Changes Confirmation Popup-->
+<div class="popupmessage" id="savechangespopup">
+    <div class="row popupcleanhedr">Save Changes ?</div>
+    <hr class="sepratorpopup">
+    <div class="delconfirm">
+        <br />
+        <div class="row">
+            <!-- start: 1st row -->
+            <!-- closed: phone -->
+
+            <div class="row btnsrowmargin">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">Are you sure you want to Save this changes ?</div>
+
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10" style="background-color: lightgray; color: black; border-radius: 3px">
+                &nbsp;
+                3 BedRooms; 2 BathRooms; Master BedRoom- Main Floor,
+                Handicap Acces
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <br />
+        <div style="margin: 20px 0px 10px 30px" class="row">
+
+            <div style="float: left">
+                <button id="noBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                    No</button>
+            </div>
+            <button id="yesBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                Yes</button>
+        </div>
+
+    </div>
+</div>
+<!--End of Save Changes popup-->
+<!--My Notes Popup -->
+<div class="popup5" id="mynotespopup">
+    <div class="mynotesontainer">
+        <div class="col-md-12">
+            <form role="form">
+                <div class="form-group">
+
+                    <label class="control-label" for="exampleInputEmail1">Subject</label><br />
+                    <div class="form-group col-sm-12">
+                        <input class="form-controlb" id="exampleInputEmail1" placeholder="Subject" type="text" style="width: 100%; border: 2px solid #FF5F29; background-color: #FFF5F2;">
+                    </div>
+                </div>
+                <div class=";col-sm-12">&nbsp;</div>
+                <div class="form-group">
+                    @* <div class="col-sm-2" style="padding-top:10px">*@
+                    <label class="control-label" for="exampleInputPassword1">Notes</label>
+                    <br />
+                    @*</div>*@
+                    <div class="form-group col-sm-12">
+                        <textarea style="height: 100px; width: 100%; border: 2px solid #FF5F29; background-color: #FFF5F2;" rows="5" class="form-controlb" placeholder="Message"></textarea>
+                    </div>
+                </div>
+                <div class="row" style="text-align: center">
+                    <div class="col-md-6 hover03">
+                        <button id="cancelnotesBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                            Cancel</button>
+
+                        @*<a href="#" onclick="hide('popup2')"><img class="cancelmynotes" src="asset/img/cancel_notes.png" width="125" height="39" alt=""/></a>*@
+
+                    </div>
+                    <div class="col-md-6 hover03">
+                        @*<a href="#" onclick="hide('popup2')"><img class="donemynotes" src="asset/img/Donebtn.png" width="125" height="39" alt=""/></a>*@
+
+                        <button id="donenotesBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                            Done</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End of My Notes Popup-->
+<!--start remove entry popup-->
+<div class="popupmessage" id="removeentrypopup" style="height: auto">
+    <div class="row" style="text-align: center">
+        <h3 style="color: #FF6937">Remove Entry</h3>
+    </div>
+    <hr class="sepratorpopup">
+
+    <div class="delconfirm">
+        <div class="row">
+            <!-- start: 1st row -->
+            <!-- closed: phone -->
+
+            <div class="row btnsrowmargin">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">Are you sure you want to remove this Photo/Note Entry ?</div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div style="margin: 20px 0px 10px 30px" class="row">
+            <div style="float: left">
+                <button id="removenoBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                    No</button>
+            </div>
+            <button id="removeyesBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                Yes</button>
+        </div>
+
+    </div>
+</div>
+<!-- end of remove entry popup-->
+<!--Share Contact Popup-->
+<div class="popup2" id="sharepopup">
+    <div class="row popupblackhedr2">
+        <span>
+            <img src="/img/share2.png" width="24" height="34" alt="" /></span> Share
+    </div>
+    <div class="sharepopupcontainer">
+
+        <div class="col-md-12" style="text-align: center">
+            <img src="/img/newmessagge.png" width="83" height="65" alt="" />
+        </div>
+    </div>
+    <div class="col-sm-12">&nbsp;</div>
+    <div class="col-sm-12" style="text-align: center">
+        <div class="col-md-1 " style="padding-left: 24px;"></div>
+        <div class="col-md-2 twocolumrem">
+            <a href="http://www.facebook.com" target="_blank">
+                <img class="shareiconpads" src="/img/facebook.png" width="36" height="36" alt="" />
+            </a>
+        </div>
+        <div class="col-md-2 twocolumrem">
+            <a href="http://www.twitter.com" target="_blank">
+                <img class="shareiconpads" src="/img/twitter.png" width="36" height="36" alt="" />
+            </a>
+        </div>
+        <div class="col-md-2 twocolumrem">
+            <a href="http://www.googleplus.com" target="_blank">
+                <img class="shareiconpads" src="/img/gplus.png" width="36" height="36" alt="" />
+            </a>
+        </div>
+        <div class="col-md-2 twocolumrem">
+            <a href="http://www.linkedin.com" target="_blank">
+                <img class="shareiconpads" src="/img/linkedin.png" width="36" height="36" alt="" />
+            </a>
+        </div>
+        <div class="col-md-2 twocolumrem">
+            <a href="http://www.instagram.com" target="_blank">
+                <img class="shareiconpads" src="/img/nstagram.png" width="36" height="36" alt="" />
+            </a>
+        </div>
+        <div class="col-md-1 "></div>
+
+    </div>
+    <div class="col-sm-12">&nbsp;</div>
+    <!-- closed: phone -->
+
+    <div class="row btnsrowmargin">
+
+        <div class="col-md-12" style="text-align: center">
+            <a href="#" onclick="hide('popup2')">
+                <img src="/img/copybtn.png" width="245" height="31" alt="" /></a>
+        </div>
+    </div>
+    <div class="col-sm-12">&nbsp;</div>
+    <div class="col-md-2"></div>
+
+    <div class="row btnsrowmargin">
+        <div class="col-md-12" style="text-align: center">//quitchet.com/e565qr0opy\</div>
+    </div>
+    <div class="col-sm-12">&nbsp;</div>
+    <div class="col-md-3"></div>
+
+
+
+    <div class="row btnsrowmargin">
+        <div class="col-md-12" style="text-align: center">
+            @*<a href="#" id="sharecancelbtn" onclick="hide('popup2')">
+                <img src="/img/cancel_btngray.png" width="151" height="43" alt="" />
+
+            </a>*@
+            <button id="cancelsharebtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                Cancel</button>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+
+</div>
+<!-- end of share popup -->
+<!-- start add image popup-->
+<div class="popup2" id="addimagepopup">
+    <div class="row popuptransparenthed">Select Photo</div>
+    <div class="myphotospopcontainer">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-9">
+                <form role="form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" id="path1" class="form-control uploading" placeholder="..//upload/images/">
+                            <input type="file" name="my_file" id="file1" style="display: none">
+                            <span class="input-group-btn">
+                                <a href="#">
+                                    <img src="/img/browse_btn.png" width="108" height="57" alt="" id="browse1" />
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+
+
+                            <input type="text" id="path2" class="form-control uploading" placeholder="..//upload/images/">
+                            <input type="file" name="my_file2" id="file2" style="display: none">
+                            <span class="input-group-btn">
+                                <a href="#">
+                                    <img src="/img/browse_btn.png" width="108" height="57" alt="" id="browse2" />
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <img src="/img/notherbtn.png" width="248" height="55" alt="" />
+        </div>
+        <img src="/img/16.gif" width="250" height="16" alt="" />
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center">
+            <div class="col-md-6 hover03">
+
+                @*<a href="#" onclick="hide('popup3')">
+            <img src="/img/cancel_btn.png" width="197" height="71" alt="" /></a>*@
+                <div style="float: left">
+                    <button id="canceladdingphotoBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                        Cancel</button>
+                </div>
+
+            </div>
+            <div class="col-md-6 hover03">
+                @*<a href="#" onclick="hide('popup3')">
+        <img src="asset/img/upload_btn.png" width="207" height="71" alt="" /></a>*@
+                <button id="uploadphotoBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                    Upload</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- end addimage popup-->
+<!-- start uploading image popup-->
+<div class="uploadpopup2" id="uploadingpopup">
+    <div class="row popuptransparenthed">Uploading.......!</div>
+    <div class="myphotospopcontainer">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-9">
+                <form role="form">
+                    <div class="form-group">
+                        <div class="input-group" style="height: 50px; border: 1px solid #FF6937; width: 100%; border-radius: 5px; color: #ffffff; text-align: left">
+                            <div class="col-sm-12">
+                                <label>Image :</label>
+                                <label id="img1"></label>
+                            </div>
+                            <div class="col-sm-12">
+                                <label>Image :</label>
+                                <label id="img2"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: center; padding-left: 35px">
+            <img src="/img/16.gif" width="300" height="16" alt="" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center; padding-bottom: 20px">
+            <div>
+                <button id="canceluploadingBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                    Cancel</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!--end of uploading popup-->
+<!-- custom -->
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('#selectimagepopup').hide();
+        $('#googlemaps').hide();
+        $('#removeentrypopup').hide();
+        $('#addimagepopup').hide();
+        $('#mynotespopup').hide();
+        $('#savechangespopup').hide();
+        $('#wishlistpopup').hide();
+        $('#basicneedspopup').hide();
+        $('#myphotospopup').hide();
+        $('#uploadingpopup').hide();
+        $(".nav-tabs a").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+
+    });
+    $('#browse1,#browse2').click(function () {
+        if ($(this).attr("id") == "browse1") {
+            $('#file1').click();
+            $("#file1").change(function () {
+                var t = document.getElementById("file1").files[0].name;
+                $("#path1").val(t);
+            });
+        }
+        if ($(this).attr("id") == "browse2") {
+            $('#file2').click();
+            $("#file2").change(function () {
+                // alert($(":file").val());
+                //$("#path2").val($("#file2").val());
+                var t = document.getElementById("file2").files[0].name;
+                $("#path2").val(t);
+            });
+        }
+    });
+    $("input[type='checkbox'][name='remove1']").change(function () {
+        if ($("input[type='checkbox'][name='remove1']:checked").length) {
+            $('#removeentrypopup').show();
+        }
+    })
+    $("input[type='checkbox'][name='remove2']").change(function () {
+        if ($("input[type='checkbox'][name='remove2']:checked").length) {
+            $('#removeentrypopup').show();
+        }
+    })
+    $("#mywishlistbtn").click(function () {
+        $('#listingtyperow').show();
+        $('#wishlistpopup').show();
+        $('#basicneedspopup').hide();
+        $('#myphotospopup').hide();
+    });
+    $("#addimagebtn").click(function () {
+        $('#addimagepopup').show();
+
+    });
+    $("#myphotosbtn").click(function () {
+        $('#mywishlistbtn').removeClass('active');
+        $('#wishlistpopup').hide();
+        $('#myphotospopup').hide();
+        $('#basicneedspopup').hide();
+        $('#listingtyperow').hide();
+
+    });
+    $("#mybasicneedbtn").click(function () {
+        $('#mywishlistbtn').removeClass('active');
+        $('#wishlistpopup').hide();
+        $('#basicneedspopup').show();
+        $('#myphotospopup').hide();
+    });
+    $("#noBtn").click(function () {
+
+        $('#savechangespopup').hide();
+    });
+    $("#yesBtn").click(function () {
+
+        $('#savechangespopup').hide();
+    });
+    $("#savechangesBtn").click(function () {
+
+        $('#savechangespopup').show();
+    });
+
+    $("#savephotoBtn,#cancelphotoBtn").click(function () {
+        $('#selectimagepopup').hide();
+    });
+    $("#addnotesbtn").click(function () {
+
+        $('#mynotespopup').show();
+    });
+    $("#cancelnotesBtn,#donenotesBtn").click(function () {
+        $('#mynotespopup').hide();
+    });
+    $("#removenoBtn,#removeyesBtn").click(function () {
+        $('#remove1,#remove2').attr('checked', false);
+        $('#removeentrypopup').hide();
+    });
+    $("#sharebtn,#sharebtn2").click(function () {
+
+        $('#sharepopup').show();
+    });
+    $("#cancelsharebtn").click(function () {
+
+        $('#sharepopup').hide();
+    });
+    $("#canceladdingphotoBtn").click(function () {
+
+        $('#addimagepopup').hide();
+    });
+    $("#uploadphotoBtn").click(function () {
+        var p1 = $('#path1').val();
+        var p2 = $('#path2').val();
+        // alert(p);
+        $('#img1').text(p1);
+        $('#img2').text(p2);
+        $('#uploadingpopup').show();
+        $('#addimagepopup').hide()
+
+    });
+    $("#canceluploadingBtn").click(function () {
+
+        $('#uploadingpopup').hide();
+    });
+
+</script>
+<script>
+    $ = function (id) {
+        return document.getElementById(id);
+    }
+
+    var show = function (id) {
+        $(id).style.display = 'block';
+    }
+    var hide = function (id) {
+        $(id).style.display = 'none';
+    }
+
+</script>
+<style>
+    input[type="text"], input[type="password"], textarea {
+        max-width: 100%;
+    }
+
+    #removeentrypopup:after {
+        position: fixed;
+        content: "";
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -2;
+    }
+
+    .subcontactheaderpopup {
+        width: 100%;
+        float: left;
+        height: 30px;
+        background-color: #FFD9CC;
+        margin: 10px 0px 14px 0px;
+        border-bottom: 3px #F05C1C solid;
+    }
+
+   
+
+    .img-responsive {
+        width: 35px;
+        height: 35px;
+    }
+
+    a {
+        font-size: 12px;
+    }
+
+    .media-left {
+        text-align: justify;
+    }
+
+    .brand-myagentbtn {
+        line-height: 20px;
+        text-align: left;
+        margin: -5px 60px 0px 0px;
+    }
+
+    .col-lg-1 {
+        text-align: center;
+        padding: 0px 0px 0px 0px;
+    }
+
+    .media-body {
+        width: 350px;
+        float: left;
+    }
+
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+        color: #555;
+        cursor: default;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-bottom-color: transparent;
+    }
+    /*//For Contact List Page*/
+    .maincontactheader {
+        width: 100%;
+        float: left;
+        height: 107px;
+        background-color: #59294C;
+        margin: -2px 0px -30px 0px;
+    }
+
+    .navbar {
+        height: 64px;
+        background-color: #FF6937;
+        color: #fff;
+        border: none;
+    }
+
+    .headeraddressbook {
+        background-color: #FF5D26;
+        padding: 11px 0px 31px 0px;
+    }
+
+    .tabphone {
+        width: 150px;
+        float: left;
+        height: 28px;
+        background-color: #F05C1C;
+        margin: 2px 0px -4px 0px;
+        -moz-border-radius-topleft: 0px;
+        -moz-border-radius-topright: 5px;
+        -moz-border-radius-bottomleft: 0px;
+        -moz-border-radius-bottomright: 0px;
+        -webkit-border-top-left-radius: 0px;
+        -webkit-border-top-right-radius: 5px;
+        -webkit-border-bottom-left-radius: 0px;
+        -webkit-border-bottom-right-radius: 0px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .persondatabar {
+        height: 44px;
+        width: 98%;
+        float: left;
+        padding: 8px 0px 5px 0px;
+        border-bottom: 1px solid #D2D2D2;
+    }
+
+    .icontabspad {
+        width: 18px;
+        height: 18px;
+        float: left;
+        padding: 1px 20px 10px 20px;
+    }
+
+    .chatandphonespaces {
+        padding: 12px 0px 0px 0px;
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    img {
+        border: 0;
+    }
+
+    .adh2 {
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #FFF2EE;
+        padding: 2px 0px 0px 14px;
+        font-weight: 300;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .adh3 {
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #FF5D26;
+        padding: 2px 0px 0px 14px;
+        font-weight: 300;
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .adh1 {
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #FFF2EE;
+        padding: 8px 0px 0px 14px;
+        font-weight: bold;
+        text-align: left;
+        font-size: 19px;
+    }
+
+    .subactionbar {
+        width: 100%;
+        float: left;
+        height: 32px;
+        background-color: #FFEAE3;
+        margin: -2px 0px -4px 0px;
+        border-bottom: 3px #F05C1C solid;
+    }
+
+    .itemcontacth1 {
+        color: #FF5D26;
+        padding: 3px 0px 50px 20px;
+        font-size: 14px;
+        height: 28px;
+        text-align: left;
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        float: left;
+        width: 100px;
+    }
+
+    .itemcontacth2 {
+        color: #323231;
+        padding: 3px 0px 50px 20px;
+        font-size: 15px;
+        height: 28px;
+        text-align: left;
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        float: left;
+    }
+
+    .tablih2 {
+        color: white;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .col33 {
+        margin: 0px -30px 0px -30px;
+        width: 28%;
+    }
+
+    .selected {
+        color: inherit;
+        box-shadow: #000 2px 2px 10px;
+        border-bottom-right-radius: 10px;
+        margin-bottom: 3px;
+    }
+
+    .row {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .b {
+        border-radius: 20px;
+    }
+</style>
+@*<script type="text/javascript">
+    $('#menu a,img').click(function (e) {
+        //Remove the selected class from all of the links
+        $('#menu a.selected,img.selected').removeClass('selected');
+
+        //Add the selected class to the current link
+        $(this).addClass('selected');
+    });
+
+
+</script>*@
+
+

@@ -1,0 +1,43 @@
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.pdb
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.csprojResolveAssemblyReference.cache
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.pdb
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.pdb
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.csprojResolveAssemblyReference.cache
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.pdb
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.pdb
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.csprojResolveAssemblyReference.cache
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.csprojResolveAssemblyReference.cache
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.dll
+D:\QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.dll
+D:\QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.pdb
+E:\QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.dll
+E:\QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.pdb
+E:\QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.dll
+E:\QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\itextsharp.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\itextsharp.xml
+E:\Final-QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.csprojResolveAssemblyReference.cache
+D:\Final-QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\Quitchet.Services.pdb
+D:\Final-QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\itextsharp.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\itextsharp.xml
+D:\Final-QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.csprojResolveAssemblyReference.cache
+D:\Final-QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Services\obj\Debug\Quitchet.Services.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Services\bin\Debug\smartystreets-dotnet-sdk.dll

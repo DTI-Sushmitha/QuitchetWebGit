@@ -1,0 +1,2274 @@
+﻿@*Favorites Index Page*@
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+    var UserFirstName = "";
+    var UserLastName = "";
+    var PkeyUserId = "0";
+    var UserEmail = "";
+    var UserPassword = "";
+    var remember = "2";
+    if (Request.Cookies["UseridCookie"] != null)
+    {
+        if (Request.Cookies["UseridCookie"].Value != null)
+        {
+            PkeyUserId = Request.Cookies["UseridCookie"].Value;
+            if (Request.Cookies["UserFirstNameCookie"].Value != "")
+            {
+                UserFirstName = Request.Cookies["UserFirstNameCookie"].Value;
+            }
+            else
+            {
+                UserFirstName = "No";
+            }
+            if (Request.Cookies["UserLastNameCookie"].Value != "")
+            {
+                UserLastName = Request.Cookies["UserLastNameCookie"].Value;
+            }
+            else
+            {
+                UserLastName = "Name";
+            }
+        }
+    }
+    if (Request.Cookies["RememberMyDeviceCookie"] != null)
+    {
+        if (Request.Cookies["RememberMyDeviceCookie"].Value == "1")
+        {
+            UserEmail = Request.Cookies["UserEmailCookie"].Value;
+            UserPassword = Request.Cookies["UserPasswordCookie"].Value;
+            remember = Request.Cookies["RememberMyDeviceCookie"].Value;
+        }
+    }
+}
+@*<link href="~/Content/propertyfulldetails.css" rel="stylesheet" />*@
+<style>
+    a:hover{
+        color:inherit;
+    }
+    #ModelDetails::-webkit-scrollbar-track, #Lot_Land_ModelDetails::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+    #ModelDetails::-webkit-scrollbar-track, #Lot_Land_ModelDetails::-webkit-scrollbar-track {
+        width: 0.5%;
+        background-color: #F5F5F5;
+    }
+
+    #ModelDetails::-webkit-scrollbar-track, #Lot_Land_ModelDetails::-webkit-scrollbar-track {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #FF5D26;
+    }
+
+    .header-menu-list {
+        background: none;
+        padding: 3px;
+        overflow: hidden;
+    }
+
+        .header-menu-list .btn-expand {
+            float: right;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+    .trheight {
+        height: 10px;
+    }
+
+    .collapsible {
+        position: absolute;
+        right: 30px;
+        top: 84%;
+        display: none;
+        width: 462%;
+    }
+
+    .countno {
+        color: white;
+        width: 28px;
+        background-color: rgb(248, 165, 125);
+        padding: 0px 6px 1px 8px;
+        border-radius: 25px;
+        margin: 0px 10px 0px 10px;
+    }
+
+    #footer {
+        position: absolute;
+        top: 93%;
+        width: 100%;
+        height: 30px;
+    }
+
+    #footercomparebutton {
+        position: absolute;
+        bottom: 30px;
+        width: 100%;
+        height: 36px;
+        background: #6cf;
+    }
+
+     #footershowingsbutton {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 36px;
+        background: #6cf;
+    }
+
+    .iconsdiv {
+        background-color: grey;
+        color: #f5f5f5;
+        width: 30px;
+        height: 192px;
+        border-radius: 20px 20px 0px 25px;
+        padding-right: 0px;
+        padding-left: 1px;
+        text-align: center;
+        /*margin-right: -2%;*/
+        float: right;
+        margin-top: 10%;
+    }
+
+    .RightJqueryList {
+        border: 1px #ff5d26 solid !important;
+        border-radius: 5px !important;
+        border-collapse: inherit !important;
+        height: 263px;
+    }
+
+    .myhr5 {
+        width: 100%;
+        margin-top: 3px;
+        margin-bottom: -1px;
+        border-color: #d8d5d5;
+    }
+
+    #RightListView {
+        float: right;
+        margin-right: 1%;
+        background-color: white;
+        overflow-y: auto;
+        overflow-x: hidden;
+        /*min-height: 650px;
+        max-height: 670px;*/
+        width: 230px;
+        padding-left: 0px !important;
+    }
+
+        #RightListView::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        #RightListView::-webkit-scrollbar {
+            width: 2%;
+            background-color: #F5F5F5;
+        }
+
+        #RightListView::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #FF5D26;
+        }
+
+    .ddlSortByClass {
+        border: 1px #ff5d26 solid;
+        border-radius: 4px !important;
+        width: 263%;
+        height: 23px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 86%;
+        color: #ff5d26;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSePVWt6a83sB0JECOwilcf11eZsK_ciMNH-eUSpNpXJCKWLav7') no-repeat right;
+        background-position: 197px 5px;
+        text-indent: 0.01px;
+        text-overflow: "";
+    }
+
+    .dropbtn {
+        background-color: #fff;
+        color: #ff6937;
+        width: 293%;
+        /*min-width:214px !important;*/
+        /*max-width:425px ;*/
+        height: 29px !important;
+        padding-top: 0px;
+        font-size: 12px;
+        border: 1px solid #ff6937 !important;
+        height: 28px;
+        padding-top: 5px;
+        border-radius: 5px;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .myDropdownItems {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        width: 214px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 4px !important;
+        text-align: center;
+    }
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                background-color: #f1f1f1;
+            }
+
+    /* HR Class*/
+    .myhr {
+        margin-left: 18px;
+        width: 85%;
+        margin-top: -19px;
+        margin-bottom: 21px;
+        border-color: #f5c6b6;
+    }
+
+    .myhr4 {
+        margin: 10px 0;
+        width: 100%;
+        padding-bottom: 0px;
+        border-color: #f5c6b6;
+    }
+
+
+    .myhr2 {
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-color: #d8d5d5;
+    }
+    /*stop Remove Min-Height Border input Modal Popup*/
+    .modal-header {
+        border-bottom: 0px solid #e5e5e5 !important;
+    }
+
+    .modal-footer {
+        border-top: 0px solid #e5e5e5 !important;
+    }
+    /*//CSS: form selected linkin nav pills command menu*/
+    .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+        color: #fff;
+        background-color: gray !important;
+    }
+
+    /*-----------------k----------------------------------*/
+    .widthonmap {
+    }
+
+    @@media (min-width:768px) and (max-width:993px) {
+        .widthonmap {
+            background-color: #fff;
+            border-radius: 3px;
+            height: 23px;
+            font-size: 10px !important;
+            color: gray;
+            z-index: 100;
+            margin-left: 0% !important;
+            padding: 0px !important;
+            width: 273px !important;
+        }
+    }
+
+    @@media (min-width:994px) and (max-width:1200px) {
+        .widthonmap {
+            width: 323px !important;
+        }
+    }
+
+    .hidecontent {
+        display: none !important;
+    }
+
+    .show {
+        display: block !important;
+    }
+
+    .rating:hover {
+        text-decoration: none;
+    }
+
+    .rating:focus {
+        text-decoration: none;
+    }
+</style>
+@*//Styles for request showings popups and Time , datepickers*@
+<style>
+    #TimePicker:after {
+        border-bottom: 13px solid #fffcfc;
+        border-top: 5px solid transparent;
+        content: "";
+        position: absolute;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        top: -17px;
+        left: 14px;
+        width: 8px;
+    }
+
+    #TimePicker2:after {
+        border-bottom: 13px solid #fffcfc;
+        border-top: 5px solid transparent;
+        content: "";
+        position: absolute;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        top: -17px;
+        left: 14px;
+        width: 8px;
+    }
+
+    #TimePicker3:after {
+        border-bottom: 13px solid #fffcfc;
+        border-top: 5px solid transparent;
+        content: "";
+        position: absolute;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        top: -17px;
+        left: 14px;
+        width: 8px;
+    }
+
+    #TimePicker4:after {
+        border-bottom: 13px solid #fffcfc;
+        border-top: 5px solid transparent;
+        content: "";
+        position: absolute;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        top: -17px;
+        left: 14px;
+        width: 8px;
+    }
+
+    #TimePicker5:after {
+        border-bottom: 13px solid #fffcfc;
+        border-top: 5px solid transparent;
+        content: "";
+        position: absolute;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        top: -17px;
+        left: 14px;
+        width: 8px;
+    }
+
+    #TimePicker6:after {
+        border-bottom: 13px solid #fffcfc;
+        border-top: 5px solid transparent;
+        content: "";
+        position: absolute;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        top: -17px;
+        left: 14px;
+        width: 8px;
+    }
+      #TimePicker7:after {
+        border-bottom: 13px solid #fffcfc;
+        border-top: 5px solid transparent;
+        content: "";
+        position: absolute;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        top: -17px;
+        left: 14px;
+        width: 8px;
+    }
+        #TimePicker8:after {
+        border-bottom: 13px solid #fffcfc;
+        border-top: 5px solid transparent;
+        content: "";
+        position: absolute;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        top: -17px;
+        left: 14px;
+        width: 8px;
+    }
+
+</style>
+<style>
+    .ui-datepicker-div {
+        margin-left: -75px !important;
+    }
+
+    .ui-datepicker-header {
+        text-transform: uppercase !important;
+        background-color: transparent;
+        color: #ff5d26;
+        font-weight: normal;
+        border: none !important;
+        font-size: 15px;
+        font-weight: bold;
+        /*-webkit-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, 2);
+        -moz-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+        box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+        text-shadow: 1px -1px 0px #000;
+        filter: dropshadow(color=#000, offx=1, offy=-1);
+        line-height: 30px;*/
+    }
+
+    .ui-datepicker table {
+        color: gray !important;
+    }
+
+
+    .ui-datepicker-prev, .ui-datepicker-next {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        cursor: pointer;
+        /*background-image: url('../img/arrow.png');*/
+        background-repeat: no-repeat;
+        line-height: 600%;
+        overflow: hidden;
+    }
+
+    .ui-datepicker tbody td:last-child {
+        border-right: 0px;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+        border: none !important;
+    }
+
+    .ui-datepicker tbody tr:last-child {
+        border-bottom: 0px;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default {
+        background: none !important;
+        text-align: center;
+    }
+
+    .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+        background-color: #ff5d26 !important;
+    }
+</style>
+@*Start: Showing Schedule Preferences Pop-UP*@
+<div class="modal" id="PopUP_ShedulePreferences" style="padding-left: 206px; z-index: 1500;height:100%; ">
+    <div class="modal-dialog" role="document" style="padding-top: 10%; width: 35%; height:50%; border-radius:0px 0px 0px 0px !important;">
+        <div class="modal-content" style="border-radius:0px 0px 0px 0px !important;min-height:400px; height:auto; width:320px">
+            <div style="position:relative; left:-4px;">
+                <div class="modal-header" style="text-align: center; border-bottom: none; padding-bottom: 0px;">
+                    <h6 style="color: #FF6937; margin-top: 0%; font-weight: 600;">Showing Schedule Preferences</h6>
+                    <label id="mlsid" hidden></label>
+                    <label id="agentid" hidden></label>
+                    <hr style="border: 0 ! important; margin-top: 2%;  margin-left:-6px;margin-right:-6px; border-top: 1px solid  #FF6937 !important;" />
+                </div>
+                <form>
+                @*<div class="modal-body">*@
+                    <div class="col-sm-12" style="text-align:center;margin-top:-15px">
+                        <span style="font-size:13px; font-weight:bold">Enter your available days and times.</span><br />
+                        <span style="color: #FF6937; margin-top: 0%; font-weight: 600;">You will be notified when approved.</span>
+                        <hr style="border: 0 ! important; margin-top: 2%;  margin-left:-6px;margin-right:-6px; border-top: 1px solid rgb(249, 181, 158) !important;" />
+                    </div>
+                    <div class="col-sm-12" style="text-align:center;display:none" id="date_ErrorMsg_div">
+                        <label id="validationerrorMessage" class="form-control" style="background-color:rgb(249, 210, 196);color:#ff5d36;font-size:10px">
+                            Please Select First Date
+                        </label>
+                    </div>
+                    <div class="col-sm-12" style="text-align:center;">
+                        <span id="firstdataerrormsg" style="color:red;font-size:10px"></span>
+                        <div class="col-sm-12" style="position:relative; padding-left:36px">
+                            <span style="font-size:13px; font-weight:bold; float:left;position:relative;top:4px; right:10px ">1<sup>st</sup> Choice</span><br />
+                            <input type="text" placeholder="Date" id="FirstChoise_Date" required class="form-control" style="left: 14px; top: -16px; width: 130px; position: relative; float: right; border-radius:6px; border-color:rgba(0,0,0,0.3) !important; height:26px" autocomplete="off">
+                            <span class="input-group-addon" id="date11icon" style="top: -16px; right: -154px;width:10px; position: relative;border-color:rgba(0,0,0,0.3) !important; padding-top:2px">
+                                <span class="glyphicon glyphicon-calendar">
+                                </span>
+
+                            </span>
+                            </input>
+
+                        </div>
+                        <div class="col-sm-12" style="position:relative" id="timings11">
+                            <span style="left: 24px; position: relative; float: left;">From</span>
+                            <input id="Txt_FirstFrom" type="text" class="form-control" data-toggle="collapse" data-target="#TimePicker" onclick="OpenTimepicker('TimePicker','Txt_FirstFrom')"
+                                   style="left: -100px; top: -5px; width: 85px; position: relative; float: right; border-radius:6px; border-color:rgba(0,0,0,0.3) !important; height:26px; font-size:11px" value="ANY" readonly />
+                            <i class="fa fa-caret-down" aria-hidden="true" style="left: 98px; font-size: 17px; position: relative;"></i>
+                            <div id="TimePicker" class="collapse" style="width:100px; background-color:white; position:absolute; left:75px;top:30px;box-shadow: 4px 16px 8px 0px rgba(0,0,0,0.2);border-radius:5px;padding:0px 0px 0px 0px;z-index:1048;">
+                            </div>
+                            <span style="top: -3px;position:relative; left:113px">to</span>
+                            <input id="txt_First_To" type="text" class="form-control" data-toggle="collapse" data-target="#TimePicker2" onclick="OpenTimepicker('TimePicker2','txt_First_To')" style="left: 100px; top: -5px; width: 85px; position: relative; float: right; border-radius:6px; border-color:rgba(0,0,0,0.3) !important; height:26px; font-size:11px" value="ANY" readonly /><i class="fa fa-caret-down" aria-hidden="true" style="left: 185px; font-size: 17px; position: relative;"></i>
+                            <div id="TimePicker2" class="collapse" style="width:100px; background-color:white; position:absolute; left:200px;top:30px;box-shadow: 4px 16px 8px 0px rgba(0,0,0,0.2);border-radius:5px;padding:0px 0px 0px 0px;z-index:1048;">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" style="padding-left:0;display:none;position:relative; top:10px" id="timings12">
+                            <span style="left: 15px; position: relative; float: left;">
+                                <a href="#" id="hide_timings12" style="text-decoration:none;color:red">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a> &nbsp;From
+                            </span>
+                            <input id="txt_FirstSecond_From" type="text" class="form-control" data-toggle="collapse" data-target="#TimePicker3" onclick="OpenTimepicker('TimePicker3','txt_FirstSecond_From')" style="left: -100px; top: -5px; width: 85px; position: relative; float: right; border-radius:6px; border-color:rgba(0,0,0,0.3) !important; height:26px; font-size:11px" value="ANY" readonly /><i class="fa fa-caret-down" aria-hidden="true" style="left: 98px; font-size: 17px; position: relative;"></i>
+                            <div id="TimePicker3" class="collapse" style="width:100px; background-color:white; position:absolute; left:75px;top:30px;box-shadow: 4px 16px 8px 0px rgba(0,0,0,0.2);border-radius:5px;padding:0px 0px 0px 0px;z-index:1048;">
+                            </div>
+                            <span style="top: -3px;position:relative; left:109px">to</span>
+                            <input id="txt_FirstSecond_To" type="text" class="form-control" data-toggle="collapse" data-target="#TimePicker4" onclick="OpenTimepicker('TimePicker4','txt_FirstSecond_To')" style="left: 100px; top: -5px; width: 85px; position: relative; float: right; border-radius:6px; border-color:rgba(0,0,0,0.3) !important; height:26px; font-size:11px" value="ANY" readonly /><i class="fa fa-caret-down" aria-hidden="true" style="left: 185px; font-size: 17px; position: relative;"></i>
+                            <div id="TimePicker4" class="collapse" style="width:100px; background-color:white; position:absolute; left:200px;top:30px;box-shadow: 4px 16px 8px 0px rgba(0,0,0,0.2);border-radius:5px;padding:0px 0px 0px 0px;z-index:1048;">
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-default btn-sm" style="color:#ff5d26; float:left; position:relative; top:10px" id="addtimings12">
+                            <span class="fa fa-plus-circle" style="position:relative; left:-5px">
+                            </span><span>Add Another time</span>
+                        </a>
+                        <hr style="border: 0 ! important; margin-top: 2%;  margin-left:-6px;margin-right:-6px; border-top: 1px solid rgb(249, 181, 158) !important; position:relative;top:114px" />
+                    </div>
+                    <div class="col-sm-12" style="text-align:center;margin-top:38px">
+                        <div class="col-sm-12" style="position:relative; padding-left:36px">
+                            <span style="font-size:13px; font-weight:bold; float:left;position:relative;top:4px; right:10px ">2<sub style="position:relative; top:0px">nd</sub> Choice</span><br />
+                            <input type="text" placeholder="Date" id="SecondChoice_Date" class="form-control" style="left: 14px; top: -16px; width: 130px; position: relative; float: right; border-radius:6px; border-color:rgba(0,0,0,0.3) !important; height:26px" autocomplete="off">
+                            <span class="input-group-addon" id="date12icon" style="top: -16px; right: -149px;width:10px; position: relative;border-color:rgba(0,0,0,0.3) !important; padding-top:2px">
+                                <span class="glyphicon glyphicon-calendar">
+                                </span>
+                            </span>
+                            </input>
+                        </div>
+                        <div class="col-sm-12" style="position:relative" id="timings21">
+                            <span style="left: 24px; position: relative; float: left;">From</span>
+                            <input id="txt_Second_From" type="text" class="form-control" data-toggle="collapse" data-target="#TimePicker5" onclick="OpenTimepicker('TimePicker5','txt_Second_From')" style="left: -100px; top: -5px; width: 85px; position: relative; float: right; border-radius:6px; border-color:rgba(0,0,0,0.3) !important; height:26px; font-size:11px" value="ANY" readonly /><i class="fa fa-caret-down" aria-hidden="true" style="left: 98px; font-size: 17px; position: relative;"></i>
+                            <div id="TimePicker5" class="collapse" style="width:100px; background-color:white; position:absolute; left:75px;top:30px;box-shadow: 4px 16px 8px 0px rgba(0,0,0,0.2);border-radius:5px;padding:0px 0px 0px 0px;z-index:1048;">
+                            </div>
+                            <span style="top: -3px;position:relative; left:113px">to</span>
+                            <input id="txt_Second_to" type="text" class="form-control" data-toggle="collapse" data-target="#TimePicker6" onclick="OpenTimepicker('TimePicker6','txt_Second_to')" style="left: 100px; top: -5px; width: 85px; position: relative; float: right; border-radius:6px; border-color:rgba(0,0,0,0.3) !important; height:26px; font-size:11px" value="ANY" readonly /><i class="fa fa-caret-down" aria-hidden="true" style="left: 185px; font-size: 17px; position: relative;"></i>
+                            <div id="TimePicker6" class="collapse" style="width:100px; background-color:white; position:absolute; left:200px;top:30px;box-shadow: 4px 16px 8px 0px rgba(0,0,0,0.2);border-radius:5px;padding:0px 0px 0px 0px;z-index:1048;">
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="padding-left:0;display:none;top:10px;position:relative" id="timings22">
+
+                            <span style="left: 15px; position: relative; float: left;">
+                                <a href="#" id="hide_timings22" style="text-decoration:none;color:red">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a> &nbsp;
+                                From
+                            </span>
+                            <input id="txt_SecondFirst_From" type="text" class="form-control" data-toggle="collapse" data-target="#TimePicker7" onclick="OpenTimepicker('TimePicker7','txt_SecondFirst_From')" style="left: -100px; top: -5px; width: 85px; position: relative; float: right; border-radius:6px; border-color:rgba(0,0,0,0.3) !important; height:26px; font-size:11px" value="ANY" readonly /><i class="fa fa-caret-down" aria-hidden="true" style="left: 98px; font-size: 17px; position: relative;"></i>
+                            <div id="TimePicker7" class="collapse" style="width:100px; background-color:white; position:absolute; left:75px;top:30px;box-shadow: 4px 16px 8px 0px rgba(0,0,0,0.2);border-radius:5px;padding:0px 0px 0px 0px;z-index:1048;">
+                            </div>
+                            <span style="top: -3px;position:relative; left:109px">to</span>
+                            <input id="txt_SecondSecond_to" type="text" class="form-control" data-toggle="collapse" data-target="#TimePicker8" onclick="OpenTimepicker('TimePicker8','txt_SecondSecond_to')" style="left: 100px; top: -5px; width: 85px; position: relative; float: right; border-radius:6px; border-color:rgba(0,0,0,0.3) !important; height:26px; font-size:11px" value="ANY" readonly /><i class="fa fa-caret-down" aria-hidden="true" style="left: 185px; font-size: 17px; position: relative;"></i>
+                            <div id="TimePicker8" class="collapse" style="width:100px; background-color:white; position:absolute; left:200px;top:30px;box-shadow: 4px 16px 8px 0px rgba(0,0,0,0.2);border-radius:5px;padding:0px 0px 0px 0px;z-index:1048;">
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-default btn-sm" style="color:#ff5d26; float:left; position:relative; top:10px" id="addtimings22">
+                            <span class="fa fa-plus-circle" style="position:relative; left:-5px"></span><span>Add Another time</span>
+                        </a>
+                    </div>
+                @*</div>*@
+                <div class="modal-footer">
+                    <div class="col-sm-12" style="text-align: center; position:relative;top:20px">
+                        <a href="#" class="btn" id="Btn_Schedule_Back" style="border-radius: 3px !important; left: -10px; width: 75px; color: white; font-size: 11px; font-weight: 500; position: relative; float: left; background-color: rgb(255, 93, 38);">Back</a>
+                        <input type="button" class="btn" disabled="disabled" id="Btn_Request_Submit" style="border-radius: 3px !important; background-color: #ff5d26; color: white;font-weight: 500; font-size: 11px; float:right; position:relative; left:10px" value="Request">
+                    </div>
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+@*End: Showing schedule preferences Pop-UP*@
+@*Start: SignIn initimation Pop-UP*@
+<div class="modal" id="PopUP_SignInIntimation" style="padding-left: 206px; z-index: 1500;height:100%; ">
+    <div class="modal-dialog" role="document" style="padding-top: 15%; width: 35%; height:50%; border-radius:0px 0px 0px 0px !important;">
+        <div class="modal-content" style="border-radius:0px 0px 0px 0px !important; height:180px; width:355px">
+            <div class="modal-header" style="text-align: center; border-bottom: none; padding-bottom: 0px;">
+                <img src="~/img/Head.jpg" height="20" style="position:relative; top:-2px;left:-76px" /><h5 style="color: #FF6937; margin-top: -5%; font-weight: 600;">Please Sign In</h5>
+                <hr style="border: 0 ! important; margin-top: 2%; margin-bottom: 5%; margin-left:-6px;margin-right:-6px; border-top: 1px solid  #FF6937 !important;" />
+            </div>
+            <div class="col-sm-12" style="text-align:center; margin-bottom:12px">
+                <span style="font-size:13px">Please create an account or sign in so you can <br /> use all the features Quitchet has to offer.</span>
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-12" style="text-align: center; position:relative;top:20px">
+                    <a href="#" class="btn" id="Btn_Pop_SignIN_Back" style="border-radius: 3px !important; left: 20px; width: 90px; height: 24px; color: white; padding-top: 3px; font-size: 11px; font-weight: 500; position: relative; float: left; background-color: gray;">Back</a>
+                    <a href="#" class="btn" id="Btn_Pop_SignIN_Back" style="border-radius: 3px !important; background-color: #ff5d26; color: white;height: 24px;  padding-top: 3px;font-weight: 500; font-size: 11px; float:right; width:154px">Sign In/Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*End: SignIn initimation Pop-UP*@
+<div class="col-sm-4 widthonmap" style="background-color: #fff;border-radius: 3px;height: 23px;font-size: 11px;color:gray;z-index:100;margin-left: 1%;width: 340px;">
+    <div style="padding-top:4px; padding-left:1%;">
+        <img src="~/img/green_legend_Menu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">For Sale</label> &nbsp;
+
+        <img src="~/img/yellow_legendMenu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Under Contract</label>&nbsp;
+
+        <img src="~/img/red_legendMenu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Sold</label>&nbsp;
+
+        <img src="~/img/gray_legendMenu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Rental</label>&nbsp;
+
+        <img src="~/img/viewedicon.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Viewed</label>
+    </div>
+</div>
+<div id="googlemaps" style="width:85% !important; height:92vh !important; position:absolute;"></div>
+<div class="col-sm-12" id="footer">
+    <div class="col-sm-4">&nbsp;</div>
+    <div class="col-sm-4">
+        <label style="background:rgba(27, 3, 3, 0.78);color:white;font-size:15px;padding-left: 10px;padding-top: 5px;padding-bottom: 5px;padding-right: 10px;border-radius: 5px;">Viewing<span class="countno" id="listcount"></span>
+         @*Of <span class="countno" id="Totallistcount"></span>*@ Listings</label>
+    </div>
+    <div class="col-sm-4">&nbsp;</div>
+</div>
+<div id="rightdiv">
+    <div class="col-sm-2" id="RightListView" style="height:92vh !important">
+    </div>
+    <div class="col-sm-2" style="float:right;margin-right:-16.0%;padding-top:4px;">
+        <div class="dropdown">
+            <button onclick="myFunction2()" class="dropbtn arrowbtn" id="btnwidth" style="min-width:214px !important;">
+                    <span id="sortbyselected1">Sort by</span>
+            <i class="glyphicon glyphicon-menu-down arrowdown" style="padding-right: 5px;padding-left: 9px; padding-bottom: 8px; float:right;"></i><i class="glyphicon glyphicon-menu-up arrowup" style="padding-right: 5px;padding-left: 9px; padding-bottom: 8px; float:right;display:none;"></i>
+            </button>
+            <div id="myDropdown" class="dropdown-content arrowbtn">
+                <a href="#" class="sort list-group-item sub-item sortbyactive" style="font-size: 11px!important; padding-left: 10px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;" onclick="GetSortBy('0',this)">Star Rating</a>
+                <a href="#" class="sort list-group-item sub-item" style="font-size: 11px!important; padding-left: 10px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;" onclick="GetSortBy('1',this)">Lowest Price</a>
+                <a href="#" class="sort list-group-item sub-item" style="font-size: 11px!important; padding-left: 10px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;" onclick="GetSortBy('2',this)">Highest Price</a>
+                <a href="#" class="sort list-group-item sub-item" style="font-size: 11px!important; padding-left: 10px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;" onclick="GetSortBy('3',this)">Newest</a>
+                <a href="#" class="sort list-group-item sub-item" style="font-size: 11px!important; padding-left: 10px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;" onclick="GetSortBy('4',this)">Oldest</a>
+                <a href="#" class="sort list-group-item sub-item" style="font-size: 11px!important; padding-left: 10px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;" onclick="GetSortBy('5',this)">Lot Size</a>
+                <a href="#" class="sort list-group-item sub-item" style="font-size: 11px!important; padding-left: 10px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;" onclick="GetSortBy('6',this)">Square Feet</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footercomparebutton" class="col-sm-2" style="float:right;margin-right:-16.6%;background-color:transparent;" >
+    <a href="/Customer/ComparedHomes/Index" id="compareBtn" class="closeorangebtn" style="display:none;float:right;text-decoration: none;width: 190px;margin-right: 3px;color:white!important; text-align:center">Compare</a><br /><br />
+    <a href="#" id="submit_multiple_showingsBtn" class="closeorangebtn" style="display:none;float:right;text-decoration: none;width: 190px;margin-right: 3px;color:white!important; text-align:center">Request Showing</a>
+</div>
+<div id="CollDiv" class="col-sm-1" style="float:right; top:50px; width:2%; height:30px; padding-right:0px; background-color:white; margin-right:-1%">
+    <i class="fa fa-angle-double-left" aria-hidden="true" id="Expand" style="float:right; width:19px;font-size: 29px !important;"></i>
+    <div class="iconsdiv btn-group" id="over_map" data-toggle="buttons" style="margin-top:68px;">
+        <img src="~/img/Zoom_In_Normal.png" id="zoomInButton" style="margin-top: 4px; margin-left: -2px; height: 33px;">
+        <img src="~/img/ZoomOut_Normal.png" id="zoomOutButton" style="margin-top: 4px; margin-left: -2px; height: 33px;">
+        <hr style="margin-top: 8% !important;border-top: 0.77px solid ;" />
+        <label id="drawpoly" disabled="disabled" class="btn btn-sm" style="padding-left: 4px; background-color: grey; border: none; margin-top: -10px">
+            <img src="~/img/DrawTool_Normal-1.png" style="height: 30px !important; width: 29px !important; margin-left: -4px;">
+        </label>
+        <label id="mylocation" class="btn btn-sm" style="padding-left: 4px; background-color: grey; border: none;">
+            <input type="radio" id="myloc">
+            <img src="~/img/MapTool_Normal-1.png" class="Img_Map_Over" style="height: 30px !important; width: 29px !important; margin-left: -4px;">
+        </label>
+        <hr style="margin-top: 88px; margin-bottom: 4px;border-top: 1px solid ;" />
+        <div class="header-menu-list">
+            <div class="btn-expand">
+                <img src="/img/MapLayers_Normal-1.png" style="height: 30px !important; width: 29px !important; margin-left: 4px; margin-top: 0px;">
+            </div>
+            <div class="collapsible">
+                <a href="#" id="mapview">
+                    <img src="~/img/map2.png" id="map" style="margin-bottom:0"/>
+                </a>
+                <a href="#" id="satview">
+                    <img src="~/img/sat.png" id="sat" style="margin-bottom:0"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+@*Remove Favourite Popup*@
+<div class="modal fade" id="RemoveFavorite" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left:206px">
+    <div class="modal-dialog" role="document" style="padding-top:18%;width:25%;">
+        <div class="modal-content">
+            <div class="modal-body" style="text-align:center;height:226px!important">
+
+                <img src="~/img/hearticolist.png" style="height:30px!important;width: 29px !important;margin-top:10px!important;border-color:orangered;">
+                <h4 style="text-align: center; color: #f56331; line-height: 30px; margin-top: 10px">Remove From Favorites</h4>
+                <p>Are you sure you want to remove <br />this listing from your Favorites?</p>
+                <div class="col-sm-12">&nbsp;</div>
+                <button type="button" id="btnNotRemoveFavorite" class="btn btn-sm" data-dismiss="modal" style="background-color:rgba(0,0,0,0.3); color:white; width:120px;height:32px!important; border-radius:5px !important">No</button>
+                <button type="button" id="btnYesRemoveFavorite" class="btn btn-sm" data-dismiss="modal" style="background-color:#ff5d26; color:white; width:120px;height:32px!important; border-radius:5px !important">Yes</button>
+                <div class="col-sm-12" style="padding-bottom:10px!important">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Share Favorite Popup*@
+<div class="modal fade" id="SharePopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="z-index:1500; padding-left 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 8%; width: 25%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;background-color:#5d5a5a;color:#fff;height:45px;padding-top:7px;border-top-right-radius:5px; border-top-left-radius:5px;">
+                <span>
+                    <img src="/img/share2.png" width="24" height="30" alt="" style="margin-top:-2%" />
+                </span> Share
+            </div>
+            <div class="modal-body" style="min-height: 200px;">
+                <div class="col-md-12" style="text-align: center;display:none">
+                    <a href="#" id="Prop_message_from_share">
+                        <img src="/img/newmessagge.png" width="83" height="65" alt="" />
+                    </a>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-2" style="text-align: center">
+
+                    @*<a href="#" class="fb-share">Share on Facebook</a>*@
+                    <div id="fb-root"></div>
+                    <a href="javascript:shareFavorite(1)">
+                        <img class="shareiconpads" src="/img/facebook.png" />
+                    </a>
+                </div>
+
+                <div class="col-md-2 twocolumrem">
+                    <a href="javascript:shareFavorite(2)">
+                        <img class="shareiconpads" src="/img/twitter.png" width="36" height="36" alt="" />
+                    </a>
+                </div>
+                <div class="col-md-2 twocolumrem">
+                    <a href="javascript:shareFavorite(3)">
+                        <img class="shareiconpads" src="/img/gplus.png" width="36" height="36" alt="" />
+                    </a>
+                </div>
+                @*<div class="col-md-2 twocolumrem">
+                        <a href="http://www.linkedin.com" target="_blank">
+                            <img class="shareiconpads" src="/img/linkedin.png" width="36" height="36" alt="" />
+                        </a>
+                    </div>*@
+                <div class="col-md-2 twocolumrem">
+                    <a href="javascript:shareFavorite(4)">
+                        <img class="shareiconpads" src="/img/linkedin.png" width="36" height="36" alt="" />
+                    </a>
+                </div>
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-sm-12" style="text-align: center;color:#808080;padding-top: 15px;padding-bottom: 15px;">OR</div>
+                <div class="col-md-12" style="text-align: center">
+                    <a href="#" id="copylink" class="mycopy" data-clipboard-action="copy" data-clipboard-target="#link">
+                        <img src="/img/copybtn.png" width="245" height="31" alt="" />
+                    </a>
+                </div>
+                <div class="row btnsrowmargin">
+                    <div class="col-md-12" style="text-align:center;margin-top: 10px;">
+                        <label id="link" style="font-size:12px !important;word-wrap: break-word;"></label>
+                    </div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="modal-footer">
+                    <div class="col-md-12" style="text-align: center">
+                        <a href="#" class="btn" id="cancelsharebtn" data-dismiss="modal" style="width: 120px; border-radius: 5px !important; background-color: gray; color: white; font-weight: 500; font-size: 17px;">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Removefavorites in properties popup*@
+<div class="modal fade" id="prptdetails_RemoveFavorite" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 18%; width: 25%;">
+        <div class="modal-content">
+            <div class="modal-body" style="text-align: center; height: 234px!important">
+                <img src="~/img/hearticolist.png" style="height: 30px!important; width: 29px !important; margin-top: 10px!important;">
+                <h4 style="text-align: center; color: #f56331; line-height: 30px; margin-top: 10px">Remove From Favorites</h4>
+                <p>
+                    Are you sure you want to remove
+                    <br />
+                    this listing from your Favorites?
+                </p>
+                <div class="col-sm-12">&nbsp;</div>
+                <button type="button" id="btn_prptdetails_NotRemoveFavorite" class="btn btn-sm" data-dismiss="modal" style="background-color: rgba(0,0,0,0.3); color: white; width: 120px; height: 32px!important; border-radius: 5px !important">No</button>
+                <button type="button" id="btn_prptdetails_YesRemoveFavorite" class="btn btn-sm" data-dismiss="modal" style="background-color: #ff5d26; color: white; width: 120px; height: 32px!important; border-radius: 5px !important">Yes</button>
+                <div class="col-sm-12" style="padding-bottom: 10px!important">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Thank you Alert Popup*@
+<div class="modal fade" id="ThankyouAlertPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 15%; width: 25%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;color:#ff6937;height:45px;padding-top:13px;">
+                <label id="">
+                    <img src="~/img/checkmar_savedPopup.png" style="margin-bottom:0px !important;padding-bottom: 3px;"/>&nbsp;&nbsp;Thank you!
+                </label>
+                <hr style="color:#ff6937;border: 1.5px solid;margin-top:7px;" />
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="modal-body">
+                <div class="col-md-12" style="text-align: center">
+                    <label id="ThankyouPopup_labeltext" style="word-wrap: break-word;">
+                        Your Request has been submitted to your Agent. You will be notified when it is approved.
+                    </label>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="modal-footer">
+                    <div class="col-md-1">&nbsp;</div>
+                        <div class="col-md-10" style="text-align: center">
+                            <button type="button"  id="TQalertOKbtn" data-dismiss="modal" class="btn btn-primary closeorangebtn" style="border-radius: 5px 5px 5px 5px  !important; background-color: #ff6937!important; color: white;font-size: 15px;width:100%">OK</button>
+                        </div>
+                    <div class="col-md-1">&nbsp;</div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //Hiding Sort by list container when clicked on outside
+    $(document).mouseup(function(e) 
+    {
+        var container = $("#myDropdown");
+        if (!container.is(e.target) && container.has(e.target).length === 0) 
+        {
+            $('#myDropdown').removeClass('show')
+        }
+    });
+    //Start : share and Copy link from share property Share Propert 
+    var share_prop_url="";
+    $("#copylink").click(function(){
+        share_prop_url="http://webapp.quitchet.com/Customer/SearchFilter/Index?city=F"+prop_mlsid;
+        $( '#link' ).text(share_prop_url);
+        var clipboard = new Clipboard('.mycopy')
+    });
+    //Share Property
+    var prop_mlsid="",prop_addr="",prop_photo="",class_type="";
+    function shareProperty(mlsid,shareid,photo,address,class_type)
+    {
+        prop_mlsid=mlsid;
+        prop_addr=address;
+        prop_photo=photo;
+        class_type=class_type;
+        $( '#link' ).text('');
+        $("#SharePopup").modal("show");
+    }
+    $("#Prop_message_from_share").click(function(){
+        $("#SharePopup").modal("hide");
+        // alert(prop_mlsid+","+prop_addr+","+prop_photo);
+        //openMessageBox();
+        creatConnection('16','DevObalIndia','3','/img/bob1.png',prop_mlsid);
+        prop_addr1=prop_addr.split(',')[0];
+        prop_addr2=prop_addr.split(',')[1];
+        $('#prop_mlc').text('MLS#'+prop_mlsid);
+        $('#prop_addr1').text(prop_addr.split(',')[0]);
+        $('#prop_addr2').text(prop_addr.split(',')[1]);
+        $('#prop_img').attr("src",prop_photo);
+        $('#property_div').show();
+    });
+    function shareFavorite(socialmedia){
+        var ShareLink='';
+        var shareurl='http://webapp.quitchet.com/Customer/SearchFilter/Index?city=F'+prop_mlsid;
+        if(socialmedia=="1"){
+            var quote = '',title='',descr ='';
+            ShareLink='https://www.facebook.com/sharer/sharer.php?u=' + shareurl + '&picture='+prop_photo+'&title=' + title + '&quote=' + quote + '&description=' + descr + '';
+        }
+        else if(socialmedia=="2"){
+            var quote = '',title='',descr ='';
+            ShareLink='https://twitter.com/share?url=' + shareurl + '&picture='+prop_photo+'&title=' + title + '&quote=' + quote + '&description=' + descr + '';
+        }
+        else if(socialmedia=="3"){
+            var quote = '',title='',descr ='';
+            ShareLink='https://plus.google.com/share?url=' + shareurl + '';
+        }
+        else if(socialmedia=="4"){
+         
+            var quote = '',title='',descr ='';
+            ShareLink='https://www.linkedin.com/shareArticle?mini=true&url=' + shareurl + '&picture='+prop_photo+'&title=' + title + '&quote=' + quote + '&description=' + descr + '';
+        }
+        window.open(ShareLink);
+    }
+    var sortid = "0";
+    var m = []; var pos; var city; var polygon; var mymarkers = [];
+    var TotalImages=[]; var PopupPhotos=[];
+    var CompareHomesCount=0;var showingHomesCount=0;
+    var MLS_ID="";
+    var class_type="";
+    $(document).ready(function () {
+        //alert(usertypeid)
+        $(".btn-expand").click(function (e) {
+            $('.collapsible').toggle("slide", {
+                direction: "right"
+            }, 800);
+        });
+        $(".arrowbtn").click(function(){
+            $(".arrowup").toggle();
+            $(".arrowdown").toggle();
+        });
+        $('#ddlSortBy').css('background-image', 'url(/img/Select_Down.png)');
+        $('#ddlSortBy').css('background-size', '6%');
+        $("#Expand").attr('class', 'fa fa-angle-double-left');
+        getdatabycurrentUser(sortid);
+        $('a[href="/Customer/Favourites/Index"]').parents('li,ul').addClass('active');
+    });
+    var flag_RightCollapse = 0;
+    $('#Expand').on('click', function () {
+        if (flag_RightCollapse == 0) {
+            //   $("#googlemaps").animate({'right': '450px'},'slow');
+            $("#divInRightmenu").css("padding-top", "10%");
+            $("#Expand").attr('class', 'fa fa-angle-double-right');
+            $('#googlemaps').animate({
+                'marginLeft' : "-=235px" //moves left
+            });
+            $("#btnwidth").css("min-width","435px");
+            $(".dropdown-content").css("width","435px");
+            $('#RightListView').animate({ 'width': '477px' }, 'slow', function () {
+
+                $('#RightListView').show();
+            });
+            flag_RightCollapse = 1;
+        }
+        else {
+            $('#googlemaps').animate({
+                'marginLeft' : "+=235px" //moves left
+            });
+            // $("#googlemaps").animate({'left': '1px'},'slow');
+            $("#divInRightmenu").css("padding-top", "20%");
+            $("#Expand").attr('class', 'fa fa-angle-double-left');
+            $("#btnwidth").css("min-width","214px");
+            $(".dropdown-content").css("width","214px");
+            $('#RightListView').animate({ 'width': '230px' }, 'slow', function () {
+                $('#RightListView').show();
+            });
+            flag_RightCollapse = 0;
+        }
+    });
+    $("#drawpoly_dummy").click(function (e) {
+
+        if ($('#draw').is(':checked')) {
+            location.reload();
+        }
+        else {
+            for (var i = 0; i < mymarkers.length; i++) {
+                mymarkers[i].setMap(null);
+            }
+            disable()
+            google.maps.event.addDomListener(map.getDiv(), 'mousedown', function (e) {
+                drawFreeHand()
+            });
+        }
+    });
+    function disable() {
+        map.setOptions({
+            draggable: false,
+            zoomControl: false,
+            scrollwheel: false,
+            disableDoubleClickZoom: false
+        });
+    }
+    function drawFreeHand() {
+        poly = new google.maps.Polyline({ map: map, clickable: false, strokeColor: "red", strokeWeight: 1 });
+        var move = google.maps.event.addListener(map, 'mousemove', function (e) {
+            poly.getPath().push(e.latLng);
+        });
+        google.maps.event.addListenerOnce(map, 'mouseup', function (e) {
+            google.maps.event.removeListener(move);
+
+            var path = poly.getPath();
+            poly.setMap(null);
+            poly = new google.maps.Polygon({ map: map, path: path, fillColor: "#FF0000", fillOpacity: 0.15, strokeColor: "red", strokeWeight: 1, });
+            google.maps.event.clearListeners(map.getDiv(), 'mousedown');
+            getPathVariableCode(poly);
+            enable()
+        });
+    }
+    function enable() {
+        map.setOptions({
+            draggable: true,
+            zoomControl: false,
+            scrollwheel: true,
+            disableDoubleClickZoom: true
+        });
+    }
+    function getPathVariableCode(poly) {
+        for (var i = 0; i < mymarkers.length; i++) {
+            mymarkers[i].setMap(map);
+        }
+        var pathArr = poly.getPath();
+        for (var d = 0; d < mymarkers.length + 1; d++) {
+            var coordinate = new google.maps.LatLng(m[d].split(',')[0], m[d].split(',')[1]);
+            google.maps.geometry.poly.containsLocation(coordinate, poly) ? successmarker() : removemarkers(d);
+        }
+    };
+    function successmarker() {
+    }
+    function removemarkers(d) {
+        mymarkers[d].setMap(null);
+    }
+    function RightSideListView(data) {
+        var tab = $('<div id="divInRightmenu" style="background-color: white; padding-top:20%;"></div>');
+        var AlinVar = 0;
+        var DivImgId = "div";
+        var ImgfavIdDyn = "FavImg";
+        var imgrating;
+        var CheckBoxIDCompare = "Checkcompareid";
+        var CheckBoxIDRshow = "CheckRshowid";
+        var shareid = "shareid";
+        var iconurl = "";
+        class_type="";
+        TotalImages=[];  m=[],mymarkers=[];
+        $.each(data, function (i, item) {
+            var PhotosURL=[];
+            if(item.Photolocation!=null && item.Photolocation!="," && item.Photolocation!="")
+            {
+                TotalImages.push(item.Photolocation);
+                if(TotalImages.length>0)
+                    PhotosURL=item.Photolocation.split(',');
+                else
+                    PhotosURL=item.Photolocation;
+            }
+            else{
+                PhotosURL[0]='/img/NoImage.png';
+            }
+            var BtnPrevImgId="Prev"+item.MLSId;
+            var BtnNextImgId="Next"+item.MLSId;
+            var DivImageId="img"+item.MLSId;
+            var icon = {
+                url: '',
+               // scaledSize: new google.maps.Size(22, 22),
+            };
+            var saletype="",DsUrl="",openhouse="";
+            if (item.Sale_Rent == "Active") {
+                saletype="<label style=''>For Sale</label>";
+                icon.url = '/img/fav_greenpin.png',
+               DsUrl = '/img/green_legend_Menu.png'
+                if (item.Is_viewd == "YES") {
+                    iconurl = '/img/viewed_greenpin.png'
+                }
+            }
+            else if (item.Sale_Rent == "Pending" || item.Sale_Rent == "Contingency Contract") {
+                saletype="<label style=''>Under Contract</label>";
+                icon.url = '/img/fav_yellowpin.png',
+                 DsUrl = '/img/yellow_legendMenu.png'
+                if (item.Is_viewd == "YES") {
+                    iconurl = '/img/viewed_yellowpin.png'
+                }
+            }
+            else if (item.Sale_Rent == "Sold") {
+                saletype="<label style=''>Sold</label>";
+                icon.url = '/img/fav_redpin.png',
+                DsUrl = '/img/red_legendMenu.png'
+                if (item.Is_viewd == "YES") {
+                    iconurl = '/img/viewed_redpin.png'
+                }
+               
+            }
+            else if (item.Sale_Rent == "OpenHouse") {
+                saletype="<label style=''>Open House</label>";
+                icon.url = '/img/OpenHousefullBlue.png',
+                DsUrl = '/img/OpenHousefullBlue.png'
+                //if (item.Is_viewd == "YES") {
+                //    iconurl = '/img/red_alert.png'
+                //}
+                openhouse='<div class="col-sm-12" style="border-radius:5px 0 0 5px;font-size:12px;background-color:blue;text-align:center;color:#fff">'+item.OpenHouseDate+'  '+item.OpenHouseTime+'</div>';
+            }
+            if (item.Class == "Rental") {
+                saletype="<label style=''>Rental</label>";
+                icon.url = '/img/fav_gray.png'
+               DsUrl = '/img/gray_legendMenu.png'
+                if (item.Is_viewd == "YES") {
+                    iconurl = '/img/viewed_graypin.png'
+                }
+
+            }
+            if(iconurl=="")
+                var isviewImagediv="";
+            else
+                var isviewImagediv='<img src="' + iconurl + '" width="20" height="20" alt=""/>';
+
+            //if(data.length>6)
+            //{
+            //    $("#over_map").css("margin-right", "-2%");
+            //    $("#CollDiv").show();
+            //    $("#rightdiv").show();
+            //}
+            //else
+            //{
+            //    $("#over_map").css("margin-right", "0%");
+            //    $("#CollDiv").hide();
+            //}
+            var Latt = item.GeoLatitude;
+            var Longg = item.GeoLongitude;
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(Latt, Longg),
+                map: map,
+                icon: icon,
+                anchor: new google.maps.Point(6, 12),
+                optimized: false,
+                 id: item.MLSId
+            });
+            marker.addListener('click', function () {
+                if(usertypeid=="2"){
+                    AgentFullDetailsView(AgentId, item.MLSId);
+                }
+                else{
+                    CustomerFullViewListing(item.MLSId);
+                }
+              //  SaveAsViewed(item.MLSId);
+            });
+            var timeoutId = null;
+            marker.addListener('mouseover', function () {
+                // infowindow.open(map,marker);
+                if(map.getZoom()>10)
+                {
+                    timeoutId = window.setTimeout(function(){
+                        infowindow.open(map,marker);
+                    }, 800);
+                }
+            });
+            marker.addListener('mouseout', function () {
+                window.clearTimeout(timeoutId)
+                infowindow.close(map,marker);
+            });
+            var price = (item.ListingPrice + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+            var Listing="$"+price;
+            var iw_img_src="/img/NOImage.png";
+            if(item.Photolocation!="" && item.Photolocation!=null && item.Photolocation!=','){
+                if(item.Photolocation.indexOf(','))
+                    iw_img_src=item.Photolocation.split(',')[0];
+                else
+                    iw_img_src=item.Photolocation;
+            }
+            else
+                iw_img_src='/img/NOImage.png';
+            var content = '<div class="col-sm-12" style="overflow-x:hidden;padding:0;">' + openhouse
+                                +'<div class=" col-sm-8" style="margin-left:-15px;padding:0;"><img src="'+iw_img_src+'" height="50" width="75"></div>' +
+                                '<div class=" col-sm-4" id="salecolor" style="margin-left:-15px;padding:0;"><span>'+saletype+'</span><span style="font-weight:Bold;font-size:13px;color:#ff6937">'+Listing+'</span></div>'+
+                                '<div class=" col-sm-6" style="padding:0;">&nbsp</div>'+
+                                '<div class=" col-sm-6" style="padding:0;margin-left:-5px;"><span class="lblcount">'+item.Bedrooms+'</span> BD &nbsp;<span class="lblcount">'+item.BathRooms+'</span> BA'+'</div></div>' ;
+            var infowindow = new google.maps.InfoWindow({
+                content: content,
+                maxWidth: 150
+            })
+            mymarkers.push(marker);
+            var labelText = "<div id='pricecontent' class='map-arrowup'><span>"+ratingprice(item.ListingPrice)+"</span></div>";
+
+            var myOptions = {
+                content: labelText,
+                boxStyle: {
+                    border: "none", //1px solid black"
+                    textAlign: "center",
+                    fontSize: "7pt",
+                    //width: "10px",
+                },
+                disableAutoPan: true,
+                pixelOffset: new google.maps.Size(-20, 8),
+                position: new google.maps.LatLng(Latt, Longg),
+                closeBoxURL: "",
+                isHidden: false,
+                pane: "mapPane",
+                enableEventPropagation: true
+            };
+            var ibLabel = new InfoBox(myOptions);
+            google.maps.event.addListener(map, 'zoom_changed', function() {
+                if(map.getZoom()>11){
+                   // ibLabel.open(map);
+                }
+                else{
+
+                }
+                    //ibLabel.close(map);
+            });
+            var l = Latt + "," + Longg;
+            m.push(l);
+            var FavUrl = "/img/hearticon.png";
+            var StringView = '';
+            var number=item.ListingPrice;
+            var num=  number.toLocaleString();
+            var number2=item.SoldPrice;
+            var num1=  number2.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            var sold=('<span style="color:#878a8c ;margin-left: 6px;font-weight:normal !important;"> Sold Price : </span> $ ' + num1);
+            if(item.Class=="Lots/Land"){
+                class_type="3";
+                if(item.Sale_Rent=="Active" ){
+                    var acres=item.ApproxAcres;
+                    sold='&nbsp;';
+                }
+                else if (item.Sale_Rent == "Pending") {
+                    var acres=item.ApproxAcres;
+                    sold='&nbsp;';
+                }
+                else if (item.Sale_Rent == "OpenHouse") {
+                    var acres=item.ApproxAcres;
+                    sold='&nbsp;';
+                }
+                else if (item.Sale_Rent == "Sold") {
+                    var acres=item.ApproxAcres;
+                }
+                if(acres!="" || acres>0)
+                    acres=acres+'acres'
+                else {
+
+                }
+                    acres="";
+
+            }
+            if(item.Class=="Residential" || item.Class=="Rental"){
+                if(item.Class=="Residential"){
+                    class_type="1";
+                }
+                else if (item.Class=="Rental") {
+                    class_type="2";
+                }
+                if(item.Sale_Rent=="Active" ){
+                    var acres=item.ApproxAcres;
+                    sold='&nbsp;';
+                }
+                else if (item.Sale_Rent == "Pending" || item.Sale_Rent =="Contingency Contract") {
+                    var acres=item.ApproxAcres;
+                    sold='&nbsp;';
+                }
+                else if (item.Sale_Rent == "Sold") {
+                    var acres=item.ApproxAcres;
+                }
+                else if (item.Sale_Rent == "OpenHouse") {
+                    var acres=item.ApproxAcres;
+                    sold='&nbsp;';
+                }
+                if(acres!=''||acres>0)
+                    acres=acres+'sqft';
+                else
+                    acres="";
+            }
+            
+            var image0 = "/img/picture_area.png";
+            var image1 = "/img/SliderNextArrow.png";
+            var image2 = "/img/SliderBackArrow.png";
+            DivImgId = DivImgId + item.MLSId;
+            ImgfavIdDyn = ImgfavIdDyn + item.MLSId;
+            imgrating = item.MLSId;
+            CheckBoxIDCompare = CheckBoxIDCompare + item.MLSId;
+            CheckBoxIDRshow = CheckBoxIDRshow + item.MLSId;
+            shareid = shareid + item.MLSId;
+
+            var f1='<img src="/img/Star_empty.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+1+'\',\''+ item.MLSId + '-1\')" id=' + item.MLSId + '-1 />';
+            var f2='<img src="/img/Star_empty.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+2+'\',\''+ item.MLSId + '-2\')" id=' + item.MLSId + '-2 />';
+            var f3='<img src="/img/Star_empty.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+3+'\',\''+ item.MLSId + '-3\')" id=' + item.MLSId + '-3 />';
+            var comparelabel='<label for="' + CheckBoxIDCompare +  '" style="font-size:10px;padding-top: 0px; margin-bottom: 1px; margin-left: 5px;font-weight:normal !important; ">&nbsp;Compare</label>';
+            var showinglabel='<label for="' + CheckBoxIDRshow + '" style="margin-bottom: 0px; color:grey !important;font-weight:normal !important;padding-top:0px;font-size: 11px; ">&nbsp;Request Showings</label>';
+            var c=' <input type="checkbox" id="' + CheckBoxIDCompare + '" style="height:10px; margin-left: 2px;" onclick="return CompareFavouritesChanges(\'' + item.MLSId + '\',\'' + CheckBoxIDCompare + '\')">';
+            var s='<input type="checkbox" id="' + CheckBoxIDRshow + '" style="height:10px;margin-left: 0px;" onclick="return RequestShowingFavouritesChanges(\'' + item.MLSId + '\',\'' + CheckBoxIDRshow + '\')">';
+            if(item.Is_ComparedHome=="YES"){
+                CompareHomesCount=CompareHomesCount+1;
+                c=' <input type="checkbox" id="' + CheckBoxIDCompare + '" style="height:10px; margin-left: 2px;" onclick="return CompareFavouritesChanges(\'' + item.MLSId + '\',\'' + CheckBoxIDCompare + '\')" checked="checked">';
+            }
+            if(item.Have_Agent=="YES"){
+                $('#ThankyouPopup_labeltext').text('Your Request has been submitted to your Agent. You will be notified when it is approved.');
+                //if(item.Is_RequestShowing=="YES"){
+                //    showingHomesCount=showingHomesCount+1;
+                //    s='<input type="checkbox" id="' + CheckBoxIDRshow + '" style="height:10px; margin-left: 0px;" onclick="return Multiple_RequestShowingtoAgent(\'' + item.MLSId + '\',\'' + item.AgentID + '\',\'' + CheckBoxIDRshow + '\' )" checked="checked">';
+                //}
+                //else
+                    s='<input type="checkbox" id="' + CheckBoxIDRshow + '" style="height:10px; margin-left: 0px;" onclick="return Multiple_RequestShowingtoAgent(\'' + item.MLSId + '\',\'' + item.AgentID + '\',\'' + CheckBoxIDRshow + '\' )">';
+
+            }
+            else{
+                $('#ThankyouPopup_labeltext').text('Your Request has been submitted to the listing agent. You will be notified when it is approved.');
+                showinglabel="";
+                s='<input type="submit" id="' + CheckBoxIDRshow + '" style="border-radius:5px;color:white;background-color:#FF5D26;border-style:none;margin-left: 2px;width:100px;font-size:10px" onclick="return RequestShowingtoAgent(\'' + item.MLSId + '\',\'' + item.AgentID + '\' )" value="Request Showing">';
+            }
+            if(item.Sale_Rent=="Sold"){
+                showinglabel='&nbsp;';
+                s='&nbsp;';
+            }
+            if(item.Class=="Lots/Land"){
+                comparelabel='&nbsp;';
+                c='&nbsp;';
+                sold='&nbsp;';
+            }
+            if( item.Rating=="1"){
+                f1=' <img src="/img/star_Full.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+1+'\',\''+ item.MLSId + '-1\')" id=' + item.MLSId + '-1 />';
+                f2=' <img src="/img/Star_empty.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+2+'\',\''+ item.MLSId + '-2\')" id=' + item.MLSId + '-2 />';
+                f3=' <img src="/img/Star_empty.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+3+'\',\''+ item.MLSId + '-3\')" id=' + item.MLSId + '-3 />';
+            }
+            if( item.Rating=="2"){
+                f1=' <img src="/img/star_Full.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+1+'\',\''+ item.MLSId + '-1\')" id=' + item.MLSId + '-1 />';
+                f2=' <img src="/img/star_Full.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+2+'\',\''+ item.MLSId + '-2\')" id=' + item.MLSId + '-2 />';
+                f3=' <img src="/img/Star_empty.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+3+'\',\''+ item.MLSId + '-3\')" id=' + item.MLSId + '-3 />';
+            }
+            if( item.Rating=="3"){
+                f1=' <img src="/img/star_Full.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+1+'\',\''+ item.MLSId + '-1\')" id=' + item.MLSId + '-1 />';
+                f2=' <img src="/img/star_Full.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+2+'\',\''+ item.MLSId + '-2\')" id=' + item.MLSId + '-2 />';
+                f3=' <img src="/img/star_Full.png" onclick="return fav_rating(\'' + item.MLSId + '\',\''+3+'\',\''+ item.MLSId + '-3\')" id=' + item.MLSId + '-3 />';
+            }
+            var JTBID = 'JTBID' + item.MLSId;
+            var table = $('<table id=' + JTBID + ' class="RightJqueryList" style="width:43%;margin-left:7px; margin-bottom:10px; margin-top:-3px; float:left;"></table>');
+            if (item.Sale_Rent == "OpenHouse"){
+                var r=$('<tr style="height:8px;background-color:blue;color:#fff"></tr>')
+                r.append(openhouse);
+                table.append(r);
+            }
+            var Row = $('<tr collapse="2" height="100px" style="border:1px solid #ff6937"></tr>');
+            if(PhotosURL.length==1){
+                //background-size: 100% 100%;background-repeat: no-repeat; class="bgimage"
+                Row.append('<div onmouseover="triggerMouseOver('+i+')" onmouseout="triggerMouseOut('+i+')" style="background: url('+PhotosURL[0]+');border-radius:5px; background-size: 100% 100%;background-repeat: no-repeat; height:100px;  width:213px" id="'+DivImageId+'"><div class="col-sm-12" style="padding-right:5px"><div style="float: right;">'+isviewImagediv+'<a href="#" style="text-decoration:none"> <img src=' + FavUrl + ' width="20" height="20" alt="" onclick="return FavouriteChange(\'' + item.MLSId + '\',\'' + item.Is_Favorite + '\',\'' + ImgfavIdDyn + '\')" id=' + ImgfavIdDyn + ' style="text-decoration:none;"/></a></div></div><div class="col-sm-12" style="margin-top: 6%;"><a href="#">  <img src="/img/SliderBackArrow.png" onclick="SlideImage(\'' + i + '\',\'' + "-1" + '\',\'' + DivImageId + '\',\'' + item.MLSId + '\')" width="21" height="29" alt="" style="margin-left: -9%;" id="'+ BtnPrevImgId+'" hidden="hidden"/></a> <a href="#">  <img src="/img/SliderNextArrow.png" width="21" height="29" onclick="SlideImage(\'' + i + '\',\'' + "1" + '\',\'' + DivImageId + '\',\'' + item.MLSId + '\')" alt="" style="float: right;margin-right: -9%;" id="'+BtnNextImgId+'" hidden="hidden"/></a></div></div> ');
+            }else{
+                Row.append('<div onmouseover="triggerMouseOver('+i+')" onmouseout="triggerMouseOut('+i+')" style="background: url('+PhotosURL[0]+');border-radius:5px; background-size: 100% 100%;background-repeat: no-repeat; height:100px;  width:213px" id="'+DivImageId+'"><div class="col-sm-12" style="padding-right:5px"><div style="float: right;">'+isviewImagediv+'<a href="#" style="text-decoration:none"> <img src=' + FavUrl + ' width="20" height="20" alt="" onclick="return FavouriteChange(\'' + item.MLSId + '\',\'' + item.Is_Favorite + '\',\'' + ImgfavIdDyn + '\')" id=' + ImgfavIdDyn + ' style="text-decoration:none;"/></a></div></div><div class="col-sm-12" style="margin-top: 6%;"><a href="#">  <img src="/img/SliderBackArrow.png" onclick="SlideImage(\'' + i + '\',\'' + "-1" + '\',\'' + DivImageId + '\',\'' + item.MLSId + '\')" width="21" height="29" alt="" style="margin-left: -9%;" id="'+ BtnPrevImgId+'" hidden="hidden"/></a> <a href="#">  <img src="/img/SliderNextArrow.png" width="21" height="29" onclick="SlideImage(\'' + i + '\',\'' + "1" + '\',\'' + DivImageId + '\',\'' + item.MLSId + '\')" alt="" style="float: right;margin-right: -9%;" id="'+BtnNextImgId+'" /></a></div></div> ');
+            }
+            //Row.append('<div id=' + DivImgId + ' style="width:215px;background: url(/img/picture_area.png); background-size: 100% 100%;background-repeat: no-repeat; height:100px;"><div class="col-sm-12"><div style="float: right;">' + StringView +' <a href="#" style="text-decoration:none;"><img src=' + iconurl + ' style="margin-top:8%;" alt=""/> <img src=' + FavUrl + ' width="20" height="20" alt="" onclick="return FavouriteChange(\'' + item.MLSId + '\',\'' + item.Is_Favorite + '\',\'' + ImgfavIdDyn + '\',\'' + JTBID + '\')" id=' + ImgfavIdDyn + ' style="text-decoration:none;" /></a></div></div><div class="col-sm-12" style="margin-top: 6%;"><a href="#" style="text-decoration:none;">  <img src="/img/SliderBackArrow.png"  alt="" style="margin-top: -10px; height: 30px; margin-left: -9%;" onclick=ImgSlider(\'1\',\'' + DivImgId + '\')></a> <a href="#">  <img src="/img/SliderNextArrow.png"  alt="" style="float: right;margin-right: -9%; margin-top: -10px; height: 30px;" onclick=ImgSlider(\'2\',\'' + DivImgId + '\')></a></div></div> ');
+            table.append(Row);
+            var trow = $('<tr style="height:26px;"></tr>');
+            trow.append('<td  style="float:left;font-size: 12px; font-weight:bold; border: 0px !important;  color:#FF5D26;margin-top:2%;margin-left:5px;padding-right:2px;">' + '<img src=' + DsUrl + ' width="20" height="20" alt="" style="margin-top:-3%"/>&nbsp;'  + '$' + " " + num + '</td><td style="float:right; border: 0px !important; color:#FF5D26; margin-left:-2%"><a class="rating" href="#"> '+f1+'</a> <a class="rating" href="#"> '+f2+' </a><a class="rating" href="#"> '+f3+'</a></td>');
+            table.append(trow);
+            var trown=$('<tr style="height:10px;"></tr>');
+            if(item.Class!="Lots/Land"){
+                if(item.SoldPrice!="")
+                {
+                    trown.append('<div class=" rightlist_price">' + sold + '</div>');
+                }
+            }
+            //trown.append('<td style="border: 0px currentColor !important; border-image: none !important; color: gray; font-size: 11px; margin-top: 3%; float: left;padding-right:2px;" ><a href="#" id='+item.MLSId+' onclick="return CustomerFullViewListing(\'' + item.MLSId + '\')" style="color:gray;">' + 'MLS#' + item.MLSId + '</a></td>');
+            trown.append('<td style="border: 0px currentColor !important; border-image: none !important; color: gray; font-size: 11px;float: right;padding-right:2px;" colspan="3">' + 'MLS#' + item.MLSId + '</a></td>');
+            table.append(trown);
+            var trowm = $('<tr></tr>');
+            trowm.append('<td style=" border: 0px !important; font-size:11px;" >  <hr class="myhr4" style="margin:0px;"></td>');
+            table.append(trowm);
+            var trow1 = $('<tr style=" height:22px;"></tr>');
+            if(usertypeid=="2"){
+                trow1.append('<td style="float:left;padding-left:2px;border: 0px !important; color:#FF5D26; font-size:11px;padding-left:5px"><a href="#" id='+item.MLSId+' onclick="return AgentFullDetailsView(\'' + AgentId + '\',\'' + item.MLSId + '\')" style="text-decoration:none;">' + item.Bedrooms + '<span style="color:grey !important"> Bedrooms</span> ' + '  ' + item.BathRooms + ' <span style="color:grey !important"> Bathrooms</span>' + '</a></td>');
+                trow1.append('<td style="float:left;padding-left:5px;  border: 0px !important; color:#FF5D26; font-size:11px;font-weight: bold;" colspan="3""><a href="#" id='+item.MLSId+' onclick="return AgentFullDetailsView(\'' + AgentId + '\',\'' + item.MLSId + '\')" style="text-decoration:none;">'+ acres + '</a></td>');
+            }
+            else{
+                trow1.append('<td style="float:left;padding-left:2px;border: 0px !important; color:#FF5D26; font-size:11px;padding-left:5px"><a href="#" id='+item.MLSId+' onclick="return CustomerFullViewListing(\'' + item.MLSId + '\')" style="text-decoration:none;">' + item.Bedrooms + '<span style="color:grey !important"> Bedrooms</span> ' + '  ' + item.BathRooms + ' <span style="color:grey !important"> Bathrooms</span>' + '</a></td>');
+                trow1.append('<td style="float:left;padding-left:5px;  border: 0px !important; color:#FF5D26; font-size:11px;font-weight: bold;" colspan="3""><a href="#" id='+item.MLSId+' onclick="return CustomerFullViewListing(\'' + item.MLSId + '\')" style="text-decoration:none;">'+ acres + '</a></td>');
+            }   
+            table.append(trow1);
+            var trow2 = $('<tr style="height:20px;"></tr>');
+            if(usertypeid=="2"){
+                trow2.append('<td style="border: 0px currentColor !important; border-image: none !important; color: gray; font-size: 11px; margin-top: 10px; margin-bottom: 0px; float: left;font-size:10px;padding-left:5px" colspan="3"><a href="#" id='+item.MLSId+' onclick="return AgentFullDetailsView(\'' + AgentId + '\',\'' + item.MLSId + '\')" style="text-decoration:none;">' + item.ADDRESKKS + '</a></td>');
+            }
+            else{
+                trow2.append('<td style="border: 0px currentColor !important; border-image: none !important; color: gray; font-size: 11px; margin-top: 10px; margin-bottom: 0px; float: left;font-size:10px;padding-left:5px" colspan="3"><a href="#" id='+item.MLSId+' onclick="return CustomerFullViewListing(\'' + item.MLSId + '\')" style="text-decoration:none;">' + item.ADDRESKKS + '</a></td>');
+            }
+            table.append(trow2);
+            var trow0 = $('<tr style="height:17px;"></tr>');
+            table.append(trow0);
+            trow0.append('<td style=" border: 0px !important; margin-top:0px; font-size:9px;" >  <hr class="myhr5"></td>');
+            var trow3 = $('<tr id="CheckTR" style="height: 26px;"></tr>');
+            if(showinglabel!="&nbsp;" && comparelabel !="&nbsp;")
+                trow3.append('<td style="padding:0px !important; float:left; border: 0px !important;margin-top:-5px; font-size:10px; margin-left:-4px"><table style="width: 200px;"> <tr style="height:28px;"> <td style="border:0px !important; color:grey !important">'+comparelabel+' </td> <td style=" padding-left:0px !important;border-right: 1px solid #cecaca;">'+c+'</td> <td style="border:0px !important;color:grey !important;width:50%">'+showinglabel+'</td> <td style="border-right:1px solid #cecaca; padding-left:0px !important;padding-top:3px;padding-right: 6px;"> '+s+'</td><td style="border:0px !important;position:relative;top:2px;width:24%;padding-left: 10px;"><a href="#" style="text-decoration:none;"> <img src="/img/sharicon01.png"  alt="" id="' + shareid + '" style="height:16px;margin-bottom:0px;" onclick="return shareProperty(\'' + item.MLSId + '\',\'' + shareid + '\',\'' + PhotosURL[0] + '\',\'' + item.ADDRESKKS + '\',\'' + class_type + '\')"></a> </td>   </tr></table>  </td> ');
+                //only share
+           else if(showinglabel=="&nbsp;" && comparelabel =="&nbsp;")
+               trow3.append('<td style="padding:0px !important; float:left; border: 0px !important; font-size:10px; margin-left:-4px;margin-top:-5px;"><table style="width: 200px;"> <tr style="height:28px;"><td style="padding-left:90px;border:0px !important;position:relative;top:2px;padding-left: 10px;"><a href="#" style="text-decoration:none;"> <img src="/img/sharicon01.png" data-toggle="modal" data-target="#SharePopup" alt="" id="' + shareid + '" style="height:16px;margin-bottom:0px;" onclick="return shareProperty(\'' + item.MLSId + '\',\'' + shareid + '\',\'' + PhotosURL[0] + '\',\'' + item.ADDRESKKS + '\',\'' + class_type + '\')"></a> </td>   </tr></table>  </td> ');
+            //only Request and share
+           else if(showinglabel!="&nbsp;" && comparelabel =="&nbsp;")
+               trow3.append('<td style="padding:0px !important; float:left; border: 0px !important; font-size:10px;margin-top:-5px; margin-left:-4px"><table style="width: 200px;"> <tr style="height:28px;"> <td style="border:0px !important;color:grey !important;padding-left:25px;">'+showinglabel+'</td> <td style="border-right:2px solid #cecaca; padding-left:2px !important;padding-top:3px;"> '+s+'</td><td style="border:0px !important;padding-left:10px!important;position:relative;top:2px;"><a href="#" style="text-decoration:none;"> <img src="/img/sharicon01.png" alt="" id="' + shareid + '" style="height:16px;margin-bottom:0px;" onclick="shareProperty(\'' + item.MLSId + '\',\'' + shareid + '\',\'' + PhotosURL[0] + '\',\'' + item.ADDRESKKS + '\',\'' + class_type + '\')"></a> </td>   </tr></table>  </td> ');
+            //only Comare and share
+           else if(showinglabel=="&nbsp;" && comparelabel !="&nbsp;")
+               trow3.append('<td style="padding:0px !important; float:left; border: 0px !important; font-size:10px; margin-top:-5px; margin-left:-4px;"><table "> <tr style="height:28px;"> <td style="border:0px !important; color:grey !important;padding-left:5%;">'+comparelabel+' </td> <td style=" padding-left:10px !important;padding-right:2px !important;border-right: 1px solid #cecaca;">'+c+'</td><td style="border:0px !important;position:relative;top:2px;width:110px;text-align:center;padding-left: 10px;"><a href="#" style="text-decoration:none;"> <img src="/img/sharicon01.png"  alt="" id="' + shareid + '" style="height:16px;margin-bottom:0px;" onclick="return shareProperty(\'' + item.MLSId + '\',\'' + shareid + '\',\'' + PhotosURL[0] + '\',\'' + item.ADDRESKKS + '\',\'' + class_type + '\')"></a> </td>   </tr></table>  </td> ');
+            table.append(trow3);
+            tab.append(table);
+            ImgfavIdDyn = "FavImg";
+            CheckBoxIDCompare = "Checkcompareid";
+            CheckBoxIDRshow = "CheckRshowid";
+            
+            DivImgId = "div";
+        });
+        $("#RightListView").html(tab);
+    };
+    function triggerMouseOver(i) {
+       // map.setZoom(11);
+        google.maps.event.trigger(mymarkers[i], 'mouseover');
+        //map.getBounds();	
+    }
+    function triggerMouseOut(i) {
+       // map.setZoom(9);
+        google.maps.event.trigger(mymarkers[i], 'mouseout');
+        //map.getBounds();	
+    }
+    //function to get the properties based on multiple MLSIds on polygon
+    function getListbyMultipleMLSIDs(MLSID,Sortby) {
+        $.ajax({
+            url: "/Customer/SearchFilter/GetListByMultipleMLSIDs/",
+            type: "POST",
+            dataType: "json",
+            data: { MLSIds: MLSID,Sortby:Sortby },
+            success: function (data) {
+                if (data.length>0) {
+                    RightSideListView(data);
+                   // $("#listcount").text(data.length);
+                }
+                else {
+                }
+            },
+        });
+    }
+    function SlideImage(ind,m,imgurlid,Mid)
+    {
+        var imgarr=[];
+        var PvImg="";
+        var NxImg="";
+        var imageIndex="";
+        var bg = $('#'+imgurlid).css('background-image');
+        bg = bg.replace('url(','').replace(')','');
+        var PhotosURLForSingleMLSID=TotalImages[ind];
+        imgarr=PhotosURLForSingleMLSID.split(',');
+        for(var i=0;i<imgarr.length;i++)
+        {
+            if(bg== '"'+imgarr[i]+'"')
+            {
+                imageIndex=i;
+                PvImg=imgarr[i-1];
+                NxImg=imgarr[i+1];
+            }
+        }
+        if(m==1)
+        {
+            if(imageIndex+1==(imgarr.length-1))
+            {
+                $('#Next'+Mid).hide();
+            }
+
+            if(imageIndex-1!=0)
+            {
+                $('#Prev'+Mid).show();
+            }
+            $('#'+imgurlid).css('background-image','url('+NxImg +')');
+        }
+        else{
+
+            if(imageIndex-1==0)
+            {
+                $('#Prev'+Mid).hide();
+            }
+
+            if(imageIndex+1!=(imgarr.length-1))
+            {
+                $('#Next'+Mid).show();
+            }
+            $('#'+imgurlid).css('background-image','url('+PvImg +')');
+        }
+    }
+    function ImgSlider(Status, ImgID) {
+        //alert(ImgID);
+        if (Status == 1) {
+            alert('Clicked Back Arrow');
+        }
+        else {
+            alert('Clicked Forward Arrow');
+        }
+        $("#" + ImgID).animate({ opacity: 0 }, 'slow', function () {
+            $(this)
+                .css({ 'background-image': 'url(1.jpg)' })
+                .animate({ opacity: 1 });
+        });
+    }
+    function getdatabycurrentUser(sortid) {
+        $.ajax({
+            url: "/Customer/Favourites/GetFavoriteData/",
+            type: "POST",
+            dataType: "json",
+            data: { sortid: sortid },
+            success: function (data) {
+                $("#googlemaps").show();
+                if(data.length>0){
+                    if(data.length>4)
+                    {
+                        // $("#over_map").css("margin-right", "-2%");
+                        $("#CollDiv").show();
+                        //$("#googlemaps").width('38%');
+                        $("#rightdiv").show();
+                    }
+                    else
+                    {
+                        // $("#over_map").css("margin-right", "0%");
+                        $("#CollDiv").hide();
+                    }
+                    $("#footer").show();
+                    $("#listcount").text(data.length);
+                    //$("#Totallistcount").text(data[0].NoOfListings);
+                    
+                    initialize(data);
+                    RightSideListView(data);
+                }
+                else{
+                    $("#listcount").text('0');
+                    $("#Totallistcount").text('0');
+                     $("#googlemaps").hide();
+                    $("#rightdiv").hide();
+                    $("#footer").hide();
+                    $("#CollDiv").hide();
+                    $("#heading").text("Alert!");
+                    $("#content_text").text("You Don't have any Favourites");
+                    $("#AlertPopup").modal("show");
+                    // initialize(data);
+                }
+            },
+            error: function () {
+                alert('nodata');
+            }
+        });
+    }
+    function FavouriteChange(MLSId, IsFav, ImgFavID, JTBID) {
+        // show Modal
+        
+        $('#RemoveFavorite').modal('show');
+
+        $('#btnYesRemoveFavorite').click(function () {
+
+            var Fav = 0;
+            var ImgSrc = $("#" + ImgFavID).attr('src');
+            if (ImgSrc == "/img/hearticon.png") {
+                $("#" + ImgFavID).attr("src", "/img/heartm.png");
+                Fav = 0;
+            }
+            else {
+                $("#" + ImgFavID).attr("src", "/img/hearticon.png");
+            }
+
+            $.ajax({
+                url: "/Customer/Favourites/FavrouriteChanges/",
+                type: "POST",
+                dataType: "json",
+                data: { MLSId: MLSId, Fav: Fav },
+                success: function (data) {
+                    if (data == "Sucess") {
+                        getdatabycurrentUser(sortid);
+                    }
+                    else {
+                    }
+                },
+                error: function () {
+                },
+
+            });
+            $('#RemoveFavorite').modal('hide');
+        });
+    };
+    // add to compare faviurites
+    function CompareFavouritesChanges(MLSId, CheckBoxIDCompare) {
+
+        if ($('#'+CheckBoxIDCompare).is(":checked")) {
+            Is_Compared = true;
+            CompareHomesCount=CompareHomesCount+1;
+        }
+        else {
+            Is_Compared = false;
+            CompareHomesCount=CompareHomesCount-1;
+        }
+
+        if(parseInt(CompareHomesCount)>=1){
+            $('#compareBtn').show();
+        }
+        else{
+            $('#compareBtn').hide();
+        }
+        $.ajax({
+            url: "/Customer/Favourites/CompareFavrouriteChanges/",
+            type: "POST",
+            dataType: "json",
+            data: { MLSId: MLSId, Is_Compared: Is_Compared},
+            success: function (data) {
+            },
+            error: function () {
+            }
+        });
+
+
+    };
+    // add to showings function
+    function RequestShowingFavouritesChanges(MLSId, CheckBoxIDRshow) {
+        var Is_RequestShow = "";
+
+        if ($('#'+CheckBoxIDRshow).is(":checked")) {
+            Is_RequestShow = true;
+            showingHomesCount=showingHomesCount+1;
+        }
+        else {
+            Is_RequestShow = false;
+            showingHomesCount=showingHomesCount-1;
+        }
+        if(parseInt(showingHomesCount)>=1){
+            $('#submit_multiple_showingsBtn').show();
+        }
+        else{
+            $('#submit_multiple_showingsBtn').hide();
+        }
+
+        $.ajax({
+            url: "/Customer/Favourites/RequestShowFavrouriteChanges/",
+            type: "POST",
+            dataType: "json",
+            data: {MLSId: MLSId, Is_RequestShow: Is_RequestShow},
+            success: function (data) {
+            },
+            error: function () {
+            }
+        });
+    };
+    function initialize(data) {
+        var latLng = new google.maps.LatLng(data[0].GeoLatitude,data[0].GeoLongitude);
+        map = new google.maps.Map(document.getElementById('googlemaps'), {
+            zoom: 10,
+            minZoom: 6,
+            // maxZoom: 13,
+            streetViewControl: false,
+            fullscreenControl: false,
+            zoomControl: false,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: latLng,
+        });
+        google.maps.event.addDomListener(zoomInButton, 'click', function (e) {
+            map.setZoom(map.getZoom() + 1);
+            //zoomchanged(map.getZoom());
+        });
+        google.maps.event.addDomListener(zoomOutButton, 'click', function () {
+            map.setZoom(map.getZoom() - 1);
+            //zoomchanged(map.getZoom());
+        });
+        $("#mylocation").click(function (e) {
+            // alert();
+            if ($('#myloc').is(':checked')) {
+                location.reload();
+            }
+            else {
+                geolocate();
+            }
+        });
+        $("#mapview").click(function () {
+            $("#sat").attr("src", "/img/sat.png")
+            var p = $("#map").attr('src');
+            if (p == "/img/map.png")
+                $("#map").attr("src", "/img/map2.png")
+            map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+        });
+        $("#satview").click(function () {
+            $("#map").attr("src", "/img/map.png")
+            var p = $("#sat").attr('src');
+            if (p == "/img/sat.png")
+                $("#sat").attr("src", "/img/sat2.png")
+            map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+        });
+    }
+    function geolocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                // Create a marker and center map on user location
+                marker = new google.maps.Marker({
+                    position: pos,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    map: map
+                });
+                map.setCenter(pos);
+            });
+        }
+    }
+    function zoomchanged(zoom) {
+        if (zoom <= 4) {
+            $('#drawpoly').css("visibility", "hidden");
+            for (var i = 0; i < mymarkers.length; i++) {
+                mymarkers[i].setMap(null);
+            }
+            poly.setMap(null)
+        }
+        else {
+
+            $('#drawpoly').css("visibility", "visible");
+            for (var i = 0; i < mymarkers.length; i++) {
+                mymarkers[i].setMap(map);
+            }
+
+            getPathVariableCode(poly);
+            poly.setMap(map)
+        }
+    }
+</script>
+
+<script>
+    function myFunction2() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+    /* when user click on sort by dropdown item*/
+    function GetSortBy(id,el) {
+        var id=parseInt(id);
+        $('#myDropdown a.sortbyactive').removeClass('sortbyactive');
+        $(el).addClass('sortbyactive');
+        switch (id) {
+            case 0: {
+                $('#sortbyselected').text('Star Rating');
+                getdatabycurrentUser(id);
+            };
+                break;
+            case 1: {
+                $('#sortbyselected').text('Low-High');
+                getdatabycurrentUser(id);
+            };
+                break;
+            case 2: {
+                 $('#sortbyselected').text('High-Low');
+                getdatabycurrentUser(id);
+            };
+                break;
+            case 3: {
+                 $('#sortbyselected').text('Newest');
+                getdatabycurrentUser(id);
+            };
+                break;
+            case 4: {
+                 $('#sortbyselected').text('Oldest');
+                getdatabycurrentUser(id);
+            };
+                break;
+            case 5: {
+                 $('#sortbyselected').text('Lot Size');
+                getdatabycurrentUser(id);
+            };
+                break;
+            case 6: {
+                 $('#sortbyselected').text('Sq-Ft');
+                getdatabycurrentUser(id);
+            };
+                break;
+        }
+    }
+    function fav_rating(MLSId, ratingid, id) {
+        var UserID=@PkeyUserId;
+        var count="0";
+        if (UserID == 0) {
+            $('#navLogin').click();
+        }
+        else {
+            var ImgSrc = $("#" + id).attr("src"),count="0";
+            if(id.split('-')[1]=="1")
+            {
+                if (ImgSrc == "/img/Star_empty.png") {
+                    $("#" + id).attr("src", "/img/star_Full.png");
+                    id   = id.substr(0, id.length - 1) + '2';
+                    $("#" + id).attr("src", "/img/Star_empty.png");
+                    id   = id.substr(0, id.length - 1) + '3';
+                    $("#" + id).attr("src", "/img/Star_empty.png");
+                }
+                if (ImgSrc == "/img/star_Full.png") {
+                    var id2   = id.substr(0, id.length - 1) + '2';
+                    var id3   = id.substr(0, id.length - 1) + '3';
+                    if($("#" + id2).attr('src')=="/img/star_Full.png" || $("#" + id3).attr('src')=="/img/star_Full.png")
+                    {
+                        $("#" + id).attr("src", "/img/star_Full.png");
+                        $("#" + id2).attr("src", "/img/Star_empty.png");
+
+                        $("#" + id3).attr("src", "/img/Star_empty.png");
+                    }
+                    else
+                    {
+                        $("#" + id).attr("src", "/img/Star_empty.png");
+                    }
+                }
+                count="1";
+            }
+
+            else  if(id.split('-')[1]=="2")
+            {
+                if (ImgSrc == "/img/Star_empty.png") {
+                    $("#" + id).attr("src", "/img/star_Full.png");
+                    var id1   = id.substr(0, id.length - 1) + '1';
+                    $("#" + id1).attr("src", "/img/star_Full.png");
+                }
+                if (ImgSrc == "/img/star_Full.png")
+                {
+                    var id1   = id.substr(0, id.length - 1) + '1';
+                    var id3   = id.substr(0, id.length - 1) + '3';
+                    if($("#" + id3).attr('src')=="/img/star_Full.png")
+                    {
+                        $("#" + id).attr("src", "/img/star_Full.png");
+                        $("#" + id3).attr("src", "/img/Star_empty.png");
+                    }
+                    else
+                    {
+                        $("#" + id).attr("src", "/img/Star_empty.png");
+                    }
+                }
+                count="2";
+            }
+            else  if(id.split('-')[1]=="3")
+            {
+                if (ImgSrc == "/img/Star_empty.png") {
+                    $("#" + id).attr("src", "/img/star_Full.png");
+                    id   = id.substr(0, id.length - 1) + '2';
+                    $("#" + id).attr("src", "/img/star_Full.png");
+                    id   = id.substr(0, id.length - 1) + '1';
+                    $("#" + id).attr("src", "/img/star_Full.png");
+                    count="3";
+                }
+                else
+                {
+                    $("#" + id).attr("src", "/img/Star_empty.png");
+                }
+                count="3";
+            }
+        }
+        $.ajax({
+            url: "/Customer/Favourites/favrating/",
+            type: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            data: { MLSID: MLSId,Count:count },
+            success: function (data) {
+                if (data == "1") {
+                    //alert('RAting submitted Successfully');
+                    // location.reload();
+                }
+                else {
+                    alert('something went wrong' + data);
+                }
+            }
+        });
+    };
+    //Closing Dropdown on select Dropdown item
+    $(".sort").click(function(){
+        if ($('#myDropdown').hasClass('show')) {
+            $('#myDropdown').removeClass('show').addClass('hidecontent');
+        }
+        else
+        {
+            $('#myDropdown').removeClass('hidecontent').addClass('show');
+        }
+    });
+</script>
+@*//Script For Request Showing Submit*@
+<script>
+    //Submit Request to show for Individual Listing
+    $('#submit_multiple_showingsBtn').click(function(){
+        $('#PopUP_ShedulePreferences').show();
+    });
+    var PrevID="";var unavailableDates =[];
+    function OpenTimepicker(id,id2)
+    {
+        $(document).mouseup(function(e)
+        {
+            var container = $("#TimePicker");
+            var container2 = $("#TimePicker2");
+            var container3 = $("#TimePicker3");
+            var container4 = $("#TimePicker4");
+            var container5 = $("#TimePicker5");
+            var container6 = $("#TimePicker6");
+            var container7 = $("#TimePicker7");
+            var container8 = $("#TimePicker8");
+
+            // if the target of the click isn't the container nor a descendant of the container
+            if (!container.is(e.target) && container.has(e.target).length === 0)
+            {
+                container.removeClass('collaspe in');
+            }
+            // if the target of the click isn't the container nor a descendant of the container
+            if (!container2.is(e.target) && container2.has(e.target).length === 0)
+            {
+                container2.removeClass('collaspe in');
+            }
+            // if the target of the click isn't the container nor a descendant of the container
+            if (!container3.is(e.target) && container3.has(e.target).length === 0)
+            {
+                container3.removeClass('collaspe in');
+            }
+            // if the target of the click isn't the container nor a descendant of the container
+            if (!container4.is(e.target) && container4.has(e.target).length === 0)
+            {
+                container4.removeClass('collaspe in');
+            }
+            // if the target of the click isn't the container nor a descendant of the container
+            if (!container5.is(e.target) && container5.has(e.target).length === 0)
+            {
+                container5.removeClass('collaspe in');
+            }
+            // if the target of the click isn't the container nor a descendant of the container
+            if (!container6.is(e.target) && container6.has(e.target).length === 0)
+            {
+                container6.removeClass('collaspe in');
+            }
+            if (!container7.is(e.target) && container7.has(e.target).length === 0)
+            {
+                container7.removeClass('collaspe in');
+            }
+            if (!container8.is(e.target) && container8.has(e.target).length === 0)
+            {
+                container8.removeClass('collaspe in');
+            }
+        });
+        if(PrevID!="")
+        {
+            $('#'+PrevID).empty();
+            //$('#'+PrevID).removeClass('collaspe in');
+        }
+        var timepickerhtml= "<div class='col-sm-12' style='background-color: white; border-radius:7px;padding:5px 0px 3px 0px;z-index:1048'><div class='col-sm-4'><div><i class='glyphicon glyphicon-menu-up' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='HoursUp'></i></div><div><span id='Hours' style='color:black'></span></div><div><i class='glyphicon glyphicon-menu-down' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='HoursDown'></i></div></div><div class='col-sm-4' style='padding-left:10px'><div><i class='glyphicon glyphicon-menu-up' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='MinUp'></i></div><div><span id='Minutes'  style='color:black'></span></div><div><i class='glyphicon glyphicon-menu-down' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='MinDown'></i></div></div><div class='col-sm-4' style='padding-left:5px'><div><i class='glyphicon glyphicon-menu-up' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='AP_UP'></i></div><div style='text-align:center'><span id='AM_PM' style='font-size:10px;color:black;font-weight:bold'></span></div><div><i class='glyphicon glyphicon-menu-down' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='AP_Down'></i></div></div></div>";
+        $('#'+id).html(timepickerhtml);
+        // TimePickerEvents();
+        PrevID=id;
+
+        $('#Hours').html(hours);
+        if ($('#Hours').html().length == 1) {
+            $('#Hours').html('0' + $('#Hours').html());
+        }
+        $('#Minutes').html(minutes);
+        if ($('#Minutes').html().length == 1) {
+            $('#Minutes').html('0' + $('#Minutes').html());
+        }
+        $('#AM_PM').html(ampm);
+        TimePickerEvents(id2);
+    }
+    $('#Btn_Schedule_Back').click(function(){
+        $('#PopUP_ShedulePreferences').hide();
+    })
+    $("#FirstChoise_Date").datepicker({
+        beforeShow: function(input, inst)
+        {
+            inst.dpDiv.css({ marginLeft:'-75px'});
+        },
+        dateFormat: 'mm/dd/yy',
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        minDate: 0,
+        onSelect: function(selectedDate) {
+            unavailableDates.push(selectedDate);
+        //    $('#iDate').datepicker({ beforeShowDay: unavailable });
+        //$('#SecondChoice_Date').datepicker('option', 'minDate', selectedDate || 0);
+    }
+    })
+    $("#date11icon").click(function(){
+        $("#FirstChoise_Date")[0].focus();
+    })
+    $("#date12icon").click(function(){
+        $("#SecondChoice_Date")[0].focus();
+    })
+    function unavailable(date) {
+        dmy = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+        if ($.inArray(dmy, unavailableDates) == -1) {
+            return [true, ""];
+        } else {
+            return [false, "", "Unavailable"];
+        }
+    }
+        $("#SecondChoice_Date").datepicker({
+        beforeShow: function(input, inst)
+        {
+            inst.dpDiv.css({ marginLeft:'-75px'});
+        },
+        onSelect:function(){
+            $('#date_ErrorMsg_div').hide();
+            $('#validationerrorMessage').text('');},
+        dateFormat: 'mm/dd/yy',
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        beforeShowDay: unavailable,
+        minDate: 0
+    })
+    //hide and show additional timings
+        $("#addtimings12").click(function(){
+            $('#txt_FirstSecond_From').val(hours + ':' + minutes + ' ' + ampm);
+            $('#txt_FirstSecond_To').val(hours + ':' + minutes + ' ' + ampm);
+        $("#timings12").show();
+        $("#addtimings12").hide();
+    });
+        $("#hide_timings12").click(function(){
+            timediff=calculateTime($('#Txt_FirstFrom').val(),$('#txt_First_To').val());
+            TimeDifferanceComparision(timediff);
+            //$('#Btn_Request_Submit').removeAttr('disabled')
+            //$('#date_ErrorMsg_div').hide();
+            //$('#validationerrorMessage').text('');
+            $('#txt_FirstSecond_From').val("00:00 AM");
+            $('#txt_FirstSecond_To').val("00:00 AM");
+        $("#timings12").hide();
+        $("#addtimings12").show();
+    });
+        $("#addtimings22").click(function(){
+            $('#txt_SecondFirst_From').val(hours + ':' + minutes + ' ' + ampm);
+            $('#txt_SecondSecond_to').val(hours + ':' + minutes + ' ' + ampm);
+        $("#timings22").show();
+        $("#addtimings22").hide();
+    });
+        $("#hide_timings22").click(function(){
+            timediff=calculateTime($('#Txt_FirstFrom').val(),$('#txt_First_To').val());
+            TimeDifferanceComparision(timediff);
+            $('#txt_SecondFirst_From').val("00:00 AM");
+            $('#txt_SecondSecond_to').val("00:00 AM");
+        $("#timings22").hide();
+        $("#addtimings22").show();
+    });
+    //-------Time Picker Functionality-------------
+    var mlsid="",agentid="";
+    var date = new Date();
+    var hours = '12';
+    var minutes = '0';
+    var ampm = 'PM';
+    //hours = date.getHours();
+    //minutes = date.getMinutes();
+    ampm = hours >= 12 ? 'PM' : 'AM';
+    //hours = hours % 12;
+    hours = hours <10 ? '0'+ hours : hours; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    $('#Txt_FirstFrom').val(hours + ':' + minutes + ' ' + ampm);
+    $('#txt_First_To').val(hours + ':' + minutes + ' ' + ampm);
+    $('#txt_FirstSecond_From').val("00:00 AM");
+    $('#txt_FirstSecond_To').val("00:00 AM");
+    $('#txt_Second_From').val(hours + ':' + minutes + ' ' + ampm);
+    $('#txt_Second_to').val(hours + ':' + minutes + ' ' + ampm);
+    $('#txt_SecondFirst_From').val("00:00 AM");
+    $('#txt_SecondSecond_to').val("00:00 AM");
+    function TimePickerEvents(TPID)
+    {
+        //----------AM UP Change functionality
+        $('#AP_UP,#AP_Down').click(function () {
+            var String = $('#AM_PM').html();
+            if ($('#AM_PM').html() == 'PM') {
+                $('#AM_PM').html('AM');
+            }
+            else {
+                $('#AM_PM').html('PM');
+            }
+            
+        })
+        ///------Minutes Management
+        $('#MinUp').click(function () {
+            if (parseInt($('#Minutes').html()) > 0) {
+                var Min = parseInt($('#Minutes').html()) - 1;
+                $('#Minutes').html(Min);
+            }
+            else
+            {
+                var Min = 59;
+                $('#Minutes').html(Min);
+            }
+            if ($('#Minutes').html().length == 1) {
+                $('#Minutes').html('0' + $('#Minutes').html());
+            }
+        })
+        $('#MinDown').click(function () {
+            if (parseInt($('#Minutes').html()) < 59) {
+                var Min = parseInt($('#Minutes').html()) + 1;
+                $('#Minutes').html(Min);
+            }
+            else
+            {
+                var Min = 00;
+                $('#Minutes').html(Min);
+            }
+
+            if ($('#Minutes').html().length == 1) {
+                $('#Minutes').html('0' + $('#Minutes').html());
+            }
+        })
+        //-----Hours Management-------
+        $('#HoursUp').click(function () {
+            if (parseInt($('#Hours').html()) > 1) {
+                var Hours = parseInt($('#Hours').html()) - 1;
+                $('#Hours').html(Hours);
+            }
+            else {
+                var Hours =12;
+                $('#Hours').html(Hours);
+            }
+            if ($('#Hours').html().length == 1) {
+                $('#Hours').html('0' + $('#Hours').html());
+            }
+        })
+        $('#HoursDown').click(function () {
+            if (parseInt($('#Hours').html()) < 12) {
+                var Hours = parseInt($('#Hours').html()) + 1;
+                $('#Hours').html(Hours);
+            }
+            else {
+                var Hours = 01;
+                $('#Hours').html(Hours);
+            }
+            if ($('#Hours').html().length == 1) {
+                $('#Hours').html('0' + $('#Hours').html());
+            }
+        })
+        $('#HoursUp,#HoursDown,#MinUp,#MinDown,#AP_UP,#AP_Down').click(function () {
+            $('#'+TPID).val();
+           
+            var Time = $('#Hours').html() + ':' + $('#Minutes').html() + ' ' + $('#AM_PM').html();
+            $('#'+TPID).val(Time);
+            var timediff;
+            if(TPID=="txt_First_To"){
+                timediff=calculateTime($('#Txt_FirstFrom').val(),$('#txt_First_To').val());
+                TimeDifferanceComparision(timediff);
+            }
+            if(TPID=="txt_FirstSecond_To"){
+                timediff=calculateTime($('#Txt_FirstFrom').val(),$('#txt_First_To').val());
+                if(timediff>=60){
+                    $('#Btn_Request_Submit').removeAttr('disabled')
+                    $('#date_ErrorMsg_div').hide();
+                    $('#validationerrorMessage').text('');
+                    timediff=calculateTime($('#txt_FirstSecond_From').val(),$('#txt_FirstSecond_To').val());
+                    TimeDifferanceComparision(timediff);
+                }
+                else{
+                    $('#date_ErrorMsg_div').show();
+                    $('#validationerrorMessage').text('To Select Second Time Please select First one Properly');
+                    $('#Btn_Request_Submit').attr('disabled',true)
+                }
+                
+            }
+            if(TPID=="txt_Second_to"){
+                if($('#SecondChoice_Date').val()!=''){
+                    $('#date_ErrorMsg_div').hide();
+                    $('#validationerrorMessage').text('');
+                    timediff=calculateTime($('#txt_Second_From').val(),$('#txt_Second_to').val());
+                    TimeDifferanceComparision(timediff);
+                }
+                else{
+                    $('#date_ErrorMsg_div').show();
+                    $('#validationerrorMessage').text('Please Select Second Date');
+                }
+            }
+            if(TPID=="txt_SecondSecond_to"){
+                if($('#SecondChoice_Date').val()!=''){
+                    $('#date_ErrorMsg_div').hide();
+                    $('#validationerrorMessage').text('');
+                    timediff=calculateTime($('#txt_Second_From').val(),$('#txt_Second_to').val());
+                    if(timediff>=60){
+                        $('#Btn_Request_Submit').removeAttr('disabled')
+                        $('#date_ErrorMsg_div').hide();
+                        $('#validationerrorMessage').text('');
+                        timediff=calculateTime($('#txt_SecondFirst_From').val(),$('#txt_SecondSecond_to').val());
+                        TimeDifferanceComparision(timediff);
+                    }
+                    else{
+                        $('#date_ErrorMsg_div').show();
+                        $('#validationerrorMessage').text('To Select Second Time Please select First one Properly');
+                        $('#Btn_Request_Submit').attr('disabled',true)
+                    }
+                }
+                else{
+                    $('#date_ErrorMsg_div').show();
+                    $('#validationerrorMessage').text('Please Select Second Date');
+                }
+            }
+            //console.log(timediff)
+        })
+    }
+    function TimeDifferanceComparision(timediff){
+        // console.log(timediff);
+        if(timediff<60){
+            $('#date_ErrorMsg_div').show();
+            $('#validationerrorMessage').text('Time duration should be one hour');
+            $('#Btn_Request_Submit').attr('disabled',true)
+        }
+        else{
+            $('#Btn_Request_Submit').removeAttr('disabled')
+            $('#date_ErrorMsg_div').hide();
+            $('#validationerrorMessage').text('');
+        }
+    }
+    function calculateTime(fromtime,totime){
+        var day = '1 1 1970 ',  // 1st January 1970
+           // start = $('#Txt_FirstFrom').val(),   //eg "09:20 PM"
+           // end = $('#txt_First_To').val(),   //eg "10:00 PM"
+            diff_in_min = ( Date.parse(day + totime) - Date.parse(day + fromtime) ) / 1000 / 60;
+        //console.log(diff_in_min);
+        return diff_in_min;
+    };
+    //To edit popup on request showing button press for non agent customer
+    function RequestShowingtoAgent(mlsid,agentid)
+    {
+        //$("#FirstChoise_Date").val('');
+        //$("#SecondChoice_Date").val('');
+        $("#mlsid").html(mlsid);
+            $("#agentid").html(agentid);
+        $('#PopUP_ShedulePreferences').show();
+    }
+    $("#Btn_Request_Submit").click(function(){
+
+        if($("#FirstChoise_Date").val()!="")
+        {
+            $('#validationerrorMessage').text('');
+            $('#date_ErrorMsg_div').hide();
+            var showingobject=[];
+            if(mlsidslist.length>0)
+            {
+                //alert(mlsidslist.length)
+              //  for(var i=0;i<mlsidslist.length;i++)
+             //   {
+                    // alert(mlsidslist[i])
+                    showingobject=[mlsidslist.join(','),$("#agentid").text(),$("#FirstChoise_Date").val(),$("#Txt_FirstFrom").val(),$("#txt_First_To").val(),$("#txt_FirstSecond_From").val(),$("#txt_FirstSecond_To").val(),
+                  $("#SecondChoice_Date").val(),$("#txt_Second_From").val(),$("#txt_Second_to").val(),$("#txt_SecondFirst_From").val(),$("#txt_SecondSecond_to").val()]
+                    post_Indivdual_Agent_RequestShowings(showingobject);
+               // }
+            }
+            else{
+            
+                showingobject=[$("#mlsid").text(),$("#agentid").text(),$("#FirstChoise_Date").val(),$("#Txt_FirstFrom").val(),$("#txt_First_To").val(),$("#txt_FirstSecond_From").val(),$("#txt_FirstSecond_To").val(),
+                    $("#SecondChoice_Date").val(),$("#txt_Second_From").val(),$("#txt_Second_to").val(),$("#txt_SecondFirst_From").val(),$("#txt_SecondSecond_to").val()]
+                post_Indivdual_Agent_RequestShowings(showingobject);
+            }
+        }
+        else {
+            $('#date_ErrorMsg_div').show();
+            $('#validationerrorMessage').text('Please Select First Date');
+        }
+    });
+    function post_Indivdual_Agent_RequestShowings(showingobject)
+    {
+        $.ajax({
+            url: "@Url.Action("SheduleRequestShowing", "Favourites")",
+            type: "POST",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(showingobject),
+        success: function (res) {
+            if (res == "Success") {
+                $("#PopUP_ShedulePreferences").hide();
+                
+                $("#ThankyouAlertPopup").modal("show");
+            }
+            else {
+                alert("Error :" + res);
+            }
+        },
+        });
+    }
+    $('#TQalertOKbtn').click(function(){
+        location.reload();
+    })
+    var mlsidslist=[];
+    function Multiple_RequestShowingtoAgent(mlsid,agentid,CheckBoxIDRshow)
+    { 
+        $("#agentid").html(agentid);
+        var Is_RequestShow = "";
+        if ($('#'+CheckBoxIDRshow).is(":checked")) {
+            Is_RequestShow = true;
+            showingHomesCount=showingHomesCount+1;
+            if($.inArray(mlsid,mlsidslist) != '-1'){
+            }
+            else
+            {
+                mlsidslist.push(mlsid);
+            }
+        }
+        else {
+            if($.inArray(mlsid,mlsidslist) != '-1'){
+                mlsidslist.splice($.inArray(mlsid, mlsidslist),1);
+            }
+            Is_RequestShow = false;
+            showingHomesCount=showingHomesCount-1;
+        }
+
+        if(parseInt(showingHomesCount)>=1){
+            $('#submit_multiple_showingsBtn').show();
+        }
+        else{
+            $('#submit_multiple_showingsBtn').hide();
+        }
+
+        
+    }
+</script>

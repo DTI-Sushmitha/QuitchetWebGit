@@ -1,0 +1,323 @@
+﻿@*Agent/AgentNotificationSettings*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+<style>
+    body{
+        background-color:#fff;
+    }
+   .switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 20px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ff5d26;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+    .orangediv{
+        background-color:#FFDFD0;
+        color:#ff5d26;
+        text-align:center;
+        padding:10px;
+        font-size:15px;
+    }
+    .noleftpadding{
+        padding:5px;
+        padding-left:0;
+        color:gray;
+    }
+    .noleftpadding_borders{
+             padding:5px;
+        padding-left:0;
+        border-top:1px solid lightgray;
+        border-bottom:1px solid lightgray;
+    }
+     .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    /*width: 100%;*/
+    text-align: center;
+}
+</style>
+<link href="~/AgentStyles/AgentStyles.css" rel="stylesheet" />
+<div id="horizontalbor" class="col-sm-12">
+    <div class="col-sm-4" style="padding:2px">
+        <a href="/Agent/MyQuitchet/Index" class="btn btn-default btn-sm" id="" 
+           style="padding:5px 20px;border-color:#fff;background-color:transparent;color:#fff">Cancel</a>
+    </div>
+    <div class="col-sm-4 headerintop" style="text-align:center">
+    <img src="~/img/notes_icon.png" style="margin-bottom:0"/>&nbsp;&nbsp;Notification Settings</div>
+    <div class="col-sm-4" style="text-align:right">
+
+    </div>
+</div>
+<div class="col-sm-12" style="padding: 25px 150px;font-size:15px">
+    <div class="col-sm-12 orangediv">
+        <img src="~/img/alert_icon_a.png" style="margin-bottom:0;float:left;" />Manage your notification settings here.
+    </div>
+    <div class="col-sm-12" style="text-align:right;padding:10px;">
+        <label for="offlbl" id="offlbl" style="">off &nbsp;</label>|&nbsp;
+        <label for="onlbl" id="onlbl" style="color:#FF6937">on </label>
+    </div>
+    <div class="col-md-12 noleftpadding">
+        <div class="col-sm-6 noleftpadding" style="">
+            <label>Messages</label>
+        </div>
+        <div class="col-sm-6" style="text-align:right;padding-right : 0px;">
+            <span class="" style="float:right;padding-top:0px;margin-left:0!important">
+                <label class="switch">
+                    <input type="checkbox" id="messages" name="settings">
+                    <span class="slider round"></span>
+                </label>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12 noleftpadding" style="border-top:1px solid lightgray;">
+        <div class="col-sm-6 noleftpadding" style="">
+            <label>Saved Searches</label>
+        </div>
+        <div class="col-sm-6" style="text-align:right;padding-right : 0px;top: 6px;">
+            <span class="" style="float:right;padding-top:0px;margin-left:0!important;">
+                <label class="switch">
+                    <input type="checkbox" id="savedsearches" name="settings">
+                    <span class="slider round"></span>
+                </label>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12 noleftpadding" style="border-top:1px solid lightgray;">
+        <div class="col-sm-6 noleftpadding" style="">
+            <label>My Customers</label>
+        </div>
+        <div class="col-sm-6" style="text-align:right;padding-right : 0px;">
+            <span class="" style="float:right;padding-top:0px;margin-left:0!important">
+                <label class="switch">
+                    <input type="checkbox" id="mycustomers" name="settings">
+                    <span class="slider round"></span>
+                </label>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12 noleftpadding" style="border-top:1px solid lightgray;">
+        <div class="col-sm-6 noleftpadding" style="">
+            <label>My Listings</label>
+        </div>
+        <div class="col-sm-6" style="text-align:right;padding-right : 0px;top: 6px;">
+            <span class="" style="float:right;padding-top:0px;margin-left:0!important;">
+                <label class="switch">
+                    <input type="checkbox" id="mylistings" name="settings">
+                    <span class="slider round"></span>
+                </label>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12 noleftpadding" style="border-top:1px solid lightgray;">
+        <div class="col-sm-6 noleftpadding" style="">
+            <label>Requested Showings</label>
+        </div>
+        <div class="col-sm-6" style="text-align:right;padding-right : 0px;top: 6px;">
+            <span class="" style="float:right;padding-top:0px;margin-left:0!important;">
+                <label class="switch">
+                    <input type="checkbox" id="requestedshowings" name="settings">
+                    <span class="slider round"></span>
+                </label>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12 noleftpadding" style="border-top:1px solid lightgray;">
+        <div class="col-sm-6 noleftpadding" style="">
+            <label>Showing Feedback</label>
+        </div>
+        <div class="col-sm-6" style="text-align:right;padding-right : 0px;top: 6px;">
+            <span class="" style="float:right;padding-top:0px;margin-left:0!important;">
+                <label class="switch">
+                    <input type="checkbox" id="showingfeedback" name="settings">
+                    <span class="slider round"></span>
+                </label>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12 noleftpadding" style="border-top:1px solid lightgray;">
+        <div class="col-sm-6 noleftpadding" style="">
+            <label>Open House Feedback</label>
+        </div>
+        <div class="col-sm-6" style="text-align:right;padding-right : 0px;top: 6px;">
+            <span class="" style="float:right;padding-top:0px;margin-left:0!important;">
+                <label class="switch">
+                    <input type="checkbox" id="ohfeedback" name="settings">
+                    <span class="slider round"></span>
+                </label>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12 noleftpadding" style="border-top:1px solid lightgray;">
+        <div class="col-sm-6 noleftpadding" style="">
+            <label>Closer</label>
+        </div>
+        <div class="col-sm-6" style="text-align:right;padding-right : 0px;top: 6px;">
+            <span class="" style="float:right;padding-top:0px;margin-left:0!important;">
+                <label class="switch">
+                    <input type="checkbox" id="closer" name="settings">
+                    <span class="slider round"></span>
+                </label>
+            </span>
+        </div>
+    </div>
+        
+    
+    <div class="col-md-12 text-right noleftpadding">
+        <hr style="border-top:1px solid #FF6937 !important" />
+        <button id="savenotesettingsBtn" type="button" class="btn btn-sm" style="background-color: #FF6937; color: white;padding:5px 25px;">
+            Save
+        </button>
+    </div>
+    <div class="col-sm-offset-4 col-sm-4 footer" style="text-align:center;padding:15px;">
+        <img src="~/img/Qutichet_footerLogo.png" style="margin-bottom:0;" />
+    </div>
+</div>
+<script>
+    $("input[name=settings]").on("click", function () {
+        var count = 0;
+        $.each($("input[name='settings']:checked"), function () {
+            count = count + 1;
+        });
+        if (count == 8) {
+            $("#onlbl").css("color", "#FF6937");
+            $("#offlbl").css("color", "gray");
+        }
+        if (count == 0) {
+            $("#onlbl").css("color", "gray");
+            $("#offlbl").css("color", "#FF6937");
+        }
+        if (count > 0 && count < 8) {
+            $("#onlbl").css("color", "gray");
+            $("#offlbl").css("color", "gray");
+        }
+    });
+    $(document).ready(function () {
+        $("input[name=settings]")[0].click();
+        // $("#arrow_icon").removeClass("fa fa-caret-down text-right").addClass("fa fa-caret-up text-right"); 
+        $("#demo").slideDown();
+        $(".notisetting").addClass('Active_Settings');
+        getAgentSettings()
+    });
+    $("#savenotesettingsBtn").click(function () {
+     
+        var settingsobj = [$("input[id='messages']").is(":checked"),
+                                 $("input[id='savedsearches']").is(":checked"),
+                                 $("input[id='mycustomers']").is(":checked"),
+                                $("input[id='mylistings']").is(":checked"),
+                                $("input[id='requestedshowings']").is(":checked"),
+                                $("input[id='showingfeedback']").is(":checked"),
+                          $("input[id='ohfeedback']").is(":checked"),
+                                $("input[id='closer']").is(":checked")];
+        //alert(settingsobj.join(','))
+        $.ajax({
+            url: "/Agent/AgentNotificationSettings/SaveNotificationSettings/",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(settingsobj),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                if (data == "Success") {
+                    $("#heading").text("Successful");
+                    $("#content_text").text("Your settings have been saved successfully");
+                    $("#AlertPopup").modal("show");
+                }
+                else {
+                    $("#heading").text("Successful");
+                    $("#content_text").text("Something went wrong while saving your settings. " + data);
+                    $("#AlertPopup").modal("show");
+                }
+            },
+            error: function () {
+                alert('nodata');
+            }
+        });
+    })
+
+    function getAgentSettings() {
+        $.ajax({
+            url: "/Agent/AgentNotificationSettings/GetAgentNotificationSettingsData",
+            type: "GET",
+            dataType: "json",
+            data: "",
+            success: function (data) {
+                if (data.length > 0) {
+                    if (data[0].Messages == "True")
+                        $("input[id='messages']").attr("checked", true);
+                    if (data[0].Saved_Searches == "True")
+                        $("input[id='savedsearches']").attr("checked", true);
+                    if (data[0].MyCustomer == "True")
+                        $("input[id='mycustomers']").attr("checked", true);
+                    if (data[0].MyListings == "True")
+                        $("input[id='mylistings']").attr("checked", true);
+                    if (data[0].Request_Showings == "True")
+                        $("input[id='requestedshowings']").attr("checked", true);
+                    if (data[0].Showings_Feedback == "True")
+                        $("input[id='showingfeedback']").attr("checked", true);
+                    if (data[0].OpenHouse_Feedback == "True")
+                        $("input[id='ohfeedback']").attr("checked", true);
+                    if (data[0].Closer == "True")
+                        $("input[id='closer']").attr("checked", true);
+                }
+                else {
+                    pkey_settingsId = "0";
+                }
+
+            },
+            error: function () {
+                alert('no data found');
+            }
+        });
+    }
+</script>

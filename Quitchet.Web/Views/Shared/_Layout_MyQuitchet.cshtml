@@ -1,0 +1,250 @@
+﻿
+@{
+    //ViewBag.Title = "contact_layout";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+
+<link href="~/Content/myquitchet_layout_styles.css" rel="stylesheet" />
+<style>
+    .nav-pills>li>a {
+     border-radius: 0 !important; 
+}
+    .ul-contactdiv-li1 {
+        /*margin-right: 1% !important;*/
+    }
+
+    .ul-contactdiv li {
+        /*display:inline-block;*/
+        border-right: 1px solid #8e8c8c;
+        /*padding:10px;*/
+    }
+
+        .ul-contactdiv li:last-child {
+            border-right: none;
+        }
+
+        .ul-contactdiv li:nth-last-child(2) {
+            border-right: none;
+        }
+
+    .ImageRound {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+</style>
+<div class="contactdiv">
+    <ul class="ul-contactdiv WithAgent">
+        @*<li class="ul-contactdiv-li1 ul-contactdiv-li-border">
+            <a href="/Customer/Contacts/Index">
+                <img src="~/asset/img/Contacts.png" class="ul-contactdiv-img" />
+                <span>Contacts</span></a></li>*@
+        <li class="ul-contactdiv-li1 ul-contactdiv-li"><a href="/Customer/MyWishList/Index"><img src="~/img/whishlist.png" class="ul-contactdiv-img" /><span>My Wishlist</span></a></li>
+        <li class="ul-contactdiv-li1 ul-contactdiv-li"><a href="/Customer/MyBasicNeeds/Index"><img src="~/img/basicneeds.png" class="ul-contactdiv-img" /><span>My Basic Needs</span></a></li>
+        @*<li class="ul-contactdiv-li1 ul-contactdiv-li-border"><a href="#"><img src="~/asset/img/suggesthouse.png" class="ul-contactdiv-img" /><span>Suggest Homes</span></a></li>*@
+        <li class="ul-contactdiv-li1 ul-contactdiv-li"><a href="/Customer/ComparedHomes/Index"><img src="~/img/comparedhomes.png" class="ul-contactdiv-img" /><span>Compared Homes</span></a></li>
+        <li class="ul-contactdiv-li1 ul-contactdiv-li"><a href="/Customer/Showings/Index"><img src="~/img/showings.png" class="ul-contactdiv-img" /><span>Showings</span></a></li>
+
+        <li class="ul-contactdiv-li1 ul-contactdiv-lir"><a href="/Customer/ClosedParties/Index"><img src="~/img/closer.png" class="ul-contactdiv-img" /><span>Closer</span></a></li>
+
+        <li class="ul-contactdiv-li1 ul-contactdiv-li" style="padding-right:0%"><a href="/Customer/SellerTools/Index"><img src="~/img/sellertools.png" class="ul-contactdiv-img" /><span>Seller Tools</span></a></li>
+
+        <li class="ul-contactdiv-li1"><a href="/Customer/ManageSearchAgent/Index"><img src="~/img/managesearchagent.png" class="ul-contactdiv-img" /><span>Manage Agent</span></a></li>
+
+        <li class="listwidthcontact" style="background:#99A3A4;color:black;height:95px;padding:8px">
+            <div class="contactdivlastli">
+                <div class="col-sm-12" style="padding:0;top:5px">
+                    <div class="col-sm-2" style="padding:0"><img src="~/img/addphotopic.png" class="ImageRound" id="agent_image" /></div>
+                    <div class="col-sm-8" style="padding-left:5px;text-align:left">
+                        <div class="col-sm-12" style="padding:0"><span class="contactspan1" id="agent_name"></span></div>
+                        <div class="col-sm-12" style="padding:0"><span class="contactspan1" id="agent_company"></span></div>
+                    </div>
+                    <div class="col-sm-2" style="padding:0;line-height:2" id="agentcommunication">
+                        <div class="col-sm-12">
+                            <a href="#" style="padding:0" id="agentchat">
+                                <img src="~/asset/img/chat_iconMyAgent_MP.png" />
+                            </a>
+                        </div>
+                        <div class="col-sm-12">&nbsp;</div>
+                        <div class="col-sm-12">
+                            <a href="#" style="padding:0" id="agentphonedetails"> <img src="~/asset/img/Phoneicon_MyAgent_MP.png" style="margin-top:-13px;" /></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="padding:0;text-align:left;top:2px">
+                    <div class="col-sm-8" style="padding:0;"></div>
+                    <div class="col-sm-4" style="padding:0;" id="changagent">
+                        <span class="contactspan7" style="text-align: center;font-size: 12px;
+                display:block;margin-top: 14px;border-radius:5px 5px 0 0;color:#fff;background-color:#FF6937;">
+
+                            <a href="/Customer/ManageSearchAgent/Index" style="">Change Agent</a>
+                        </span>
+                    </div>
+                </div>
+                @*<div class="row">
+                        <div class="col-sm-10 col-xs-10" style="padding:0px;">
+                            <div class="col-sm-1">
+                               <img src="~/asset/img/agentpic_demo.png" class="ImageRound" id="agent_image" />
+                            </div>
+                            <div class="col-sm-11" style="padding:0px">
+                                <span class="contactspan1" id="agent_name"></span><span class="contactspan2" style="display:block;" id="agent_company"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-2 col-sm-2" style="padding:0px;text-align:right;">
+                            <span class="contactspan3"><img src="~/asset/img/chat_iconMyAgent_MP.png" /></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8" style="text-align:left;padding:8px;">
+                            <span class="contactspan4">Kellet Winston</span><span class="contactspan5" style="display:block;">Realty</span>
+
+                        </div>
+                        <div class="col-xs-4 col-sm-4" style="padding:0px;text-align:right;">
+                            <span class="contactspan6"><img src="~/asset/img/Phoneicon_MyAgent_MP.png" style="margin-top:-13px;" /></span>
+                            <span class="contactspan7" style="text-align: center;font-size: 10px;
+                        display:block;margin-top: 9px;border-radius:5px 5px 0 0;color:#fff;background-color:#FF6937;">
+                                @*<img src="~/asset/img/ChangeAgent_Tab.png" />
+                                <a href="/Customer/ManageSearchAgent/Index" style="padding:0px">Change Agent</a>
+                            </span>
+                        </div>
+                    </div>*@
+            </div>
+
+
+
+
+        </li>
+    </ul>
+
+</div>
+@* Phone Call Popup*@
+<div class="modal" id="AgentPhoneCallDetailsModel" style="padding-left: 206px; z-index: 1500;">
+    <div class="modal-dialog" role="document" style="padding-top: 15%; width: 25%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center; border-bottom: none; padding-bottom: 0px;">
+                <h5 style="color: #FF6937; margin-top: -2%; font-weight: 600;">Phone Call</h5>
+                <img src="~/img/phone_icon_brand-1.png" />&nbsp <span id="span_name_phonecall" style="font-size: 12px; color: black; font-weight: bold; margin-top: 0px">Phone Call</span>
+                <hr style="border: 0 ! important; margin-top: 2%; margin-bottom: 5%; border-top: 1px solid  #FF6937 !important;" />
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <img style="margin-right: 1px;" src="~/img/mb.png" />&nbsp  <span style="font-size: 11px; color: #FF6937;">Mobile</span>
+                </div>
+                <div class="col-sm-6">
+                    <span id="agent_phonecall" style="font-size: 11px;">987654321</span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <hr style="margin-bottom: 2%; margin-top: 2%;" />
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <img style="margin-left: -2px;" src="~/img/office.png" />
+                    <span style="font-size: 11px; color: #FF6937;">Office</span>
+                </div>
+                <div class="col-sm-6">
+                    <span id="agent2_phonecall" style="font-size: 11px;">987654321</span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <hr style="margin-bottom: 2%; margin-top: 2%;" />
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-12" style="text-align: center">
+                    <a href="#" class="btn" id="phonecall_cancel" style="border-radius: 5px !important; background-color: gray; color: white; font-weight: 500; font-size: 11px;">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@RenderSection("featured", required: false)
+<section class="content-wrapper main-content clear-fix">
+    @RenderBody()
+</section>
+<script>
+    var agentid="",agentname="",agentpic="",agentemail='',agentmobile='';
+    var hasAgent = "";
+    $(document).ready(function () {
+        getUserAgetDetails();
+    });
+    var isQC_User = '';
+    function getUserAgetDetails() {
+        $.ajax({
+            url: "@Url.Action("GetMyAgentdetails", "Showings")",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: "",
+            success: function (res) {
+                if (res.length > 0) {
+                    hasAgent = "yes";
+                    $("#agentcommunication").show();
+                    $("#changagent").show();
+                    if (res[0].AgentImage != "," && res[0].AgentImage != "null" && res[0].AgentImage != null) {
+                        agentpic = res[0].AgentImage;
+                        $("#agent_image").attr('src', res[0].AgentImage)
+                    }
+                    else {
+                        agentpic ='/img/addphotopic.png';
+                        $("#agent_image").attr('src', '/img/addphotopic.png')
+                    }
+                   
+                    $("#agent_name").text(res[0].FirstName + ' ' + res[0].LastName);
+                    $("#agent_company").text(res[0].AOOfcName);
+                    $("#agent_phonecall").text(res[0].Phone2Nbr);
+                    $("#agent2_phonecall").text(res[0].AgentOffciePhoneNo);
+                    agentid = res[0].AgentPKUserID, agentname = res[0].FirstName + ' ' + res[0].LastName;
+                    agentemail = res[0].Email;
+                    agentmobile = res[0].Phone2Nbr;
+                    if (res[0].Primary_Color != null) {
+                        $('.listwidthcontact').css('background-color', res[0].Primary_Color)
+                    }
+
+                    else {
+                        $('.listwidthcontact').css('background-color', '#99A3A4')
+                    }
+
+                    if (res[0].Secondary_Color != null)
+                        $('.listwidthcontact').css('color', res[0].Secondary_Color)
+                    else
+                        $('.listwidthcontact').css('color', 'black')
+
+                    if (res[0].AgentPKUserID == null) {
+                        // $("#agentchat").hide();
+                        isQC_User = 'NO';
+                    }
+                    else {
+                        isQC_User = 'YES';
+                        $("#agentchat").show();
+                    }
+                }
+                else {
+                    $("#agentcommunication").hide();
+                    $("#changagent").hide();
+                    $("#agent_name").text('No Agent');
+                    $("#agent_company").text('--');
+                    $("#agent_image").attr('src', '/img/addphotopic.png');
+                    hasAgent = "no";
+                }
+            },
+        });
+    }
+    //Function to show Phone Details Popup of Agent From Agent HEader
+    $("#agentphonedetails").click(function () {
+        
+        $("#AgentPhoneCallDetailsModel").show();
+    })
+    
+    $("#phonecall_cancel").click(function () {
+        $("#AgentPhoneCallDetailsModel").hide();
+    });
+    $("#agentchat").click(function () {
+        //alert(agentid + "   " + agentname)
+        if (isQC_User == 'YES')
+            creatConnection(agentid, agentname, '1', agentpic, '');
+        else if (isQC_User == 'NO')
+            creatConnectionforNonQCUsers(agentemail, agentmobile, agentname, '', ' 1 ', agentpic)
+    });
+</script>

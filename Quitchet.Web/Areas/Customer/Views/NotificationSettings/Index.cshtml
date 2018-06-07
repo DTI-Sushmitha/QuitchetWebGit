@@ -1,0 +1,290 @@
+﻿@*NotificationSettings- Index*@
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+
+<!-- start: Javascript -->
+<style>
+    .Active_Settings
+    {
+        color:white;
+        background-color:gray;
+    }
+        .Active_Settings a i {
+            color: white;
+        }
+      .Active_Settings a span
+    {
+        color:white;
+    }
+    .customhr {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border: 1px solid #e6e4e4 !important;
+        /*border-top: 1px solid #e6e4e4;*/
+    }
+
+    #footer {
+        position: absolute;
+        bottom: -50%;
+        width: 100%;
+        height: 30px;
+        margin-bottom: 8px;
+    }
+
+    @@media (min-width:768px) and (max-width:992px) {
+        .pixel-above992 {
+            margin-left: 0px;
+        }
+    }
+    /*.text-right {
+    float: none !important;
+}*/
+    .w3-main {
+        margin-top:0px !important;
+    }
+    .graylabel{
+        color:gray;
+    }
+</style>
+
+<div class="col-md-12 col-lg-12 container" style="background-color: dimgray;margin-left:0px;margin-right:0px;width:100%; height: 44px; margin-top: -4px; color: white; font-weight: 500">
+    <div class="col-lg-1 col-md-1 col-sm-1" style="padding-left:0px;">
+        <button id="closesettingslbtn" type="button" class="col-md-4" style="width: 73px; border-radius:4px; height: 27px; border: 1px solid white; color: white; font-weight: 500; font-size: 15px; background-color: dimgray; padding-bottom: 10px; margin-top: 7px; margin-left: 18%; padding-left: 10px">
+            Cancel
+        </button>
+    </div>
+
+    <div class="col-lg-10 col-md-10 col-sm-10" style="text-align:center">
+        @*<div class=" container" style="margin-left: 640px">*@
+        <span class="glyphicon glyphicon-cog" style="color: dimgray; border: #FF6937; padding-top: 10px; color: white;width: 20px"></span>
+        <label>Notification Settings</label>
+        @*</div>*@
+    </div>
+</div>
+<div class="col-sm-12">&nbsp;</div>
+
+<div class="col-sm-12" style="text-align:center">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-10">
+        <div class="col-sm-12" style="background-color:#ffd8cc;">
+            <div class="col-sm-1">
+                <span class="glyphicon glyphicon-info-sign" style="color: #FF6937;margin-left: -61px;margin-top: 8px;"></span>
+            </div>
+            <div class="col-sm-11">
+                <label style="color: #FF6937;font-size: 14px;margin-top: 5px;margin-right: 13%;">
+                    Manage your notification settings here.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-12 text-right" style="font-size:14px">
+            <label for="offlbl" id="offlbl" style="margin-top: 15px; padding-left: 20px">off &nbsp;</label>|&nbsp;
+            <label for="onlbl" id="onlbl" style="margin-top: 15px; padding-right: 20px; padding-right: 20px; width: 20px;color:#FF6937">on </label>
+        </div>
+        <div class="col-md-12" style="text-align:left;padding-left: 0px;margin-top:12px;padding-bottom:12px;border-bottom: 1px solid lightgray;">
+            <div class="col-sm-6 graylabel" style="text-align:left;padding-left: 0px;">
+                <label style="font-size: 14px;">Favorites</label>
+            </div>
+            <div class="col-sm-6" style="text-align:right;padding-right : 0px;">
+
+                <span class="togglebutton" style="float:right;padding-top:0px;margin-left:0!important">
+                    <label class="switch" style="top:3px!important;">
+                        <input type="checkbox" id="favorites" value="6" name="settings">
+                        <div class="slider-sm round"></div>
+                    </label>
+                </span>
+            </div>
+
+        </div>
+        <div class="col-md-12" style="text-align:left;padding-left: 0px;margin-top:12px;padding-bottom:12px;border-bottom: 1px solid lightgray;">
+            <div class="col-sm-6 graylabel" style="text-align:left;padding-left: 0px;">
+                <label style="font-size: 14px;">Messages</label>
+            </div>
+            <div class="col-sm-6" style="text-align:right;padding-right : 0px;">
+
+                <span class="togglebutton" style="float:right;padding-top:0px;margin-left:0!important">
+                    <label class="switch" style="top:3px!important;">
+                        <input type="checkbox" id="messages" value="2" name="settings">
+                        <div class="slider-sm round"></div>
+                    </label>
+                </span>
+            </div>
+
+        </div>
+        <div class="col-md-12" style="text-align:left;padding-left: 0px;margin-top:12px;padding-bottom:12px;border-bottom: 1px solid lightgray;">
+            <div class="col-sm-6 graylabel" style="text-align:left;padding-left: 0px;">
+                <label style="font-size: 14px;">Saved Searches</label>
+            </div>
+            <div class="col-sm-6" style="text-align:right;padding-right : 0px;">
+                <span class="togglebutton" style="float:right;padding-top:0px;margin-left:0!important">
+                    <label class="switch" style="top:3px!important;">
+                        <input type="checkbox" id="savedsearches" value="1" name="settings">
+                        <div class="slider-sm round"></div>
+                    </label>
+                </span>
+            </div>
+        </div>
+        
+        <div class="col-md-12" style="text-align:left;padding-left: 0px;margin-top:12px;padding-bottom:12px;border-bottom: 1px solid lightgray;">
+            <div class="col-sm-6 graylabel" style="text-align:left;padding-left: 0px;">
+                <label style="font-size: 14px;">Scheduled Showings</label>
+            </div>
+            <div class="col-sm-6" style="text-align:right;padding-right : 0px;">
+
+                <span class="togglebutton" style="float:right;padding-top:0px;margin-left:0!important">
+                    <label class="switch" style="top:3px!important;">
+                        <input type="checkbox" id="sheduledshowings" name="settings" value="4">
+                        <div class="slider-sm round"></div>
+                    </label>
+                </span>
+
+            </div>
+
+        </div>
+        @*<hr  class="customhr"/>*@
+        <div class="col-md-12" style="text-align:left;padding-left: 0px;margin-top:12px;padding-bottom:12px;border-bottom: 1px solid lightgray;">
+            <div class="col-sm-6 graylabel" style="text-align:left;padding-left: 0px;">
+                <label style="font-size: 14px;">Closer</label>
+            </div>
+            <div class="col-sm-6" style="text-align:right;padding-right : 0px;">
+
+                <span class="togglebutton" style="float:right;padding-top:0px;margin-left:0!important">
+                    <label class="switch" style="top:3px!important;">
+                        <input type="checkbox" id="closer" name="settings" value="5">
+                        <div class="slider-sm round"></div>
+                    </label>
+                </span>
+            </div>
+
+        </div>
+        <div class="col-md-12" style="text-align:left;padding-left: 0px;margin-top:12px;padding-bottom:12px;border-bottom: 1px solid lightgray;">
+            <div class="col-sm-6 graylabel" style="text-align:left;padding-left: 0px;">
+                <label style="font-size: 14px;">Seller Tools</label>
+            </div>
+            <div class="col-sm-6" style="text-align:right;padding-right : 0px;">
+
+                <span class="togglebutton" style="float:right;padding-top:0px;margin-left:0!important">
+                    <label class="switch" style="top:3px!important;">
+                        <input type="checkbox" id="sellertools" name="settings" value="5">
+                        <div class="slider-sm round"></div>
+                    </label>
+                </span>
+            </div>
+
+        </div>
+        <div class="col-sm-12">&nbsp;</div>
+        <div class="col-sm-12">&nbsp;</div>
+
+        <div class="col-md-12 text-right" style="padding:0px;">
+            <hr style="border-top:1px solid #FF6937 !important"/>
+            <button id="savenotesettingsBtn" type="button" class="btn btn-sm" style="background-color: #FF6937; color: white;margin-top: 20px;">
+                Save
+            </button>
+        </div>
+        <div class="col-sm-12" id="footer" style="text-align:center;margin-right: 10%;">
+            <img src="/img/quitchetlogo_little.png" width="140" height="38" alt="">
+        </div>
+    </div>
+    <div class="col-sm-1">&nbsp;</div>
+</div>
+
+<script type="text/javascript">
+    $("input[name=settings]").on("click", function () {
+        var count = 0;
+        $.each($("input[name='settings']:checked"), function () {
+            count = count + 1;
+        });
+        if (count == 6) {
+            $("#onlbl").css("color", "#FF6937");
+            $("#offlbl").css("color", "gray");
+        }
+        if (count == 0) {
+            $("#onlbl").css("color", "gray");
+            $("#offlbl").css("color", "#FF6937");
+        }
+        if (count > 0 && count < 6) {
+            $("#onlbl").css("color", "gray");
+            $("#offlbl").css("color", "gray");
+        }
+    });
+    $("#closesettingslbtn").click(function () {
+        window.location.href = '../LandingPage/Index';
+    });  
+    $(document).ready(function () {
+       // $("#arrow_icon").removeClass("fa fa-caret-down text-right").addClass("fa fa-caret-up text-right"); 
+        $("#demo").slideDown();
+      
+        $(".notisetting").addClass('Active_Settings');
+        getSettings();
+    });
+    var pkey_settingsId = "";
+    $("#savenotesettingsBtn").click(function () {
+        var settingsobj = [$("input[id='favorites']").is(":checked"),
+                             $("input[id='messages']").is(":checked"),
+                             $("input[id='savedsearches']").is(":checked"),
+                            $("input[id='sheduledshowings']").is(":checked"),
+                            $("input[id='closer']").is(":checked"),
+                            $("input[id='sellertools']").is(":checked")];
+        //  alert(settingsobj.join(','))
+        $.ajax({
+            url: "/NotificationSettings/SaveNotificationSettings/",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(settingsobj),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                if (data == "Success") {
+                    $("#heading").text("Successful");
+                    $("#content_text").text("Your settings have been saved successfully");
+                    $("#AlertPopup").modal("show");
+                    // alert('Settings saved successfully');
+                }
+                else {
+                    $("#heading").text("Successful");
+                    $("#content_text").text("Something went wrong while saving your settings. " + data);
+                    $("#AlertPopup").modal("show");
+                }
+                //alert('unable to save Settings..! try again :' + data);
+
+            },
+            error: function () {
+                alert('nodata');
+            }
+        });
+    });
+    function getSettings() {
+        $.ajax({
+            url: "/NotificationSettings/GetNotificationSettingsData",
+            type: "GET",
+            dataType: "json",
+            data: "",
+            success: function (data) {
+                if (data.length > 0)
+                {
+                    pkey_settingsId = data[0].PK_NotificationSettigsID;
+                    if (data[0].Fevorites == "True")
+                        $("input[id='favorites']").attr("checked", true);
+                    if (data[0].Messages == "True")
+                        $("input[id='messages']").attr("checked", true);
+                    if (data[0].Saved_Searches == "True")
+                        $("input[id='savedsearches']").attr("checked", true);
+                    if (data[0].Scheduled_Showings == "True")
+                        $("input[id='sheduledshowings']").attr("checked", true);
+                    if (data[0].Closer == "True")
+                        $("input[id='closer']").attr("checked", true);
+                    if (data[0].Seller_Tools == "True")
+                        $("input[id='sellertools']").attr("checked", true);
+                }
+                else {
+                    pkey_settingsId = "0";
+                }
+                
+            },
+            error: function () {
+                alert('no data found');
+            }
+        });
+    }
+</script>

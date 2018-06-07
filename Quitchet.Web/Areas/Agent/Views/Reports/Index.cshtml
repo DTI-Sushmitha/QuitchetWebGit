@@ -1,0 +1,2572 @@
+﻿@*Agent Reports Index*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+<link href="~/AgentStyles/Select-Styles-JS/bootstrap-select.min.css" rel="stylesheet" />
+<script src="~/AgentStyles/Select-Styles-JS/bootstrap-select.min.js"></script>
+@*Style Sheets for this Index*@
+<link href="~/AgentStyles/AgentStyles.css" rel="stylesheet" />
+<style>
+    .headerintop {
+        background-color: #ff5d26 !important;
+        padding: 6px !important;
+    }
+
+    .btngray {
+        background-color: #6B6B6B;
+        color: #fff;
+    }
+
+    .btnorange {
+        background-color: #ff5d26;
+        color: #fff;
+    }
+
+    .grayheadings {
+        background-color: #CECDCD;
+        color: black;
+        text-align: center;
+        padding: 8px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .tabledivs {
+        width: 20%;
+        text-align: center;
+        height: 115px;
+        line-height: 5;
+        border-left: 0.5px solid #ff5d26;
+        border-right: 1px solid #ff5d26;
+    }
+
+    .bm_tabledivs {
+        /*width: 19%;*/
+        text-align: center;
+        height: 115px;
+        line-height: 5;
+        border-left: 0.5px solid #ff5d26;
+        border-right: 1px solid #ff5d26;
+    }
+
+    .lr_tabledivs {
+        text-align: center;
+        height: 80px;
+        line-height: 3;
+        border: 1px solid lightgray;
+        /*border-left: 0.5px solid #ff5d26;
+            border-right: 1px solid #ff5d26;
+             border-top: 0.5px solid lightgray;
+            border-bottom: 0.5px solid lightgray;*/
+    }
+
+    .selectedlist {
+        background-color: #EFEFEF;
+    }
+
+    /*.dropdown-menu {
+            min-width: 100px !important;
+        }*/
+    /* webkit solution */
+    ::-webkit-input-placeholder {
+        text-align: left !important;
+    }
+    /* mozilla solution */
+    input:-moz-placeholder {
+        text-align: left !important;
+    }
+
+    input[type="radio"]:checked {
+        color: #ff5d26;
+    }
+
+    input[readonly] {
+        background-color: #fff !important;
+    }
+
+    .btn .caret {
+        margin-top: 10px;
+    }
+</style>
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 45px;
+        height: 20px;
+    }
+
+        .switch input {
+            display: none;
+        }
+
+    .roundslider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .roundslider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: -1px;
+            top: -0.5px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .roundslider {
+        background-color: #ff5d26;
+    }
+
+
+    input:focus + .roundslider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .roundslider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .roundslider.round {
+        border: 1px solid #ff5d26;
+        border-radius: 34px;
+    }
+
+        .roundslider.round:before {
+            border: 1px solid #ff5d26;
+            border-radius: 50%;
+        }
+
+    #floating-panel {
+        position: absolute;
+        z-index: 5;
+        text-align: center;
+    }
+    /*Label calsses used in List View for Buyer and Agent Merics Reports*/
+    .labelprice {
+        font-size: 15px;
+        font-weight: bold;
+        color: #ff5d26;
+    }
+
+    .labelbold {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .listingborders {
+        border-top: 0.5px solid #ff5d26;
+        padding: 10px;
+        border-bottom: 0.5px solid #ff5d26;
+    }
+
+    .listingborders2 {
+        border-bottom: 0.5px solid lightgray;
+    }
+    /*Check box allignment in Select Agetn popup*/
+    span.checkbox-label input[type=checkbox] {
+        position: relative;
+        vertical-align: middle;
+        bottom: 2px;
+    }
+
+    .multiselect-native-select button {
+        width: 120px;
+        text-align: right;
+    }
+
+    .multiselect-selected-text {
+        float: left;
+    }
+
+    .backbtninHeader_orange {
+        padding: 5px 20px;
+        border: none;
+        background-color: #ff5d26;
+        color: #fff;
+    }
+</style>
+<div class="col-sm-12" style="background-color:#484848;padding:10px;" id="agentheader">
+    <div class="col-sm-3"><a href="/Agent/MyQuitchet/Index" class="btn btn-default btn-sm backbtninHeader_orange">Back</a></div>
+    <div class="col-sm-5" style="text-align:center"><label style="font-size:16px;color:#fff;">Reports</label></div>
+    <div class="col-sm-4"></div>
+</div>
+@*Header DIv*@
+<div id="" class="col-sm-12" style="padding:0;background-color:#fff">
+    <div class="col-sm-10 " style="padding:0;width:80%">
+        <div class="col-sm-12 headerintop" style="padding:0;text-align:center">
+            <label id="headerlabel">Buyer Metrics</label>
+            <button type="button" class="btn btn-sm" id="filterbtn" style="width:120px;border-radius: 5px;float:right;border: 1px solid #fff;background-color: transparent; color: #fff;font-size: 15px;">
+                <img src="/img/Filter_btn-1.png" style="float:left;"><span>Filters</span>
+            </button>
+        </div>
+        <div class="col-sm-12" id="buyermetrics_div" style="height:75vh;border-right:1px solid gray;padding: 5px;background-color:#f3f2f2">
+            <div class="col-sm-12 grayheadings">Totals</div>
+            <div class="col-sm-12" style="border-bottom:3px solid #ff5d26;padding:0">
+                <div class="col-sm-3 bm_tabledivs" style="background-color:#fff">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Total Buyers</label>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8" style="">
+                        <input type="search" id="bm_totalbuyers" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-3 bm_tabledivs" style="background-color:#FFF9F7">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Total Closed</label>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <input type="search" id="bm_totalclosed" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-3 bm_tabledivs" style="background-color:#fff">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Total Showings</label>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <input type="search" id="bm_totalshowings" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-3 bm_tabledivs" style="background-color:#FFF9F7">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Buyers Under Contract</label>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <input type="search" id="bm_undercontract" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-1" style="width:0%"></div>
+            </div>
+            <div class="col-sm-12 grayheadings">Averages</div>
+            <div class="col-sm-12" style="border-bottom:3px solid #ff5d26;padding:0">
+                <div class="col-sm-6 bm_tabledivs" style="background-color:#fff">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Average Buyers per Sale</label>
+                    </div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <input type="search" id="bm_avgbuyerspersale" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-6 bm_tabledivs" style="background-color:#FFF9F7">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Average Showings per Sale</label>
+                    </div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <input type="search" id="bm_avgshowingspersale" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 grayheadings">Ratios</div>
+            <div class="col-sm-12" style="border-bottom:3px solid #ff5d26;padding:0">
+                <div class="col-sm-12 bm_tabledivs" style="background-color:#fff;line-height:2">
+                    <div class="col-sm-12" style="top:10px">
+                        <label class="centerlabels">Percentage Closed</label>
+                    </div>
+                    <div class="col-sm-5"></div>
+                    <div class="col-sm-2" style="top:15px">
+                        <input type="search" id="bm_percentageclosed" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12" style="margin-top:10px;background-color:#646464;font-size:16px;color:#fff;text-align:center;padding:10px;">View Properties:</div>
+            <div class="col-sm-2">&nbsp;</div>
+            <div class="col-sm-8" style="padding:5px">
+                <div class="btn-group btn-group-lg" style="width:100%">
+                    <button type="button" class="mypopupbtncls btn" data-dismiss="modal" id="BM_MapViewBtn" style="width:50%;border-radius: 5px 0px 0px 5px;border: 1px solid gray;background-color: transparent; color: black;font-size: 15px;">Map View</button>
+                    <button type="button" id="BM_ListViewBtn" class="mypopupbtncls btn" style="width:50%;border: 1px solid gray;border-radius: 0px 5px 5px 0px;background-color: transparent; color: black;font-size: 15px;">List View</button>
+                </div>
+            </div>
+            <div class="col-sm-2">&nbsp;</div>
+        </div>
+        <div class="col-sm-12" id="listingmetrics_div" style="display:none;height:75vh;border-right:1px solid gray;padding: 5px;background-color:#f3f2f2">
+            <div class="col-sm-12 grayheadings">Totals</div>
+            <div class="col-sm-12" style="border-bottom:3px solid #ff5d26;padding:0">
+                <div class="col-sm-2 tabledivs" style="background-color:#fff">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Total Listings</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="search" id="lm_totallistings" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-2 tabledivs" style="background-color:#FFF9F7">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Total Closed</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="search" id="lm_totalclosed" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-2 tabledivs" style="background-color:#fff">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Total Showings</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="search" id="lm_totalshowings" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-2 tabledivs" style="background-color:#FFF9F7">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Total Open Houses</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="search" id="lm_totalopenhouses" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-2 tabledivs" style="background-color:#fff">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Total $ Sold</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="search" id="lm_totalsoldamt" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 grayheadings">Averages</div>
+            <div class="col-sm-12" style="border-bottom:3px solid #ff5d26;padding:0">
+                <div class="col-sm-2 tabledivs" style="background-color:#fff">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Average List Price</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="search" id="lm_avglistprice" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-2 tabledivs" style="background-color:#FFF9F7">
+                    <div class="col-sm-12">
+                        <label class="centerlabels">Average Sale Price</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="search" id="lm_avgsaleprice" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-2 tabledivs" style="background-color:#fff;line-height:2">
+                    <div class="col-sm-12" style="top:10px">
+                        <label class="centerlabels">Average Showings per Sale</label>
+                    </div>
+                    <div class="col-sm-12" style="top:15px">
+                        <input type="search" id="lm_avgshowings" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-2 tabledivs" style="background-color:#FFF9F7;line-height:2">
+                    <div class="col-sm-12" style="top:10px">
+                        <label class="centerlabels">Average Open Houses per Sale</label>
+                    </div>
+                    <div class="col-sm-12" style="top:15px">
+                        <input type="search" id="lm_avgopenhouses" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-2 tabledivs" style="background-color:#fff;line-height:2">
+                    <div class="col-sm-12" style="top:10px">
+                        <label class="centerlabels">Average Days on Market</label>
+                    </div>
+                    <div class="col-sm-12" style="top:15px">
+                        <input type="search" id="lm_avgdays" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 grayheadings">Ratios</div>
+            <div class="col-sm-12" style="border-bottom:3px solid #ff5d26;padding:0">
+                <div class="col-sm-2 tabledivs" style="background-color:#fff;line-height:2">
+                    <div class="col-sm-12" style="top:10px">
+                        <label class="centerlabels">List Price to Sale Price Ratio</label>
+                    </div>
+                    <div class="col-sm-12" style="top:15px">
+                        <input type="search" id="lm_ltosratio" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-2 tabledivs" style="background-color:#FFF9F7;line-height:2">
+                    <div class="col-sm-12" style="top:10px">
+                        <label class="centerlabels">Original List Price to Sale Price Ratio</label>
+                    </div>
+                    <div class="col-sm-12" style="top:15px">
+                        <input type="search" id="lm_otosratio" class="form-control" placeholder="" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12" style="margin-top:10px;background-color:#646464;font-size:16px;color:#fff;text-align:center;padding:10px;">View Properties:</div>
+            <div class="col-sm-2">&nbsp;</div>
+            <div class="col-sm-8" style="padding:5px">
+                <div class="btn-group btn-group-lg" style="width:100%">
+                    <button type="button" class="mypopupbtncls btn" id="LM_MapViewBtn" style="width:50%;border-radius: 5px 0px 0px 5px;border: 1px solid gray;background-color: transparent; color: black;font-size: 15px;">Map View</button>
+                    <button type="button" id="LM_ListViewBtn" class="mypopupbtncls btn" style="width:50%;border: 1px solid gray;border-radius: 0px 5px 5px 0px;background-color: transparent; color: black;font-size: 15px;">List View</button>
+                </div>
+            </div>
+            <div class="col-sm-2">&nbsp;</div>
+        </div>
+        <div class="col-sm-12" id="buyerdetails_div" style="display:none;height:79vh;border-right:1px solid gray;top:10px">
+            <form>
+                <div class="col-sm-1">&nbsp;</div>
+                <div class="col-sm-10" style="padding:20px;">
+                    <div class="col-sm-12">
+                        <label class="labelText">Agent:</label>
+                        <select class="selectpicker form-control" id="bd_selected_agents"></select>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:25px">
+                        <label class="labelText">Buyer Customer:</label>
+                        <select class="selectpicker form-control" id="bd_selected_buyers" data-live-search="true">
+                            <option>Select Buyer</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:25px">
+                        <div class="col-sm-12" style="padding:0"> <label class="labelText">Date Range</label></div>
+                        <div class="col-sm-2" style="padding:0">
+                            <div class="right-inner-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <input type="text" id="bd_fromdate" class="form-control" placeholder="00/00/0000" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-1" style="text-align:center;line-height:2">to</div>
+                        <div class="col-sm-2" style="padding:0">
+                            <div class="right-inner-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <input type="text" id="bd_todate" class="form-control" placeholder="00/00/0000" readonly disabled="disabled" required />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="margin-top:10%">
+                    <hr style="border:1px solid #ff5d26;" />
+                </div>
+                <div class="col-sm-1">&nbsp;</div>
+                <div class="col-sm-10">
+                    <div class="col-sm-3">
+                        <button type="reset" class="btn btn-default form-control btngray" id="bd_resetfields">Reset Fields</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" id="RunBDReportBtn" class="btn btn-default form-control btnorange">Run Report</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12" id="listingetails_div" style="display:none;height:79vh;border-right:1px solid gray;top:10px">
+            <form>
+                <div class="col-sm-1">&nbsp;</div>
+                <div class="col-sm-10" style="padding:20px;">
+                    <div class="col-sm-12" style="margin-top:5px">
+                        <div class="col-sm-12" style="padding:0"> <label class="labelText">Status:</label></div>
+                        <div class="col-sm-2" style="padding:0">
+                            <select class="selectpicker form-control" id="ld_listingstatus">
+                                <option value="All">Any</option>
+                                <option value="Active">Active</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Sold">Sold</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:10px">
+                        <label class="labelText">Agent:</label>
+                        <select class="selectpicker form-control" id="Ld_selected_agents"></select>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:25px">
+                        <label class="labelText">Listing:</label>
+                        <select class="selectpicker form-control" id="Ld_selected_listing" data-live-search="true"></select>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:25px">
+                        <div class="col-sm-12" style="padding:0"> <label class="labelText">Date Range</label></div>
+                        <div class="col-sm-2" style="padding:0">
+                            <div class="right-inner-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <input type="text" id="ld_fromdate" class="form-control" placeholder="00/00/0000" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-1" style="text-align:center;line-height:2">to</div>
+                        <div class="col-sm-2" style="padding:0">
+                            <div class="right-inner-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <input type="text" id="ld_todate" class="form-control" placeholder="00/00/0000" readonly disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="margin-top:8%">
+                    <hr style="border:1px solid #ff5d26;" />
+                </div>
+                <div class="col-sm-1">&nbsp;</div>
+                <div class="col-sm-10">
+                    <div class="col-sm-3">
+                        <button type="reset" class="btn btn-default form-control btngray" id="LD_ResetBtn">Reset Fields</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" id="RunLDReportBtn" class="btn btn-default form-control btnorange">Run Report</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-2" style="text-align:center;padding:0;width:20%">
+        <div class="col-sm-12 sidelist selectedlist" id="bm" style="padding:10px;border-bottom:1px solid lightgray;cursor:pointer">
+            <div class="col-sm-1">
+                <img src="~/img/buyermetricsrepors.png" style="float:left;margin-bottom:0" />
+            </div>
+            <div class="col-sm-8" style="padding-top:3px">
+                <label style="font-weight:bold;font-size:14px;padding-left:10px;cursor:pointer">Buyer Metrics</label>
+            </div>
+        </div>
+        <div class="col-sm-12 sidelist" id="lm" style="padding:10px;border-bottom:1px solid lightgray;cursor:pointer">
+            <div class="col-sm-1">
+                <img src="~/img/listingmetricsreports.png" style="float:left;margin-bottom:0" />
+            </div>
+            <div class="col-sm-8" style="padding-top:3px">
+                <label style="font-weight:bold;font-size:14px;padding-left:10px;cursor:pointer">Listing Metrics</label>
+            </div>
+        </div>
+        <div class="col-sm-12 sidelist" id="bd" style="padding:10px;border-bottom:1px solid lightgray;cursor:pointer" onclick="getMyAgents_BuyerMetrics('buyerdetails')">
+            <div class="col-sm-1">
+                <img src="~/img/Buyer_Details_icon.png" style="float:left;margin-bottom:0" />
+            </div>
+            <div class="col-sm-8" style="padding-top:3px">
+                <label style="font-weight:bold;font-size:14px;padding-left:10px;cursor:pointer" onclick="getMyAgents_BuyerMetrics('buyerdetails')">Buyer Details</label>
+            </div>
+        </div>
+        <div class="col-sm-12 sidelist" id="ld" style="padding:10px;border-bottom:1px solid lightgray;cursor:pointer" onclick="getMyAgents_BuyerMetrics('listingdetails')">
+            <div class="col-sm-1">
+                <img src="~/img/Listing_Details.png" style="float:left;margin-bottom:0" />
+            </div>
+            <div class="col-sm-8" style="padding-top:3px">
+                <label style="font-weight:bold;font-size:14px;padding-left:10px;cursor:pointer" onclick="getMyAgents_BuyerMetrics('listingdetails')">Listing Details</label>
+            </div>
+        </div>
+    </div>
+</div>
+@*Buyer Metrics Filter Popup*@
+<div class="modal fade" id="BuyerMetricsFilterPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="width: 35%">
+        <div class="modal-content">
+            <form action="">
+                <div class="modal-header" style="border-radius: 5px 5px 0 0;padding-right: 17%;text-align: center;color:#fff;background-color:#ff5d26;height:45px;padding-top:7px;">
+                    <button type="reset" class="btn btn-sm" id="bm_filters_resetbtn" style="padding:1px 25px; border-radius: 5px;float:left;border: 1px solid #fff;background-color: transparent; color: #fff;font-size: 15px;">
+                        Reset
+                    </button>
+                    <label id="" style="font-size:18px!important">
+                        Buyer Metrics Filters
+                    </label>
+                    <hr style="color:#ff6937;border: 0.5px solid;margin-top:5px;margin-bottom:10px" />
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="modal-body" style="padding-bottom:5px!important;padding-top:5px!important">
+                    <div class="col-md-12" style="padding:0">
+                        <label class="labelpopups col-sm-3" id="" style="top:8px;word-wrap:break-word;font-size:14px;">
+                            Status:
+                        </label>
+                        <div class="col-md-3">
+                            <div class="dropdown">
+                                <button class="btn btn-primary btn-sm dropdown-toggle" id="bmf_buyerstatusBtn" type="button" data-toggle="dropdown" style="width:159px;text-align:left;background-color:transparent!important;color:black;border:1px solid #ff5d26">
+                                    <span id="bmf_statustext">Any</span>
+                                    <span class="caret" style="float:right;margin-top:8px"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" style="padding: 5px 10px;border-bottom:1px solid lightgray"><input type="radio" name="bmf_status" value="Active" />&nbsp;Active</a></li>
+                                    <li><a href="#" style="padding: 5px 10px;border-bottom:1px solid lightgray"><input type="radio" name="bmf_status" value="Inactive" />&nbsp;Inactive</a></li>
+                                    <li><a href="#" style="padding: 5px 10px;"><input type="radio" name="bmf_status" value="Both" />&nbsp;&nbsp;Both</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <label id="errorMessageforMLSID" style="color:red"></label>
+                    <div class="col-md-12" style="margin-top:10px">
+                        <label class="labelpopups" id="" style="word-wrap:break-word;font-size:14px;">
+                            Select Agent(s):
+                        </label>
+                    </div>
+                    <div class="col-md-12" style="">
+                        <input type="search" id="bmf_agents" required class="form-control" placeholder="Select.." onfocus="onfocusforAgents(this.id)" readonly />
+                    </div>
+                    <div class="col-md-12" style="margin-top:10px">
+                        <label class="labelpopups" id="" style="word-wrap:break-word;font-size:14px;">
+                            Select Buyer(s):
+                        </label>
+                    </div>
+                    <div class="col-md-12" style="">
+                        <input type="search" id="bmf_buyers" class="form-control" placeholder="Select.." onfocus="onfocusforBuyers(this.id)" readonly />
+                    </div>
+                    <div class="col-md-12" style="margin-top:10px!important">
+                        <hr style="border:1px solid gray;" />
+                    </div>
+                    <div class="col-sm-12" style="">
+                        <div class="col-sm-12" style="padding:0"> <label class="labelpopups">Date Range</label></div>
+                        <div class="col-sm-2" style="text-align:center;line-height:2">From</div>
+                        <div class="col-sm-3" style="padding:0">
+                            <div class="right-inner-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <input type="text" id="bmf_fromdate" class="form-control" placeholder="00/00/0000" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-1" style="text-align:center;line-height:2">to</div>
+                        <div class="col-sm-3" style="padding:0">
+                            <div class="right-inner-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <input type="text" id="bmf_todate" class="form-control" placeholder="00/00/0000" readonly disabled="disabled" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:15px;">
+                        <div class="col-sm-12" style="padding:0"> <label class="labelpopups">Listing Price Range</label></div>
+                        <div class="col-sm-2" style="text-align:center;line-height:2">From</div>
+                        <div class="col-sm-3" style="padding:0">
+                            <input type="text" id="bmf_fromprice" class="form-control" placeholder="$" />
+                        </div>
+                        <div class="col-sm-1" style="text-align:center;line-height:2">to</div>
+                        <div class="col-sm-3" style="padding:0">
+                            <input type="text" id="bmf_toprice" class="form-control" placeholder="$" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="padding:10px"><hr style="border:0.5px solid lightgray;" /></div>
+                    <div class="modal-footer">
+                        <div class="col-sm-6" style="text-align:left">
+                            <button type="button" class="mypopupbtncls btn" data-dismiss="modal" style="padding:5px 25px; border-radius: 5px;background-color: gray; color: white;font-size: 15px;">Cancel</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" id="ApplyBuyerMetricsFilters_Btn" class="mypopupbtncls btn" style="padding:5px 25px;border-radius:5px;background-color: #FF6937; color: white;font-size: 15px;">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@*Listing Metrics Filter Popup*@
+<div class="modal fade" id="ListingMetricsFilterPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 8%; width: 35%">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header" style="border-radius: 5px 5px 0 0;padding-right: 17%;text-align: center;color:#fff;background-color:#ff5d26;height:45px;padding-top:7px;">
+                    <button type="reset" class="btn btn-sm" id="lm_filters_resetbtn" style="padding:1px 25px; border-radius: 5px;float:left;border: 1px solid #fff;background-color: transparent; color: #fff;font-size: 15px;">
+                        Reset
+                    </button>
+                    <label id="" style="font-size:18px!important">
+                        Lisitng Metrics Filters
+                    </label>
+                    <hr style="color:#ff6937;border: 0.5px solid;margin-top:5px;margin-bottom:10px" />
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="modal-body" style="padding-bottom:5px!important;padding-top:5px!important">
+                    <div class="col-md-12" style="padding:0">
+                        <label class="labelpopups col-sm-3" id="" style="top:8px;word-wrap:break-word;font-size:14px;">
+                            Status:
+                        </label>
+                        <div class="col-md-3">
+                            @Html.DropDownList("lmf_status", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Active", Value = "For Sale" },
+                                                new SelectListItem{ Text="Pending", Value = "Contingent" },
+                                                new SelectListItem{ Text="Sold", Value = "Sold" },
+                                             }
+                                             , new { @class = "form-control", multiple = "multiple" })
+                        </div>
+                    </div>
+                    <label id="errorMessageforMLSID" style="color:red"></label>
+                    <div class="col-md-12" style="margin-top:10px">
+                        <label class="labelpopups" id="" style="word-wrap:break-word;font-size:14px;">
+                            Select Agent(s):
+                        </label>
+                    </div>
+                    <div class="col-md-12" style="">
+                        <input type="search" id="lmf_agents" class="form-control" placeholder="Select.." onfocus="onfocusforAgents(this.id)" readonly />
+                    </div>
+                    <div style="display:none">
+                        <div class="col-md-12" style="margin-top:10px">
+                            <label class="labelpopups" id="" style="word-wrap:break-word;font-size:14px;">
+                                Select Buyer(s):
+                            </label>
+                        </div>
+                        <div class="col-md-12" style="">
+                            <input type="search" id="lmf_buyers" class="form-control" placeholder="Select.." onfocus="onfocusforBuyers(this.id)" readonly />
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top:10px!important">
+                        <hr style="border:1px solid gray;" />
+                    </div>
+                    <div class="col-sm-12" style="">
+                        <div class="col-sm-12" style="padding:0"> <label class="labelpopups">Date Range</label></div>
+                        <div class="col-sm-2" style="text-align:center;line-height:2">From</div>
+                        <div class="col-sm-3" style="padding:0">
+                            <div class="right-inner-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <input type="text" id="lmf_fromdate" class="form-control" placeholder="00/00/0000" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-1" style="text-align:center;line-height:2">to</div>
+                        <div class="col-sm-3" style="padding:0">
+                            <div class="right-inner-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <input type="text" id="lmf_todate" class="form-control" placeholder="00/00/0000" readonly disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:15px;">
+                        <div class="col-sm-12" style="padding:0"> <label class="labelpopups">Listing Price Range</label></div>
+                        <div class="col-sm-2" style="text-align:center;line-height:2">From</div>
+                        <div class="col-sm-3" style="padding:0">
+                            <input type="text" id="lmf_fromprice" class="form-control" placeholder="$" />
+                        </div>
+                        <div class="col-sm-1" style="text-align:center;line-height:2">to</div>
+                        <div class="col-sm-3" style="padding:0">
+                            <input type="text" id="lmf_toprice" class="form-control" placeholder="$" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="padding:10px"><hr style="border:0.5px solid lightgray;" /></div>
+                    <div class="modal-footer">
+                        <div class="col-sm-6" style="text-align:left">
+                            <button type="button" class="mypopupbtncls btn" data-dismiss="modal" style="padding:5px 25px; border-radius: 5px;background-color: gray; color: white;font-size: 15px;">Cancel</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" id="ApplyListingMetricsFilters_Btn" class="mypopupbtncls btn" style="padding:5px 25px;border-radius:5px;background-color: #FF6937; color: white;font-size: 15px;">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="SelectBuyersPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 8%; width: 25%">
+        <div class="modal-content">
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="modal-body" style="padding:25px">
+                <div class="col-sm-12" style="padding-left:0">Select Buyer(s):</div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12" style="border:1px inset rgba(0,0,0,0.3);min-height:150px!important">
+                    <div id="buyersofmyagents_div" class="scrolls_divs_gray" style="border-radius:5px;padding-left:0!important;padding-right:10px!important;min-height:150px!important;max-height:150px!important;overflow-y:auto;display:block;position:relative;box-shadow:0px 0px 0px 0px!important;margin-top:6px!important">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="modal-footer">
+                <div class="col-sm-6" style="text-align:left">
+                    <button type="button" class="mypopupbtncls btn" data-dismiss="modal" id="" style="padding:5px 25px; border-radius: 5px;background-color: gray; color: white;font-size: 15px;">Cancel</button>
+                </div>
+                <div class="col-sm-6">
+                    <button type="button" id="BtnSelectedMyBuyers" onclick="appendBuyersinTextBox()" class="mypopupbtncls btn" style="padding:5px 25px;border-radius:5px;background-color: #FF6937; color: white;font-size: 15px;">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="SelectAgentsPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 8%; width: 25%">
+        <div class="modal-content">
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="modal-body" style="padding:25px">
+                <div class="col-sm-12" style="padding-left:0">Select Agent(s):</div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12" style="border:1px inset rgba(0,0,0,0.3);min-height:150px!important">
+                    <div id="myagents_div" class="scrolls_divs_gray" style="border-radius:5px;padding-left:0!important;padding-right:0!important;min-height:150px!important;max-height:150px!important;overflow-y:auto;display:block;position:relative;box-shadow:0px 0px 0px 0px!important;margin-top:6px!important">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="modal-footer">
+                <div class="col-sm-6" style="text-align:left">
+                    <button type="button" class="mypopupbtncls btn" data-dismiss="modal" id="" style="padding:5px 25px; border-radius: 5px;background-color: gray; color: white;font-size: 15px;">Cancel</button>
+                </div>
+                <div class="col-sm-6">
+                    <button type="button" id="BtnSelectedMyAgents" onclick="appenAgentsinTextBox()" class="mypopupbtncls btn" style="padding:5px 25px;border-radius:5px;background-color: #FF6937; color: white;font-size: 15px;">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Add Note PopUp*@
+<div class="modal fade" id="ViewNotesPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px;z-index:2000">
+    <div class="modal-dialog" role="document" style="padding-top: 10%; width: 28%">
+        <div class="modal-content">
+            <div class="col-sm-12" style="top:6px;">
+                <a href="#" class="close" data-dismiss="modal" style="float:right;opacity:2">
+                    <img src="~/img/close_orange.png" />
+                </a>
+            </div>
+            <div class="col-sm-12" style="color:#ff5d26">Notes:</div>
+            <div class="col-sm-12" style="margin-top:10px;">
+                <div class="col-sm-12" id="notes" style="overflow-x:hidden;overflow-y:auto;max-height:200px; min-height:200px!important;border: 1px solid #f56331;background-color: rgba(245, 99, 49, 0.12);">
+                </div>
+            </div>
+            <div class="col-sm-12">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+@*Buyer Details  Reports Popup*@
+<div class="modal fade" id="BuyerDetailReports" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 5%; width: 45%">
+        <div class="modal-content">
+            <div class="modal-header" style="border-radius: 5px 5px 0 0;text-align: center;color:#fff;background-color:#ff5d26;height:45px;padding-top:7px;">
+                <button type="button" class="btn btn-sm" id="filterbtn" style="display:none;padding:1px 15px; border-radius: 5px;float:left;border: 1px solid #fff;background-color: transparent; color: #fff;font-size: 15px;">
+                    Download<i class="fa fa-file-text-o" style="padding-left:10px"></i>
+                </button>
+                <label id="" style="font-size:18px!important">
+                    Buyer Details Report
+                </label>
+                <img src="~/img/close_Popup_icon.png" class="close" data-dismiss="modal" style="opacity:1.2 !important" />
+            </div>
+            <div class="modal-body" style="padding:0">
+                <div class="col-sm-12" style="padding:0;">
+                    <div class="col-sm-6" style="padding:0;background-color:#fff;height:110px;color:black;border-bottom:2px solid #ff5d26">
+                        <div class="col-sm-3" style="margin-top:10px;">
+                            <img src="~/img/addphotopic.png" id="bdr_photo" style="height:60px;width:60px;border-radius:50px;" />
+                        </div>
+                        <div class="col-sm-7" style="padding:0;margin-top:10px;">
+                            <div class="col-sm-12" style="color:#ff5d26;" id="bdr_type">Buyer</div>
+                            <label hidden="hidden" id="bdr_hidden_buyerid"></label>
+                            <div class="col-sm-12 textlimit" style="font-size:17px;font-weight:bold" id="bdr_name">Sam Broyles</div>
+                            <div class="col-sm-12" style="" id="bdr_mobile">(864)-123 1234</div>
+                        </div>
+                        <div class="col-sm-2" style="padding:10px">
+                            <img src="~/img/chat8.png" style="cursor:pointer" class="bdr_buyerchat" />
+                        </div>
+                        <div class="col-sm-12" style="text-align:right">
+                            <button type="button" class="btn btn-sm" id="bdr_viewnotes" data-toggle="modal" data-target="#ViewNotesPopup" style="padding:1px 10px; border-radius: 5px;border: 1px solid #ff5d26;background-color: transparent; color: #ff5d26;font-size: 15px;">
+                                View Notes
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="padding:0;background-color:#99A3A4;height:110px;color:#000000" id="bdr_agentdiv">
+                        <div class="col-sm-3" style="margin-top:10px;">
+                            <img src="~/img/addphotopic.png" id="bdr_agentphoto" style="height:60px;width:60px;border-radius:50px;" />
+                        </div>
+                        <div class="col-sm-7" style="padding:0">
+                            <div class="col-sm-12" style="color:#ff5d26;margin-top: 10px;" id="bdr_agent">Buyer Agent</div>
+                            <label hidden="hidden" id="bdr_hidden_agentid"></label>
+                            <div class="col-sm-12" style="font-size:17px;font-weight:bold" id="bdr_agentname">Bob Morgan</div>
+                            <div class="col-sm-12" style="" id="bdr_agetaddr1">
+                                Berkshire Hathway<br />
+                                Home SErvices, C. Dan Joyner
+                                REALTORS
+                            </div>
+                        </div>
+                        <div class="col-sm-2" style="padding:8px;" id="bdr_agentchatdiv">
+                            <img src="~/img/chat_icon_agent.png" style="cursor:pointer;width:28px;" class="bdr_agentchat" />
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding:2px;background-color:#FFE0D6">
+                        <div class="col-md-6" style="line-height:3">
+                            <label style="color:#ff5d26">Dates Active   : &nbsp;&nbsp;<i class="fa fa-calendar"></i></label>
+                            <label id="bdr_agentdates">13/01/2018 - 13/03/2018</label>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="col-md-6" style="line-height:3;text-align:right">
+                                <label style="color:#ff5d26">Days Active:</label>
+                            </div>
+                            <div class="col-md-6" style="top:3px;">
+                                <input type="search" id="bdr_noofdays" class="form-control" placeholder="80" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 grayheadings" style="padding-left:15px;text-align:left;">
+                        Buyer Reports
+                    </div>
+                    <div class="col-md-9" style="border-right:2px solid #ff6937">
+                        <div class="col-md-12" style="color:#ff5d26;padding:10px">
+                            Price Range of Showings.
+                        </div>
+                        <div class="col-sm-2" style="text-align:center;line-height:2">From</div>
+                        <div class="col-sm-4" style="padding:0">
+                            <input type="text" id="bdr_pricefrom" class="form-control" readonly />
+                        </div>
+                        <div class="col-sm-1" style="text-align:center;line-height:2">to</div>
+                        <div class="col-sm-4" style="padding:0">
+                            <input type="text" id="bdr_priceto" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-12">
+                            <hr />
+                        </div>
+                        <div class="col-md-7" style="color:#ff5d26;line-height:3">
+                            Listings moved to Closer
+                        </div>
+                        <div class="col-sm-2" style="padding:0">
+                            <input type="text" id="bdr_noofclosings" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-12">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="text-align:center;line-height:6">
+                        <div class="col-sm-12" style="font-weight:bold">Total Showings</div>
+                        <div class="col-sm-2">&nbsp;</div>
+                        <div class="col-sm-8">
+                            <input type="text" id="bdr_totalshowings" class="form-control" readonly />
+                        </div>
+                    </div>
+                    <div style="display:none">
+                        <div class="col-md-12 grayheadings" style="padding-left:15px;text-align:left;">
+                            Buyer Reports
+                        </div>
+                        <div class="col-sm-12" style="text-align:center;color:green">
+                            <h3>Detailed report will available soon!</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    &nbsp;
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Listing Detail Reports Popup*@
+<div class="modal fade" id="ListingDetailReports" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 1%; width: 45%">
+        <div class="modal-content">
+            <div class="modal-header" style="border-radius: 5px 5px 0 0;text-align: center;color:#fff;background-color:#ff5d26;height:45px;padding-top:7px;">
+                <button type="button" class="btn btn-sm" id="filterbtn" style="display:none; padding:1px 15px; border-radius: 5px;float:left;border: 1px solid #fff;background-color: transparent; color: #fff;font-size: 15px;">
+                    Download<i class="fa fa-file-text-o" style="padding-left:10px"></i>
+                </button>
+                <label id="" style="font-size:18px!important">
+                    Listing Details Report
+                </label>
+                <button type="button" class="close" data-dismiss="modal" style="float:right;opacity:2" aria-label="Close">
+                    <img src="~/img/close_Popup_icon.png" style="" />
+                </button>
+            </div>
+            <div class="modal-body" style="padding:0">
+                <div class="col-sm-12" style="padding:0;">
+                    <div class="col-sm-6" style="padding:20px;border-right:1px solid #ff5d26;background-color:#fff;height:160px;color:black;border-bottom:2px solid #ff5d26">
+                        <div class="col-sm-5" style="padding:0;">
+                            <div class="col-sm-12" id="ldr_listingphoto" style="height: 125px; position: relative; background-image: url(/img/NoImage.png); background-size: 100% 100%;">
+                            </div>
+                        </div>
+                        <div class="col-sm-7" style="margin-top:16px">
+                            <div class="col-sm-12" style="color:#ff5d26;font-size:15px;font-weight:bold">
+                                <img src="~/img/green_legend_Menu.png" style="margin-bottom:0" id="ldr_listingtypemarker" /> &nbsp;<span id="ldr_listingPrice"></span>
+                            </div>
+                            <div class="col-sm-12 textlimit" id="ldr_listingAddr1" style="font-size:15px;font-weight:bold"></div>
+                            <div class="col-sm-12" id="ldr_listingAddr2" style="font-size:14px;"></div>
+                            <div class="col-sm-12" id="ldr_listingmlsid" style="font-size:14px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="padding:0;height:160px;border-bottom:2px solid #ff5d26">
+                        <div class="col-sm-12" style="padding:0;background-color:#99A3A4;color:#000000;height:80px;" id="ldr_agentdiv">
+                            <div class="col-sm-3" style="margin-top:10px;">
+                                <img src="~/img/addphotopic.png" id="ldr_photo" style="height:50px;width:50px;border-radius:50px;" />
+                            </div>
+                            <div class="col-sm-7" style="padding:0">
+                                <label hidden="hidden" id="ldr_hidden_agentid"></label>
+                                <label hidden="hidden" id="ldr_hidden_agentmobile"></label>
+                                <label hidden="hidden" id="ldr_hidden_agentmail"></label>
+                                <div class="col-sm-12" style="color:#ff5d26;margin-top:10px;" id="ldr_agent">Listing Agent</div>
+                                <div class="col-sm-12" style="font-size:17px;font-weight:bold" id="ldr_agentname">Bob Morgan</div>
+                                <div class="col-sm-12" style="" id="ldr_agetaddr1">
+                                    Berkshire Hathway<br />
+                                    Home SErvices, C. Dan Joyner
+                                    REALTORS
+                                </div>
+                            </div>
+                            <div class="col-sm-2" style="padding:8px;">
+                                <img src="~/img/chat_icon_agent.png" style="cursor:pointer;width:28px;" id="ldr_chaticon" class="ldr_listingagentchat" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="padding:0;" id="ldr_sellerdiv">
+                            <div class="col-sm-3" style="margin-top:10px;">
+                                <img src="~/img/addphotopic.png" id="ldr_sellerphoto" style="height:50px;width:50px;border-radius:50px;" />
+                            </div>
+                            <div class="col-sm-7" style="padding:0;margin-top:10px;">
+                                <div class="col-sm-12" style="color:#ff5d26" id="ldr_type">Seller</div>
+                                <label hidden="hidden" id="ldr_hidden_sellerid"></label>
+                                <div class="col-sm-12 textlimit" style="font-size:17px;font-weight:bold" id="ldr_sellername">Sam Broyles</div>
+                            </div>
+                            <div class="col-sm-2" style="padding:10px">
+                                <img src="~/img/chat8.png" style="cursor:pointer" class="ldr_selleragentchat" />
+                            </div>
+                            <div class="col-sm-12" style="text-align:center">
+                                <label id="ldr_sellermobile" style="margin-left:9%">(864)-123 1234</label>
+                                <button type="button" class="btn btn-sm" id="ldr_viewnotes" data-toggle="modal" data-target="#ViewNotesPopup" style="float:right;padding:0px 10px; border-radius: 5px;border: 1px solid #ff5d26;background-color: transparent; color: #ff5d26;">
+                                    View Notes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 grayheadings" style="padding-left:15px;text-align:left;">
+                        Listing Reports:
+                    </div>
+                    <div class="col-md-12" style="margin-top:10px;">
+                        <div class="col-sm-4 lr_tabledivs" style="background-color:#fff">
+                            <div class="col-sm-12">
+                                <label class="centerlabels">Original Sale Price</label>
+                            </div>
+                            @*<div class="col-sm-2"></div>*@
+                            <div class="col-sm-12" style="bottom:5px">
+                                <input type="search" id="ldr_originalprice" class="form-control" placeholder="" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 lr_tabledivs" style="background-color:#fff">
+                            <div class="col-sm-12">
+                                <label class="centerlabels">Final Sale Price</label>
+                            </div>
+                            @*<div class="col-sm-2"></div>*@
+                            <div class="col-sm-12" style="bottom:5px">
+                                <input type="search" id="ldr_finalsaleprice" class="form-control" placeholder="" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 lr_tabledivs" style="background-color:#fff">
+                            <div class="col-sm-12">
+                                <label class="centerlabels">Sold Price</label>
+                            </div>
+                            @*<div class="col-sm-2"></div>*@
+                            <div class="col-sm-12" style="bottom:5px">
+                                <input type="search" id="ldr_soldprice" class="form-control" placeholder="" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="">
+                        <div class="col-sm-4 lr_tabledivs" style="background-color:#fff">
+                            <div class="col-sm-12">
+                                <label class="centerlabels">Listed Date</label>
+                            </div>
+                            @*<div class="col-sm-2"></div>*@
+                            <div class="col-sm-12" style="bottom:5px">
+                                <input type="search" id="ldr_listeddate" class="form-control" placeholder="" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 lr_tabledivs" style="background-color:#fff">
+                            <div class="col-sm-12">
+                                <label class="centerlabels">Sold Date</label>
+                            </div>
+                            @*<div class="col-sm-2"></div>*@
+                            <div class="col-sm-12" style="bottom:5px">
+                                <input type="search" id="ldr_solddate" class="form-control" placeholder="" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 lr_tabledivs" style="background-color:#fff">
+                            <div class="col-sm-12">
+                                <label class="centerlabels">Days on Market</label>
+                            </div>
+                            @*<div class="col-sm-2"></div>*@
+                            <div class="col-sm-12" style="bottom:5px">
+                                <input type="search" id="ldr_daysonmarket" class="form-control" placeholder="" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-bottom:10px;">
+                        <div class="col-sm-4 lr_tabledivs" style="background-color:#fff">
+                            <div class="col-sm-12">
+                                <label class="centerlabels"># of Showings</label>
+                            </div>
+                            @*<div class="col-sm-2"></div>*@
+                            <div class="col-sm-12" style="bottom:5px">
+                                <input type="search" id="ldr_noofshowings" class="form-control" placeholder="" readonly />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 lr_tabledivs" style="background-color:#fff">
+                            <div class="col-sm-12">
+                                <label class="centerlabels"># of Open Houses</label>
+                            </div>
+                            @*<div class="col-sm-2"></div>*@
+                            <div class="col-sm-12" style="bottom:5px">
+                                <input type="search" id="ldr_noofopenhouses" class="form-control" placeholder="" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:none">
+                        <div class="col-md-12 grayheadings" style="padding-left:15px;text-align:left;">
+                            Listing Activity:
+                        </div>
+                        <div class="col-sm-12" style="text-align:center;color:green">
+                            <h3>Detailed Listing report will available soon!</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    &nbsp;
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Listing Agent Metric Map and List View Detail View Reports Popup*@
+<div class="modal fade" id="BuyerAgentMetrics_Map_ListView_Popup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 1%; width: 55%">
+        <div class="modal-content">
+            <div class="modal-header" style="border-radius: 5px 5px 0 0;text-align: center;color:#fff;background-color:#ff5d26;height:45px;padding-top:7px;">
+                <img src="~/img/listviewbtn.png" style="cursor:pointer;float:left" id="BAM_mapandlistview" />
+                <label id="" style="font-size:18px!important;margin-right: 14%;">
+                    Buyer Agent Metrics
+                </label>
+                <button type="button" class="close" data-dismiss="modal" style="float:right;opacity:1">
+                    <img src="~/img/close_Popup_icon.png" />
+                </button>
+            </div>
+            <div class="modal-body" style="padding:3px">
+                <div id="BAM_map_panel" style="height:550px">
+                    @*<div class="col-sm-12"  style="padding:0;">
+                        <div class="col-sm-4"></div>
+                      
+                    </div>*@
+                    <div class="col-sm-offset-4 col-sm-4" id="floating-panel" style="padding:0;background-color:lightgray;text-align:center;padding:0;line-height:3;border-radius: 0 0 5px 5px;">
+                        <div class="col-sm-4" style="padding:0;">
+                            <img src="~/img/viewed_redpin.png" />&nbsp;
+                            <label>Sold</label>
+                        </div>
+                        <div class="col-sm-3" style="top: 8px;padding:0px;">
+                            <label class="switch">
+                                <input type="checkbox" id="bm_map_checkbox">@*right:-15px !important*@
+                                <span class="roundslider round" style=""></span>
+                            </label>
+                        </div>
+                        <div class="col-sm-4" style="padding:0">
+                            <label>Sold & Shown</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="BAM_mapviewinpopup" style="height:600px;padding:0;">
+                    </div>
+                </div>
+                <div class="col-md-12" id="BAM_listviewinpopup" style="height:600px;padding:0;display:none">
+                    <div class="col-sm-12" style="background-color:lightgray;text-align:center;padding:0;line-height:3;border-radius: 0 0 5px 5px;">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-6" style="width:37%">
+                            <div class="col-sm-4" style="padding:0">
+                                <img src="~/img/viewed_redpin.png" />&nbsp;
+                                <label>Sold</label>
+                            </div>
+                            <div class="col-sm-4" style="top: 8px;">
+                                <label class="switch">
+                                    <input type="checkbox" id="bm_listview_checkbox">
+                                    <span class="roundslider round"></span>
+                                </label>
+                            </div>
+                            <div class="col-sm-4" style="padding:0;">
+                                <label>Sold & Shown</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 scrolls_divs" id="BAM_listview_data" style="overflow:auto;min-height:500px;max-height:510px;padding:5px;">
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding:3px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Listing Agent Metric Map and List View Detail View Reports Popup*@
+<div class="modal fade" id="ListingAgentMetrics_Map_ListView_Popup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 1%; width: 55%">
+        <div class="modal-content">
+            <div class="modal-header" style="border-radius: 5px 5px 0 0;text-align: center;color:#fff;background-color:#ff5d26;height:45px;padding-top:7px;">
+                <img src="~/img/listviewbtn.png" style="cursor:pointer;float:left" id="LAM_mapandlistview" />
+                <label id="" style="font-size:18px!important;margin-right: 14%;">
+                    Listing Agent Metrics
+                </label>
+                <button type="button" class="close" data-dismiss="modal" style="float:right;opacity:1">
+                    <img src="~/img/close_Popup_icon.png" />
+                </button>
+            </div>
+            <div class="modal-body" style="padding:3px">
+                <div id="LAM_map_panel" style="height:550px">
+                    <div class="col-sm-12" id="floating-panel" style="padding:0;">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4" style="background-color:lightgray;text-align:center;padding:0;line-height:3;border-radius: 0 0 5px 5px;">
+                            <div class="col-sm-4" style="padding:0">
+                                <label>All Listings</label>
+                            </div>
+                            <div class="col-sm-3" style="top: 8px;">
+                                <label class="switch">
+                                    <input type="checkbox" id="lm_map_checkbox">
+                                    <span class="roundslider round" style="right:-15px !important"></span>
+                                </label>
+                            </div>
+                            <div class="col-sm-5" style="padding:0;">
+                                <img src="~/img/viewed_redpin.png" />&nbsp;
+                                <label>Only Sold</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="LAM_mapviewinpopup" style="height:600px;padding:0;">
+                    </div>
+                </div>
+                <div class="col-md-12" id="LAM_listviewinpopup" style="height:600px;padding:0;display:none">
+                    <div class="col-sm-12" style="background-color:lightgray;text-align:center;padding:0;line-height:3;border-radius: 0 0 5px 5px;">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-6" style="width:40%">
+                            <div class="col-sm-4" style="padding:0">
+                                <label>All Listings</label>
+                            </div>
+                            <div class="col-sm-4" style="top: 8px;">
+                                <label class="switch">
+                                    <input type="checkbox" id="lm_listview_checkbox">
+                                    <span class="roundslider round"></span>
+                                </label>
+                            </div>
+                            <div class="col-sm-4" style="padding:0;">
+                                <img src="~/img/viewed_redpin.png" />&nbsp;
+                                <label>Only Sold</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 scrolls_divs" id="LAM_listview_data" style="overflow:auto;min-height:500px;max-height:510px;padding:5px;">
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding:3px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //$ ' + (item.PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+    var type = "Buyer Metrics", MyAgetId = "";
+    var selectedagents_text = [], selectedagents_val = [], selectedbuyers_text = [], selectedbuyers_val = [];
+    var buyerstatus = "", agentsControl = "", buyersControl = "";
+    var buyerMetricsObject = [], bm_mapstatus = "False", lm_filterstatus = "Any";
+    var LMFiltersObj = [];
+    //define Multi Select in listing Metrics Status dropdown
+    $('#lmf_status').multiselect({
+        nonSelectedText: 'Any ',
+        numberDisplayed: 1,
+        includeSelectAllOption: true,
+        allSelectedText: 'Any',
+        selectAllText: 'Any',
+    });
+    //$(".dropdown-menu>li>a").click(function () {
+    //    $("#bmf_buyerstatusBtn").html($(this).text().trim() + ' ' + "<span class='caret' style='float:right;margin-top:8px'></span>");
+    //    $("input[name=bmf_status][value=" + $(this).text().trim() + "]").attr('checked', 'checked');
+    //})
+    //DAte Comparision and Validations
+    $("#bmf_fromdate,#lmf_fromdate,#ld_fromdate,#bd_fromdate").datepicker({
+        beforeShow: function (input, inst) {
+            inst.dpDiv.css({ marginLeft: '-75px' });
+        },
+        dateFormat: 'mm/dd/yy',
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        onSelect: function (date) {
+            $("#" + $(this).attr("id").split('_')[0] + "_todate").removeAttr('disabled');
+            $("#" + $(this).attr("id").split('_')[0] + "_todate").removeAttr('readonly');
+            $("#" + $(this).attr("id").split('_')[0] + "_todate").datepicker("option", { minDate: new Date(date) })
+        },
+    })
+    $("#bmf_todate,#lmf_todate,#ld_todate,#bd_todate").datepicker({
+        beforeShow: function (input, inst) {
+            inst.dpDiv.css({ marginLeft: '-75px' });
+        },
+        dateFormat: 'mm/dd/yy',
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+
+        onSelect: function () {
+            $("#" + $(this).attr("id")).attr('readonly', true);
+        },
+    })
+    //Price Compparison and Validations
+    $("#bmf_fromprice,#bmf_toprice,#lmf_toprice,#lmf_fromprice").keypress(function (e) {
+        var keyCode = e.which;
+        /*8 - (backspace)32 - (space)48-57 - (0-9)Numbers*/
+        if (this.value.length == 0 && keyCode == 48) {
+            return false;
+        }
+        else {
+            if ((keyCode != 8 || keyCode == 32) && (keyCode < 48 || keyCode > 57)) {
+                return false;
+            }
+        }
+    });
+    $("#bmf_fromprice,#lmf_fromprice").keydown(function () {
+        if ($(this).val() == "") {
+            $($("#" + ($(this).attr("id").split('_')[0]) + "_toprice")).prop('required', false);
+        }
+        else {
+            $($("#" + ($(this).attr("id").split('_')[0]) + "_toprice")).prop('required', true);
+        }
+    })
+    $("#bmf_toprice,#lmf_toprice").change(function () {
+        if (parseInt($(this).val()) <= parseInt($("#" + ($(this).attr("id").split('_')[0]) + "_fromprice").val())) {
+            $(this).val('');
+            $(this).focus();
+            $(this).prop('required', true);
+        }
+    })
+    $(document).ready(function () {
+        $('#mymenuli').addClass('menuactive');
+        getBuyers(AgentId, 'Both', 'filters')
+        $("input[name=bmf_status]").css('color', '#ff5d26');
+        $('input').css('border-color', '#ff5d26');
+        $('input').css('color', '#ff5d26');
+        $('input').css('text-align', 'center');
+        $("input[id=bmf_agents]").css('text-align', 'left');
+        $("input[id=bmf_buyers]").css('text-align', 'left');
+        $("input[id=lmf_agents]").css('text-align', 'left');
+        $("input[id=lmf_buyers]").css('text-align', 'left');
+        $("input[id=bd_agent]").css('text-align', 'left');
+        $("input[id=bd_buyer]").css('text-align', 'left');
+        $("input[id=ld_listingagent]").css('text-align', 'left');
+        $("input[id=ld_listing]").css('text-align', 'left');
+            // DefaultMapload();
+        //BM_MainReportGet();
+        setTimeout(LMObjectInitialization(), 5000);
+    })
+    //-----Adding doller symbol ads prefix
+    $("#bmf_fromprice,#bmf_toprice,#lmf_fromprice,#lmf_toprice").keyup(function () {
+        var prefix = "$"
+        if (this.value.indexOf(prefix) !== 0) {
+            this.value = prefix + this.value;
+        }
+    });
+    function LMObjectInitialization() {
+        LMFiltersObj = [AgentId, $('#lmf_fromdate').val(),
+                       $('#lmf_todate').val(), $('#lmf_fromprice').val().slice(1), $('#lmf_toprice').val().slice(1), lm_filterstatus];
+       // ListingMetrics_MainReportGet(LMFiltersObj);
+    }
+    function BM_MainReportGet() {
+        clearBuyerMetricsFields();
+        $.ajax({
+            url: "/Agent/Reports/GetMainReport_BuyerMetrics",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { MyAgentID: AgentId },
+            success: function (data) {
+                if (data.length > 0) {
+                    $("#bm_totalbuyers").val(data[0].BUYERS_COUNT);
+                    $("#bm_totalclosed").val(data[0].TOTAL_CLOSED);
+                    $("#bm_totalshowings").val(data[0].SHOWINGS_COUNT);
+                    $("#bm_undercontract").val(data[0].UNDER_CONTRACT);
+                    $("#bm_avgbuyerspersale").val(data[0].AVG_BUYER_SALE);
+                    $("#bm_avgshowingspersale").val(data[0].AVG_SHOWING_SALE);
+                    $("#bm_percentageclosed").val(data[0].PERCENTAGE);
+                }
+            },
+            complete: function () {
+            }
+        });
+    }
+    //START---------Select Agents Buyers Functionality
+    $("input[name=bmf_status]").click(function () {
+        $("#bmf_statustext").text($(this).val());
+        if ($("#bmf_statustext").text() == "Any")
+            buyerstatus = "Both";
+        else
+            buyerstatus = $("#bmf_statustext").text();
+        if (selectedagents_val.length > 0) {
+            getBuyers(selectedagents_val.join(','), buyerstatus, 'filters')
+        }
+    })
+    function onfocusforAgents(controlid) {
+        agentsControl = controlid;
+        getMyAgents_BuyerMetrics("filter");
+    }
+    function getMyAgents_BuyerMetrics(usage) {
+        $.ajax({
+            url: "/Agent/Reports/GetAgentsBelongstoMe",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { MyAgetnID: AgentId },
+            success: function (data) {
+                if (data.length > 0) {
+                    if (usage == "filter") {
+                        var agents = "";
+                        agents = "<li style='list-style: none;border-bottom: 0.5px solid gray;padding: 5px;cursor:pointer'><span class='checkbox-label'><input type='checkbox' name='allagents' id='selectAllAgents'/>&nbsp;&nbsp;&nbsp;<label style='font-weight:bold'>All Agents</label></span></li>"
+                        $.each(data, function (i, item) {
+                            agents = agents + "<li style='list-style: none;border-bottom: 0.5px solid gray;padding: 5px;cursor:pointer'><span class='checkbox-label'><input type='checkbox' name='myagents' value='" + item.AgentID + "'/>&nbsp;&nbsp;&nbsp;<label>" + item.First_Name + " " + item.Last_Name + "</label></span></li>";
+                        })
+                        $('#myagents_div').html(agents);
+                        $("#SelectAgentsPopup").modal('show');
+                    }
+                    else if (usage == "buyerdetails") {
+                        $('#bd_selected_agents').find('option').remove().end();
+                        $('#bd_selected_agents').append('<option value="' + 0 + '" disabled selected>Select Agent</option>');
+                        $.each(data, function (i, item) {
+                            $('#bd_selected_agents').append($("<option></option>").attr("value", item.AgentID).text(item.First_Name + ' ' + item.Last_Name));
+                        });
+                        $("#bd_selected_agents").selectpicker("refresh");
+                    }
+                    else if (usage == "listingdetails") {
+                        $('#Ld_selected_agents').find('option').remove().end();
+                        $('#Ld_selected_agents').append('<option value="' + 0 + '" disabled selected>Select Agent</option>');
+                        $.each(data, function (i, item) {
+                            $('#Ld_selected_agents').append($("<option></option>").attr("value", item.AgentID).text(item.First_Name + ' ' + item.Last_Name));
+                        });
+                        $("#Ld_selected_agents").selectpicker("refresh");
+                    }
+                }
+            },
+            complete: function () {
+            }
+        });
+    }//Funtion to Bind Ym agents in Filters and Buyer Details
+    $(document).on("change", "input:checkbox[name=allagents]", function () {
+        $('input[name=myagents]').not(this).prop('checked', this.checked);
+    });
+    function appenAgentsinTextBox() {
+        selectedagents_text = [], selectedagents_val = [];
+        $.each($("input[name='myagents']:checked"), function () {
+            selectedagents_val.push($(this).val());
+            selectedagents_text.push($(this).next("label").text());
+        });
+        $("#" + agentsControl).val(selectedagents_text.join(','));
+        $("#SelectAgentsPopup").modal('hide');
+        //alert(buyerstatus)
+        selectedbuyers_text = [], selectedbuyers_val = [];
+        $("#" + buyersControl).val('');
+        getBuyers(selectedagents_val.join(','), buyerstatus, 'filters')
+    }
+    function getBuyers(agentslist, status, usage) {
+        $.ajax({
+            url: "/Agent/Reports/GetBuyersofMyAgents",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { MyAgents: agentslist, Status: status },
+            success: function (data) {
+                if (data.length > 0) {
+                    if (usage == "filters") {
+                        var buyers = "";
+                        buyers = "<li style='list-style: none;border-bottom: 0.5px solid gray;padding: 5px;cursor:pointer'><span class='checkbox-label'><input type='checkbox' name='allbuyers' id='selectAllBuyers'/>&nbsp;&nbsp;&nbsp;<label style='font-weight:bold'>All Buyers</label></span></li>"
+                        $.each(data, function (i, item) {
+                            selectedbuyers_val.push(item.FK_UserID);
+                            buyers = buyers + "<li style='list-style: none;border-bottom: 0.5px solid gray;padding: 5px;cursor:pointer'><span class='checkbox-label'><input type='checkbox' name='buyers_under_myagents' value='" + item.FK_UserID + "'/>&nbsp;&nbsp;&nbsp;<label>" + item.First_Name + " " + item.Last_Name + "</label></span></li>";
+                        })
+                        $('#buyersofmyagents_div').html(buyers);
+                        buyerMetricsObject = [AgentId, selectedbuyers_val.join(','), $('#bmf_fromdate').val(),
+                                $('#bmf_todate').val(), $('#bmf_fromprice').val().slice(1), $('#bmf_toprice').val().slice(1), bm_mapstatus];
+                    }
+                    else if (usage == "buyerdetails") {
+                        $('#bd_selected_buyers').find('option').remove().end();
+                        $('#bd_selected_buyers').append('<option value="' + 0 + '" disabled selected>Select Buyer</option>');
+                        $.each(data, function (i, item) {
+                            $('#bd_selected_buyers').append($("<option></option>").attr("value", item.FK_UserID).text(item.First_Name + ' ' + item.Last_Name));
+                        });
+                        $("#bd_selected_buyers").selectpicker("refresh");
+                    }
+                }
+            },
+            complete: function () {
+            }
+        });
+    }
+    $(document).on("change", "input:checkbox[name=allbuyers]", function () {
+        $('input[name=buyers_under_myagents]').not(this).prop('checked', this.checked);
+    });
+    function onfocusforBuyers(buyersControlid) {
+        buyersControl = buyersControlid;
+        if ($("#" + agentsControl).val() != "" && agentsControl != "")
+            $("#SelectBuyersPopup").modal('show');
+    }
+    function appendBuyersinTextBox() {
+        selectedbuyers_text = [], selectedbuyers_val = [];
+        $.each($("input[name='buyers_under_myagents']:checked"), function () {
+            selectedbuyers_val.push($(this).val());
+            selectedbuyers_text.push($(this).next("label").text());
+        });
+        $("#" + buyersControl).val(selectedbuyers_text.join(','));
+        $("#SelectBuyersPopup").modal('hide');
+        agentsControl = "";
+    }
+    //END---------Select Agents Buyers Functionality ApplyBuyerMetricsFilters_Btn
+
+    //START---------Applying Bauyer Metrics Filters
+    $('#ApplyBuyerMetricsFilters_Btn').click(function (e) {
+        event.preventDefault()
+        if (selectedagents_val != "") {
+            buyerMetricsObject = [selectedagents_val.join(','), selectedbuyers_val.join(','), $('#bmf_fromdate').val(),
+                              $('#bmf_todate').val(), $('#bmf_fromprice').val().slice(1), $('#bmf_toprice').val().slice(1), bm_mapstatus]
+            clearBuyerMetricsFields();
+            $.ajax({
+                url: "/Agent/Reports/GetFilteredReport_BuyerMetrics",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(buyerMetricsObject),
+                success: function (data) {
+                    $("#BuyerMetricsFilterPopup").modal('hide');
+                    if (data.length > 0) {
+                        $("#bm_totalbuyers").val(data[0].BUYERS_COUNT);
+                        $("#bm_totalclosed").val(data[0].TOTAL_CLOSED);
+                        $("#bm_totalshowings").val(data[0].SHOWINGS_COUNT);
+                        $("#bm_undercontract").val(data[0].UNDER_CONTRACT);
+                        $("#bm_avgbuyerspersale").val(data[0].AVG_BUYER_SALE);
+                        $("#bm_avgshowingspersale").val(data[0].AVG_SHOWING_SALE);
+                        $("#bm_percentageclosed").val(data[0].PERCENTAGE);
+                    }
+                    else {
+                        $("#heading").text("Alert");
+                        $("#content_text").text("No Records found..! ");
+                        $("#AlertPopup").modal("show");
+                    }
+                },
+                complete: function () {
+                }
+            });
+        }
+        else {
+
+            $("#bmf_agents").attr("required", "true");
+        }
+    })
+    //clearBuyer Metrics Main Report Fields
+    function clearBuyerMetricsFields() {
+        $("#bm_totalbuyers").val('');
+        $("#bm_totalclosed").val('');
+        $("#bm_totalshowings").val('');
+        $("#bm_undercontract").val('');
+        $("#bm_avgbuyerspersale").val('');
+        $("#bm_avgshowingspersale").val('');
+        $("#bm_percentageclosed").val('');
+    }
+    //END-----of Applying Bauyer Metrics Filters
+    $(".sidelist").click(function () {
+        $(".sidelist").removeClass("selectedlist");
+        $(this).addClass("selectedlist");
+        type = $(this).text().trim();
+        if ($(this).text().trim() == "Buyer Metrics") {
+            $("#headerlabel").text($(this).text().trim());
+            $("#buyermetrics_div").show();
+            $("#listingmetrics_div").hide();
+            $("#buyerdetails_div").hide();
+            $("#listingetails_div").hide();
+            $("#filterbtn").show();
+        }
+        else if ($(this).text().trim() == "Listing Metrics") {
+            $("#headerlabel").text($(this).text().trim());
+            $("#buyermetrics_div").hide();
+            $("#listingmetrics_div").show();
+            $("#buyerdetails_div").hide();
+            $("#listingetails_div").hide();
+            $("#filterbtn").show();
+        }
+        else if ($(this).text().trim() == "Buyer Details") {
+            $("#headerlabel").html('<img src="/img/Buyer_Details_icon.png">&nbsp;&nbsp' + $(this).text().trim());
+            $("#buyermetrics_div").hide();
+            $("#listingmetrics_div").hide();
+            $("#buyerdetails_div").show();
+            $("#listingetails_div").hide();
+            $("#filterbtn").hide();
+        }
+        else {
+            $("#headerlabel").html('<img src="/img/Listing_Details.png">&nbsp;&nbsp' + $(this).text().trim());
+            $("#buyermetrics_div").hide();
+            $("#listingmetrics_div").hide();
+            $("#buyerdetails_div").hide();
+            $("#listingetails_div").show();
+            $("#filterbtn").hide();
+        }
+    });
+    $("#filterbtn").click(function () {
+        if (type == "Buyer Metrics") {
+            $("#BuyerMetricsFilterPopup").modal('show');
+        }
+        else if (type == "Listing Metrics") {
+            $("#ListingMetricsFilterPopup").modal('show');
+        }
+    });
+    function bindlistings() {
+        $("#BAM_listview_data").empty();
+        var price = "";
+        for (var i = 0; i <= 4; i++) {
+            if (i % 2 == 0) {
+                price = '<div class="col-sm-6" style="border-right:1px solid lightgray"><label class="labelbold">Listed Price:</label><label class="labelprice">$ 02020202</label></div>'
+             + '<div class="col-sm-6"><img src="/img/viewed_redpin.png" style="margin-bottom:0" /><label class="labelbold">Sold Price:</label>'
+             + '<label class="labelprice">$ 1122112</label></div>';
+            }
+            else {
+                price = '<div class="col-sm-12" style="top:5px"><img src="/img/viewed_redpin.png" style="margin-bottom:0" />'
+                        + '<label class="labelprice">$ 1122112</label></div>';
+            }
+            var photosdiv = '<div class="col-sm-4" style="top: 2px; height: 120px; padding-left: 0px; position: relative; background-image: url(../../../../img/NoImage.png); background-size: 100% 100%;">'
+                            + '<a href="#"><img src="/img/SliderBackArrow.png" width="21" height="29" style="top: 48px; position: relative; float: left;" /></a>'
+                            + '<a href="#"><img src="/img/SliderNextArrow.png" width="21" height="29" style="top: 48px; right: -15px; position: relative;  float: right;" /></a></div>';
+            var lists = '<div class="col-md-7 listingborders" style="width:55%">' + photosdiv + '<div class="col-sm-8"><div class="col-sm-12" style="padding:0;top:5px">'
+                      + price + '</div>'
+                        + '<div class="col-sm-12" style="line-height:1;margin-top:10px"><img src="/img/lit_icon_btn.png" style="float:right;cursor:pointer;height:28px" />'
+                        + '<label class="labelbold ">10 Breaburn Drive</label><br /><label class="labelbold ">Greenville, SC 263958</label><br /><label class="">MLS#000000</label></div></div></div>'
+
+                        + '<div class="col-md-4 listingborders2" style="width:33%;height:143px;background-color:#59294C;padding-top:25px"><div class="col-md-3" style="top:15px">'
+                        + '<img src="/img/addphotopic.png" style="height:50px;width:50px;border-radius:50px" /></div>'
+                        + '<div class="col-md-8" style="color:#fff"><label  style="color:#FFA486">Listing Agent</label><br />'
+                        + '<div class="col-md-12" style="font-size:18px;padding:0">Bob Morgan</div><div class="col-md-12 textlimit" style="font-size:12px;padding:0">10 Breaburn Drive</div>'
+                        + '<div class="col-md-12" style="font-size:12px;padding:0">Home Services</div></div></div>'
+
+                        + '<div class="col-md-1 listingborders" style="text-align:center;padding:0;width:12%;height:142px;background-color:#FFE0D6">'
+                        + '<div class="col-sm-12" style="margin-top:10px;">Showings</div><div class="col-sm-12"><input type="text" class="form-control" /></div>'
+                        + '<div class="col-sm-12" style="padding:0;margin-top:15px;">Open Houses</div><div class="col-sm-12"> <input type="text" class="form-control" />'
+                        + '</div></div></div>'
+
+            $("#BAM_listview_data").append(lists);
+        }
+    }
+    function BM_bindlistings() {
+        $("#BAM_listview_data").empty();
+        var price = "";
+        for (var i = 0; i <= 4; i++) {
+            if (i % 2 == 0) {
+                price = '<div class="col-sm-6" style="border-right:1px solid lightgray"><label class="labelbold">Listed Price:</label><label class="labelprice">$ 02020202</label></div>'
+             + '<div class="col-sm-6"><img src="/img/viewed_redpin.png" style="margin-bottom:0" /><label class="labelbold">Sold Price:</label>'
+             + '<label class="labelprice">$ 1122112</label></div>';
+            }
+            else {
+                price = '<div class="col-sm-12" style="top:5px"><img src="/img/viewed_redpin.png" style="margin-bottom:0" />'
+                        + '<label class="labelprice">$ 1122112</label></div>';
+            }
+            var photosdiv = '<div class="col-sm-4" style="top: 2px; height: 120px; padding-left: 0px; position: relative; background-image: url(../../../../img/NoImage.png); background-size: 100% 100%;">'
+                            + '<a href="#"><img src="/img/SliderBackArrow.png" width="21" height="29" style="top: 48px; position: relative; float: left;" /></a>'
+                            + '<a href="#"><img src="/img/SliderNextArrow.png" width="21" height="29" style="top: 48px; right: -15px; position: relative;  float: right;" /></a></div>';
+            var lists = '<div class="col-md-8 listingborders" style="">' + photosdiv + '<div class="col-sm-8"><div class="col-sm-12" style="padding:0;top:5px">'
+                      + price + '</div>'
+                        + '<div class="col-sm-12" style="line-height:1;margin-top:10px"><img src="/img/lit_icon_btn.png" style="float:right;cursor:pointer;height:28px" />'
+                        + '<label class="labelbold ">10 Breaburn Drive</label><br /><label class="labelbold ">Greenville, SC 263958</label><br /><label class="">MLS#000000</label></div></div></div>'
+
+                        + '<div class="col-md-4 listingborders2" style="height:143px;background-color:#59294C;padding-top:25px"><div class="col-md-3" style="top:15px">'
+                        + '<img src="/img/addphotopic.png" style="height:50px;width:50px;border-radius:50px" /></div>'
+                        + '<div class="col-md-8" style="color:#fff"><label  style="color:#FFA486">Listing Agent</label><br />'
+                        + '<div class="col-md-12" style="font-size:18px;">Bob Morgan</div><div class="col-md-12 textlimit" style="font-size:12px;">10 Breaburn Drive</div>'
+                        + '<div class="col-md-12" style="font-size:12px;">Home Services</div></div></div>'
+                        + '</div></div>'
+
+            $("#BAM_listview_data").append(lists);
+        }
+    }
+    //-START----LISTING METRIC Functionality----------//
+        $("#lmf_status").change(function () {
+            lm_filterstatus = "";
+            if ($("#lmf_status").val() != null) {
+                if ($("#lmf_status").val().length == "3") {
+                    lm_filterstatus = "Any";
+                }
+                else {
+                    $('#lmf_status :selected').each(function (i, sel) {
+
+                        lm_filterstatus = $(sel).val() + "," + lm_filterstatus;
+                    });
+                    lm_filterstatus = lm_filterstatus.substring(0, lm_filterstatus.length - 1);
+                }
+            }
+            else {
+                lm_filterstatus = 'Any';
+            }
+        })
+        function ListingMetrics_MainReportGet(LMFiltersObj) {
+            //clearListingMetricsFields();
+            //LMFiltersObj = [AgentId, $('#lmf_fromdate').val(),
+            //            $('#lmf_todate').val(), $('#lmf_fromprice').val(), $('#lmf_toprice').val(), lm_filterstatus];
+            $.ajax({
+                url: "/Agent/Reports/GetMainReport_ListingMetrics",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(LMFiltersObj),
+                success: function (data) {
+                    $("#ListingMetricsFilterPopup").modal('hide');
+                    if (data.length > 0) {
+                        $("#lm_totallistings").val(data[0].TOTAL_LISTINGS);
+                        $("#lm_totalclosed").val(data[0].TOTAL_CLOSED);
+                        $("#lm_totalshowings").val(data[0].TOTAL_SHOWINGS);
+                        $("#lm_totalopenhouses").val(data[0].TOTAL_OPENHOUSE);
+                        $("#lm_totalsoldamt").val('$ ' + (data[0].TOTAL_SOLD_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
+                        $("#lm_avglistprice").val('$ ' + (data[0].AVG_LIST_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
+                        $("#lm_avgsaleprice").val('$ ' + (data[0].AVG_SALE_PRIC + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
+                        $("#lm_avgshowings").val(data[0].AVG_SHOWING_PER_SALE);
+                        $("#lm_avgopenhouses").val(data[0].AVG_OPENHOUSE_PER_SALE);
+                        $("#lm_avgdays").val(data[0].AVG_DAYS_ON_MARKET);
+                    }
+                },
+                complete: function () {
+                }
+            });
+        }
+        $('#ApplyListingMetricsFilters_Btn').click(function () {
+            LMFiltersObj = [selectedagents_val.join(','), $('#lmf_fromdate').val(),
+                          $('#lmf_todate').val(), $('#lmf_fromprice').val().slice(1), $('#lmf_toprice').val().slice(1), lm_filterstatus];
+            ListingMetrics_MainReportGet(LMFiltersObj);
+        })
+         //clearBuyer Metrics Main Report Fields
+        function clearListingMetricsFields() {
+        $("#lm_totallistings").val('');
+        $("#lm_totalclosed").val('');
+        $("#lm_totalshowings").val('');
+        $("#lm_totalopenhouses").val('');
+        $("#lm_totalsoldamt").val('');
+        $("#lm_avglistprice").val('');
+        $("#lm_avgsaleprice").val('');
+        $("#lm_avgshowings").val('');
+        $("#lm_avgopenhouses").val('');
+        $("#lm_avgdays").val('');
+        }
+        $("#lm_filters_resetbtn").click(function () {
+            $("#lmf_status > option").attr("selected", false);
+            $('#lmf_status').multiselect('refresh');
+        })
+    //-END----LISTING METRIC Functionality----------END//
+
+    //START------Buyer Details Events---START//
+    $("#bd_selected_agents").change(function () {
+        getBuyers($(this).val(), 'Active', 'buyerdetails')
+    });
+    var buyerDetailsObj = [];
+    $("#RunBDReportBtn").click(function () {
+        buyerDetailsObj = [$('#bd_selected_agents').val(),
+                               $('#bd_selected_buyers').val(), $('#bd_fromdate').val(), $('#bd_todate').val()];
+        if ($('#bd_selected_agents').val() != "0" && $('#bd_selected_buyers').val() != "0") {
+            $.ajax({
+                url: "/Agent/Reports/GetBuyerDetailsReport",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(buyerDetailsObj),
+                success: function (data) {
+                    if (data.length > 0) {
+                        clearBuyerDetailsReport();
+                        $("#bdr_hidden_buyerid").text(data[0].Buyer_PkUserID);
+                        if (data[0].Buyer_Image != "" && data[0].Buyer_Image != null && data[0].Buyer_Image != ",")
+                            $("#bdr_photo").attr('src', data[0].Buyer_Image);
+                        else
+                            $("#bdr_photo").attr('src', '/img/addphotopic.png');
+                        $("#bdr_name").text(data[0].Buyer_FirstName + ' ' + data[0].Buyer_LastName);
+                        $("#bdr_mobile").text(data[0].Buyer_MobilNo);
+                        if (data[0].AgentID == AgentId || data[0].AgentPkUserID==null) {
+                            $("#bdr_agentchatdiv").hide();
+                        }
+                        else {
+                            $("#bdr_agentchatdiv").show()
+                        }
+                        $("#bdr_hidden_agentid").text(data[0].AgentPkUserID);
+                        if (data[0].Primary_Color != null) {
+                            $('#bdr_agentdiv').css('background-color',data[0].Primary_Color)
+                        }
+                        else {
+                            $('#bdr_agentdiv').css('background-color', '#99A3A4')
+                        }
+                        if (data[0].Secondary_Color != null) {
+                            $('#bdr_agentdiv').css('color', data[0].Secondary_Color)
+                        }
+                        else {
+                            $('#bdr_agentdiv').css('color', 'black')
+                        }
+                        if (data[0].Agent_Image != "" && data[0].Agent_Image != null && data[0].Agent_Image != ",")
+                            $("#bdr_agentphoto").attr('src', data[0].Agent_Image);
+                        else
+                            $("#bdr_agentphoto").attr('src', '/img/addphotopic.png');
+                        $("#bdr_agentname").text(data[0].Agent_FirstName + ' ' + data[0].Agent_LastName);
+                        $("#bdr_agetaddr1").text(data[0].Agent_Office);
+                        $("#bdr_agent").text(data[0].Agent_Type);
+                        $("#bdr_agentdates").text(data[0].DaysFrom + ' - ' + data[0].DaysTo);
+                        $("#bdr_noofdays").val(data[0].Days);
+                        $("#bdr_pricefrom").val('$ ' + (data[0].Minimum + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
+                        $("#bdr_priceto").val('$ ' + (data[0].Maximum + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
+                        $("#bdr_noofclosings").val(data[0].Closer);
+                        $("#bdr_totalshowings").val(data[0].Showings);
+                        $("#notes").text(data[0].Buyer_Note);
+
+                        $("#BuyerDetailReports").modal('show');
+                    }
+                    else {
+                        $("#heading").text("Warning");
+                        $("#content_text").text("No Records found..! ");
+                        $("#AlertPopup").modal("show");
+                    }
+                },
+                error: function () {
+                    $("#heading").text("Warning");
+                    $("#content_text").text("No Records found..! ");
+                    $("#AlertPopup").modal("show");
+                },
+                complete: function () {
+                }
+            });
+        }
+    });
+    function clearBuyerDetailsReport() {
+        $("#bdr_photo").attr('src', '/img/addphotopic.png');
+        $("#bdr_name").text('');
+        $("#bdr_mobile").text('');
+        $("#bdr_agentphoto").attr('src', '/img/addphotopic.png');
+        $("#bdr_agentname").text('');
+        $("#bdr_agetaddr1").text('');
+        $("#bdr_agent").text('');
+        $("#bdr_agentdates").text('');
+        $("#bdr_noofdays").text('');
+        $("#bdr_pricefrom").val('');
+        $("#bdr_priceto").val('');
+        $("#bdr_noofclosings").val('');
+        $("#bdr_totalshowings").val('');
+        $("#notes").text('');
+    }
+    $(".bdr_buyerchat").click(function () {
+        creatConnection($("#bdr_hidden_buyerid").text(), $("#bdr_name").text(), ' 1 ', $("#bdr_photo").attr('src'), '');
+    })
+    $(".bdr_agentchat").click(function () {
+        creatConnection($("#bdr_hidden_agentid").text(), $("#bdr_agentname").text(), ' 1 ', $("#bdr_agentphoto").attr('src'), '');
+    })
+    $("#bd_resetfields").click(function () {
+        $('select[id=bd_selected_agents]').val(0);
+        $("#bd_selected_agents").selectpicker("refresh");
+        $('#bd_selected_buyers').find('option').remove().end();
+        $('#bd_selected_buyers').append($("<option></option disabled selected>").attr("value", "0").text("Select Buyer"));
+        $("#bd_selected_buyers").selectpicker("refresh");
+    })
+    //END------Buyer Details Events---END//
+
+    //START------Listing Details Events---START//
+    $("#Ld_selected_agents").change(function () {
+        getListings($("#Ld_selected_agents").val(), $("#ld_listingstatus").val())
+    })
+    $("#ld_listingstatus").change(function () {
+        if ($("#Ld_selected_agents").val() != "0")
+            getListings($("#Ld_selected_agents").val(), $("#ld_listingstatus").val())
+    })
+    function getListings(agentid, listingstatus) {
+        $.ajax({
+            url: "/Agent/Reports/LD_GetAgentListings",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { MyAgentID: agentid, ListingStatus: listingstatus },
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#Ld_selected_listing').find('option').remove().end();
+                    $('#Ld_selected_listing').append('<option value="' + 0 + '" disabled selected>Select a Listing</option>');
+                    $.each(data, function (i, item) {
+                        $('#Ld_selected_listing').append($("<option></option>").attr("value", item.MLSID).text('MLS#' + item.MLSID + '-' + item.ADDRESS));
+                    });
+                    $("#Ld_selected_listing").selectpicker("refresh");
+                }
+            },
+            complete: function () {
+            }
+        });
+    }
+    $("#LD_ResetBtn").click(function () {
+        $('select[id=ld_listingstatus]').val(0);
+        $("#ld_listingstatus").selectpicker("refresh");
+        $('select[id=Ld_selected_agents]').val(0);
+        $("#Ld_selected_agents").selectpicker("refresh");
+        $('#Ld_selected_listing').find('option').remove().end();
+        $('#Ld_selected_listing').append($("<option disabled selected></option>").attr("value", "0").text("Select a Listing"));
+        $("#Ld_selected_listing").selectpicker("refresh");
+    })
+    var listingDetailsObj = [];
+    $("#RunLDReportBtn").click(function () {
+        listingDetailsObj = [$('#Ld_selected_agents').val(), $('#Ld_selected_listing').val(), $('#ld_fromdate').val(), $('#ld_todate').val()];
+        if ($('#Ld_selected_listing').val() != "0" && $('#Ld_selected_agents').val() != "0") {
+            $.ajax({
+                url: "/Agent/Reports/GetListingDetailsReport",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(listingDetailsObj),
+                success: function (data) {
+                    if (data.length > 0) {
+                        bindListingDetailReport(data);
+                        $("#ListingDetailReports").modal('show');
+                    }
+                    else {
+                        $("#heading").text("Warning");
+                        $("#content_text").text("No Records found..! ");
+                        $("#AlertPopup").modal("show");
+                    }
+                },
+                error: function () {
+                    $("#heading").text("Warning");
+                    $("#content_text").text("No Records found..! ");
+                    $("#AlertPopup").modal("show");
+                },
+                complete: function () {
+                }
+            });
+        }
+    });
+    function bindListingDetailReport(data) {
+        clearListingDetailsReport();
+        var listprice = "$ " + (data[0].ListPrice + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        var org_price = "$ " + (data[0].OrigPrice + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        var sold_price = "$ " + (data[0].SoldPrice + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        var imagepinsrc = '';
+        if (data[0].Status == "Active") {
+            imagepinsrc = '/img/Green_legend_Menu.png'
+        }
+        else if (data[0].Status == "Pending") {
+            imagepinsrc = '/img/yellow_legendMenu.png'
+        }
+        else if (data[0].Status == "Sold") {
+            imagepinsrc = '/img/red_legendMenu.png'
+        }
+        if (data[0].Class == "Rental") {
+            imagepinsrc = '/img/gray_legendMenu.png'
+        }
+        $("#ldr_listingtypemarker").attr('src', imagepinsrc);
+        if (data[0].PHOTOS != null && data[0].PHOTOS != '' && data[0].PHOTOS != ',') {
+            var TotalImages = [], PhotosURL = [];
+            TotalImages.push(data[0].PHOTOS);
+            if (TotalImages.length > 0)
+                PhotosURL = data[0].PHOTOS.split(',');
+            else
+                PhotosURL = data[0].PHOTOS;
+        }
+        else {
+            PhotosURL[0] = '/img/NoImage.png';
+        }
+        $("#ldr_listingphoto").css('background-image', 'url(' + PhotosURL[0] + ')');
+        $("#ldr_listingPrice").text(listprice);
+        $("#ldr_listingAddr1").text(data[0].Address1);
+        $("#ldr_listingAddr2").text(data[0].Address2);
+        $("#ldr_listingmlsid").text("MLS#" + data[0].MLSNo);
+        $("#ldr_hidden_agentid").text(data[0].ListingAgent_PkUserID);
+        $("#ldr_hidden_agentmobile").text(data[0].ListingAgent_MobileNo);
+        $("#ldr_hidden_agentmail").text(data[0].ListingAgent_Email);
+        if (data[0].ListingAgent_Image != "" && data[0].ListingAgent_Image != null && data[0].ListingAgent_Image != ",")
+            $("#ldr_photo").attr('src', data[0].ListingAgent_Image);
+        else
+            $("#ldr_photo").attr('src', '/img/addphotopic.png');
+        $("#ldr_agentname").text(data[0].ListingAgent_FirstName + ' ' + data[0].ListingAgent_LastName);
+        $("#ldr_agetaddr1").text(data[0].ListingAgent_Office);
+        if (data[0].Seller_PKUserID != null && data[0].Seller_PKUserID != "")
+            $("#ldr_sellerdiv").show();
+        else
+            $("#ldr_sellerdiv").hide();
+        if (data[0].ListingAgent_PkUserID != null && data[0].ListingAgent_PkUserID != "")
+        {
+            isQC_User = "YES";
+            if (data[0].ListingAgent_AgentID == AgentId)
+                $("#ldr_chaticon").hide();
+            else
+                $("#ldr_chaticon").show();
+        }
+        else {
+            isQC_User = "NO";
+            $(".ldr_chaticon").hide();
+        }
+
+        if (data[0].ListingAgent_Primary != null) {
+
+            $('#ldr_agentdiv').css('background-color', data[0].ListingAgent_Primary)
+        }
+        else {
+            $('#ldr_agentdiv').css('background-color', '#99A3A4')
+        }
+        if (data[0].ListingAgent_Secondary != null) {
+            $('#ldr_agentdiv').css('color', data[0].ListingAgent_Secondary)
+        }
+        else {
+            $('#ldr_agentdiv').css('color', 'black')
+        }
+
+        $("#ldr_hidden_sellerid").text(data[0].Seller_PKUserID);
+        if (data[0].Seller_Image != "" && data[0].Seller_Image != null && data[0].Seller_Image != ",")
+            $("#ldr_sellerphoto").attr('src', data[0].Seller_Image);
+        else
+            $("#ldr_sellerphoto").attr('src', '/img/addphotopic.png');
+        $("#ldr_sellername").text(data[0].Seller_FirstName + ' ' + data[0].Seller_LastName);
+        $("#ldr_sellermobile").text(data[0].Seller_MobileNo);
+        $("#ldr_originalprice").val(org_price);
+        $("#ldr_finalsaleprice").val(listprice);
+        $("#ldr_soldprice").val(sold_price);
+        $("#ldr_listeddate").val(data[0].LstDate);
+        $("#ldr_solddate").val(data[0].CloseDate);
+        $("#ldr_daysonmarket").val(data[0].DaysInQuitchet);
+        $("#ldr_noofshowings").val(data[0].Showings_Count);
+        $("#ldr_noofopenhouses").val(data[0].OpenHouse_Count);
+        $("#notes").text(data[0].NOTE);
+    }
+    var isQC_User = '';
+    $(".ldr_listingagentchat").click(function () {
+        if ($("#ldr_hidden_agentid").text() != "") {
+            var bg = $("#ldr_listingphoto").css('background-image');
+            bg = bg.replace('url(', '').replace(')', '');
+            bg = bg.replace('"', ''); bg = bg.replace('"', '');
+            $('#prop_mlc').text($("#ldr_listingmlsid").text());
+            $('#prop_addr1').text($('#ldr_listingAddr1').text());
+            $('#prop_addr2').text($('#ldr_listingAddr2').text());
+            $('#prop_img').attr("src", bg);
+            $('#property_div').show();
+            if (isQC_User == 'YES')
+                creatConnection($("#ldr_hidden_agentid").text(), $("#ldr_agentname").text(), ' 3 ', $("#ldr_photo").attr('src'), $("#ldr_listingmlsid").text().split('#')[1]);
+            else if (isQC_User == 'NO')
+                creatConnectionforNonQCUsers($("#ldr_hidden_agentmail").text(), $("#ldr_hidden_agentmobile").text(), $("#ldr_agentname").text(), $("#ldr_listingmlsid").text().split('#')[1], ' 3 ', $("#ldr_photo").attr('src'))
+
+        }
+    })
+    $(".ldr_selleragentchat").click(function () {
+        if ($("#ldr_hidden_sellerid").text() != "") {
+            var bg = $("#ldr_listingphoto").css('background-image');
+            bg = bg.replace('url(', '').replace(')', '');
+            bg = bg.replace('"', '');
+            bg = bg.replace('"', '');
+            $('#prop_mlc').text($("#ldr_listingmlsid").text());
+            $('#prop_addr1').text($('#ldr_listingAddr1').text());
+            $('#prop_addr2').text($('#ldr_listingAddr2').text());
+            $('#prop_img').attr('src', bg);
+            $('#property_div').show();
+            creatConnection($("#ldr_hidden_sellerid").text(), $("#ldr_sellername").text(), ' 3 ', $("#ldr_sellerphoto").attr('src'), $("#ldr_listingmlsid").text().split('#')[1]);
+        }
+    })
+    function clearListingDetailsReport() {
+        $("#ldr_listingphoto").css('background-image', 'url(../../../../img/NoImage.png)');
+        $("#ldr_listingPrice").text('');
+        $("#ldr_listingAddr1").text('');
+        $("#ldr_listingAddr2").text('');
+        $("#ldr_listingmlsid").text("MLS#");
+        $("#ldr_hidden_agentid").text('');
+        $("#ldr_hidden_agentmobile").text('');
+        $("#ldr_hidden_agentmail").text('');
+        $("#ldr_photo").attr('src', '/img/addphotopic.png');
+        $("#ldr_agentname").text('');
+        $("#ldr_agetaddr1").text('');
+        $("#ldr_hidden_sellerid").text('');
+        $("#ldr_sellerphoto").attr('src', '/img/addphotopic.png');
+        $("#ldr_sellername").text('');
+        $("#ldr_sellermobile").text('');
+        $("#ldr_originalprice").text('');
+        $("#ldr_finalsaleprice").text('');
+        $("#ldr_soldprice").text('');
+        $("#ldr_listeddate").val('');
+        $("#ldr_solddate").val('');
+        $("#ldr_daysonmarket").val('');
+        $("#ldr_noofshowings").val('');
+        $("#ldr_noofopenhouses").text('');
+        $("#notes").text('');
+    }
+    //END------Listing Details Events---END//
+</script>
+@*//Script For Map and List View Details Popup (Load Map,Open Map Popups and Bind Listings)*@
+<style>
+    .gm-style .gm-style-iw {
+        width: 180px !important;
+    }
+</style>
+<script>
+   var bounds, mymarkers = [],map,bmf_status="False";
+    //Start----Buyer Agent Metrics Map and List View Functionalities
+   $("#bm_map_checkbox,#bm_listview_checkbox").change(function () {
+       if(selectedagents_val.join(',')!="")
+           var ag = selectedagents_val.join(',')
+       else
+           var ag = AgentId;
+       if ($(this).is(":checked")) {
+           bmf_status = "True";
+                buyerMetricsObject = [ag, selectedbuyers_val.join(','), $('#bmf_fromdate').val(),
+                               $('#bmf_todate').val(), $('#bmf_fromprice').val().slice(1), $('#bmf_toprice').val().slice(1), "True"];
+                BM_getListings(buyerMetricsObject, "bm_map");
+            }
+       else {
+           bmf_status = "False";
+                buyerMetricsObject = [ag, selectedbuyers_val.join(','), $('#bmf_fromdate').val(),
+                               $('#bmf_todate').val(), $('#bmf_fromprice').val().slice(1), $('#bmf_toprice').val().slice(1), "False"];
+                BM_getListings(buyerMetricsObject, "bm_map");
+            }
+        })
+        $("#BM_MapViewBtn").click(function () {
+            $("#BAM_mapandlistview").attr('src', '/img/mapviewbtn.png');
+            $("#BAM_mapandlistview").click();
+             BM_getListings(buyerMetricsObject,"bm_map");
+        });
+        function BM_getListings(filterobject,mapid) {
+            $.ajax({
+                url: "/Agent/Reports/GetListings_BuyerMetrics",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(filterobject),
+                success: function (data) {
+                    if (data.length > 0) {
+                        LoadMarkers(data, mapid);
+                        Bind_BM_Listings(data);
+                    }
+                    else {
+                        $("#heading").text("Warning");
+                        $("#content_text").text("No Properties Found");
+                        $("#AlertPopup").modal("show");
+                    }
+                },
+                complete: function () {
+                    $("#BuyerAgentMetrics_Map_ListView_Popup").modal('show');
+                }
+            });
+        }
+        function LoadMarkers(data,mapid) {
+            var latLng = new google.maps.LatLng(data[parseInt(data.length / 2)].GeoLat, data[parseInt(data.length / 2)].GeoLong);
+                var m = "";
+                if (mapid == "bm_map")
+                    m = "BAM_mapviewinpopup";
+                else if (mapid == "lm_map")
+                    m = "LAM_mapviewinpopup";
+                map = new google.maps.Map(document.getElementById(m), {
+                    zoom: 10,
+                    minZoom: 6,
+                    // maxZoom: 13,
+                    streetViewControl: false,
+                    fullscreenControl: false,
+                    zoomControl: true,
+                    mapTypeControl: false,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    center: latLng,
+                });
+               var iconurl = "";
+                var TotalImages = [], m = [];
+                mymarkers = [];
+                $.each(data, function (i, item) {
+                    var PhotosURL = []; var iw_img_src = "";
+                    if (item.PRP_IMAGES != null && item.PRP_IMAGES != "," && item.PRP_IMAGES != "") {
+                        TotalImages.push(item.PRP_IMAGES);
+                        if (TotalImages.length > 0)
+                            PhotosURL = item.PRP_IMAGES.split(',');
+                        else
+                            PhotosURL[0] = item.PRP_IMAGES;
+                        iw_img_src = PhotosURL[0];
+                    }
+                    else {
+                        iw_img_src = '/img/NoImage.png';
+                        PhotosURL[0] = '/img/NoImage.png';
+                    }
+                    var icon = {
+                        url: '',
+                        scaledSize: new google.maps.Size(22, 22),
+                    };
+                    var saletype = "", DsUrl = "";
+                    if (item.Status == "Active") {
+                        saletype = "<label style='font=weight:bold;color:#fff;background-color:green;padding:3px;border-radius:5px'>For Sale</label>";
+                        icon.url = '/img/green_legend_Menu.png',
+                       DsUrl = '/img/green_legend_Menu.png'
+                    }
+                    else if (item.Status == "Pending" || item.Status == "Contingency Contract") {
+                        saletype = "<label style='font=weight:bold;color:#fff;background-color:#f0e243;padding:3px;border-radius:5px'>Under Contract</label>";
+                        icon.url = '/img/yellow_legendMenu.png',
+                         DsUrl = '/img/yellow_legendMenu.png'
+                    }
+                    else if (item.Status == "Sold") {
+                        saletype = "<label style='font=weight:bold;color:#fff;background-color:#b33332;padding:3px;border-radius:5px'>Sold</label>";
+                        icon.url = '/img/red_legendMenu.png',
+                        DsUrl = '/img/red_legendMenu.png'
+                    }
+                    if (item.Class == "Rental") {
+                        saletype = "<label style='font=weight:bold;color:#fff;background-color:gray;padding:3px;border-radius:5px'>Rental</label>";
+                        icon.url = '/img/gray_legendMenu.png'
+                        DsUrl = '/img/gray_legendMenu.png'
+                    }
+                    if (iconurl == "")
+                        var isviewImagediv = "";
+                    else
+                        var isviewImagediv = '<img src="' + iconurl + '" width="20" height="20" alt=""/>';
+                    var Latt = item.GeoLat;
+                    var Longg = item.GeoLong;
+                    if (item.GeoLat.indexOf('17.4')==-1) {
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(Latt, Longg),
+                        map: map,
+                        icon: icon,
+                        anchor: new google.maps.Point(6, 12),
+                        optimized: false,
+                        id: item.MLSID,
+
+                    });
+                   
+                    marker.addListener('click', function () {
+                        AgentFullDetailsView( AgentId , data[i].MLSID)
+                    });
+                 
+                    var timeoutId = null;
+                    marker.addListener('mouseover', function () {
+                        // infowindow.open(map,marker);
+                        //if (map.getZoom() > 10) {
+                            timeoutId = window.setTimeout(function () {
+                                infowindow.open(map, marker);
+                            }, 800);
+                      //  }
+                    });
+                    marker.addListener('mouseout', function () {
+                        window.clearTimeout(timeoutId)
+                      infowindow.close(map, marker);
+                    });
+                    var price = (item.PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+                    //var Listing = "$" + ratingprice(item.PRP_PRICE);
+                    if (item.Bedrooms == null || item.Bedrooms == "null")
+                        var bedrooms = "-";
+                    else
+                        var bedrooms = item.Bedrooms;
+                    if (item.Bathrooms == null || item.Bathrooms == "null")
+                        var bathrooms = "-";
+                    else
+                        var bathrooms = item.Bathrooms;
+                    var content = '<div class="col-sm-12" id="myiw" style="overflow:hidden;padding:0;">' +
+                                        '<div class=" col-sm-8" style="margin-left:-15px;padding:0;"><img src="' + iw_img_src + '" height="50" width="75"></div>' +
+                                        '<div class=" col-sm-4" id="salecolor" style="margin-left:-15px;padding:0;"><span>' + saletype + '</span><span style="font-weight:Bold;font-size:14px;">' + ratingprice(item.PRP_PRICE) + '</span></div>' +
+                                        '<div class=" col-sm-6" style="padding:0;">&nbsp</div>'
+                                        + '<div class=" col-sm-6" style="padding:0;margin-left:-5px;font-weight:bold"><span class="lblcount">' + bedrooms + '</span>&nbsp;<img src="/img/bed_icon.png">&nbsp;<span class="lblcount">' + bathrooms + '</span>&nbsp;<img src="/img/bathtub_icon.png"></div></div>';
+                    var infowindow = new google.maps.InfoWindow({
+                        content: content,
+                        minWidth: 500
+                    })
+                    mymarkers.push(marker);
+                    var labelText = "<div id='pricecontent' class='map-arrowup'><span>" + ratingprice(item.PRP_PRICE) + "</span></div>";
+                    var myOptions = {
+                        content: labelText,
+                        boxStyle: {
+                            border: "none", //1px solid black"
+                            textAlign: "center",
+                            fontSize: "7pt",
+                            //width: "10px",
+                        },
+                        disableAutoPan: true,
+                        pixelOffset: new google.maps.Size(-20, 8),
+                        position: new google.maps.LatLng(Latt, Longg),
+                        closeBoxURL: "",
+                        isHidden: false,
+                        pane: "mapPane",
+                        enableEventPropagation: true
+                    };
+                    var ibLabel = new InfoBox(myOptions);
+                    //google.maps.event.addListener(map, 'zoom_changed', function () {
+                    //    if (map.getZoom() > 11) {
+                    //        ibLabel.open(map);
+                    //    }
+                    //    else
+                    //        ibLabel.close(map);
+                        //});
+                    }
+                });
+                google.maps.event.addListenerOnce(map, 'tilesloaded', function (event) {
+               // if (bmf_status != "True") {
+                        bounds = new google.maps.LatLngBounds();
+                        for (var i = 0; i < mymarkers.length; i++) {
+                            bounds.extend(mymarkers[i].getPosition());
+                        }
+                        map.setCenter(bounds.getCenter());
+                        map.fitBounds(bounds);//Auto -Zoom
+                        //map.panToBounds(bounds);//# auto-center
+                //}
+                });
+              
+        }
+        function Bind_BM_Listings(data) {
+            var price = "", imagepin = "";
+            $("#BAM_listview_data").empty();
+            $.each(data, function (i, item) {
+                var BtnPrevImgId = "Prev" + data[i].MLSID;
+                var BtnNextImgId = "Next" + data[i].MLSID;
+                var PrpImagesArray = []
+                var DivImgId = "div_" + data[i].MLSID;
+                var PhotosURL = [], TotalImages = [];
+                PrpImagesArray = [];
+                if (data[i].PRP_IMAGES != null && data[i].PRP_IMAGES != "" && data[i].PRP_IMAGES != ",") {
+                    var c = data[i].PHOTO_COUNT;
+                    PrpImagesArray = data[i].PRP_IMAGES.split(',');
+                    TotalImages.push(data[i].PRP_IMAGES);
+                    if (TotalImages.length > 0)
+                        PhotosURL = data[i].PRP_IMAGES.split(',');
+                    else
+                        PhotosURL[0] = data[i].PRP_IMAGES;
+                }
+                else {
+                    PhotosURL[0] = '/img/NoImage.png';
+                }
+                if (item.Status == "Sold") {
+                    imagepin = '<img src="/img/red_legendMenu.png" height="20" style="margin-bottom:0" />'
+
+                    pricelist = '<div class="col-sm-6" style="border-right:1px solid lightgray"><label class="labelbold">Listed Price:</label>'
+                             + '<label class="labelprice">$ ' + (data[i].PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + '</label></div>'
+                              + '<div class="col-sm-6">' + imagepin + '<label class="labelbold">&nbsp;Sold Price:</label>'
+                             + '<label class="labelprice">$ ' + (data[i].SOLD_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + '</label></div>';
+                }
+                else {
+                    if (data[i].Status == "Active") {
+                        imagepin = '<img src="/img/Green_legend_Menu.png"  style="margin-bottom:0" />'
+                    }
+                    else if (data[i].Status == "Pending" || data[i].Status == "Contingency Contract") {
+                        imagepin = '<img src="/img/yellow_legendMenu.png" style="margin-bottom:0" />'
+                    }
+                    pricelist = '<div class="col-sm-12" style="top:5px">' + imagepin
+                            + '<label class="labelprice">&nbsp;$ ' + (data[i].PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + '</label></div>';
+                }
+                if (PhotosURL.length > 1) {
+                    var photosdiv = '<div class="col-sm-4" style="top: 2px; height: 120px; padding-left: 0px; position: relative; background-image: url(' + PhotosURL[0] + '); background-size: 100% 100%;" id="' + DivImgId + '">'
+                                           + '<div class="col-sm-12" style="margin-top: 13%;padding: 15px;"><a href="#"><img src="/img/SliderBackArrow.png" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "-1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" width="21" height="29" alt="" style="margin-left: -12%;" id="' + BtnPrevImgId + '" hidden="hidden"/></a>'
+                                           + '<a href="#"><img src="/img/SliderNextArrow.png" width="21" height="29" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" alt="" style="float: right;margin-right: -23%;" id="' + BtnNextImgId + '"  hidden="hidden" /></a></div>'
+                                           + '</div>';
+                }
+                else {
+                    var photosdiv = '<div class="col-sm-4" style="top: 2px; height: 120px; padding-left: 0px; position: relative; background-image: url(' + PhotosURL[0] + '); background-size: 100% 100%;" id="' + DivImgId + '">'
+                                           + '<div class="col-sm-12" style="margin-top: 13%;padding: 15px;"><a href="#"><img src="/img/SliderBackArrow.png" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "-1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" width="21" height="29" alt="" style="margin-left: -12%;" id="' + BtnPrevImgId + '" hidden="hidden"/></a>'
+                                           + '<a href="#"><img src="/img/SliderNextArrow.png" width="21" height="29" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" alt="" style="float: right;margin-right: -23%;" id="' + BtnNextImgId + '"    hidden="hidden"/></a></div>'
+                                           + '</div>';
+                }
+                var agentimage = "";
+                if (data[i].Agent_Image != "" && data[i].Agent_Image != null && data[i].Agent_Image != ",")
+                    agentimage = data[i].Agent_Image;
+                else
+                    agentimage = "/img/addphotopic.png";
+                var addr11 = data[i].PRP_ADDRESS.split(',')[1];
+                var addr12 = (data[i].PRP_ADDRESS.split(',')[2] != undefined) ? "," + data[i].PRP_ADDRESS.split(',')[2] : "";
+                var pcolor = '', scolor = '';
+                if (data[i].Primary_Color != null) {
+                    pcolor = data[i].Primary_Color;
+                }
+                else {
+                    pcolor = '#99A3A4';
+                }
+                if (data[i].Secondary_Color != null) {
+                    scolor = data[i].Secondary_Color;
+                }
+                else {
+                    scolor = 'black';
+                }
+                var lists = '<div class="col-md-8 listingborders" style="">' + photosdiv + '<div class="col-sm-8"><div class="col-sm-12" style="padding:0;top:5px">'
+                          + pricelist + '</div>'
+                            + '<div class="col-sm-12" style="line-height:1;margin-top:10px"><img src="/img/lit_icon_btn.png"  style="float:right;cursor:pointer;height:28px" onclick="AgentFullDetailsView(\'' + AgentId + '\', \'' + data[i].MLSID + '\')"/>'
+                            + '<label class="labelbold ">' + data[i].PRP_ADDRESS.split(',')[0] + '</label><br /><label class="s ">'+addr11+''+addr12+'</label>'
+                            +'<br /><label class="">MLS#' + data[i].MLSID + '</label></div></div></div>'
+
+                            + '<div class="col-md-4 listingborders2" style="height:143px;background-color:'+pcolor+';padding-top:25px"><div class="col-md-3" style="top:15px">'
+                            + '<img src="'+agentimage+'" style="height:50px;width:50px;border-radius:50px" /></div>'
+                            + '<div class="col-md-8" style="color:#fff"><label  style="color:#FFA486">Buyer Agent</label><br />'
+                            + '<div class="col-md-12" style="font-size:16px;color:' + scolor + '">' + data[i].Agent_FirstName + ' ' + data[i].Agent_LastName + '</div>'
+                            + '<div class="col-md-12 textlimit" style="font-size:12px;color:' + scolor + '"></div>'
+                            + '<div class="col-md-12" style="font-size:11px;color:' + scolor + '">' + data[i].Office_Name + '</div></div></div>'
+                            + '</div></div>'
+                $("#BAM_listview_data").append(lists);
+            });
+        }
+    //Map View Button Event in Buyer Metrics
+        $("#BM_ListViewBtn").click(function () {
+            $("#BAM_mapandlistview").attr('src', '/img/listviewbtn.png');
+            $("#BAM_mapandlistview").click();
+            BM_getListings(buyerMetricsObject, "bm_map");
+        })//List View Button Event in Buyer Metrics
+        $('#BuyerAgentMetrics_Map_ListView_Popup').on('shown.bs.modal', function () {
+            //$('#bm_map_checkbox,#bm_listview_checkbox').checked(false);
+            if (bmf_status == "True") {
+                $('#bm_map_checkbox,bm_listview_checkbox').attr('checked', true)
+            }
+            else if (bmf_status == "False") {
+                $('#bm_map_checkbox,bm_listview_checkbox').attr('checked', false)
+            }
+            google.maps.event.trigger(map, "resize");
+        });//Wake up call to load Map
+        $("#BAM_mapandlistview").click(function () {
+
+            var textval = $(this).attr('src');
+            if (textval == "/img/listviewbtn.png") {
+
+                $(this).attr('src', '/img/mapviewbtn.png')
+                $("#BAM_map_panel").hide();
+                $("#BAM_listviewinpopup").show();
+            }
+            else if (textval == "/img/mapviewbtn.png") {
+                $(this).attr('src', '/img/listviewbtn.png')
+                $("#BAM_map_panel").show();
+                $("#BAM_listviewinpopup").hide();
+            }
+            google.maps.event.trigger(map, "resize");
+        });//Change Views from Map View to List View Vice Versa Buyer Metrics MapView In Popup
+    //End----Buyer Agent Metrics Map and List View Functionalities
+
+    //Start----Listing Agent Metrics Map and List View Functionalities
+        $("#lm_map_checkbox,#lm_listview_checkbox").change(function () {
+            if (selectedagents_val.join(',') != "")
+                var ag = selectedagents_val.join(',')
+            else
+                var ag = AgentId;
+            if ($(this).is(":checked")) {
+                LMFiltersObj = [ag, $('#lmf_fromdate').val(),
+                        $('#lmf_todate').val(), $('#lmf_fromprice').val().slice(1), $('#lmf_toprice').val().slice(1), 'Sold'];
+                LM_ListingsGet(LMFiltersObj, "lm_map");
+            }
+            else {
+                LMFiltersObj = [ag, $('#lmf_fromdate').val(),
+                       $('#lmf_todate').val(), $('#lmf_fromprice').val().slice(1), $('#lmf_toprice').val().slice(1), lm_filterstatus];
+                LM_ListingsGet(LMFiltersObj, "lm_map");
+            }
+
+        })
+        function LM_ListingsGet(filterobject, mapid) {
+            $.ajax({
+                url: "/Agent/Reports/GetListings_ListingMetrics",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(filterobject),
+                success: function (data) {
+                    if (data.length > 0) {
+                        LoadMarkers(data, mapid);
+                        Bind_LM_Listings(data);
+                    }
+                    else {
+                        DefaultMapload();
+                        $("#LAM_listview_data").empty();
+                    }
+                },
+                complete: function () {
+                    $("#ListingAgentMetrics_Map_ListView_Popup").modal('show');
+                }
+            });
+        }
+        $("#LM_MapViewBtn").click(function () {
+            $("#LAM_mapandlistview").attr('src', '/img/mapviewbtn.png');
+            $("#LAM_mapandlistview").click();
+            LM_ListingsGet(LMFiltersObj, "lm_map");
+        })//Map View Button Event in Listing Metrics
+        $("#LM_ListViewBtn").click(function () {
+            $("#LAM_mapandlistview").attr('src', '/img/listviewbtn.png');
+            $("#LAM_mapandlistview").click();
+            LM_ListingsGet(LMFiltersObj, "lm_map");
+        })//List View Button Event in Listing Metrics
+        $('#ListingAgentMetrics_Map_ListView_Popup').on('shown.bs.modal', function () {
+            google.maps.event.trigger(map, "resize");
+        });//Wake up call to load Map
+        $("#LAM_mapandlistview").click(function () {
+            var textval = $(this).attr('src');
+            if (textval == "/img/listviewbtn.png") {
+                $(this).attr('src', '/img/mapviewbtn.png')
+                $("#LAM_map_panel").hide();
+                $("#LAM_listviewinpopup").show();
+            }
+            else if (textval == "/img/mapviewbtn.png") {
+                $(this).attr('src', '/img/listviewbtn.png')
+                $("#LAM_map_panel").show();
+                $("#LAM_listviewinpopup").hide();
+            }
+            google.maps.event.trigger(map, "resize");
+
+        });//Change Views from Map View to List View Vice Versa Listing Metrics MapView In Popup
+        function Bind_LM_Listings(data) {
+            var price = "", imagepin = "";
+            $("#LAM_listview_data").empty();
+            $.each(data, function (i, item) {
+                var BtnPrevImgId = "Prev" + data[i].MLSID;
+                var BtnNextImgId = "Next" + data[i].MLSID;
+                var PrpImagesArray = []
+                var DivImgId = "div_" + data[i].MLSID;
+                var PhotosURL = [], TotalImages = [];
+                PrpImagesArray = [];
+                if (data[i].PRP_IMAGES != null && data[i].PRP_IMAGES != "" && data[i].PRP_IMAGES != ",") {
+                    PrpImagesArray = data[i].PRP_IMAGES.split(',');
+                    TotalImages.push(data[i].PRP_IMAGES);
+                    if (TotalImages.length > 0)
+                        PhotosURL = data[i].PRP_IMAGES.split(',');
+                    else
+                        PhotosURL[0] = data[i].PRP_IMAGES;
+                }
+                else {
+                    PhotosURL[0] = '/img/NoImage.png';
+                }
+                if (item.Status == "Sold") {
+                    imagepin = '<img src="/img/red_legendMenu.png" height="20" style="margin-bottom:0" />'
+
+                    pricelist = '<div class="col-sm-6" style="border-right:1px solid lightgray"><label class="labelbold">Listed Price:</label>'
+                             + '<label class="labelprice">$ ' + (data[i].PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + '</label></div>'
+                              + '<div class="col-sm-6">' + imagepin + '<label class="labelbold">&nbsp;Sold Price:</label>'
+                             + '<label class="labelprice">$ ' + (data[i].SOLD_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + '</label></div>';
+                }
+                else {
+                    if (data[i].Status == "Active") {
+                        imagepin = '<img src="/img/Green_legend_Menu.png"  style="margin-bottom:0" />'
+                    }
+                    else if (data[i].Status == "Pending" || data[i].Status == "Contingency Contract") {
+                        imagepin = '<img src="/img/yellow_legendMenu.png" style="margin-bottom:0" />'
+                    }
+                    pricelist = '<div class="col-sm-12" style="top:5px">' + imagepin
+                            + '<label class="labelprice">&nbsp;$ ' + (data[i].PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + '</label></div>';
+                }
+                if (PhotosURL.length > 1) {
+                    var photosdiv = '<div class="col-sm-4" style="top: 2px; height: 120px; padding-left: 0px; position: relative; background-image: url(' + PhotosURL[0] + '); background-size: 100% 100%;" id="' + DivImgId + '">'
+                                           + '<div class="col-sm-12" style="margin-top: 13%;padding: 15px;"><a href="#"><img src="/img/SliderBackArrow.png" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "-1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" width="21" height="29" alt="" style="margin-left: -12%;" id="' + BtnPrevImgId + '" hidden="hidden"/></a>'
+                                           + '<a href="#"><img src="/img/SliderNextArrow.png" width="21" height="29" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" alt="" style="float: right;margin-right: -23%;" id="' + BtnNextImgId + '"  hidden="hidden" /></a></div>'
+                                           + '</div>';
+                }
+                else {
+                    var photosdiv = '<div class="col-sm-4" style="top: 2px; height: 120px; padding-left: 0px; position: relative; background-image: url(' + PhotosURL[0] + '); background-size: 100% 100%;" id="' + DivImgId + '">'
+                                           + '<div class="col-sm-12" style="margin-top: 13%;padding: 15px;"><a href="#"><img src="/img/SliderBackArrow.png" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "-1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" width="21" height="29" alt="" style="margin-left: -12%;" id="' + BtnPrevImgId + '" hidden="hidden"/></a>'
+                                           + '<a href="#"><img src="/img/SliderNextArrow.png" width="21" height="29" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" alt="" style="float: right;margin-right: -23%;" id="' + BtnNextImgId + '"    hidden="hidden"/></a></div>'
+                                           + '</div>';
+                }
+                var agentimage = "";
+                if (data[i].PhotoLocation != "" && data[i].PhotoLocation != null && data[i].PhotoLocation != ",")
+                    agentimage = data[i].PhotoLocation;
+                else
+                    agentimage = "/img/addphotopic.png";
+                var pcolor = '', scolor = '';
+                if (data[i].Primary_Color != null) {
+                    pcolor = data[i].Primary_Color;
+                }
+                else {
+                    pcolor = '#99A3A4';
+                }
+                if (data[i].Secondary_Color != null) {
+                    scolor = data[i].Secondary_Color;
+                }
+                else {
+                    scolor = 'black';
+                }
+                var addr11 = data[i].PRP_ADDRESS.split(',')[1];
+                var addr12 = (data[i].PRP_ADDRESS.split(',')[2] != undefined) ? "," + data[i].PRP_ADDRESS.split(',')[2] : "";
+                var lists = '<div class="col-md-7 listingborders"  style="width:55%">' + photosdiv + '<div class="col-sm-8"><div class="col-sm-12" style="padding:0;top:5px">'
+                          + pricelist + '</div>'
+                            + '<div class="col-sm-12" style="line-height:1;margin-top:10px"><img src="/img/lit_icon_btn.png" style="float:right;cursor:pointer;height:28px" onclick="AgentFullDetailsView(\'' + AgentId + '\', \'' + data[i].MLSID + '\')"/>'
+                            + '<label class="labelbold ">' + data[i].PRP_ADDRESS.split(',')[0] + '</label><br /><label class="s ">' + addr11 + '' + addr12 + '</label>'
+                            + '<br /><label class="">MLS#' + data[i].MLSID + '</label></div></div></div>'
+
+                            + '<div class="col-md-4 listingborders2" style="height:159px;width:33%;background-color:'+pcolor+';padding-top:25px"><div class="col-md-3" style="top:15px">'
+                            + '<img src="' + agentimage + '" style="height:50px;width:50px;border-radius:50px" /></div>'
+                            + '<div class="col-md-8" style="color:#fff"><label  style="color:#FFA486">Buyer Agent</label><br />'
+                            + '<div class="col-md-12" style="font-size:18px;padding:0;color:'+scolor+'">' + data[i].FirstName + ' ' + data[i].LastName + '</div>'
+                            + '<div class="col-md-12 textlimit" style="font-size:12px;padding:0"></div>'
+                            + '<div class="col-md-12" style="font-size:12px;padding:0;color:' + scolor + '">' + data[i].AOOfcName + '</div></div></div>'
+
+                               + '<div class="col-md-1 listingborders" style="text-align:center;padding:0;width:12%;height:158px;background-color:#FFE0D6">'
+                        + '<div class="col-sm-12" style="margin-top:10px;">Showings</div><div class="col-sm-12"><input type="text" class="form-control" value="' + item.Total_Showings + '" readonly/></div>'
+                        + '<div class="col-sm-12" style="padding:0;margin-top:15px;">Open Houses</div><div class="col-sm-12"> <input type="text" class="form-control value="' + item.Total_OpenHouses + '" readonly" />'
+                        + '</div></div></div>'
+                            + '</div></div>'
+
+                $("#LAM_listview_data").append(lists);
+            });
+        }
+    //End----Listing Agent Metrics Map and List View Functionalities
+        function DefaultMapload() {
+            for (var i = 0; i < mymarkers.length; i++) {
+                mymarkers[i].setMap(null)
+            }
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                geocoder = new google.maps.Geocoder();
+                //alert(position.coords.latitude+","+ position.coords.longitude);
+                // pos = new google.maps.LatLng(34.8526, -82.3940);
+                pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                //var latLng = new google.maps.LatLng(17.3850,78.4867);
+                map = new google.maps.Map(document.getElementById("BAM_mapviewinpopup"), {
+                    zoom: 10, // initialize zoom level - the max value is 21
+                    minZoom: 6,
+                    // maxZoom: 16,
+                    streetViewControl: false, // hide the yellow Street View pegman
+                    //scaleControl: false,
+                    //draggable: false,
+                    fullscreenControl: false,
+                    zoomControl: false,
+                    mapTypeControl: false,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    center: pos,
+                });
+            });
+        }
+        else {
+            $("#heading").text("Warning");
+            $("#content_text").text("Browser sot supporting to get current location");
+            $("#AlertPopup").modal("show");
+        }
+   }
+</script>

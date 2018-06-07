@@ -1,0 +1,2663 @@
+﻿@*SearchFilterPopup Page*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var StatusList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Approve", Value = "1" },
+        new SelectListItem { Text = "Pending", Value = "2" },
+        new SelectListItem { Text = "Close", Value = "3" },
+    };
+}
+
+@*Testing*@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+@*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
+@*TYesting*@<link href="~/Content/searcfilterpopups.css" rel="stylesheet" />
+<style>
+    #RightListView::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+    #RightListView::-webkit-scrollbar {
+        width: 3%;
+        background-color: #F5F5F5;
+    }
+
+    #RightListView::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #FF5D26;
+    }
+
+    .header-menu-list {
+        background: none;
+        padding: 3px;
+        overflow: hidden;
+    }
+
+        .header-menu-list .btn-expand {
+            float: right;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+    .collapsible {
+        position: absolute;
+        right: 36px;
+        top: 81%;
+        display: none;
+        width: 385%;
+    }
+
+    /*#scroll::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+    #scroll::-webkit-scrollbar {
+        width: 3%;
+        background-color: #F5F5F5;
+    }
+
+    #scroll::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #FF5D26;
+    }*/
+</style>
+<div id="content">
+    <div class="tabs-wrapper text-center">
+        <!-- First Landing tool BAr1-->
+        <div class="panel box-shadow-none text-left content-header" id="paneltoolbar1">
+            <div class="panel-toolbar">
+                <div class="col-md-12" style="top:6px">
+                    <div class="row landing-toolbar" style="height: 43px;">
+                        <div class="col-md-1" style="left: -11px">
+                            <div class="inner-addon right-addon">
+                                @Html.TextBox("search", "", new { @class = "form-control", @placeholder = "Search MLS, City, School, etc", @id = "search",@style= "margin-left:7px;background-color: white !important;border-color:white;width:207px!important;font-size:12px!important;color:#FF5D26!important;height:28px!important;margin-top:-5px" })
+                                <a href="#" id="btnsearch" class="btn btn-sm btn-default" style="margin-top: -61px;height: 17px!important;border: none;margin-left: 153px;background-color: white !important;padding-left: 35px;padding-top: 7px;">
+                                    <span class="glyphicon glyphicon-search" style="color: #FF5D26 !important;margin-right: 0px;margin-top: 1px;width: 5px;top:-7px;"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2" style="left: 111px;margin-top: -5px;padding-left:0!important;padding-right:0!important;">
+                            <div class="icontoolbarmywi">
+                                <img src="/img/icon_mybasicneeds.png" width="24" height="24" alt="" style="height: 18px; width: 17px; padding-top: 1px; margin-bottom: 5px; margin-top: 5px" />
+                            </div>
+                            <div class="titletoolsicon" style="font-size: 12px; margin-bottom: 1px; margin-top: 6px">My Basic Needs</div>
+                            <span class="togglebutton">
+                                <label class="switch" style="left: -3px !important; top: 6px !important; height: 18px !important;">
+                                    <input type="checkbox">
+                                    <div class="slider-sm round"></div>
+                                </label>
+                            </span>
+                        </div>
+                        <div class="col-md-2" style="margin-top: -3px;left: 90px;">
+                            <div class="icontoolbarmywi">
+                                <img src="/img/icon_whishlist.png" width="24" height="24" alt="" style="height: 18px; width: 17px; padding-top: 1px; margin-bottom: 5px; margin-top: 3px" />
+                            </div>
+                            <div class="titletoolsicon" style="font-size: 12px; margin-bottom: 1px; margin-top: 6px">My Wishlist</div>
+                            <span class="togglebutton">
+                                <label class="switch" style="left: -2px !important; top: 6px !important; height: 18px !important;">
+                                    <input type="checkbox">
+                                    <div class="slider-sm round"></div>
+                                </label>
+                            </span>
+                        </div>
+                        <div class="col-md-2" style="left: 112px; margin-top: -1px">
+                            <button type="button" class="form-control" id="PropertyTypes" style="height: 28px;width: 136px;padding-top: 1px;margin-top: -3px;" data-toggle="collapse" data-target="#PropToggle">
+                                <span id="PropSelected" style="float: left;font-size:12px;padding-top:5px">Property Type </span><i class="fa fa-caret-down" aria-hidden="true" style="margin-left: 5%; margin-top: -4%;padding-top:10px"></i>
+                            </button>
+                        </div>
+                        <div class="col-md-2" style="left: 88px; margin-top: -1px">
+                            @*<img src="/img/filtersbutton.png" width="169" height="36" alt="" style="height:22px; width:2px" /></div>*@
+                            <button type="button" class="form-control" data-toggle="modal" data-target="#HomeModalFilters" id="searchfilters" style="height: 28px;width: 120px;padding-top: 1px;margin-top: -3px;font-size:12px;padding-top:6px;">
+                                @*<span class="glyphicon glyphicon-filter" style="color:orange; top: 2px !important; left: -10px;"></span>*@
+                                <img src="~/img/Filter.png" alt="" style="top: 2px !important; left: 0px; height: 15px; width: 17px; margin-bottom: 1px" />
+                                Filters
+                            </button>
+
+                        </div>
+                        <div class="col-md-2" style="left: -20px; margin-top: -1px">
+                            <div class="pull-right" style="margin-top: -5px">
+                                <button type="button" id="savesearchbtn" data-toggle="modal" data-target="#SaveSearchModal" class="form-control" style="background-color: #ff6937;color: white;width: 111%;height: 29px !important;padding-top: 0px;margin-top: 2px;font-size:12px;border:0!important;height:28px;padding-top:5px;">
+                                    Save Search
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-1" style="left: -30px;margin-top: -6px;">
+                            @Html.DropDownList("dropdown1", new List<SelectListItem>
+                        {
+                            new SelectListItem{ Text="Date", Value = "1" },
+                            new SelectListItem{ Text="Priority", Value = "2" },
+                            new SelectListItem{ Text="Time", Value = "3" }
+                         }, "Sort By"
+                         , new { @class = "form-control", @style = "background-color:#ff6937;color:white;width: 93px;height: 28px !important;padding-top: 0px;padding-bottom: -34px;border-radius: 3px !important;padding-bottom: 1px !important;margin-top:2px;border-bottom-width: 0px;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;font-size:12px" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-3" style="background-color: #fff;left: 0.7%;top: -10px;border-radius: 3px;height: 23px;width: 345px;font-size: 12px;padding-left: 1px;margin-left: 15%;margin-top: 0px;">
+    <div style="padding-top:4px; padding-left:5%">
+        <img src="~/img/green_legend_Menu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">For Sale</label>
+
+        <img src="~/img/yellow_legendMenu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Under Contract</label>
+
+        <img src="~/img/red_legendMenu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Sold</label>
+
+        <img src="~/img/gray_legendMenu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Rental</label>
+
+        <img src="~/img/viewedicon.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Viewed</label>
+    </div>
+</div>
+<div class="col-sm-10" id="googlemaps"></div>
+<div class="col-sm-2" id="RightListView" style="float: right;margin-right: 0.2%;background-color: white;overflow: auto;max-height: 650px;width: 15%;margin-top: 5px;top: -17px;padding-left:0.5px;">
+</div>
+<div class="col-sm-1" style="float: right;top: 3px;width: 2%;height: 30px;padding-right: 0px;background-color: white;margin-top: -15px;">
+    <i class="fa fa-angle-single-left" aria-hidden="true" id="Expand" style="float: right; width: 23px; font-size: 29px !important;"></i>
+</div>
+<div class="col-sm-3" id="PropertyCollapse" style="margin-left: 55.1%;margin-top: -2.5%;font-size: 11px;width: 13%;">
+    <div id="PropToggle" class="collapse" style="background-color: white;">
+        <ul style="margin-left: -28px;">
+            <li>
+                <input type="radio" name="Property" checked="checked" value="1" />
+                <b>Homes</b>
+                <ul id="PropHomes" style="margin-left: -21px;">
+                    <li>
+                        <input type="checkbox" id="PHSale" name="homeclass" value="1" checked />
+                        For Sale
+                        <img src="~/img/salepin.png" style="height: 10px; width: 10px; border-radius: 50%; float: right; margin-right: 20px">
+                    </li>
+                    <li>
+                        <input type="checkbox" name="homeclass" id="PHConstruct" value="2" />
+                        Under Construct
+                        <img src="~/img/UnderConstruct.png" style="height: 10px; width: 10px; border-radius: 50%; float: right; margin-right: 20px">
+                    </li>
+                    <li>
+                        <input type="checkbox" name="homeclass" id="PHSold" value="3" />
+                        Sold
+                        <img src="~/img/viewedicon.png" style="height: 10px; width: 10px; border-radius: 50%; float: right; margin-right: 20px">
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <input type="radio" name="Property" value="2" /><b> Rental</b>s
+                <img src="~/img/viewedicon.png" style="height: 10px; width: 10px; border-radius: 50%; float: right; margin-right: 20px">
+            </li>
+            <li>
+                <input type="radio" name="Property" value="3" /><b> Lots/Lands</b>
+                <ul id="PropLotsLands" style="margin-left: -21px;">
+                    <li>
+                        <input type="checkbox" id="PLLSale" name="lotclass" value="1" checked />
+                        For Sale
+                        <img src="~/img/salepin.png" style="height: 10px; width: 10px; border-radius: 50%; float: right; margin-right: 20px">
+                    </li>
+                    <li>
+                        <input type="checkbox" id="PLLConstruct" name="lotclass" value="2" />
+                        Under Construct
+                        <img src="~/img/UnderConstruct.png" style="height: 10px; width: 10px; border-radius: 50%; float: right; margin-right: 20px">
+                    </li>
+                    <li>
+                        <input type="checkbox" id="PLLSold" name="lotclass" value="3" />
+                        Sold
+                        <img src="~/img/viewedicon.png" style="height: 10px; width: 10px; border-radius: 50%; float: right; margin-right: 20px">
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<button type="submit" id="btn_Details" data-dismiss="modal" class="btn btn-sm" data-toggle="modal" data-target="#ModelDetails"></button>
+@*//Propert info Modal*@
+<div class="modal fade" id="ModelDetails" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 2%; width: 50%;">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #f56331; color: white;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Breif Details</h4>
+            </div>
+            <div class="modal-body" style="text-align: left;">
+                <span id="MLSId"></span>
+                <br />
+                <span id="GeoLatitude"></span>
+                <br />
+                <span id="GeoLongitude"></span>
+                <br />
+                <span id="Class"></span>
+                <br />
+                <span id="Bedrooms"></span>
+                <span id="Fireplaces"></span>
+                <span id="FullBaths"></span>
+                <span id="HalfBaths"></span>
+                <span id="Stories"></span>
+                <span id="AdditionalFee"></span>
+                <span id="Address1"></span>
+                <span id="Address2"></span>
+                <span id="AddressDirection"></span>
+                <span id="AddressNo"></span>
+                <span id="Street"></span>
+                <span id="AgentId"></span>
+                <span id="AgentLicenseId"></span>
+                <span id="Appliances"></span>
+                <span id="ApproxAcres"></span>
+                <span id="ApproxAge"></span>
+                <span id="ApproxLotDimensions"></span>
+                <span id="ApproxYearBuilt"></span>
+                <span id="Area"></span>
+                <span id="Auction"></span>
+                <span id="Basement"></span>
+                <span id="Bedroom2Size"></span>
+                <span id="Bedroom3Size"></span>
+                <span id="Bedroom4Size"></span>
+                <span id="Bedroom5Size"></span>
+                <span id="BonusRecRmSize"></span>
+                <span id="BreakfastRoomSize"></span>
+                <span id="BrokerageLicenseID"></span>
+                <span id="BuildersName"></span>
+                <span id="City"></span>
+                <span id="CondoRegimeIncludes"></span>
+                <span id="Condos"></span>
+                <span id="ContingentCloseDate"></span>
+                <span id="CoolingSystem"></span>
+                <span id="County"></span>
+                <span id="DeckSize"></span>
+                <span id="DenSize"></span>
+                <span id="DiningSize"></span>
+                <span id="GeoAddressLine"></span>
+                <span id="GeoPostalCode"></span>
+                <span id="GeoPrimaryCity"></span>
+                <span id="GeoQuality"></span>
+                <span id="GeoSecondaryCity"></span>
+                <span id="GeoSubdivision"></span>
+                <span id="GeoZoomLevel"></span>
+                <span id="GreatRoomSize"></span>
+                <span id="ListingPrice"></span>
+                <span id="HomeType"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm" data-dismiss="modal" style="background-color: #f56331; color: white; width: 69px; border-radius: 5px !important">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Home Filters modal popup*@
+<div class="modal fade" id="HomeModalFilters" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 2%; width: 50%;">
+        <div class="modal-content">
+            <div class="modal-body" style="min-height: 224px;" id="export-content">
+                <!--Nav Tab -->
+                <ul id="tabs-demo2" class="nav nav-tabs nav-tabs-v1" role="tablist" style="margin-left: 19%;">
+                    <li role="presentation" class="active">
+                        <a href="#tabs-demo2-area1" id="tabs-demo2-1" role="tab" aria-controls="tabs-demo2-area1" data-toggle="tab"><span class="steptabsround">1</span>Basic Filters</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tabs-demo2-area2" id="tabs-demo2-2" role="tab" aria-controls="tabs-demo2-area2" data-toggle="tab"><span class="steptabsround">2</span>Advance Filters</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tabs-demo2-area3" id="tabs-demo2-3" role="tab" aria-controls="tabs-demo2-area3" data-toggle="tab"><span class="steptabsround">3</span>Utilities Filters</a>
+                    </li>
+                </ul>
+                <!--Tab Panes-->
+                <div id="tabsDemo2Content" class="tab-content tab-content-v1 col-md-12">
+                    <div role="tabpanel" class="tab-pane fade active in tabcontent1" id="tabs-demo2-area1">
+                        <div class="col-md-12 row" style="padding-left: 3px;">
+                            <label>Driving Distance</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            @Html.TextBox("inputMinutes", "", new { @style = "height: 35px", @class = "form-control ", @placeholder = " Minutes", @id = "inputMinutes", @MaxLength = "2" })
+                                        </div>
+                                        <div class="col-sm-2 removedpaddings">
+                                            <label for="inputEmail3" class="control-label">From</label>
+                                        </div>
+                                        <div class="col-sm-6 removedpaddings">
+                                            @Html.TextBox("inputAddress", "", new { @class = "form-control ", @placeholder = " Address / Location…" })
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-sm-12">
+                                    <div class="col-sm-4" style="text-align: left; padding-right: 0; padding-left: 0; font-size: xx-small">
+                                        <label for="inputEmail3" class="control-label" style="width: 100%;">Property Type</label>
+                                    </div>
+                                    <div class="col-sm-8" style="padding-left: 0; padding-bottom: 3%">
+                                        @Html.DropDownList("propertytype", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Any", Value = "1" },
+                                                new SelectListItem{ Text="Single Family-Detached", Value = "2" },
+                                                new SelectListItem{ Text="Condo/TownHouse", Value = "3" },
+                                                new SelectListItem{ Text="Mobile Home", Value = "4" },
+                                                new SelectListItem{ Text="Modulare", Value = "5" },
+                                                new SelectListItem{ Text="Other", Value = "6" },
+                                             }
+                                             , new { @class = "form-control", multiple = "multiple" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label spanssliderpadding" for="exampleInputEmail1">Price</label>
+                                <label class="control-label" id="price" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;"></label>
+                                <div id="slider-range"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Bathrooms </label>
+                                <br>
+                                <div class="bathbtngroup btn-group btn-group-justified" style="height: 35px" id="btns">
+                                    <a href="#" data-index="1" id="bathany" name="bathrooms" class=" btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" data-index="2" name="bathrooms" class=" btn btn-default" data-btn-class="btn mybtncls">1+</a>
+                                    <a href="#" data-index="3" name="bathrooms" class=" btn btn-default" data-btn-class="btn mybtncls">2+</a>
+                                    <a href="#" data-index="4" name="bathrooms" class=" btn btn-default" data-btn-class="btn mybtncls">3+</a>
+                                    <a href="#" data-index="5" name="bathrooms" class=" btn btn-default" data-btn-class="btn mybtncls">4+</a>
+                                    <a href="#" data-index="6" name="bathrooms" class=" btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">5+</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Bedrooms</label>
+                                <br>
+                                <div class="bedroombtngroup btn-group btn-group-justified" style="height: 35px">
+                                    <a href="#" id="bedroomany" data-index="1" name="bedrooms" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 1px 6px !important;">Any</a>
+                                    <a href="#" data-index="2" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls">1+</a>
+                                    <a href="#" data-index="3" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls">2+</a>
+                                    <a href="#" data-index="4" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls">3+</a>
+                                    <a href="#" data-index="5" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls">4+</a>
+                                    <a href="#" data-index="6" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">5+</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label spanssliderpadding" for="exampleInputEmail1">Sqft</label>
+                                <label class="control-label" id="sqft" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;"></label>
+                                <br>
+                                <div id="slider-range2"></div>
+                            </div>
+                        </div>
+                        <hr class="hr2" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label class="control-label" for="exampleInputEmail1">Schools</label>
+                                        @Html.TextBox("inputSchool", "", new { @class = "form-control ", @placeholder = "Search for Schools…", @type = "search" })
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Garage Type</label>
+                                <br>
+                                <div class="grgtypebtngroup btn-group btn-group-justified" style="height: 35px">
+                                    <a href="#" id="grgany" data-index="1" name="garagetype" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" data-index="2" name="garagetype" class="btn btn-default" data-btn-class="btn mybtncls">Carport</a>
+                                    <a href="#" data-index="3" name="garagetype" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Garage</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Master Bedrooms</label>
+                                <br>
+                                <div class="masterbedroombtngroup btn-group btn-group-justified" style="height: 35px">
+                                    <a href="#" id="mbedany" data-index="1" name="masterbedrooms" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" data-index="2" name="masterbedrooms" class="btn btn-default" data-btn-class="btn mybtncls">Main Floor</a>
+                                    <a href="#" data-index="3" name="masterbedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Second Floor</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label spanssliderpadding" for="exampleInputEmail1">Lot Acreage</label>
+                                <label class="control-label" id="lotacreage" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;"></label>
+                                <br>
+                                <div id="slider-range3"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Number of Stories</label>
+                                <br>
+                                <div class="col-md-12">
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="Any" name="noofstories" value="1" id="storiesany" checked />
+                                        Any
+                                    </label>
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="1" name="noofstories" value="2" />
+                                        1
+                                    </label>
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="1.5" name="noofstories" value="3" />
+                                        1.5
+                                    </label>
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="2" name="noofstories" value="4" />
+                                        2
+                                    </label>
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="Tri/Split" name="noofstories" value="5" />
+                                        Tri / Split
+                                    </label>
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="3+" name="noofstories" value="6" />
+                                        3+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">SubDivision</label>
+                                <br>
+                                @Html.TextBox("inputSubDivision", "", new { @class = "form-control ", @placeholder = "Search for Subdivisions…", @type = "search", @style = "height: 35px" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Garage Capacity</label>
+                                <br>
+                                <div class="grgcapbtngroup btn-group btn-group-justified" style="height: 35px">
+                                    <a href="#" id="grgcapany" data-index="1" name="garagecapacity" class="btn active btn-default " data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" data-index="2" name="garagecapacity" class="btn btn-default" data-btn-class="btn mybtncls">1+</a>
+                                    <a href="#" data-index="3" name="garagecapacity" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">2+</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Age</label>
+                                <br>
+                                @Html.DropDownList("agetype", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Any", Value = "1" },
+                                                new SelectListItem{ Text="To Be Built", Value = "2" },
+                                                new SelectListItem{ Text="Under Construction", Value = "3" },
+                                                new SelectListItem{ Text="New / Never Lived In", Value = "4" },
+                                                new SelectListItem{ Text="1-5", Value = "5" },
+                                                new SelectListItem{ Text="6-10", Value = "6" },
+                                                new SelectListItem{ Text="11-20", Value = "7" },
+                                                new SelectListItem{ Text="21-30", Value = "8" },
+                                                new SelectListItem{ Text="31-50", Value = "9" },
+                                                new SelectListItem{ Text="50+", Value = "10" },
+                                             }, new { @class = "form-control", multiple = "multiple" })
+                            </div>
+                        </div>
+                        <hr class="hr2" />
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade tabcontent1" id="tabs-demo2-area2">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="control-label">Lot Features</label><br />
+                                        @Html.DropDownList("lotfeatures", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Any", Value = "1" },
+                                                new SelectListItem{ Text="Cul-de-Sac", Value = "2" },
+                                                new SelectListItem{ Text="Fenced Yard", Value = "3" },
+                                                new SelectListItem{ Text="Mountain View", Value = "4" },
+                                                 new SelectListItem{ Text="Mountain", Value = "5" },
+                                                new SelectListItem{ Text="On Golf Course", Value = "6" },
+                                                new SelectListItem{ Text="Sidewalk", Value = "7" },
+                                                new SelectListItem{ Text="Water Access", Value = "8" },
+                                                new SelectListItem{ Text="Water Front", Value = "9" },
+
+                                             }
+                                             , new { @class = "form-control", multiple = "multiple" })
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-6 removedpaddings">
+                                <label for="inputEmail3" class="control-label">Appliances</label><br />
+                                @Html.DropDownList("appliances", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Any", Value = "1" },
+                                                new SelectListItem{ Text="Cook Top - Electric", Value = "2" },
+                                                new SelectListItem{ Text="Cook Top - Smooth", Value = "3" },
+                                                new SelectListItem{ Text="Gas", Value = "4" },
+                                                 new SelectListItem{ Text="Dishwasher", Value = "5" },
+                                                new SelectListItem{ Text="Disposal", Value = "6" },
+                                                new SelectListItem{ Text="Double Oven", Value = "7" },
+                                                new SelectListItem{ Text="Double Oven", Value = "8" },
+                                                new SelectListItem{ Text="Refrigerator", Value = "9" },
+                                                new SelectListItem{ Text="Washer", Value = "10" },
+                                             }
+                                             , new { @class = "form-control", multiple = "multiple" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="control-label">Foundation Type</label>
+                                        <br>
+                                        <div class="ftypebtngroup btn-group btn-group-justified" style="height: 35px">
+                                            <a href="#" id="ftypeany" name="foundationtype" data-index="1" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                            <a href="#" class="btn btn-default" data-index="2" name="foundationtype" data-btn-class="btn mybtncls">Basement</a>
+                                            <a href="#" class="btn btn-default" data-index="3" name="foundationtype" data-btn-class="btn mybtncls">Crawl Space</a>
+                                            <a href="#" class="btn btn-default" data-index="4" name="foundationtype" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Slab</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-6 removedpaddings">
+                                <label for="inputEmail3" class="control-label">Master Features</label>
+                                <div class="col-md-12">
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="Double Sink" name="masterfeatures" value="1" id="masterfeaturesany" checked />
+                                        Double Sink
+                                    </label>
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="Full Bath" name="masterfeatures" value="2" />
+                                        Full Bath
+                                    </label>
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="Walk-In Closest" name="masterfeatures" value="3" />
+                                        Walk-In Closest
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="control-label">Exterior Features</label>
+                                        <label for="inputEmail3" class="control-label">Appliances</label><br />
+                                        @Html.DropDownList("exteriorfeatures", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Any", Value = "1" },
+                                                new SelectListItem{ Text="Deck", Value = "2" },
+                                                new SelectListItem{ Text="Patio", Value = "3" },
+                                                new SelectListItem{ Text="Handicap Access", Value = "4" },
+                                                 new SelectListItem{ Text="Outdoor Fireplace", Value = "5" },
+                                                new SelectListItem{ Text="Outdoor Kitchen", Value = "6" },
+                                                new SelectListItem{ Text="Pool - Above Ground", Value = "7" },
+                                                new SelectListItem{ Text="Pool - In Ground", Value = "8" },
+                                                new SelectListItem{ Text="Porch - Screened", Value = "9" },
+                                                new SelectListItem{ Text="Sprinkler In Ground - Full Yard", Value = "10" },
+                                                new SelectListItem{ Text="Sprinkler In Ground - Half Yard", Value = "11" },
+                                             }
+                                             , new { @class = "form-control", multiple = "multiple" })
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="inputEmail3" class="control-label">Laundry Room</label>
+                                <br>
+                                <div class="lroombtngroup btn-group btn-group-justified" style="height: 35px">
+                                    <a href="#" id="lroomany" name="laundryroom" data-index="1" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" class="btn btn-default" name="laundryroom" data-index="2" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Walk-In Only</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="control-label">Interior Features</label><br />
+                                        @Html.DropDownList("interiorfeatures", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Any", Value = "1" },
+                                                new SelectListItem{ Text="Ceiling - 9ft", Value = "2" },
+                                                new SelectListItem{ Text="Ceiling - Cathedral/Vaulted", Value = "3" },
+                                                new SelectListItem{ Text="Open Floor Plan", Value = "4" },
+                                                 new SelectListItem{ Text="Walk-In Closet", Value = "5" },
+                                                new SelectListItem{ Text="Countertops - Granite", Value = "6" },
+                                                new SelectListItem{ Text="Countertops - Solid Surface", Value = "7" },
+                                                new SelectListItem{ Text="Countertops - Othe", Value = "8" },
+                                                new SelectListItem{ Text="Wet Bar", Value = "9" },
+                                                new SelectListItem{ Text="Central Vacuum", Value = "10" },
+                                                new SelectListItem{ Text="Handicap Access", Value = "11" },
+                                                new SelectListItem{ Text="In-Law Suite", Value = "12" },
+                                                new SelectListItem{ Text="Intercom", Value = "13" },
+                                             }
+                                             , new { @class = "form-control", multiple = "multiple" })
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="inputEmail3" class="control-label">Fire Place</label>
+                                <br>
+                                <div class="fplacebtngroup btn-group btn-group-justified" style="height: 35px">
+                                    <a href="#" id="fplaceany" name="fireplace" data-index="1" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" name="fireplace" data-index="2" class="btn btn-default" data-btn-class="btn mybtncls">Gas</a>
+                                    <a href="#" name="fireplace" data-index="3" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Wood Burning</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="control-label">Flooring Type</label>
+                                        <br>
+                                        <div class="floorbtngroup btn-group btn-group-justified" style="height: 35px">
+                                            <a href="#" id="floorany" name="floortype" data-index="1" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                            <a href="#" name="floortype" data-index="2" class="btn btn-default" data-btn-class="btn mybtncls">Hardwood</a>
+                                            <a href="#" name="floortype" data-index="3" class="btn btn-default" data-btn-class="btn mybtncls">Pine</a>
+                                            <a href="#" name="floortype" data-index="4" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Carpet</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="inputEmail3" class="control-label">Community Amenities</label>
+                                <div class="col-md-12">
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="Gated Community" name="community" id="communityany" value="1" checked />
+                                        Gated Community
+                                    </label>
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="Pool" name="community" value="2" />
+                                        Pool
+                                    </label>
+                                    <label class="checkbox-inline filterlabel">
+                                        <input type="checkbox" data-index="Lawn Maintenanace" name="community" value="3" />
+                                        Lawn Maintenanace
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="hr2" />
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade tabcontent1" id="tabs-demo2-area3">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="control-label">Heating System</label>
+                                        <br>
+                                        <div class="heatsystembtngroup btn-group btn-group-justified">
+                                            <a href="#" id="hsany" name="heatsystem" data-index="1" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                            <a href="#" name="heatsystem" data-index="2" class="btn btn-default" data-btn-class="btn mybtncls">Gas</a>
+                                            <a href="#" name="heatsystem" data-index="3" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Eletric</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-6 removedpaddings">
+                                <label for="inputEmail3" class="control-label">Water Type</label>
+                                <br>
+                                <div class="watertypebtngroup btn-group btn-group-justified">
+                                    <a href="#" id="wtypeany" name="watertype" data-index="1" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" name="watertype" data-index="2" class="btn btn-default" data-btn-class="btn mybtncls">Public</a>
+                                    <a href="#" name="watertype" data-index="3" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Well</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="control-label">Water Heater Type</label>
+                                        <br>
+                                        <div class="waterheaterbtngroup btn-group btn-group-justified">
+                                            <a href="#" id="wheaterany" name="waterheatertype" data-index="1" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                            <a href="#" name="waterheatertype" data-index="2" class="btn btn-default" data-btn-class="btn mybtncls">Tankless</a>
+                                            <a href="#" name="waterheatertype" data-index="3" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Gas</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="inputEmail3" class="control-label">Sewer Type</label>
+                                <br>
+                                <div class="swerbtngroup btn-group btn-group-justified">
+                                    <a href="#" id="swerany" name="sewertype" data-index="1" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" name="sewertype" data-index="2" class="btn btn-default" data-btn-class="btn mybtncls">Public</a>
+                                    <a href="#" name="sewertype" data-index="3" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Septic</a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="hr2" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-dismissable alert-success" id="summarydiv1" style="text-align: left">
+                            <label id="summary1" class="control-label"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"><a href="#" class="closeorangebtn" data-dismiss="modal" id="closebtn3">Close</a></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3"><a href="#" id="resetbtn" class="graybtn">Reset</a></div>
+                    <div class="col-md-3"><a href="#" id="HFiltersApplyBtn" class="closeorangebtn">Apply</a></div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Rentals Filters modal popup*@
+<div class="modal fade" id="RentalsModalFilters" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 2%; width: 50%;">
+        <div class="modal-content">
+            <div class="modal-body" style="min-height: 322px;" id="rental-content">
+                <div id="rentalContent" class="tab-content tab-content-v1 col-md-12">
+                    <div role="tabpanel" class="tab-pane fade active in tabcontent1" id="rental-tab">
+                        <div class="col-md-12 row" style="padding-left: 3px;">
+                            <label>Driving Distance</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            @Html.TextBox("rentalinputMinutes", "", new { @style = "height: 35px", @class = "form-control ", @placeholder = " Minutes", @id = "rentalinputMinutes", @MaxLength = "2" })
+                                        </div>
+                                        <div class="col-sm-2 removedpaddings">
+                                            <label for="inputEmail3" class="control-label">From</label>
+                                        </div>
+                                        <div class="col-sm-6 removedpaddings">
+                                            @Html.TextBox("rentalinputAddress", "", new { @class = "form-control ", @placeholder = " Address / Location…" })
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-sm-12">
+                                    <div class="col-sm-4" style="text-align: left; padding-right: 0; padding-left: 0; font-size: xx-small">
+                                        <label for="inputEmail3" class="control-label" style="width: 100%;">Property Type</label>
+                                    </div>
+                                    <div class="col-sm-8" style="padding-left: 0; padding-bottom: 3%">
+                                        @Html.DropDownList("rentalpropertytype", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Any", Value = "1" },
+                                                new SelectListItem{ Text="Single Family-Detached", Value = "2" },
+                                                new SelectListItem{ Text="Condo/TownHouse", Value = "3" },
+                                                new SelectListItem{ Text="Mobile Home", Value = "4" },
+                                                new SelectListItem{ Text="Modulare", Value = "5" },
+                                                new SelectListItem{ Text="Other", Value = "6" },
+                                             }
+                                             , new { @class = "form-control", multiple = "multiple" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label spanssliderpadding" for="exampleInputEmail1">Price</label>
+                                <label class="control-label" id="rentalprice" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;"></label>
+                                <div id="rentalslider-range"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Bathrooms </label>
+                                <br>
+                                <div class="rentalbathbtngroup btn-group btn-group-justified" style="height: 35px" id="rbtns">
+                                    <a href="#" data-index="1" id="rentalbathany" name="rentalbathrooms" class=" btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" data-index="2" name="rentalbathrooms" class=" btn btn-default" data-btn-class="btn mybtncls">1+</a>
+                                    <a href="#" data-index="3" name="rentalbathrooms" class=" btn btn-default" data-btn-class="btn mybtncls">2+</a>
+                                    <a href="#" data-index="4" name="rentalbathrooms" class=" btn btn-default" data-btn-class="btn mybtncls">3+</a>
+                                    <a href="#" data-index="5" name="rentalbathrooms" class=" btn btn-default" data-btn-class="btn mybtncls">4+</a>
+                                    <a href="#" data-index="6" name="rentalbathrooms" class=" btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">5+</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Bedrooms</label>
+                                <br>
+                                <div class="rentalbedroombtngroup btn-group btn-group-justified" style="height: 35px">
+                                    <a href="#" id="rentalbedroomany" data-index="1" name="rentalbedrooms" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 1px 6px !important;">Any</a>
+                                    <a href="#" data-index="2" name="rentalbedrooms" class="btn btn-default" data-btn-class="btn mybtncls">1+</a>
+                                    <a href="#" data-index="3" name="rentalbedrooms" class="btn btn-default" data-btn-class="btn mybtncls">2+</a>
+                                    <a href="#" data-index="4" name="rentalbedrooms" class="btn btn-default" data-btn-class="btn mybtncls">3+</a>
+                                    <a href="#" data-index="5" name="rentalbedrooms" class="btn btn-default" data-btn-class="btn mybtncls">4+</a>
+                                    <a href="#" data-index="6" name="rentalbedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">5+</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label spanssliderpadding" for="exampleInputEmail1">Sqft</label>
+                                <label class="control-label" id="rentalsqft" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;"></label>
+                                <br>
+                                <div id="rentalslider-range2"></div>
+                            </div>
+                        </div>
+                        <hr class="hr2" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label class="control-label" for="exampleInputEmail1">Schools</label>
+                                        @Html.TextBox("rentalinputSchool", "", new { @class = "form-control ", @placeholder = "Search for Schools…", @type = "search" })
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Parking type</label>
+                                <br>
+                                <div class="rentalparkingbtngroup btn-group btn-group-justified" style="height: 35px">
+                                    <a href="#" id="rentalparkingpany" data-index="1" name="rentalparking" class="btn active btn-default " data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" data-index="2" name="rentalparking" class="btn btn-default" data-btn-class="btn mybtncls">1</a>
+                                    <a href="#" data-index="3" name="rentalparking" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">2</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Garage Capacity</label>
+                                <br>
+                                <div class="rentalgrgcapbtngroup btn-group btn-group-justified" style="height: 35px">
+                                    <a href="#" id="rentalgrgcapany" data-index="1" name="rentalgaragecapacity" class="btn active btn-default " data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" data-index="2" name="rentalgaragecapacity" class="btn btn-default" data-btn-class="btn mybtncls">1+</a>
+                                    <a href="#" data-index="3" name="rentalgaragecapacity" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">2+</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">Age</label>
+                                <br>
+                                @Html.DropDownList("rentalagetype", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Any", Value = "1" },
+                                                new SelectListItem{ Text="To Be Built", Value = "2" },
+                                                new SelectListItem{ Text="Under Construction", Value = "3" },
+                                                new SelectListItem{ Text="New / Never Lived In", Value = "4" },
+                                                new SelectListItem{ Text="1-5", Value = "5" },
+                                                new SelectListItem{ Text="6-10", Value = "6" },
+                                                new SelectListItem{ Text="11-20", Value = "7" },
+                                                new SelectListItem{ Text="21-30", Value = "8" },
+                                                new SelectListItem{ Text="31-50", Value = "9" },
+                                                new SelectListItem{ Text="50+", Value = "10" },
+                                             }, new { @class = "form-control", multiple = "multiple" })
+                            </div>
+                        </div>
+                        <hr class="hr2" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-dismissable alert-success" id="">
+                            <label id="rentalsummary" class="control-label" style="text-align: left"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"><a href="#" class="closeorangebtn" data-dismiss="modal" id="rentalclosebtn">Close</a></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3"><a href="#" id="rentalresetbtn" class="graybtn">Reset</a></div>
+                    <div class="col-md-3"><a href="#" class="closeorangebtn" id="rentalApplybtn">Apply</a></div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Lot/Lands Filters modal popup*@
+<div class="modal fade" id="LotLandsModalFilters" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 2%; width: 50%;">
+        <div class="modal-content">
+            <div class="modal-body" style="min-height: 150px;" id="lots-content">
+                <!--Nav Tab -->
+                <ul id="lottabs" class="nav nav-tabs nav-tabs-v1" role="tablist" style="margin-left: 29%;">
+                    <li role="presentation" class="active">
+                        <a href="#tabs-demo3-area1" id="basicfiltertab" role="tab" aria-controls="tabs-demo2-area1" data-toggle="tab"><span class="steptabsround">1</span>Basic Filters</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tabs-demo3-area3" id="utilityfiltertab" role="tab" aria-controls="tabs-demo2-area3" data-toggle="tab"><span class="steptabsround">2</span>Utilities Filters</a>
+                    </li>
+                </ul>
+                <!--Tab Panes-->
+                <div id="tabsDemo3Content" class="tab-content tab-content-v1 col-md-12">
+                    <div role="tabpanel" class="tab-pane fade active in tabcontent1" id="tabs-demo3-area1">
+                        <div class="col-md-12 row" style="padding-left: 3px;">
+                            <label>Driving Distance</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            @Html.TextBox("lotsinputMinutes", "", new { @style = "height: 35px", @class = "form-control ", @placeholder = " Minutes", @id = "lotsinputMinutes", @MaxLength = "2" })
+                                        </div>
+                                        <div class="col-sm-2 removedpaddings">
+                                            <label for="inputEmail3" class="control-label">From</label>
+                                        </div>
+                                        <div class="col-sm-6 removedpaddings">
+                                            @Html.TextBox("lotsinputAddress", "", new { @class = "form-control ", @placeholder = " Address / Location…" })
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-sm-12">
+                                    <div class="col-sm-4" style="text-align: left; padding-right: 0; padding-left: 0; font-size: xx-small">
+                                        <label for="inputEmail3" class="control-label" style="width: 100%;">Property Type</label>
+                                    </div>
+                                    <div class="col-sm-8" style="padding-left: 0; padding-bottom: 3%">
+                                        @Html.DropDownList("lotspropertytype", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Any", Value = "1" },
+                                                new SelectListItem{ Text="Single Family-Detached", Value = "2" },
+                                                new SelectListItem{ Text="Condo/TownHouse", Value = "3" },
+                                                new SelectListItem{ Text="Mobile Home", Value = "4" },
+                                                new SelectListItem{ Text="Modulare", Value = "5" },
+                                                new SelectListItem{ Text="Other", Value = "6" },
+                                             }
+                                             , new { @class = "form-control", multiple = "multiple" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label spanssliderpadding" for="exampleInputEmail1">Price</label>
+                                <label class="control-label" id="lotsprice" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;"></label>
+                                <div id="lotsslider-range"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label spanssliderpadding" for="exampleInputEmail1">Lot Acreage</label>
+                                <label class="control-label" id="lotslotacreage" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;"></label>
+                                <br>
+                                <div id="lotsslider-range2"></div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label class="control-label" for="exampleInputEmail1">Schools</label>
+                                        @Html.TextBox("lotsinputSchool", "", new { @class = "form-control ", @placeholder = "Search for Schools…", @type = "search" })
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="exampleInputEmail1">SubDivision</label>
+                                <br>
+                                @Html.TextBox("lotsinputSubDivision", "", new { @class = "form-control ", @placeholder = "Search for Subdivisions…", @type = "search", @style = "height: 35px" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="control-label">Lot Features</label><br />
+                                        @Html.DropDownList("lotslotfeatures", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Any", Value = "1" },
+                                                new SelectListItem{ Text="Cul-de-Sac", Value = "2" },
+                                                new SelectListItem{ Text="Fenced Yard", Value = "3" },
+                                                new SelectListItem{ Text="Mountain View", Value = "4" },
+                                                 new SelectListItem{ Text="Mountain", Value = "5" },
+                                                new SelectListItem{ Text="On Golf Course", Value = "6" },
+                                                new SelectListItem{ Text="Sidewalk", Value = "7" },
+                                                new SelectListItem{ Text="Water Access", Value = "8" },
+                                                new SelectListItem{ Text="Water Front", Value = "9" },
+
+                                             }
+                                             , new { @class = "form-control", multiple = "multiple" })
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                        <hr class="hr2" />
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade tabcontent1" id="tabs-demo3-area3">
+                        <div class="row">
+                            <div class="col-sm-6 removedpaddings">
+                                <label for="inputEmail3" class="control-label">Water Type</label>
+                                <br>
+                                <div class="lotswatertypebtngroup btn-group btn-group-justified">
+                                    <a href="#" id="lotswtypeany" name="lotswatertype" data-index="1" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" name="lotswatertype" data-index="2" class="btn btn-default" data-btn-class="btn mybtncls">Public</a>
+                                    <a href="#" name="lotswatertype" data-index="3" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Well</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="inputEmail3" class="control-label">Sewer Type</label>
+                                <br>
+                                <div class="lotsswerbtngroup btn-group btn-group-justified">
+                                    <a href="#" id="lotsswerany" name="lotssewertype" data-index="1" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-radius: 6px 0px 0px 6px !important;">Any</a>
+                                    <a href="#" name="lotssewertype" data-index="2" class="btn btn-default" data-btn-class="btn mybtncls">Public</a>
+                                    <a href="#" name="lotssewertype" data-index="3" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius: 0px 6px 6px 0px !important;">Septic</a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="hr2" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-dismissable alert-success" id="lotssummarydiv1" style="text-align: left">
+                            <label id="lotssummary" class="control-label"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"><a href="#" class="closeorangebtn" data-dismiss="modal" id="lotsclosebtn3">Close</a></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3"><a href="#" id="lotsresetbtn" class="graybtn">Reset</a></div>
+                    <div class="col-md-3"><a href="#" class="closeorangebtn" id="lotsFiltersApplyBtn">Apply</a></div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Save Search modal popup*@
+<div class="modal fade" id="SaveSearchModal" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 2%; width: 30%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center">
+                <h3 style="color: #FF6937; margin-top: 0px">Save Search</h3>
+                <hr style="border: 0 ! important; border-top: 3px solid  #FF6937 !important;" />
+            </div>
+            <div class="modal-body" style="min-height: 200px;">
+                <label for="inputEmail3" class="control-label" style="width: 100%;">Name this Search:</label>
+
+                @Html.TextBox("searchname", "", new { @class = "form-control ", @placeholder = "Eastside Greenville" })
+                <div>&nbsp;</div>
+                <label for="inputEmail3" class="control-label" style="width: 100%;">Filter Criteria summary:</label>
+
+                <div class="col-md-12" id="scroll" style="text-align: center; background-color: #f7d6cc; color: #FF6937; overflow: auto; border-radius: 5px; height: 73px; overflow-y: auto; overflow-x: hidden">
+                    <label class="control-label" for="exampleInputEmail1" id="summarycontent">
+                        Cities: Greenville,SC; Taylors,SC; Greer,SC
+
+                    </label>
+                </div>
+                <div class="col-sm-12">
+                    <label class="control-label " style="text-align: left" for="exampleInputEmail1">Cities: Greenville,SC; Taylors,SC; Greer,SC</label>
+                    <hr class="hr2" />
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-6 pull-left">
+                    <div class="col-md-3"><a href="#" class="btn" data-dismiss="modal" id="cancelsavebtn" style="width: 120px; border-radius: 5px !important; background-color: gray; color: white; font-weight: 500; font-size: 17px;">Cancel</a></div>
+                </div>
+                <div class="col-sm-6 pull-right">
+                    <div class="col-md-3"><a href="#" class="btn" id="savesearch" style="width: 120px; border-radius: 5px !important; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px; margin-top: 0px; margin-left: 24px">Save</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div id="googlemaps"></div>*@
+<div class="iconsdiv btn-group" id="over_map" data-toggle="buttons">
+    <label id="1" class="btn btn-sm" style="padding-left: 4px; background-color: #525151; border: none; margin-bottom: -3px;margin-top:13px">
+        <img src="~/img/plus.png" id="zoomInButton" width="28" height="28">
+    </label><br>
+
+    <label id="2" class="btn btn-sm" style="padding-left: 4px; background-color: #525151; border: none; margin-bottom: 5px;">
+        <img src="~/img/minus.png" id="zoomOutButton" width="26" height="20">
+    </label><br>
+    <hr />
+    <label id="drawpoly" class="btn btn-sm" style="padding-left: 4px; background-color: #525151; border: none; margin-bottom: 2px;">
+        <input type="radio" id="draw">
+        <img src="~/img/pencil.png" width="30" height="30">
+    </label><br>
+
+    <label id="mylocation" class="btn btn-sm" style="padding-left: 4px; background-color: #525151; border: none; margin-bottom: 5px;">
+        <input type="radio" id="myloc">
+        <img src="~/img/myloc.png"  width="30" height="30">
+    </label><br />
+    <hr />
+     <div class="header-menu-list">
+        <div class="btn-expand">
+            <img src="~/img/layer.png" width="28" height="30">
+        </div>
+        <div class="collapsible">
+            <a href="#" id="mapview">
+                <img src="~/img/map2.png" id="map" /></a>
+            <a href="#" id="satview">
+                <img src="~/img/sat.png" id="sat" /></a>
+        </div>
+    </div>
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".btn-expand").click(function (e) {
+            $('.collapsible').toggle("slide", {
+                direction: "right"
+            }, 800);
+        });
+        Reinits();
+        homefiltersliderevetns();
+        rentalfiltersliderevetns();
+        lotsfiltersliderevetns();
+        //to reset slider values
+        $('#HomeModalFilters').on('shown.bs.modal', function () {
+            resetFilters();
+            $('.nav-tabs a[href="#tabs-demo2-area1"]').tab('show');
+        });
+        $("#summary1").text(summary); lotssummary
+        $("#rentalsummary").text(rentalsummary);
+        $("#lotssummary").text(lotssummary);
+        $("#Expand").attr('class', 'fa fa-angle-double-left');
+        $('#btn_Details').hide();
+        $('#popup1search').hide();
+        $('#paneltoolbar2').hide();
+        $('#deletepopup').hide();
+        $(".nav-tabs a").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+        $('.btn-group').on('click', 'label.btn', function (e) {
+            if ($(this).hasClass('active')) {
+                setTimeout(function () {
+                    $(this).removeClass('active').find('input').prop('checked', false);
+                }.bind(this), 10);
+            }
+        });
+    });
+    var searchname = "";
+    //Start :Variables Declaration for summary which stores text data of cotrols of Home Filters
+    var summary = ""; var filtertype, calsstype;
+    var minutestext = "Minutes : None", addresstext = "Address : None", propertytext = "Property :Any", pricetext = "Price Range : 0-500", bathroomstext = "Bathrooms : Any", bedroomstext = "Bedrooms : Any", sqfttext = "SQFT : 0-500", schooltext = "School : None", garagetext = "Garage : Any";
+    var masterbedroomtext = "Master BedRoom : Any", lotacreagetext = "Lot Acreage : 0-500", storiestext = "Stories :Any", subdivtext = "Sub Division : None", garagecaptext = "Garage Capacity :Any", agetext = "Age Type :Any";
+
+    var lotfeaturestext = "Lot Features : Any", appliancestext = "Appliances : Any", foundationtypetext = "Foundation : Any", masterfeaturetext = "Master Feature : Double Sink", extfeaturestext = "Exterior : Any";
+    var laundrytext = "Laundry : Any", intfeaturestext = "Interior : Any", fireplacetext = "Fire Place : Any", flooringtext = "Flooring : Any", communitytext = "Community Amenties : Gated Community";
+
+    var heatsystemtext = "Heat System : Any", watertext = "Water Type : Any", heatertypetext = "Heater Type : Any", sewertext = "Sewer Type : Any";
+
+    //variable assign to show values in summary div
+    summary = minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext;
+    summary = summary + "," + subdivtext + "," + garagecaptext + "," + agetext;
+
+    summary = summary + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext;
+    summary = summary + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext;
+
+    summary = summary + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext;
+
+    //Variable to pass id values to Controller of controls
+    var hbedrooms = "1", hlotfeatures = "1", happliances = "1", hmasterbedrooms = "1", hgrgcapacity = "1", hfoundatation = "1", hlaundry = "1", hfire = "1", hfloor = "1", hheatsys = "1", hwatertype = "1", hwaterheater = "1", hsewer = "1";
+    var hexteriorfeatures = "1", hproperty = "1", hagetype = "1", hbathrooms = "1", hgrgtype = "1", hinteriorfeatures = "1", hnoofstories = [], hmasterfeatures = [], hcommunity = [];
+    //=End : Home Filters Variable Declarations
+
+    //Start :--- Rental Filters VAriables Declaration for object and summary--//
+    var rentalsummary = "", rminutestext = "Minutes : None", raddresstext = "Address : None", rpropertytext = "Property : Any", rpricetext = "Price : 0-500";
+    var rbathroomstext = "Bathrooms : Any", rbedroomstext = "BedRooms : Any", rsqfttext = "Sqft : 0-500", rschooltext = "School : None", rparkingtext = "Parking : Any";
+    var rgaragecaptext = "Garage Capacity : Any", ragetext = "Age :Any", parkingtext = "Parking : Any";
+    rentalsummary = rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext;
+    rentalsummary = rentalsummary + "," + parkingtext + "," + rgaragecaptext + "," + ragetext;
+
+    var rproperty = "1", rbathrooms = "1", rbedrooms = "1", rparking = "1", rgaragecap = "1", rage = "1";
+    //End : Rental Filters Variables Declarationd-----..//
+
+    //Start : ---- Lot/Lands VAriables Declaration for Object and summary--//
+    var lotssummary = "", lminutetext = "Minutes : None", laddresstext = "Address : None", lpropertytext = "Property : Any", lpricetext = "Price : 0-500", llotacreagetext = "Lot Acreage : 0-500";
+    var lschooltext = "School :None", lsubdivtext = "Sub Division : None", llotfeaturestext = "Lot Features : Any", lwatertext = "Water Type : Any", lsewerText = "Sewer Type : Any";
+    lotssummary = lminutetext + "," + laddresstext + "," + lpropertytext + "," + lpricetext + "," + llotacreagetext + "," + lschooltext + "," + lsubdivtext + "," + llotfeaturestext;
+    lotssummary = lotssummary + "," + lwatertext + "," + lsewerText;
+
+    var lproperty = "1", llotfeatures = "1", lwater = "1", lsewer = "1";
+    // End --- ---- Lot//Lands Filters VAriable Declaration
+
+    //Start :------Setting Dropdowns to MultiSelect Dropdowns and Setting Properties------//
+    //Home Filter Multi Drop Downs
+    $('#propertytype').multiselect({
+        nonSelectedText: 'Any Property Type',
+        numberDisplayed: 1
+    });
+    $('#agetype').multiselect({
+        nonSelectedText: 'Any Age Type',
+        numberDisplayed: 1
+    });
+    $('#lotfeatures').multiselect({
+    });
+    $('#appliances').multiselect({
+        nonSelectedText: 'Any Appliances',
+        numberDisplayed: 1
+    });
+    $("#exteriorfeatures").multiselect({
+        nonSelectedText: 'Any Exterior',
+        numberDisplayed: 1
+    });
+    $("#interiorfeatures").multiselect({
+        nonSelectedText: 'Any Interior',
+        numberDisplayed: 1
+    });
+    // REntal Filter Multi Drop Downs
+    $('#rentalpropertytype').multiselect({
+        nonSelectedText: 'Any Property Type',
+        numberDisplayed: 1
+    });
+    $('#rentalagetype').multiselect({
+        nonSelectedText: 'Any Age Type',
+        numberDisplayed: 1
+    });
+    //Lot/Lands Multi Check drop downs
+    $('#lotspropertytype').multiselect({
+        nonSelectedText: 'Any Property Type',
+        numberDisplayed: 1
+    });
+    $('#lotslotfeatures').multiselect({
+        nonSelectedText: 'Any Lot Feature',
+        numberDisplayed: 1
+    });
+    //End :------Setting Dropdowns to MultiSelect Dropdowns and Setting Properties------//
+
+
+
+    //SearchFilter Button Click Event
+    $("#searchfilters").click(function (e) {
+        //code to get Home Class Value
+        var homeclassval = [];
+        $.each($("input[name='homeclass']:checked"), function () {
+            homeclassval.push($(this).val());
+        });
+        homeclassval = homeclassval.join(",")
+        //code to get Lot/Land Class Value
+        var lotclassval = [];
+        $.each($("input[name='lotclass']:checked"), function () {
+            lotclassval.push($(this).val());
+        });
+        lotclassval = lotclassval.join(",")
+        // code to get property type value and showing modal popup based on the property type
+        var opt = $("input[name='Property']:checked").val();
+
+        if (opt == 1) {
+            $('#searchfilters').attr('data-target', '#HomeModalFilters');
+        }
+        if (opt == 2) {
+            $('#searchfilters').attr('data-target', '#RentalsModalFilters');
+        }
+        if (opt == 3) {
+            $('#searchfilters').attr('data-target', '#LotLandsModalFilters');
+        }
+    });
+
+    //Start:-------Style changing for button groups in filter--------//
+    //Home Filter Button Groups
+    $(".bathbtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".bathbtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".bedroombtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".bedroombtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".grgcapbtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".grgcapbtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".grgtypebtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".grgtypebtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".masterbedroombtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".masterbedroombtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".ftypebtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".ftypebtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".lroombtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".lroombtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".fplacebtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".fplacebtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".floorbtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".floorbtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".heatsystembtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".heatsystembtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".watertypebtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".watertypebtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".waterheaterbtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".waterheaterbtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".swerbtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".swerbtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+
+    //REntal Filter Button Groups
+    $(".rentalbathbtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".rentalbathbtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".rentalbedroombtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".rentalbedroombtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".rentalparkingbtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".rentalparkingbtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".rentalgrgcapbtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".rentalgrgcapbtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+
+    //Lot/Lands Button Groups
+    $(".lotswatertypebtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".lotswatertypebtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".lotsswerbtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".lotsswerbtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    //End :--------Style changing for button groups in filter----------//
+
+    //Start :------Change & Click  Events of Controls to get Values and Text of text field------//
+    //Home Filters
+    $('#inputMinutes').on("change", function () {
+        minutestext = "Minutes :" + $(this).val();
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $('#inputAddress').on("change", function () {
+        addresstext = "Address :" + $(this).val();
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $('#inputSchool').on("change", function () {
+        schooltext = "School :" + $(this).val();
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $('#inputSubDivision').on("change", function () {
+        subdivtext = "Sub Division :" + $(this).val();
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+
+    //Rental Filters
+    $('#rentalinputMinutes').on("change", function () {
+        rminutestext = "Minutes :" + $(this).val();
+        $("#rentalsummary").text(rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext + "," + parkingtext + "," + rgaragecaptext + "," + ragetext);
+    });
+    $('#rentalinputAddress').on("change", function () {
+        raddresstext = "Address :" + $(this).val();
+        $("#rentalsummary").text(rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext + "," + parkingtext + "," + rgaragecaptext + "," + ragetext);
+    });
+    $('#rentalinputSchool').on("change", function () {
+        rschooltext = "School :" + $(this).val();
+        $("#rentalsummary").text(rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext + "," + parkingtext + "," + rgaragecaptext + "," + ragetext);
+    });
+
+    //Lot/Lands Filters
+    $('#lotsinputMinutes').on("change", function () {
+        lminutetext = "Minutes :" + $(this).val();
+        $("#lotssummary").text(lminutetext + "," + laddresstext + "," + lpropertytext + "," + lpricetext + "," + llotacreagetext + "," + lschooltext + "," + lsubdivtext + "," + llotfeaturestext + "," + lwatertext + "," + lsewerText);
+    });
+    $('#lotsinputAddress').on("change", function () {
+        laddresstext = "Address :" + $(this).val();
+        $("#lotssummary").text(lminutetext + "," + laddresstext + "," + lpropertytext + "," + lpricetext + "," + llotacreagetext + "," + lschooltext + "," + lsubdivtext + "," + llotfeaturestext + "," + lwatertext + "," + lsewerText);
+    });
+    $('#lotsinputSubDivision').on("change", function () {
+        lsubdivtext = "Sub Division :" + $(this).val();
+        $("#lotssummary").text(lminutetext + "," + laddresstext + "," + lpropertytext + "," + lpricetext + "," + llotacreagetext + "," + lschooltext + "," + lsubdivtext + "," + llotfeaturestext + "," + lwatertext + "," + lsewerText);
+    });
+    $('#lotsinputSchool').on("change", function () {
+        lschooltext = "School :" + $(this).val();
+        $("#lotssummary").text(lminutetext + "," + laddresstext + "," + lpropertytext + "," + lpricetext + "," + llotacreagetext + "," + lschooltext + "," + lsubdivtext + "," + llotfeaturestext + "," + lwatertext + "," + lsewerText);
+    });
+
+    //Start :-------Multi Checkbox Dropdown Change Events
+    //Home Filters
+    $("#propertytype").change(function () {
+        hproperty = "";
+        propertytext = "";
+        $('#propertytype :selected').each(function (i, sel) {
+            propertytext = $(sel).text() + "," + propertytext;
+            hproperty = $(sel).val() + "," + hproperty;
+        });
+        hproperty = hproperty.substring(0, hproperty.length - 1);
+        propertytext = "Property :" + propertytext.substring(0, propertytext.length - 1);
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    })
+    $("#agetype").change(function () {
+        agetext = "", hagetype = "";
+        $('#agetype :selected').each(function (i, sel) {
+            agetext = $(sel).text() + "," + agetext;
+            hagetype = $(sel).val() + "," + hagetype;
+        });
+        agetext = "Age Type :" + agetext.substring(0, agetext.length - 1);
+        hagetype = hagetype.substring(0, hagetype.length - 1);
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    })
+    $("#lotfeatures").change(function () {
+        lotfeaturestext = "", hlotfeatures = "";
+        $('#lotfeatures :selected').each(function (i, sel) {
+            lotfeaturestext = $(sel).text() + "," + lotfeaturestext;
+            hlotfeatures = $(sel).val() + "," + hlotfeatures;
+        });
+        lotfeaturestext = "Lot Features :" + lotfeaturestext.substring(0, lotfeaturestext.length - 1);
+        hlotfeatures = hlotfeatures.substring(0, hlotfeatures.length - 1);
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    })
+    $("#appliances").change(function () {
+        appliancestext = "", happliances = "";
+        $('#appliances :selected').each(function (i, sel) {
+            appliancestext = $(sel).text() + "," + appliancestext;
+            happliances = $(sel).val() + "," + happliances;
+        });
+        appliancestext = "Appliances :" + appliancestext.substring(0, appliancestext.length - 1);
+        happliances = happliances.substring(0, happliances.length - 1);
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    })
+    $("#exteriorfeatures").change(function () {
+        extfeaturestext = "", hexteriorfeatures = "";
+        $('#exteriorfeatures :selected').each(function (i, sel) {
+            extfeaturestext = $(sel).text() + "," + extfeaturestext;
+            hexteriorfeatures = $(sel).val() + "," + hexteriorfeatures;
+
+        });
+        extfeaturestext = "Exterior :" + extfeaturestext.substring(0, extfeaturestext.length - 1);
+        hexteriorfeatures = hexteriorfeatures.substring(0, hexteriorfeatures.length - 1);
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    })
+    $("#interiorfeatures").change(function () {
+        intfeaturestext = "", hinteriorfeatures = "";
+        $('#interiorfeatures :selected').each(function (i, sel) {
+            intfeaturestext = $(sel).text() + "," + intfeaturestext;
+            hinteriorfeatures = $(sel).val() + "," + hinteriorfeatures;
+        });
+        intfeaturestext = "Interior :" + intfeaturestext.substring(0, intfeaturestext.length - 1);
+        hinteriorfeatures = hinteriorfeatures.substring(0, hinteriorfeatures.length - 1);
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    })
+
+    //REntal Filters :
+    $("#rentalpropertytype").change(function () {
+        rproperty = "";
+        rpropertytext = "";
+        $('#rentalpropertytype :selected').each(function (i, sel) {
+            rpropertytext = $(sel).text() + "," + rpropertytext;
+            rproperty = $(sel).val() + "," + rproperty;
+        });
+        rproperty = rproperty.substring(0, rproperty.length - 1);
+        rpropertytext = "Property :" + rpropertytext.substring(0, rpropertytext.length - 1);
+        $("#rentalsummary").text(rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext + "," + parkingtext + "," + rgaragecaptext + "," + ragetext);
+    })
+    $("#rentalagetype").change(function () {
+        ragetext = "", rage = "";
+        $('#rentalagetype :selected').each(function (i, sel) {
+            ragetext = $(sel).text() + "," + ragetext;
+            rage = $(sel).val() + "," + rage;
+        });
+        ragetext = "Age Type :" + ragetext.substring(0, ragetext.length - 1);
+        rage = rage.substring(0, rage.length - 1);
+        $("#rentalsummary").text(rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext + "," + parkingtext + "," + rgaragecaptext + "," + ragetext);
+    })
+
+    //Lots/Land Filters
+    $("#lotspropertytype").change(function () {
+        lproperty = "";
+        lpropertytext = "";
+        $('#lotspropertytype :selected').each(function (i, sel) {
+            lpropertytext = $(sel).text() + "," + lpropertytext;
+            lproperty = $(sel).val() + "," + lproperty;
+            //
+        });
+        lproperty = lproperty.substring(0, lproperty.length - 1);
+        lpropertytext = "Property :" + lpropertytext.substring(0, lpropertytext.length - 1);
+        $("#lotssummary").text(lminutetext + "," + laddresstext + "," + lpropertytext + "," + lpricetext + "," + llotacreagetext + "," + lschooltext + "," + lsubdivtext + "," + llotfeaturestext + "," + lwatertext + "," + lsewerText);
+    })
+    $("#lotslotfeatures").change(function () {
+        llotfeaturestext = "", llotfeatures = "";
+        $('#lotslotfeatures :selected').each(function (i, sel) {
+            llotfeaturestext = $(sel).text() + "," + llotfeaturestext;
+            llotfeatures = $(sel).val() + "," + llotfeatures;
+        });
+        llotfeaturestext = "Lot Features :" + llotfeaturestext.substring(0, llotfeaturestext.length - 1);
+        llotfeatures = llotfeatures.substring(0, llotfeatures.length - 1);
+        $("#lotssummary").text(lminutetext + "," + laddresstext + "," + lpropertytext + "," + lpricetext + "," + llotacreagetext + "," + lschooltext + "," + lsubdivtext + "," + llotfeaturestext + "," + lwatertext + "," + lsewerText);
+    })
+    //--------End : Multy check dropdown events----------//
+    //Start :-----------------to get values and text of button groups------------//
+    //HOme Filters
+    $("a[name=bathrooms]").on("click", function () {
+        bathroomstext = "BathRooms :" + $(this).text();
+        var a = $(this).data("index");
+        hbathrooms = a;
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+        //$("#summary1").text(bedroomstext + "," + bathroomstext + "," + sqfttext);
+    });
+    $("a[name=bedrooms]").on("click", function () {
+        bedroomstext = "BedRooms :" + $(this).text();
+        var a = $(this).data("index");
+        hbedrooms = a;
+
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+        //$("#summary1").text(bedroomstext + "," + bathroomstext + "," + sqfttext);
+    });
+    $("a[name=garagetype]").on("click", function () {
+        garagetext = "Garage :" + $(this).text();
+        var a = $(this).data("index");
+        hgrgtype = a;
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+
+    });
+    $("a[name=masterbedrooms]").on("click", function () {
+        var a = $(this).data("index");
+        masterbedroomtext = "Master BedRooms :" + $(this).text();
+        var a = $(this).data("index");
+        hmasterbedrooms = a;
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $("a[name=garagecapacity]").on("click", function () {
+        var a = $(this).data("index");
+        hgrgcapacity = a;
+        garagecaptext = "Garage Capacity :" + $(this).text();
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+
+    });
+    $("a[name=foundationtype]").on("click", function () {
+        var a = $(this).data("index");
+        hfoundatation = a;
+        foundationtypetext = "Foundation : " + $(this).text();
+        // $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $("a[name=laundryroom]").on("click", function () {
+        var a = $(this).data("index");
+        hlaundry = a;
+        laundrytext = "Laundry :" + $(this).text();
+
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $("a[name=fireplace").on("click", function () {
+        var a = $(this).data("index");
+        hfire = a;
+        fireplacetext = "Fire Place : " + $(this).text();
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $("a[name=floortype").on("click", function () {
+        var a = $(this).data("index");
+        hfloor = a;
+        flooringtext = "Flooring : " + $(this).text();
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $("a[name=heatsystem").on("click", function () {
+        var a = $(this).data("index");
+        hheatsys = a;
+        heatsystemtext = "Heat System : " + $(this).text();
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $("a[name=watertype").on("click", function () {
+        var a = $(this).data("index");
+        hwatertype = a;
+        watertext = "Water Type : " + $(this).text();
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $("a[name=waterheatertype").on("click", function () {
+        var a = $(this).data("index");
+        hwaterheater = a;
+        heatertypetext = "Heater Type : " + $(this).text();
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $("a[name=sewertype").on("click", function () {
+        var a = $(this).data("index");
+        hsewer = a;
+        sewertext = "Sewer Type : " + $(this).text();
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+
+    //REntal Filters
+    $("a[name=rentalbathrooms]").on("click", function () {
+        rbathroomstext = "BathRooms :" + $(this).text();
+        var a = $(this).data("index");
+        rbathrooms = a;
+        $("#rentalsummary").text(rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext + "," + parkingtext + "," + rgaragecaptext + "," + ragetext);
+    });
+    $("a[name=rentalbedrooms]").on("click", function () {
+        rbedroomstext = "BedRooms :" + $(this).text();
+        var a = $(this).data("index");
+        rbedrooms = a;
+        $("#rentalsummary").text(rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext + "," + parkingtext + "," + rgaragecaptext + "," + ragetext);
+    });
+    $("a[name=rentalparking]").on("click", function () {
+        parkingtext = "Parking Type :" + $(this).text();
+        var a = $(this).data("index");
+        rparking = a;
+        $("#rentalsummary").text(rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext + "," + parkingtext + "," + rgaragecaptext + "," + ragetext);
+    });
+    $("a[name=rentalgaragecapacity]").on("click", function () {
+        var a = $(this).data("index");
+        rgaragecap = a;
+        rgaragecaptext = "Garage Capacity :" + $(this).text();
+        $("#rentalsummary").text(rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext + "," + parkingtext + "," + rgaragecaptext + "," + ragetext);
+    });
+
+    //Lots/Lands Filters
+    $("a[name=lotswatertype").on("click", function () {
+        var a = $(this).data("index");
+        lwater = a;
+        lwatertext = "Water Type : " + $(this).text();
+        $("#lotssummary").text(lminutetext + "," + laddresstext + "," + lpropertytext + "," + lpricetext + "," + llotacreagetext + "," + lschooltext + "," + lsubdivtext + "," + llotfeaturestext + "," + lwatertext + "," + lsewerText);
+    });
+    $("a[name=lotssewertype").on("click", function () {
+        var a = $(this).data("index");
+        lsewer = a;
+        lsewerText = "Sewer Type : " + $(this).text();
+        
+        $("#lotssummary").text(lminutetext + "," + laddresstext + "," + lpropertytext + "," + lpricetext + "," + llotacreagetext + "," + lschooltext + "," + lsubdivtext + "," + llotfeaturestext + "," + lwatertext + "," + lsewerText);
+    });
+
+    //End :-----------------to get values and text of button groups------------//
+
+    //Start : To get Text and VAlue from Check Box Groups ------//
+    $("input[name=noofstories").on("click", function () {
+        storiestext = [];
+        $.each($("input[name='noofstories']:checked"), function () {
+            storiestext.push($(this).data("index"));
+            hnoofstories.push($(this).val());
+        });
+        storiestext = storiestext.join(",");
+        storiestext = "Stories :" + storiestext;
+        hnoofstories = hnoofstories.join(",");
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $("input[name=masterfeatures").on("click", function () {
+        masterfeaturetext = [];
+        $.each($("input[name='masterfeatures']:checked"), function () {
+            masterfeaturetext.push($(this).data("index"));
+            hmasterfeatures.push($(this).val());
+        });
+        masterfeaturetext = masterfeaturetext.join(",");
+        masterfeaturetext = "Master Features :" + masterfeaturetext;
+        hmasterfeatures = hmasterfeatures.join(",");
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    $("input[name=community").on("click", function () {
+        communitytext = [];
+        $.each($("input[name='community']:checked"), function () {
+            communitytext.push($(this).data("index"));
+            hcommunity.push($(this).val());
+        });
+        communitytext = communitytext.join(",");
+        communitytext = "Community Amenities :" + communitytext;
+        hcommunity = hcommunity.join(",");
+        $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+    });
+    //End : To get Text and VAlue from Check Box Groups ------//
+
+
+    //End :------Change & Click Events of Controls to get Values and Text------//
+
+    //Avoid Characters in Minutes Text box and set Min and max values
+    $('#inputMinutes,#rentalinputMinutes,#lotsinputMinutes').keyup(function (event) {
+        if ($(this).val() > 59 || $(this).val() < 1) {
+            $(this).val("");
+        }
+    });
+    $('#inputMinutes,#rentalinputMinutes,#lotsinputMinutes').keypress(function (event) {
+        if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
+            event.preventDefault();
+        }
+    });
+    //Function to Reset Filters
+    $("#resetbtn").click(function () {
+        homeFiltersreset();
+    });
+    $("#rentalresetbtn").click(function () {
+        rentalFiltersreset();
+    });
+    $("#lotsresetbtn").on("click", function () {
+        lotsFiltersreset();
+    });
+
+    $("#savesearchbtn").click(function () {
+        filtertype = $("input[name='Property']:checked").val();
+
+        if (filtertype == 1) {
+            // $("#summarycontent").text("Filter :" + filtertype + " and Class :" + classtype + "<br>" + $("#summary1").text());
+            $("#summarycontent").text("Home Filter : " + $("#summary1").text());
+        }
+        if (filtertype == 2) { $("#summarycontent").text($("#rentalsummary").text()); }
+        if (filtertype == 3) { $("#summarycontent").text($("#lotssummary").text()); }
+    });
+    //Save Search Button click Event
+    $("#savesearch").click(function () {
+        alert($('#searchname').val());
+        searchname = $('#searchname').val()
+        filtertype = $("input[name='Property']:checked").val();
+        if (filtertype == 1) {
+            saveHomeFilters();
+        }
+        if (filtertype == 2) { saveRentalFilters(); }
+        if (filtertype == 3) { saveLotsFilters(); }
+    });
+    //Filter Saving Functions
+    function saveHomeFilters() {
+        hmasterfeatures = [];
+        $.each($("input[name='masterfeatures']:checked"), function () {
+            hmasterfeatures.push($(this).val());
+        });
+        hmasterfeatures = hmasterfeatures.join(",");
+
+        hnoofstories = [];
+        $.each($("input[name='noofstories']:checked"), function () {
+            hnoofstories.push($(this).val());
+        });
+        hnoofstories = hnoofstories.join(",");
+
+        var hcommunity = [];
+        $.each($("input[name='community']:checked"), function () {
+            hcommunity.push($(this).val());
+        });
+        hcommunity = hcommunity.join(",");
+
+        classtype = "1";
+        if ($("input[name='homeclass']:checked")) {
+            var homeclassval = [];
+            $.each($("input[name='homeclass']:checked"), function () {
+                homeclassval.push($(this).val());
+            });
+            classtype = homeclassval.join(",")
+        }
+        // code to get property type value and showing modal popup based on the property type
+
+        //var r = "";
+        //r = $("#inputMinutes").val() + "," + $("#inputAddress").val() + "," + $("#propertytype").val() + "," + $("#price").text() + "," + hbathrooms + "," + hbedrooms + "," + $("#sqft").text() + "," + $("#inputSchool").val() + "," + hgrgtype + "," + hmasterbedrooms + "," + $("#lotacreage").text() + "," + noofstoriesval + "," + $("#inputSubDivision").val() + "," + hgrgcapacity + "," + $("#agetype").val();
+        //r = r + "," + $("#lotfeatures").val() + "," + $("#appliances").val() + "," + hfoundatation + "," + masterfeaturesval + "," + $("#exteriorfeatures").val() + "," + hlaundry + "," + $("#interiorfeatures").val() + "," + hfire + "," + hfloor + "," + communityval;
+        //r = r + "," + hheatsys + "," + hwatertype + "," + hwaterheater +","+ hsewer;
+        //alert(r);
+        var homefilterobj = [filtertype, classtype, $("#inputMinutes").val(), $("#inputAddress").val(), hproperty,
+            $("#price").text(), hbathrooms, hbedrooms, $("#sqft").text(), $("#inputSchool").val(), hgrgtype, hmasterbedrooms,
+            $("#lotacreage").text(), hnoofstories, $("#inputSubDivision").val(), hgrgcapacity, hagetype,
+        hlotfeatures, happliances, hfoundatation, hmasterfeatures, hexteriorfeatures,
+        hlaundry, hinteriorfeatures, hfire, hfloor, hcommunity, hheatsys, hwatertype, hwaterheater, hsewer, searchname];
+
+        $.ajax({
+            url: "@Url.Action("SaveHomeSearchFilters", "SearchFilter")",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(homefilterobj),
+            success: function (res) {
+                if (res = "Success") {
+                    alert("Filter Saved Success Fully");
+                    $('#SaveSearchModal').modal('hide');
+                    //location.reload();
+                }
+                else {
+                    alert("Error :" + res);
+                    $('#SaveSearchModal').modal('hide');
+                }
+            },
+        });
+    }
+    function saveRentalFilters() {
+        classtype = "0";
+        //var r = "";
+        //r = $("#rentalinputMinutes").val() + "," + $("#rentalinputAddress").val() + "," + $("#rentalpropertytype").val() + "," + $("#rentalprice").text() + "," + rbathrooms + "," + rbedrooms + "," + $("#rentalsqft").text() + "," + $("#rentalinputSchool").val();
+        //r = r + "," + rparking + "," + rgaragecap + "," + rage + ",filter :" + filtertype + ",classtype= " + classtype;
+        //alert(r);
+        var rentalfilterobj = [filtertype, classtype, $("#rentalinputMinutes").val(), $("#rentalinputAddress").val(), rproperty, $("#rentalprice").text(),
+         rbathrooms, rbedrooms, $("#rentalsqft").text(), $("#rentalinputSchool").val(), rparking, rgaragecap, rage, searchname];
+
+        $.ajax({
+            url: "@Url.Action("SaveRentalSearchFilters", "SearchFilter")",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(rentalfilterobj),
+            success: function (res) {
+                if (res = "Success") {
+                    alert("Rental Filter Saved Success Fully");
+                    $('#SaveSearchModal').modal('hide');
+                    //location.reload();
+                }
+                else {
+                    alert("Error :" + res);
+                    $('#SaveSearchModal').modal('hide');
+                }
+            },
+        });
+    }
+    function saveLotsFilters() {
+        classtype = "1";
+        if ($("input[name='lotclass']:checked")) {
+            var lotclassval = [];
+            $.each($("input[name='lotclass']:checked"), function () {
+                lotclassval.push($(this).val());
+            });
+            classtype = lotclassval.join(",")
+        }
+        //var r = "";
+        //r = $("#lotsinputMinutes").val() + "," + $("#lotsinputAddress").val() + "," + lproperty + "," + $("#lotsprice").text();
+        //r = r + "," + $("#lotslotacreage").text() + "," + $("#lotsinputSchool").val() + "," + $("#lotsinputSubDivision").val() + "," + llotfeatures;
+        //r = r + "," + lwater + "," + lsewer;
+        var lotsfilterobj = [filtertype, classtype, $("#lotsinputMinutes").val(), $("#lotsinputAddress").val(), lproperty, $("#lotsprice").text(),
+          $("#lotslotacreage").text(), $("#lotsinputSchool").val(), $("#lotsinputSubDivision").val(), llotfeatures, lwater, lsewer, searchname];
+        $.ajax({
+            url: "@Url.Action("SaveLotsSearchFilters", "SearchFilter")",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(lotsfilterobj),
+            success: function (res) {
+                if (res = "Success") {
+                    alert("Lot/Lands Filter Saved Success Fully");
+                    $('#SaveSearchModal').modal('hide');
+                    //location.reload();
+                }
+                else {
+                    alert("Error :" + res);
+                    $('#SaveSearchModal').modal('hide');
+                }
+            },
+        });
+    }
+
+    //Funtntions For Reset All Controls
+    function homeFiltersreset() {
+        homefiltersliderevetns();
+        $('#propertytype').get(0).selectedIndex = 1;
+        //Home Filter Button groups & text Fileds, and Check Boxes
+        $(".bathbtngroup>a").siblings().removeClass('mybtncls')
+        $("#bathany").addClass('active');
+        $(".bedroombtngroup>a").siblings().removeClass('mybtncls')
+        $("#bedroomany").addClass('active');
+        $(".grgcapbtngroup>a").siblings().removeClass('mybtncls')
+        $("#grgcapany").addClass('active');
+        $(".grgtypebtngroup>a").siblings().removeClass('mybtncls')
+        $("#grgany").addClass('active');
+        $(".masterbedroombtngroup>a").siblings().removeClass('mybtncls')
+        $("#mbedany").addClass('active');
+        $(".ftypebtngroup>a").siblings().removeClass('mybtncls')
+        $("#ftypeany").addClass('active');
+        $(".lroombtngroup>a").siblings().removeClass('mybtncls')
+        $("#lroomany").addClass('active');
+        $(".fplacebtngroup>a").siblings().removeClass('mybtncls')
+        $("#fplaceany").addClass('active');
+        $(".floorbtngroup>a").siblings().removeClass('mybtncls')
+        $("#floorany").addClass('active');
+        $(".heatsystembtngroup>a").siblings().removeClass('mybtncls')
+        $("#hsany").addClass('active');
+        $(".watertypebtngroup>a").siblings().removeClass('mybtncls')
+        $("#wtypeany").addClass('active');
+        $(".waterheaterbtngroup>a").siblings().removeClass('mybtncls')
+        $("#wheaterany").addClass('active');
+        $(".swerbtngroup>a").siblings().removeClass('mybtncls')
+        $("#swerany").addClass('active');
+
+        $('input[type="CheckBox"]').prop('checked', false);
+        $('#storiesany').prop('checked', true);
+        $('#masterfeaturesany').prop('checked', true);
+        $('#communityany').prop('checked', true);
+        $('#PHSale').prop('checked', true);
+        $('#PLLSale').prop('checked', true);
+        $('input[type="text"]').val('');
+        $('input[type="search"]').val('');
+    }
+    function rentalFiltersreset() {
+        rentalfiltersliderevetns();
+        // Rental Filter Controls to be Reset Here
+        $(".rentalbathbtngroup>a").siblings().removeClass('mybtncls')
+        $("#rentalbathany").addClass('active');
+        $(".rentalbedroombtngroup>a").siblings().removeClass('mybtncls')
+        $("#rentalbedroomany").addClass('active');
+        $(".rentalgrgcapbtngroup>a").siblings().removeClass('mybtncls')
+        $("#rentalgrgcapany").addClass('active');
+        $(".rentalparkingbtngroup>a").siblings().removeClass('mybtncls')
+        $("#rentalparkingany").addClass('active');
+
+        $('#PHSale').prop('checked', true);
+        $('#PLLSale').prop('checked', true);
+        $('input[type="text"]').val('');
+        $('input[type="search"]').val('');
+    }
+    function lotsFiltersreset() {
+        lotsfiltersliderevetns();
+        // Lot/Lands Filter Controls to be Reset Here
+        $(".lotswatertypebtngroup>a").siblings().removeClass('mybtncls')
+        $("#lotswtypeany").addClass('active');
+        $(".lotsswerbtngroup>a").siblings().removeClass('mybtncls')
+        $("#lotsswerany").addClass('active');
+
+        $('#PHSale').prop('checked', true);
+        $('#PLLSale').prop('checked', true);
+        $('input[type="text"]').val('');
+        $('input[type="search"]').val('');
+    }
+
+    var flag_RightCollapse = 0;
+    $('#Expand').on('click', function () {
+        if (flag_RightCollapse == 0) {
+            $("#Expand").attr('class', 'fa fa-angle-double-right');
+            $('#RightListView').animate({ 'width': '29%' }, 'slow', function () {
+                $('#RightListView').show();
+            });
+
+            flag_RightCollapse = 1;
+        }
+        else {
+            $("#Expand").attr('class', 'fa fa-angle-double-left');
+            $('#RightListView').animate({ 'width': '15%' }, 'slow', function () {
+                $('#RightListView').show();
+            });
+            flag_RightCollapse = 0;
+        }
+    });
+    function DoubleRightListView() {
+
+    }
+
+    //---------Start: Propertty Type DropDown Functionality--------
+    $("input[name$='Property']").click(function () {
+        var DisplayName = 'Property Type';
+        var value = this.value;
+        if (value == 1) {
+            DisplayName = 'Homes';
+        }
+        else if (value == 2) {
+            DisplayName = 'Rentals';
+            $(".collapse").collapse('hide');
+        }
+        else if (value == 3) {
+            DisplayName = 'Lots/Land';
+        }
+        else {
+            DisplayName = 'Property Type';
+            $(".collapse").collapse('hide');
+        }
+        $('#PropSelected').html(DisplayName);
+        if (value == 1) {
+            $('#PropHomes').show();
+            $('#PropLotsLands').hide();
+        }
+        else if (value == 3) {
+            $('#PropLotsLands').show();
+            $('#PropHomes').hide();
+        }
+        else {
+            $('#PropHomes').hide();
+            $('#PHSale,#PHConstruct,#PHSold').prop("checked", false);
+        }
+    });
+    $('#PHSale,#PHConstruct,#PHSold').click(function () {
+
+        var DisplayName = "Homes";
+        var bool = 0;
+        if ($("#PHSale").is(':checked')) {
+            DisplayName = DisplayName + ' > ' + 'ForSale';
+            bool = 1;
+        }
+        else {
+            DisplayName = DisplayName;
+        }
+        if ($("#PHConstruct").is(':checked')) {
+            if (DisplayName == 'Homes' && bool == 0) {
+                DisplayName = DisplayName + ' > ' + 'Under Construct';
+                bool = 1;
+            }
+            else {
+                DisplayName = "Homes";
+            }
+        }
+        else {
+            DisplayName = DisplayName;
+        }
+        if ($("#PHSold").is(':checked')) {
+            if (DisplayName == 'Homes' && bool == 0) {
+                DisplayName = DisplayName + ' > ' + 'Sold';
+                bool = 1;
+            }
+            else {
+                DisplayName = "Homes";
+            }
+        }
+        else {
+            DisplayName = DisplayName;
+        }
+        $('#PropSelected').html(DisplayName);
+    });
+    $('#PLLSale,#PLLConstruct,#PLLSold').click(function () {
+        var DisplayName = "Lots/Lands";
+        var bool = 0;
+        if ($("#PLLSale").is(':checked')) {
+            DisplayName = DisplayName + ' > ' + 'ForSale';
+            bool = 1;
+        }
+        else {
+            DisplayName = DisplayName;
+        }
+        if ($("#PLLConstruct").is(':checked')) {
+            if (DisplayName == 'Lots/Lands' && bool == 0) {
+                DisplayName = DisplayName + ' > ' + 'Under Construct';
+                bool = 1;
+            }
+            else {
+                DisplayName = "Lots/Lands";
+            }
+        }
+        else {
+            DisplayName = DisplayName;
+        }
+        if ($("#PLLSold").is(':checked')) {
+            if (DisplayName == 'Lots/lands' && bool == 0) {
+                DisplayName = DisplayName + ' > ' + 'Sold';
+                bool = 1;
+            }
+            else {
+                DisplayName = "Lots/lands";
+            }
+        }
+        else {
+            DisplayName = DisplayName;
+        }
+        $('#PropSelected').html(DisplayName);
+    });
+    //---------End: Property Type Functionality----------------
+
+    //---------Start: Escape Key Functionality-----
+    $(document).keyup(function (e) {
+        if (e.keyCode == 27) {
+            $(".collapse").collapse('hide');
+        }
+    });
+    //---------End: Escape Key Functionality-----
+
+    //Search Button Click Event
+    $('#btnsearch').click(function () {
+        getdatabycurrentlocataion($('#search').val());
+    });
+
+    ////Script of Slider
+    function homefiltersliderevetns() {
+        //var tooltip = function (sliderObj, ui) {
+        //    val1 = '<div id="slider_tooltip" data-tooltip="hell">' + sliderObj.slider("values", 0) + '</div>';
+        //    val2 = '<div id="slider_tooltip">' + sliderObj.slider("values", 1) + '</div>';
+        //    sliderObj.children('.ui-slider-handle').first().html(val1);
+        //    sliderObj.children('.ui-slider-handle').last().html(val2);
+        //};
+        //Home Filters For Price Range
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [0, 500],
+            slide: function (event, ui) {
+                //tooltip($(this), ui);
+                $("#price").text(ui.values[0] + "-" + ui.values[1]);
+                pricetext = "Price Range :" + $("#price").text();
+                $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+            }
+        });
+        $("#price").text($("#slider-range").slider("values", 0) +
+          "-" + $("#slider-range").slider("values", 1));
+        // For Square Feet
+        $("#slider-range2").slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [0, 500],
+            slide: function (event, ui) {
+                $("#sqft").text(ui.values[0] + "-" + ui.values[1]);
+                sqfttext = "SQFt " + $("#sqft").text();
+                $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+                //$("#summary1").text(bedroomstext + "," + bathroomstext + "," + sqfttext);
+            }
+        });
+        $("#sqft").text($("#slider-range2").slider("values", 0) +
+          "-" + $("#slider-range2").slider("values", 1));
+        // For  Lot Acreage
+        $("#slider-range3").slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [0, 500],
+            slide: function (event, ui) {
+                $("#lotacreage").text(ui.values[0] + "-" + ui.values[1]);
+                lotacreagetext = "Lot Acreage :" + $("#lotacreage").text();
+                $("#summary1").text(minutestext + "," + addresstext + "," + propertytext + "," + pricetext + "," + bathroomstext + "," + bedroomstext + "," + sqfttext + "," + schooltext + "," + garagetext + "," + masterbedroomtext + "," + lotacreagetext + "," + storiestext + "," + subdivtext + "," + garagecaptext + "," + agetext + "," + lotfeaturestext + "," + appliancestext + "," + foundationtypetext + "," + masterfeaturetext + "," + extfeaturestext + "," + laundrytext + "," + intfeaturestext + "," + fireplacetext + "," + flooringtext + "," + communitytext + "," + heatsystemtext + "," + watertext + "," + heatertypetext + "," + sewertext);
+            }
+        });
+        $("#lotacreage").text($("#slider-range3").slider("values", 0) +
+          "-" + $("#slider-range3").slider("values", 1));
+    }
+
+    function rentalfiltersliderevetns() {
+        ///REntal Filter Sliders - Price
+        $("#rentalslider-range").slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [0, 500],
+            slide: function (event, ui) {
+                $("#rentalprice").text(ui.values[0] + "-" + ui.values[1]);
+                rpricetext = "Price Range :" + $("#rentalprice").text();
+                $("#rentalsummary").text(rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext + "," + parkingtext + "," + rgaragecaptext + "," + ragetext);
+            }
+        });
+        $("#rentalprice").text($("#rentalslider-range").slider("values", 0) +
+         "-" + $("#rentalslider-range").slider("values", 1));
+
+        // For Square Feet-REntal
+        $("#rentalslider-range2").slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [0, 500],
+            slide: function (event, ui) {
+                $("#rentalsqft").text(ui.values[0] + "-" + ui.values[1]);
+                rsqfttext = "SQFt " + $("#rentalsqft").text();
+                $("#rentalsummary").text(rminutestext + "," + raddresstext + "," + rpropertytext + "," + rpricetext + "," + rbathroomstext + "," + rbedroomstext + "," + rsqfttext + "," + rschooltext + "," + parkingtext + "," + rgaragecaptext + "," + ragetext);
+
+            }
+        });
+        $("#rentalsqft").text($("#rentalslider-range2").slider("values", 0) +
+          "-" + $("#rentalslider-range2").slider("values", 1));
+    }
+
+    function lotsfiltersliderevetns() {
+        ///Lot/Lands Filter Sliders - Price
+        $("#lotsslider-range").slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [0, 500],
+            slide: function (event, ui) {
+                $("#lotsprice").text(ui.values[0] + "-" + ui.values[1]);
+                lpricetext = "Price Range :" + $("#lotsprice").text();
+                $("#lotssummary").text(lminutetext + "," + laddresstext + "," + lpropertytext + "," + lpricetext + "," + llotacreagetext + "," + lschooltext + "," + lsubdivtext + "," + llotfeaturestext + "," + lwatertext + "," + lsewerText);
+            }
+        });
+        $("#lotsprice").text($("#lotsslider-range").slider("values", 0) +
+         "-" + $("#lotsslider-range").slider("values", 1));
+        // For Square Feet-REntal
+        $("#lotsslider-range2").slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [0, 500],
+            slide: function (event, ui) {
+                $("#lotslotacreage").text(ui.values[0] + "-" + ui.values[1]);
+                llotacreagetext = "Lot Acreage : " + $("#lotslotacreage").text();
+                $("#lotssummary").text(lminutetext + "," + laddresstext + "," + lpropertytext + "," + lpricetext + "," + llotacreagetext + "," + lschooltext + "," + lsubdivtext + "," + llotfeaturestext + "," + lwatertext + "," + lsewerText);
+            }
+        });
+        $("#lotslotacreage").text($("#lotsslider-range2").slider("values", 0) +
+          "-" + $("#lotsslider-range2").slider("values", 1));
+    }
+    $('.slider').slider({
+        handle: round,
+        tooltip: true,
+    });
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyD0X4v7eqMFcWCR-VZAJwEMfb47id9IZao"></script>
+<script type="text/javascript">
+    google.maps.event.addDomListener(window, 'load', function () {
+        var places = new google.maps.places.Autocomplete(document.getElementById('inputAddress'));
+        var places = new google.maps.places.Autocomplete(document.getElementById('rentalinputAddress'));
+        var places = new google.maps.places.Autocomplete(document.getElementById('lotsinputAddress'));
+        // $('#HomeModalFilters').modal('show');
+    });
+</script>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+
+@*<script async defer type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD0X4v7eqMFcWCR-VZAJwEMfb47id9IZao"></script>*@
+
+<script>
+    var m = []; var pos; var city; var geocoder;
+    var mymarkers = [];// array used to push the latitude and longitude for reference while removing options
+    // function which executes on window load
+    function Reinits() {
+        //Code snippet to get Current location and city
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                geocoder = new google.maps.Geocoder();
+                //alert(position.coords.latitude+","+ position.coords.longitude);
+                //pos = new google.maps.LatLng(34.8526, -82.3940);
+                pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                geocoder.geocode({ 'latLng': pos }, function (results, status) {
+                    // alert(status)
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        //formatted address
+                        var address = results[0].formatted_address;
+                        //alert("address = " + address);
+                        var value = address.split(",");
+                        count = value.length;
+                        country = value[count - 1];
+                        state = value[count - 2];
+                        city = value[count - 3];
+                        city = city.trim();
+                        getdatabycurrentlocataion(city)
+                    } else {
+                        alert("Geocoder failed due to: " + status);
+                    }
+                });
+            });
+        }
+        else {
+            alert('browser  not supported');
+        }
+    }
+
+    //function to get the data from DB based on current location(city)
+    function getdatabycurrentlocataion(city) {
+        $.ajax({
+            url: "/Customer/SearchFilter/GetData/",
+            type: "POST",
+            dataType: "json",
+            data: { city: city },
+            success: function (data) {
+                //MarkLocation(data.MLSId, data.GeoLatitude, data.GeoLongitude, data.Class);
+                initialize(data);
+                RightSideListView(data);
+            },
+            error: function () {
+                alert('nodata');
+            }
+        })
+    }
+
+    //Method to intialize the map for a Greenville city from service
+    function initialize(data) {
+        var latLng = new google.maps.LatLng(34.8526, -82.3940);
+        map = new google.maps.Map(document.getElementById('googlemaps'), {
+            zoom: 9, // initialize zoom level - the max value is 21
+            minZoom: 3,
+            maxZoom: 13,
+            streetViewControl: false, // hide the yellow Street View pegman
+            //scaleControl: false,
+            //draggable: false,
+            fullscreenControl: false,
+            zoomControl: false,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: latLng,
+        });
+
+        // For each loop to create markers and assign appropriate icons based on class type
+        $.each(data, function (i, item) {
+            var icon = {
+                url: '/img/star_Full.png',
+                scaledSize: new google.maps.Size(22, 22),
+                //anchor: new google.maps.Point(0, 0),
+
+            };
+
+            if (item.Sale_Rent == "For Sale") {
+                icon.url = '/img/greenlistmark.png'
+            }
+            else if (item.Sale_Rent == "UnderConstruct") {
+                icon.url = '/img/yellow_legendMenu.png'
+            }
+            else if (item.Sale_Rent == "Sold") {
+                icon.url = '/img/red_legendMenu.png'
+            }
+            else if (item.Sale_Rent == "Rental") {
+                icon.url = '/img/gray_legendMenu.png'
+            }
+            else if (item.Sale_Rent == "Viewed") {
+                icon.url = '/img/viewedicon.png'
+            }
+            else {
+                icon.url = '/img/star_Full.png'
+            }
+            var Latt = item.GeoLatitude;
+            var Longg = item.GeoLongitude;
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(Latt, Longg),
+                map: map,
+                icon: icon,
+                anchor: new google.maps.Point(6, 12),
+                optimized: false,
+                title: item.MLSId
+            });
+            //code snippet to ad the values to controls when the markes was cliked
+            marker.addListener('click', function () {
+                FullDetailsByMSLID(item.MLSId);
+            });
+            m.push(marker);// pushing every marker value into the array for reference
+            var l = Latt + "," + Longg;
+            mymarkers.push(l);
+        });
+
+        //draw pencil
+        $("#drawpoly").click(function (e) {
+            if ($('#draw').is(':checked')) {
+                location.reload();
+            }
+            else {
+                //   $("#apply1").trigger("click");
+                for (var i = 0; i < m.length; i++) {
+                    m[i].setMap(null);
+                }
+                disable()
+                google.maps.event.addDomListener(map.getDiv(), 'mousedown', function (e) {
+                    drawFreeHand()
+                });
+            }
+        });
+
+        // Setup the click event listener - zoomIn
+        google.maps.event.addDomListener(zoomInButton, 'click', function (e) {
+            map.setZoom(map.getZoom() + 0.5);
+            zoomchanged(map.getZoom());
+        });
+
+        // Setup the click event listener - zoomOut
+        google.maps.event.addDomListener(zoomOutButton, 'click', function () {
+            map.setZoom(map.getZoom() - 0.5);
+            zoomchanged(map.getZoom());
+        });
+
+        //Zoom_changed event listener
+        map.addListener('zoom_changed', function () {
+            zoomchanged(map.getZoom());
+        });
+
+        //Event to get current posotion
+        $("#mylocation").click(function (e) {
+           // alert();
+            if ($('#myloc').is(':checked')) {
+                location.reload();
+            }
+            else {
+                geolocate();
+            }
+        });
+
+        $("#mapview").click(function () {
+            $("#sat").attr("src", "/img/sat.png")
+            var p = $("#map").attr('src');
+            if (p == "/img/map.png")
+                $("#map").attr("src", "/img/map2.png")
+            map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+        });
+        $("#satview").click(function () {
+            $("#map").attr("src", "/img/map.png")
+            var p = $("#sat").attr('src');
+            if (p == "/img/sat.png")
+                $("#sat").attr("src", "/img/sat2.png")
+            map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+        });
+
+        ////event to view road view map
+        //$("#mapview").click(function (e) {
+        //    map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+        //});
+
+        ////event to view Satellite view
+        //$("#satview").click(function (e) {
+        //    map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+        //});
+
+    }
+
+    //Function to get full details of property on marker click
+    function FullDetailsByMSLID(MLSID) {
+        $.ajax({
+            url: "/Customer/SearchFilter/GetFullDetails",
+            type: "POST",
+            dataType: "json",
+            data: { MLSID: MLSID },
+            success: function (data) {
+                $('#MLSId').html(data[0].MLSId);
+                $('#GeoLatitude').html(data[0].GeoLatitude);
+                $('#GeoLongitude').html(data[0].GeoLongitude);
+                $('#Class').html(data[0].Class);
+                $('#Bedrooms').html(data[0].Bedrooms);
+                $('#Fireplaces').html(data[0].Fireplaces);
+                $('#FullBaths').html(data[0].FullBaths);
+                $('#HalfBaths').html(data[0].HalfBaths);
+                $('#Stories').html(data[0].Stories);
+                $('#AdditionalFee').html(data[0].AdditionalFee);
+                $('#Address1').html(data[0].Address1);
+                $('#Address2').html(data[0].Address2);
+                $('#AddressDirection').html(data[0].AddressDirection);
+                $('#AddressNo').html(data[0].AddressNo);
+                $('#Street').html(data[0].Street);
+                $('#AgentId').html(data[0].AgentId);
+                $('#AgentLicenseId').html(data[0].AgentLicenseId);
+                $('#Appliances').html(data[0].Appliances);
+                $('#ApproxAcres').html(data[0].ApproxAcres);
+                $('#ApproxAge').html(data[0].ApproxAge);
+                $('#ApproxLotDimensions').html(data[0].ApproxLotDimensions);
+                $('#ApproxYearBuilt').html(data[0].ApproxYearBuilt);
+                $('#Area').html(data[0].Area);
+                $('#Auction').html(data[0].Auction);
+                $('#Basement').html(data[0].Basement);
+                $('#Bedroom2Size').html(data[0].Bedroom2Size);
+                $('#Bedroom3Size').html(data[0].Bedroom3Size);
+                $('#Bedroom4Size').html(data[0].Bedroom4Size);
+                $('#Bedroom5Size').html(data[0].Bedroom5Size);
+                $('#BonusRecRmSize').html(data[0].BonusRecRmSize);
+                $('#BreakfastRoomSize').html(data[0].BreakfastRoomSize);
+                $('#BrokerageLicenseID').html(data[0].BrokerageLicenseID);
+                $('#BuildersName').html(data[0].BuildersName);
+                $('#City').html(data[0].City);
+                $('#CondoRegimeIncludes').html(data[0].CondoRegimeIncludes);
+                $('#Condos').html(data[0].Condos);
+                $('#ContingentCloseDate').html(data[0].ContingentCloseDate);
+                $('#CoolingSystem').html(data[0].CoolingSystem);
+                $('#County').html(data[0].County);
+                $('#DeckSize').html(data[0].DeckSize);
+                $('#DenSize').html(data[0].DenSize);
+                $('#DiningSize').html(data[0].DiningSize);
+                $('#GeoAddressLine').html(data[0].GeoAddressLine);
+                $('#GeoPostalCode').html(data[0].GeoPostalCode);
+                $('#GeoPrimaryCity').html(data[0].GeoPrimaryCity);
+                $('#GeoQuality').html(data[0].GeoQuality);
+                $('#GeoSecondaryCity').html(data[0].GeoSecondaryCity);
+                $('#GeoSubdivision').html(data[0].GeoSubdivision);
+                $('#GeoZoomLevel').html(data[0].GeoZoomLevel);
+                $('#GreatRoomSize').html(data[0].GreatRoomSize);
+                $('#ListingPrice').html(data[0].ListingPrice);
+                $('#HomeType').html(data[0].HomeType);
+                $('#btn_Details').click();
+            }
+        })
+    }
+
+    //function to bind list of right side div
+    function RightSideListView(data) {
+        var tab = $('<div style="background-color: white;"></div>');
+        var AlinVar = 0;
+        $.each(data, function (i, item) {
+
+            var table = $('<table id="JqueryRightSideTable" class="RightJqueryList" style="margin-left:10px; margin-bottom:10px; margin-top:5px; width:22%; float:left"></table>');
+            var Row = $('<tr collapse="2" height="100px"></tr>');
+            Row.append('<div style="background: url(/img/picture_area.png); background-size: 100% 100%;background-repeat: no-repeat; height:100px;  width:200px"><div class="col-sm-12"><div style="float: right;"><a href="#"> <img src="/img/viewedicon.png" width="20" height="20" alt=""/></a><a href="#"> <img src="/img/hearticon.png" width="20" height="20" alt="" /></a></div></div><div class="col-sm-12" style="margin-top: 6%;"><a href="#">  <img src="/img/SliderBackArrow.png" width="21" height="36" alt="" style="margin-left: -9%;"></a> <a href="#">  <img src="/img/SliderNextArrow.png" width="21" height="36" alt="" style="float: right;margin-right: -9%;"/></a></div></div> ');
+            table.append(Row);
+            //<a href="#"> <img src="/img/hearticon.png" width="20" height="20" alt="" /></a>
+            var trow = $('<tr></tr>');
+            trow.append('<td style="float:left; margin-top: -4%;  border: 0px !important; color:#FF5D26">' + '$' + item.ListingPrice + '</td>');
+            trow.append('<td style="float:right; margin-top: -4%;  border: 0px !important; font-size:10px; color:#FF5D26">' + 'MLS#' + item.MLSId + '</td>');
+            table.append(trow);
+
+            var trow1 = $('<tr></tr>');
+            trow1.append('<td style="float:left; margin-top: -8%; border: 0px !important; color:#FF5D26; font-size:9px;">' + item.Bedrooms + '<span style="color:black !important"> Bedrooms</span> ' + '  ' + item.BathRooms + ' <span style="color:black !important"> Bathrooms</span>' + '</td>');
+            trow1.append('<td style="float:left; margin-top: -8%; border: 0px !important; color:#FF5D26; font-size:9px; ">' + 'sqft ' + item.ApproxAcres + '</td>');
+            table.append(trow1);
+
+            var trow2 = $('<tr></tr>');
+            trow2.append('<td style="float:left; margin-top: -6%; border: 0px !important; font-size:11px; " colspan="2">' + item.ADDRESKKS + '</td>');
+            table.append(trow2)
+            tab.append(table);
+        });
+        $("#RightListView").html(tab);
+    };
+    //Function to get Current Location which is used in #myloc click event
+    function geolocate() {
+        if ($('#loc').is(':checked')) {
+            location.reload();
+        }
+        else {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    // Create a marker and center map on user location
+                    marker = new google.maps.Marker({
+                        position: pos,
+                        draggable: true,
+                        animation: google.maps.Animation.DROP,
+                        raiseOnDrag: true,
+                        map: map
+                    });
+                    map.setCenter(pos);
+                });
+            }
+        }
+    }
+
+    //Function to draw a poly
+    function drawFreeHand() {
+        //the polygon
+        poly = new google.maps.Polyline({ map: map, clickable: false, strokeColor: "red", strokeWeight: 1 });
+        //move-listener
+        var move = google.maps.event.addListener(map, 'mousemove', function (e) {
+            poly.getPath().push(e.latLng);
+        });
+        //mouseup-listener
+        google.maps.event.addListenerOnce(map, 'mouseup', function (e) {
+            google.maps.event.removeListener(move);
+            var path = poly.getPath();
+            poly.setMap(null);
+            poly = new google.maps.Polygon({ map: map, path: path, fillColor: "#FF0000", fillOpacity: 0.15, strokeColor: "red", strokeWeight: 1, });
+            google.maps.event.clearListeners(map.getDiv(), 'mousedown');
+            //apply.addListener('click', function () {
+            getPathVariableCode(poly);//method calling to remove markerws outside the polygon
+            // });
+            enable()
+        });
+    }
+
+    //function to get path of polygon
+    function getPathVariableCode(poly) {
+
+        for (var i = 0; i < m.length; i++) {
+            m[i].setMap(map);
+        }
+        var pathArr = poly.getPath();
+        //alert(pathArr.length);
+        // for (var i = 0; i < pathArr.length; i++) {
+        // google.maps.event.addListener(map, 'click', function (e) {
+        //alert(mymarkers.length);
+        for (var d = 0; d < mymarkers.length; d++) {
+            var data = mymarkers[d].split(',');
+            //   alert(e.latLng);
+            var coordinate = new google.maps.LatLng(data[0], data[1]);
+            //alert(coordinate);
+            google.maps.geometry.poly.containsLocation(coordinate, poly) ?
+           successmarker() : removemarkers(d);
+        }
+        // });
+        //alert(pathArr.getAt(i).lat() + " and " + pathArr.getAt(i).lng());
+        //  };
+    };
+    function successmarker() {
+
+    }
+    function removemarkers(d) {
+        m[d].setMap(null);
+    }
+
+    //funtion to disable some of map options
+    function disable() {
+
+        map.setOptions({
+            draggable: false,
+            zoomControl: false,
+            scrollwheel: false,
+            disableDoubleClickZoom: false
+        });
+
+    }
+
+    // function to enable map options
+    function enable() {
+        map.setOptions({
+            draggable: true,
+            zoomControl: false,
+            scrollwheel: true,
+            disableDoubleClickZoom: true
+        });
+    }
+
+    //function which is executed when zoom changed
+    function zoomchanged(zoom) {
+        if (zoom <= 4) {
+            $('#drawpoly').css("visibility", "hidden");
+            for (var i = 0; i < m.length; i++) {
+                m[i].setMap(null);
+            }
+
+            poly.setMap(null)
+        }
+        else {
+
+            $('#drawpoly').css("visibility", "visible");
+            for (var i = 0; i < m.length; i++) {
+                m[i].setMap(map);
+            }
+
+            getPathVariableCode(poly);
+            poly.setMap(map)
+        }
+    }
+
+</script>

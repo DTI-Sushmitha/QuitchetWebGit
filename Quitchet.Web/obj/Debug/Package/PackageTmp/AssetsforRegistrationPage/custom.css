@@ -1,0 +1,43 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+h1{
+    margin-bottom: 40px;
+}
+label {
+    color: #333;
+}
+.btn-send {
+    font-weight: 300;
+    /*text-transform: uppercase;*/
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    background-color:#ff5d26;
+    border-color:#fa531a;
+    color:#fff;
+}
+.btn-send:hover {
+    background-color:#fa531a;
+    border-color:#ff5d26;
+     color:#fff;
+}
+
+.container{
+margin-top:5%}
+ .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+  .toggle.ios .toggle-handle { border-radius: 20px; }
+.btn-primary {
+    color: #fff;
+    background-color: #ff5d26;
+    border-color: #ff5d26;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #ff5d26;
+    border-color: #ff5d26;
+}
+
+.labelorangesmall{
+    color:#ff5d26;
+    font-size:smaller;
+}

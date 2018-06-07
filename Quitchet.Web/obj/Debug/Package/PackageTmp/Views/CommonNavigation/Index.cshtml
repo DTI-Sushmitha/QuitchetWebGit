@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Quitchet</title>
+    <link rel="shortcut icon" href="/img/logomi.png">
+</head>
+<body>
+    <div> 
+        <label id="devicetype"></label>
+    </div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+        var isMobile = {
+            Android: function () {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function () {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function () {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function () {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function () {
+                return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+            },
+            any: function () {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+            }
+        };
+        if (isMobile.any()) {
+            if (isMobile.iOS()) {
+              //  $('#devicetype').text('IOS Mobile');
+                $(location).attr('href', 'https://itunes.apple.com/in/app/shareit-connect-transfer/id725215120?mt=8')
+            }
+            else if (isMobile.Android()) {
+                $(location).attr('href', 'https://play.google.com/store/apps/details?id=com.devobal.quitchet')
+               // $('#devicetype').text('Android Mobile');
+            }
+        }
+        else {
+            $(location).attr('href', 'http://webapp.quitchet.com/Registration/Index')
+            //$('#devicetype').text('Web App');
+        }
+
+    
+</script>

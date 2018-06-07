@@ -1,0 +1,131 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Quitchet::Landing</title>
+    <link rel="shortcut icon" href="/img/logomi.png">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.ui.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Inder" rel="stylesheet">
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Inder', sans-serif;
+            font-size: 12px;
+            background-color: #f0f3f4;
+            line-height: 1.42857143 !important;
+            color: #58666e !important;
+            text-rendering: optimizeLegibility;
+        }
+    </style>
+</head>
+
+<body >
+    <div class="col-sm-12">&nbsp;</div>
+    <div class="col-sm-12">&nbsp;</div>
+    <div class="col-sm-12">&nbsp;</div>
+    <div class="col-sm-12">
+        <div class="col-sm-3">&nbsp;</div>
+        <div class="col-sm-6" style="text-align:center;background-color:#ff6937;padding:12px;border-radius:10px;">
+            <img src="~/img/quitchetlogo_little.png" />
+        </div>
+        <div class="col-sm-3">&nbsp;</div>
+    </div>
+    <div class="col-sm-3">&nbsp;</div>
+    <div class="col-sm-6" style="text-align:center;padding:12px;border-radius:10px;">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align:center;padding:5px;color:#ff6937;"><h2>
+                                                                                                <img src="~/img/echeckico.png" class="avtar1"/>
+              @*<img src="~/img/checkmar_savedPopup.png" />*@ Successful!</h2></div>
+            <div class="panel-body"><h3 id="messagetext"></h3>
+                <div style="padding:5px" id="logindiv"><h4><a href="#" id="clickhere">Click here</a> to Login</h4></div>
+            </div>
+            <div class="panel-footer" style="text-align:right;background-color:#fff"><h5>- Quitchet Team </h5></div>
+        </div>
+    </div>
+    <div class="col-sm-3">&nbsp;</div>
+    
+    <div>
+       
+            <div class="col-sm-12" style="text-align:center">
+                <label style=""></label>
+            </div>
+            <div class="col-sm-12" style="text-align:center">
+
+            </div>
+        </div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        var key = window.location.toString().split('=')[1];
+        window.history.pushState('page2', 'Title', '/Customer/AccountActived/Index');
+        $.ajax({
+            url: "/Customer/AccountActived/ActivateAccount",
+            type: "GET",
+            data: { key: key },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if(data[0].STATUS=="Now Actived")
+                {
+                    $("#messagetext").text('Your account has been confirmed. Your account is now active.')
+                }
+                else if(data[0].STATUS=="Already Actived")
+                {
+                    $("#messagetext").text('Your have already activated your account.')
+                }
+            },
+            error: function () {
+                $("#messagetext").text('Oops! Something went wrong while active your account.')
+                $("#logindiv").hide();
+            }
+        });
+    })
+    $("#clickhere").click(function () {
+        //$(location).attr('href', window.location.toString().split('/')[0]+'/Customer/LandingPage/Index');
+        var isMobile = {
+            Android: function () {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function () {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function () {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function () {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function () {
+                return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+            },
+            any: function () {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+            }
+        };
+        if (isMobile.any()) {
+            if (isMobile.iOS()) {
+                //  $('#devicetype').text('IOS Mobile');
+                $(location).attr('href', 'https://itunes.apple.com/in/app/shareit-connect-transfer/id725215120?mt=8')
+            }
+            else if (isMobile.Android()) {
+                $(location).attr('href', 'https://play.google.com/store/apps/details?id=com.devobal.quitchet')
+                // $('#devicetype').text('Android Mobile');
+            }
+        }
+        else {
+            $(location).attr('href', 'http://webapp.quitchet.com/Customer/LandingPage/Index')
+            //$('#devicetype').text('Web App');
+        }
+
+    })
+</script>

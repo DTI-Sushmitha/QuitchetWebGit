@@ -1,0 +1,1047 @@
+﻿@*Agent/SafetyManager Index*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+<style>
+    .scrolls_divs::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        .scrolls_divs::-webkit-scrollbar {
+            width: 0.8%;
+            border-radius: 10px;
+            background-color: #ff6a00;
+        }
+
+        .scrolls_divs::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #ff6a00;
+        }
+    .colorDefinition {
+     background-color:transparent !important  ; 
+     color:black !important;
+    border: none !important;
+}
+    .mainheader {
+        background-color: #7C7C7C;
+        /*padding: 7px;*/
+        padding-top:8px;
+        color: #fff;
+        /*padding-right: 0;*/
+        /*line-height: 2;*/
+    }
+
+    .backbtn {
+        background-color: #ff5d26;
+        padding: 2px 15px;
+        border: none;
+    }
+
+    .anchorclass {
+        background-color: #ff5d26;
+        padding: 2px 6px;
+        border: none;
+        text-decoration: none !important;
+        cursor: pointer;
+        border-radius: 4px;
+        color: #fff;
+        width: 110px;
+    }
+
+    .images {
+        cursor: pointer;
+        width: 90px;
+        margin-bottom: 0;
+    }
+
+    .mytextcontrol {
+        width: 110px;
+        height: 30px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .listviewborders {
+        background-color: #fff;
+        border-bottom: 2px solid #ccc;
+        height: 110px;
+        padding: 0;
+    }
+    /*//////////*/
+    .btn-default {
+        color: #fff;
+        background-color: #ff5d26;
+    }
+
+    .search-box-container input {
+        padding: 5px 20px 5px 5px;
+    }
+    /*Label calsses used in List View for Buyer and Agent Merics Reports*/
+    .labelprice {
+        font-size: 17px;
+        font-weight: bold;
+        color: #ff5d26;
+    }
+
+    .labelbold {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .grayheaderinpopup {
+        padding: 12px;
+        color: #fff;
+        font-size: 17px;
+        background-color: #837F7F;
+        margin-bottom: 15px;
+    }
+
+    .imginpopup {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .labelinpopup {
+        font-size: 15px;
+        padding: 15px;
+    }
+    .notesinpopup{
+        min-height:200px;overflow-x:hidden;
+        overflow-y:auto;
+        background-color:#FFF9F7;
+        border:1px solid #ff5d26;
+        border-radius:5px;
+    }
+    .search-box-container:after {
+        color: gray;
+        content: "\f073";
+        font-family: FontAwesome;
+        margin-left: -25px;
+        margin-right: 25px;
+    }
+
+    #mybox:after {
+        content: "";
+        border-color: transparent #fff transparent transparent;
+        border-style: solid;
+        border-width: 20px;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 10px;
+        left: -40px;
+    }
+
+    #mybox {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 2px;
+    }
+
+
+    .gm-style-iw {
+        left: 0 !important;
+        margin-left: 25px !important;
+    }
+
+    .gm-style .gm-style-iw {
+        width: 350px !important;
+    }
+       /*date picker styles*/
+
+    .ui-datepicker-header {
+        text-transform: uppercase !important;
+        background-color: transparent;
+        color: #ff5d26;
+        font-weight: normal;
+        border: none !important;
+        font-size: 15px;
+        font-weight: bold;
+        /*-webkit-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, 2);
+                    -moz-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+                    box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+                    text-shadow: 1px -1px 0px #000;
+                    filter: dropshadow(color=#000, offx=1, offy=-1);
+                    line-height: 30px;*/
+    }
+
+    .ui-datepicker table {
+        color: gray !important;
+    }
+
+    .ui-datepicker-prev, .ui-datepicker-next {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        cursor: pointer;
+        /*background-image: url('../img/arrow.png');*/
+        background-repeat: no-repeat;
+        line-height: 600%;
+        overflow: hidden;
+    }
+
+    .ui-datepicker tbody td:last-child {
+        border-right: 0px;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+        border: none !important;
+    }
+
+    .ui-datepicker tbody tr:last-child {
+        border-bottom: 0px;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default {
+        text-align: center;
+    }
+
+    .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+        background-color: #ff5d26 !important;
+    }
+    .bootstrap-select.btn-group .dropdown-toggle .filter-option{
+        font-size:13px !important;
+    }
+    /*End ::after *date picjer styles*/
+</style>
+<link href="~/AgentStyles/Select-Styles-JS/bootstrap-select.min.css" rel="stylesheet" />
+<script src="~/AgentStyles/Select-Styles-JS/bootstrap-select.min.js"></script>
+<link href="~/AgentStyles/CountDownTimer_Cs_Js/jquery.countdownTimer.css" rel="stylesheet" />
+<script src="~/AgentStyles/CountDownTimer_Cs_Js/jquery.countdownTimer.js"></script>
+<script src="~/AgentStyles/CountDownTimer_Cs_Js/jquery.countdownTimer.min.js"></script>
+<div class="col-sm-12 mainheader">
+    <div class="col-sm-1" style="">
+        <a href="/Agent/MyQuitchet/Index" class="btn btn-nm backbtn">Back</a>
+    </div>
+    <div class="col-sm-1" style="width:10%;text-align:center;border-left:0.5px solid #9a9797;border-right:0.5px solid #9a9797">
+        <img id="viewchangeBtn" src="~/img/safetyListView.png" class="images" />
+    </div>
+    <div class="col-sm-6 " style="width:39%;text-align:center;font-size:17px;" id="myid">Safety Manager</div>
+    <div class="col-sm-4" style="width:42%;padding-right:0">
+        <div class="col-sm-9" style="padding:0;width:75%;">
+            <div class="col-sm-1" style="width:15%;line-height:2.5">From</div>
+            <div class="col-sm-5 search-box-container" style="padding:0;width:33%">
+                <input type="text" id="fromdate" class="mytextcontrol" placeholder="01/25/2018" />
+            </div>
+            <div class="col-sm-1" style="width:5%;text-align:center;line-height:2.5;color:#ff5d26">
+                <span>to</span>
+            </div>
+            <div class="col-sm-5 search-box-container" style="padding-left:8px;width:41%">
+                <input type="text" id="todate" class="mytextcontrol" placeholder="01/25/2018" />
+            </div>
+            @*From &nbsp;
+                <input type="text" class="mytextcontrol"/>
+                &nbsp; to &nbsp;<input type="text" class="mytextcontrol"/>*@
+        </div>
+        <div class="col-sm-3" style="padding:0;padding-left:5px;border-left: 1px solid #9a9797">
+            <select class="selectpicker form-control" id="sortby">
+                <option value="1">Start Time</option>
+                <option value="2">Most Time</option>
+                <option value="3">Least Time</option>
+                <option value="4">Agent Name</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12 scrolls_divs" id="ListViewDiv" style="padding:0;display:none;min-height:70vh;max-height:79vh;overflow-x:hidden;overflow-x:auto">
+
+</div>
+<div class="col-sm-12" id="MapView" style="height:79vh;padding:0;"></div>
+<div class="col-sm-4"></div>
+<div class="col-sm-4" id="mybox12" style=" display:none">
+    <div class="col-sm-8" style="padding:0;color:black">
+        <div class="col-sm-12" style="padding:0">
+            <div class="col-md-3" style="top:12px;width:21%">
+                <img src="/img/addphotopic.png" style="height:50px;width:50px;border-radius:50px" />
+            </div>
+            <div class="col-md-7" style="width:65%;top:5px">
+                <label style="color:#ff5d26">Agent</label><br />
+                <div class="col-md-12" style="font-size:16px;padding:0;font-weight:bold">Bob Morgan</div>
+                <div class="col-md-12 textlimit" style="font-size:13px;padding:0">895-898-1231</div>
+            </div>
+        </div>
+        <div class="col-sm-12" style="padding:12px;">
+            <div class="col-md-12" style="font-size:14px;">105 London Drive</div>
+            <div class="col-md-12" style="font-size:14px;">Greenville, SC 25693</div>
+        </div>
+        <div class="col-sm-12" style="padding:12px;border-top:0.5px solid #ff5d26">
+            <div class="col-sm-12" style="color:#ff5d26">Appointment Time:</div>
+            <div class="col-sm-12" style="">12:36 AM - 02:23PM</div>
+        </div>
+    </div>
+    <div class="col-sm-4" style="border-left:0.5px solid #ff5d26;padding: 0px 4px 0px 8px;">
+        <div class="col-sm-12" style="text-align:center;color:#fff;padding:5px">
+            <div style="background-color:blue;text-align:center;border-radius:4px;">Open House</div>
+        </div>
+        <div class="col-sm-12" style="margin-top:5px;height:100px;position: relative; background-image: url(../../../../img/picture001.png); background-size: 100% 100%;"></div>
+        <div class="col-sm-12" style="text-align:center;color:gray;padding:5px;">MLS#11000000</div>
+        <div class="col-sm-12" style="text-align:center;padding:4px"><a href="#" class="anchorclass">Details</a></div>
+    </div>
+    <div class="col-sm-7" style="padding:0;width:63%">
+        <div class="col-sm-12" style="background-color:#ff5d26;height:38px;color:#fff;line-height:3">
+            <img src="/img/checkmar_savedPopup.png" style="margin-bottom:0;float:left">&nbsp;&nbsp;&nbsp; CHECKED IN<b style="float:right">No</b>
+        </div>
+        <div class="col-sm-12" style="background-color:#565453;height:38px;color:#fff;line-height:3">
+            <img src="/img/arrow_small.png" style="margin-bottom:0;float:left">&nbsp; CHECKED OUT<b style="float:right">No</b>
+        </div>
+    </div>
+    <div class="col-sm-5" style="padding:0;width:37%">
+        <div class="col-sm-12" style="background-color:#FFDBDB;border-radius:5px;padding:9px;">
+            <div class="col-sm-12" style="text-align:center"><img src="/img/watchh.png" style="margin-bottom:0"></div>
+            <div class="col-sm-12" style="text-align:center;font-size:17px;">00:05:23</div>
+            <div class="col-sm-12" style="text-align:center">Time Remaining</div>
+        </div>
+    </div>
+</div>
+@*Customer Contact Information Popup*@
+<div class="modal fade" id="CustomerInfoPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 10%; width: 30%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;color:#fff;background-color:#ff6937;border-radius: 6px 6px 0 0;">
+                <img src="~/img/close_Popup_icon.png" data-dismiss="modal" style="float:right;cursor:pointer" />
+                <label class="modal-title" style="font-size:18px">Customer Information</label>
+            </div>
+
+            <div class="modal-body" style="">
+                <div class="col-md-12" style="">
+                    <div class="col-md-3" style="">
+                        <img src="/img/addphotopic.png" id="customer_photo" style="height:60px;width:60px;border-radius:50px;margin-top:5px;" />
+                    </div>
+                    <div class="col-md-7" style="color:black;padding:0">
+                        <label id="hidden_buyerid" hidden="hidden"></label>
+                        <label id="hidden_mlsid" hidden="hidden"></label>
+                        <label id="hidden_addr" hidden="hidden"></label>
+                        <label id="hidden_mlsphoto" hidden="hidden"></label>
+                        <div class="col-md-12" style="color:#ff5d26;font-size:15px;">Buyer</div>
+                        <div class="col-md-12" style="font-size:18px;margin-top:5px;" id="customer_name">Bob Morgan</div>
+                        <div class="col-md-12 textlimit" style="font-size:14px;" id="customer_mobile">(864) 123 1234</div>
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        <img src="/img/chat8.png" style="margin-top:25px;cursor:pointer" id="customerchat">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+@*Open House Details*@
+<div class="modal fade" id="OpenHouseDetailsPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 5%; width: 35%">
+        <div class="modal-content">
+            <div class="modal-header" style="padding:13px;text-align: center;color:#fff;background-color:#ff6937;border-radius: 6px 6px 0 0;">
+                <img src="~/img/close_Popup_icon.png" data-dismiss="modal" style="float:right;cursor:pointer" />
+                <label class="modal-title" style="font-size:18px" id="">Open House Details</label>
+            </div>
+
+            <div class="modal-body" style="padding:0">
+                <div class="col-md-12 grayheaderinpopup" style="" id="oh_title">
+                    Agent Open House
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-md-12">
+                        <div class="col-md-2 imginpopup" style="">
+                            <img src="~/img/calen2.png" />
+                        </div>
+                        <div class="col-md-10 labelinpopup">
+                            <label class="" id="oh_date">February 9 2017</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-2 imginpopup">
+                            <img src="~/img/watchh.png" style="height:25px"/>
+                        </div>
+                        <div class="col-md-10 labelinpopup">
+                            <label class="" id="oh_fromtime">8:30 PM</label>&nbsp;to&nbsp;<label id="oh_totime" class="">9:30 PM</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-2 imginpopup">
+                            <img src="~/img/mappin.png" style="height:35px"/>
+                        </div>
+                        <div class="col-md-6 labelinpopup">
+                            <label class="" id="oh_addr1">101 London Drive</label><br /><label ib="oh_addr2">Greenville, SC 296355</label>
+                        </div>
+                        <div class="col-md-4" style="padding:15px">
+                            <a href="#" id="directionsBtn" class="btn btn-sm" style="font-weight:bold; background-color:transparent;border:1px solid #ff5d26;color:#ff5d26;padding:6px 15px;text-align:center">
+                                Directions&nbsp;&nbsp<img src="~/img/Directions_icon.png"  style="float:right"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-12 notesinpopup scrolls_divs" id="oh_notesdiv">
+                        <label style="color:#ff5d26;padding:5px;font-size:14px;">Notes:</label><br />
+                        <label id="notes">Notes..........</label>
+                    </div>
+            </div>
+
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    var map; var PkeySM = '', timing = 0;
+    var fromdate = "", todate = "";
+    $(document).ready(function () {
+        $('#fromdate').datepicker().datepicker('setDate', 'today');
+        var date2 = $('#fromdate').datepicker('getDate', '+1d');
+        date2.setDate(date2.getDate()+7); 
+        $('#todate').datepicker().datepicker('setDate', date2);
+        fromdate = $('#fromdate').val();
+        todate = $('#todate').val();
+        $('a[href="/Agent/SafetyManager/Index"]').parents('li,ul').addClass('active');
+        getSafetyManagerReport();
+        google.maps.event.trigger(map, "resize");
+    })
+    $("#fromdate").datepicker({
+        beforeShow: function (input, inst) {
+            inst.dpDiv.css({ marginLeft: '-75px' });
+        },
+        dateFormat: 'mm/dd/yy',
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        onSelect: function (date) {
+            fromdate = date;
+            PkeySM = '';
+            $("todate").removeAttr('disabled');
+            $("#todate").removeAttr('readonly');
+            $("#todate").datepicker("option", { minDate: new Date(date) });
+            if( $("#todate").val()!="")
+                getSafetyManagerReport();
+        },
+    });
+    $("#todate").datepicker({
+        beforeShow: function (input, inst) {
+            inst.dpDiv.css({ marginLeft: '-75px' });
+        },
+        dateFormat: 'mm/dd/yy',
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        onSelect: function (date) {
+            todate = date;
+            PkeySM = '';
+            $(this).attr('readonly', true);
+            if ($("#fromdate").val() != "")
+                 getSafetyManagerReport();
+        },
+    })
+    //////////////////////////////////////////
+    var safetyManagerObj = [];
+    $("#sortby").change(function () {
+        getSafetyManagerReport();
+    })
+    function getSafetyManagerReport() {
+        // safetyManagerObj = [AgentId, $("#fromdate").val(), $("#todate").val(), $("#sortby").val()];
+        safetyManagerObj = [AgentId, fromdate, todate, $("#sortby").val()];
+        //alert(safetyManagerObj.join(','))
+        $.ajax({
+            url: "/Agent/SafetyManager/GetReportforSafetyManager",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(safetyManagerObj),
+            success: function (data) {
+                $("#spinner").css("display", "none");
+                if (data.length > 0) {
+                    if (PkeySM == '') {
+                        BindReportstoList(data);
+                        LoadMarkers(data);
+                    }
+                    else if (PkeySM != '') {
+                        var as = $(data).filter(function (i, n) { return n.PK_ID == PkeySM });
+                        for (var i = 0; i < as.length; i++) {
+                            // alert(as[i].TIMEOUTON + "         " + as[i].SafetyStatus)
+                            timing = as[i].TIMEOUTON;
+                        }
+                    }
+                }
+                else {
+                    $("#heading").text("Alert");
+                    $("#content_text").text("No Records found..! ");
+                    $("#AlertPopup").modal("show");
+                    $("#ListViewDiv").empty();
+                    DefaultMapload();
+                }
+            },
+            complete: function () {
+                $("#spinner").css("display", "none");
+            },
+            beforeSend: function () {
+                $("#spinner").css("display", "none");
+            },
+        });
+    }
+    //////////////////////////////////////////
+    function BindReportstoList(data) {
+        $("#ListViewDiv").empty();
+        $.each(data, function (i, item) {
+            var imagepin = '';
+           // if (item.Class == "Lots/Land" || item.Class == "Residential") {
+                if (item.Status == "Active") {
+                    //if (data[i].Is_Viewd == "YES")
+                    //    imagepin = '<img src="/img/viewed_greenpin.png" height="20" style="position:relative; top:-2px" />'
+                    //else
+                    imagepin = '<img src="/img/Green_legend_Menu.png" height="20" style="position:relative; top:-2px;margin-bottom:0" />'
+                }
+                else if (item.Status == "Pending" || item.Status == "Contingency Contract") {
+                    //if (data[i].Is_Viewd == "YES")
+                    imagepin = '<img src="/img/yellow_legendMenu.png" height="20" style="position:relative; top:-2px;margin-left: -3px;margin-bottom:0" />'
+                    //else
+                    //    imagepin = '<img src="/img/viewed_yellowpin.png" height="20" style="position:relative; top:-2px" />'
+                }
+                else if (item.Status == "Sold") {
+                    //if (data[i].Is_Viewd == "YES")
+                    imagepin = '<img src="/img/red_legendMenu.png" height="20" style="position:relative; top:-2px;margin-left: -3px;margin-bottom:0" />'
+                    //else
+                    //    imagepin = '<img src="/img/viewed_yellowpin.png" height="20" style="position:relative; top:-2px" />'
+                }
+                 if (item.SAFTYON == "Open House Time:") {
+                    //if (data[i].Is_Viewd == "YES")
+                    imagepin = '<img src="/img/OpenHousefullBlue.png" height="20" style="position:relative; top:-2px;margin-left: -3px;margin-bottom:0" />'
+                    //else
+                    //    imagepin = '<img src="/img/viewed_yellowpin.png" height="20" style="position:relative; top:-2px" />'
+                }
+            //}
+            //else if (item.Class == "Rental") {
+
+            //}
+             
+            var price = imagepin + '&nbsp;<label class="labelprice">$ ' + (item.PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + '</label>';
+            var TotalImages = [], PhotosURL = [];
+            if (item.PRP_IMAGES != null && item.PRP_IMAGES != "," && item.PRP_IMAGES != '') {
+                TotalImages.push(item.PRP_IMAGES);
+                if (TotalImages.length > 0)
+                    PhotosURL = item.PRP_IMAGES.split(',');
+                else
+                    PhotosURL[0] = item.PRP_IMAGES;
+            }
+            else {
+                
+                PhotosURL[0] = "/img/NoImage.png";
+            }
+            var agentphotosrc = '';
+            if (item.PhotoPath != "" && item.PhotoPath != null && item.PhotoPath != ",") {
+                agentphotosrc = item.PhotoPath;
+            }
+            else {
+                agentphotosrc = '/img/addphotopic.png';
+            }
+            if (item.SAFTYON == "Showing Time:") {
+                var agentlabel = 'Showing Agent';
+                detailsbtn = '<a class="anchorclass" onclick="return GetBuyerDetails(\'' + item.BuyerID + '\',\'' + item.BuyerImage + '\',\'' + item.BuyerFistName + '\',\'' + item.BuyerLastName + '\',\'' + item.BuyerMobileNo + '\',\'' + item.MLSID + '\',\'' + item.PRP_ADDRESS + '\',\'' + PhotosURL[0] + '\')">Customer Info.</a>';
+            }
+            else {
+                var agentlabel = 'Host Agent';
+                imagepin = '<img src="/img/OpenHousefullBlue.png" height="20" style="position:relative; top:-2px" />'
+                //price = '<img src="/img/viewed_redpin.png" style="margin-bottom:0" />'
+                //        + '<label class="labelprice">$ 1122112 /mo</label>';
+                detailsbtn = '<a class="anchorclass" onclick="return GetOpenHouseDetails(' + item.PK_ID + ')">Details</a>';
+            }
+            if (item.PRP_ADDRESS != null && item.PRP_ADDRESS != '') {
+                var addr0 = item.PRP_ADDRESS.split(',')[0]
+                var addr11 = item.PRP_ADDRESS.split(',')[1];
+                var addr12 = (item.PRP_ADDRESS.split(',')[2] != undefined) ? "," + item.PRP_ADDRESS.split(',')[2] : "";
+            }
+            var addr0='',addr11 = '';
+            var addr12 = '';
+            var photosdiv = '<div class="col-sm-4" style="top: 2px; height: 95px; padding-left: 0px; position: relative; background-image: url('+PhotosURL[0]+'); background-size: 100% 100%;">'
+                          + '<a href="#"><img src="/img/SliderBackArrow.png" width="21" height="29" style="top: 28px; position: relative; float: left;" hidden="hiden"/></a>'
+                          + '<a href="#"><img src="/img/SliderNextArrow.png" width="21" height="29" style="top: 28px; right: -15px; position: relative;  float: right;" hidden="hiden"/></a></div>';
+            var status = '', checkinout = ''; 
+            if (item.SafetyStatus == "Emergency") {
+                checkinout = '<div class="col-sm-4" style="padding:0;"><div class="col-sm-12" style="background-color:#ff5d26;height:54px;color:#fff;padding:7px">'
+                            + '<img src="/img/checkin_rightmark.png" style="margin-bottom:0;height: 20px;">&nbsp; CHECKED IN<br><span style="padding-left:33px">Yes</span></div>'
+                            + '<div class="col-sm-12" style="background-color:#565453;height:54px;color:#fff;padding:7px;padding-left:10px"> CHECKED OUT<img src="/img/gray_arrow_right.png" style="float:right;height: 18px;">'
+                            + '<br><span style="">No</span>'
+                            + '</div>';
+                status = '</div><div class="col-sm-4" style="padding:5px;"><div class="col-sm-12" style="background-color:#FFC3C3;color:#FA0202;border-radius:5px;padding:7px;"><div class="col-sm-12" style="text-align:center"><img src="/img/red_alert.png" style="height:20px;margin-bottom:0"></div>'
+                        + '<div class="col-sm-12" style="text-align:center;font-size:17px;" id="countdowntimer' + i + '"><span><span>00:00:00</div><div class="col-sm-12" style="text-align:center">Safety Timer Expired!</div></div>'
+                ' </div>'
+            }
+            else if (item.SafetyStatus == "Running") {
+                checkinout = '<div class="col-sm-4" style="padding:0;"><div class="col-sm-12" style="background-color:#ff5d26;height:54px;color:#fff;padding:7px">'
+                           + '<img src="/img/checkin_rightmark.png" style="height: 20px;margin-bottom:0">&nbsp; CHECKED IN<br><span style="font-size:10px;">' + item.CHECK_IN + '</span></div>'
+                           + '<div class="col-sm-12" style="background-color:#565453;height:54px;color:#fff;padding:7px;padding-left:10px"> CHECKED OUT<img src="/img/gray_arrow_right.png" style="float:right;height: 18px;">'
+                           + '<br><b style="">No</b>'
+                           + '</div>';
+                status = '</div><div class="col-sm-4" style="padding:10px;"><div class="col-sm-12" style="background-color:#FFDBDB;border-radius:5px;padding:7px;"><div class="col-sm-12" style="text-align:center"><img src="/img/watchh.png" style="margin-bottom:0"></div>'
+                        + '<div class="col-sm-12" style="text-align:center;font-size:17px;" id="countdowntimer' + i + '"><span id="future_date' + i + '"><span>00:00:00</div><div class="col-sm-12" style="text-align:center">Time Remaining</div></div>'
+                ' </div>'
+            }
+            else if (item.SafetyStatus == "Completed") {
+                checkinout = '<div class="col-sm-4" style="padding:0;"><div class="col-sm-12" style="background-color:#ff5d26;height:54px;color:#fff;padding:7px">'
+                           + '<img src="/img/checkin_rightmark.png" style="height: 20px;margin-bottom:0">&nbsp; CHECKED IN<br><span style="font-size:10px;">' + item.CHECK_IN + '</span></div>'
+                           + '<div class="col-sm-12" style="background-color:#565453;height:54px;color:#fff;padding:7px;padding-left:10px"> CHECKED OUT<img src="/img/gray_arrow_right.png" style="float:right;height: 18px;">'
+                           + '<br><span style="font-size:10px;">' + item.CHECK_OUT + '</span>'
+                           + '</div>';
+                status = '</div><div class="col-sm-4" style="padding:10px;"><div class="col-sm-12" style="background-color:#CFF7E1;color:#009444;border-radius:5px;padding:7px;"><div class="col-sm-12" style="text-align:center"><img src="/img/greencheck.png" style="margin-bottom:0"></div>'
+                        + '<div class="col-sm-12" style="text-align:center">Successfully Checked Out!</div></div>'
+                ' </div>'
+            }
+            if (item.SafetyStatus == "Scheduled") {
+                checkinout = '<div class="col-sm-4" style="padding:0;"><div class="col-sm-12" style="background-color:#ff5d26;height:54px;color:#fff;padding:7px">'
+                            + '<img src="/img/checkin_rightmark.png" style="margin-bottom:0;height: 20px;">&nbsp; CHECKED IN<br><span style="padding-left:33px">No</span></div>'
+                            + '<div class="col-sm-12" style="background-color:#565453;height:54px;color:#fff;padding:7px;padding-left:10px"> CHECKED OUT<img src="/img/gray_arrow_right.png" style="float:right;height: 18px;">'
+                            + '<br><span style="">No</span>'
+                            + '</div>';
+                status = '</div><div class="col-sm-4" style="padding:10px;"><div class="col-sm-12" style="background-color:#FFC3C3;color:#FA0202;border-radius:5px;padding:7px;"><div class="col-sm-12" style="text-align:center"><img src="/img/red_alert.png" style="height:20px;margin-bottom:0"></div>'
+                        + '<div class="col-sm-12" style="text-align:center;font-size:17px;" id="countdowntimer' + i + '"><span><span>00:00:00</div><div class="col-sm-12" style="text-align:center"></div></div>'
+                ' </div>'
+            }
+            //(item.MobileNo == null) ? "No Phone" : item.MobileNo + '
+            if (item.Primary_Color != "" && item.Primary_Color != null) {
+                agentbackgroundcolor = item.Primary_Color;
+            }
+            else {
+                agentbackgroundcolor = "#fff";
+            }
+            if (item.Secondary_Color != "" && item.Secondary_Color != null) {
+                agenttextcolor = item.Secondary_Color;
+            }
+            else {
+                agenttextcolor = "black";
+            }
+
+            if (item.Agent_PkUserID != null && item.Agent_PkUserID != "null" && item.Agent_PkUserID != "")
+                var chat = '<img src="/img/chat_iconMyAgent_MP.png" style="height: 30px;margin-top:35px;cursor:pointer" onclick="return CreatingPropertyChat(\'' + item.Agent_PkUserID + '\',\'' + item.First_Name + '\',\'' + agentphotosrc + '\',\'' + item.MLSID + '\',\'' + addr0 + '\',\'' + addr11 + '' + addr12 + '\',\'' + PhotosURL[0] + '\')">';
+            else
+                var chat = '';
+
+            var list = '<div class="col-sm-12 listviewborders" style="">'
+                 + '<div class="col-md-3" style="width:33%;height:108px;background-color:' + agentbackgroundcolor + ';padding-right:0">'
+                        + '<div class="col-md-3" style="top:20px;width:23%">'
+                        + '<img src="'+agentphotosrc+'" style="height:50px;width:50px;border-radius:50px" /></div>'
+                        + '<div class="col-md-7" style="color:' + agenttextcolor + ';width:65%;top:10px"><label  style="color:#FFA486;">' + agentlabel + '</label><br />'
+                        + '<div class="col-md-12" style="font-size:18px;padding:0">' + item.First_Name + ' ' + item.Last_Name + '</div>'
+                        + '<div class="col-md-12 textlimit" style="font-size:12px;padding:0">' +item.MobileNo+' </div></div>'
+                        + '<div class="col-sm-2" style="width:12%;height:108px;background-color:' + agentbackgroundcolor + ';padding:0;text-align:center;box-shadow: 0px 2px 5px 2px #888888;">'
+                        + chat+ '</div></div>'
+
+                        + '<div class="col-sm-4" style="height:108px;padding:5px;border-right:0.5px solid #ff5d26">' + photosdiv
+                        + '<div class="col-sm-8"><div class="col-sm-12" style="margin-top:8px">' + price + '</div><div class="col-sm-12 textlimit" style="line-height:1;margin-top:2px;"><label style="font-weight:bold;font-size:17px;">' + addr0 + '</label><br />'
+                        + '<label class="textlimit" style="font-size:15px;font-weight:bold;">' + addr11 + '' + addr12 + '</label><br /><label class="" style="color:gray">MLS#' + item.MLSID + '</label></div>'
+                        +'</div></div>'
+
+                        + '<div class="col-sm-5" style="padding:0;width:33.6%"><div class="col-sm-4" style="padding:0"><div class="col-sm-12" style="background-color:#FFE0D6;text-align:center;font-weight:bold;color:#ff5d26;padding:7px">'+item.SAFTYON+'</div>'
+                         + '<div class="col-sm-12" style="text-align:center;font-weight:bold;padding:0;top:15px;"><img src="/img/watchh.png" style="margin-bottom:3px">&nbsp;'+item.SCHEDULE_TIME+'</div>'
+                         + '<div class="col-sm-12" style="text-align:center;top:18px">' + detailsbtn + '</div></div>'
+
+                        //+ '<div class="col-sm-4" style="padding:0;"><div class="col-sm-12" style="background-color:#ff5d26;height:54px;color:#fff;padding:7px">'
+                        //    + '<img src="/img/checkmar_savedPopup.png" style="margin-bottom:0">&nbsp; CHECKED IN<br><b style="padding-left:33px">10:52 AM</b></div>'
+                        //    + '<div class="col-sm-12" style="background-color:#565453;height:54px;color:#fff;padding:7px;padding-left:10px"> CHECKED OUT<img src="/img/arrow_small.png" style="float:right">'
+                        //    + '<br><b style="">10:52 AM</b>'
+                            //+ '</div>'
+
+                       //+ '</div><div class="col-sm-4" style="padding:10px;"><div class="col-sm-12" style="background-color:#FFDBDB;border-radius:5px;padding:7px;"><div class="col-sm-12" style="text-align:center"><img src="/img/watchh.png" style="margin-bottom:0"></div>'
+                       //     + '<div class="col-sm-12" style="text-align:center;font-size:17px;" id="countdowntimer' + i + '"><span id="future_date' + i + '"><span>00:05:23</div><div class="col-sm-12" style="text-align:center">Time Remaining</div></div>'
+                       //+ '</div>'
+                        +checkinout + status + '</div>'
+                        + '</div>'
+
+            $("#ListViewDiv").append(list);
+            if (item.SafetyStatus == "Running" && item.TIMEOUTON > 0)
+                //alert()
+                setTimeout(timer("future_date" + i, item.TIMEOUTON), 2500);
+        });
+    }
+    //  $(function(){
+    function timer(id, timing) {
+        $("#"+id).countdowntimer({
+            ///hours:1,
+            minutes:timing,
+            //size:"lg"
+        })
+    }
+    //});
+    $("#viewchangeBtn").click(function () {
+        // alert($("#LAM_MapListViewBtn").text());
+        getSafetyManagerReport()
+        var textval = $(this).attr('src');
+        //alert(textval)
+        if (textval == "/img/safetyListView.png") {
+            $(this).attr('src', '/img/safetyMapView.png')
+            //var textval = $("#LAM_MapListViewBtn").text("Map View");
+            $("#MapView").hide();
+            $("#ListViewDiv").show();
+        }
+        else if (textval == "/img/safetyMapView.png") {
+           // google.maps.event.trigger(map, "resize");
+            //var textval = $("#LAM_MapListViewBtn").text("List View");
+            $(this).attr('src', '/img/safetyListView.png')
+            $("#MapView").show();
+            $("#ListViewDiv").hide();
+        }
+
+    });//Change Views from Map View to List View Vice Versa Buyer Metrics MapView In Popup
+    function DefaultMapload() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                geocoder = new google.maps.Geocoder();
+                pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                //var latLng = new google.maps.LatLng(17.3850,78.4867 - 34.8526, -82.3940);
+                map = new google.maps.Map(document.getElementById("MapView"), {
+                    zoom: 10, // initialize zoom level
+                    minZoom: 6,
+                    // maxZoom: 16,
+                    streetViewControl: false, 
+                    fullscreenControl: false,
+                    zoomControl: false,
+                    mapTypeControl: false,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    center: pos,
+                });
+            });
+        }
+        else {
+            $("#heading").text("Warning");
+            $("#content_text").text("Browser sot supporting to get current location");
+            $("#AlertPopup").modal("show");
+        }
+    }
+    function LoadMarkers(data) {
+       var latLng = new google.maps.LatLng(data[0].GeoLat, data[0].GeoLong);
+      //  var latLng = new google.maps.LatLng(34.8526, -82.3940);
+        map = new google.maps.Map(document.getElementById('MapView'), {
+            zoom: 10,
+            minZoom: 6,
+            // maxZoom: 13,
+            streetViewControl: false,
+            fullscreenControl: false,
+            zoomControl: false,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: latLng,
+        });
+        var iconurl = "";
+        var TotalImages = [], m = [], mymarkers = [];
+        $.each(data, function (i, item) {
+            var PhotosURL = [];
+            if (item.PRP_IMAGES != null && item.PRP_IMAGES != "," && item.PRP_IMAGES != "") {
+                TotalImages.push(item.PRP_IMAGES);
+                if (TotalImages.length > 0)
+                    PhotosURL = item.PRP_IMAGES.split(',');
+                else
+                    PhotosURL = item.PRP_IMAGES;
+            }
+            else {
+                PhotosURL[0] = "/img/NoImage.png";
+            }
+            var icon = {
+                url: '',
+                scaledSize: new google.maps.Size(22, 22),
+            };
+            var saletype = "", DsUrl = "";
+            if (item.Status == "Active") {
+                saletype = "<label style=''>For Sale</label>";
+                icon.url = '/img/green_legend_Menu.png',
+               DsUrl = '/img/green_legend_Menu.png'
+                var headingtype = '<div style="background-color:green;text-align:center;border-radius:12px;font-size:12px;padding:4px;">For Sale</div>';
+                //if (item.Is_viewd == "YES") {
+                //    iconurl = '/img/viewed_greenpin.png'
+                //}
+            }
+            else if (item.Status == "Pending" || item.Status == "Contingency Contract") {
+                saletype = "<label style=''>Under Construct</label>";
+                icon.url = '/img/yellow_legendMenu.png';
+                DsUrl = '/img/yellow_legendMenu.png';
+                var headingtype = '<div style="background-color:yellow;color:gray !important;text-align:center;border-radius:12px;font-size:12px;padding:4px;">Under Contract</div>';
+                //if (item.Is_viewd == "YES") {
+                //    iconurl = '/img/viewed_yellowpin.png'
+                //}
+            }
+            else if (item.Status == "Sold") {
+                saletype = "<label style=''>Sold</label>";
+                icon.url = '/img/red_legendMenu.png';
+                DsUrl = '/img/red_legendMenu.png';
+                var headingtype = '<div style="background-color:red;text-align:center;border-radius:12px;font-size:12px;padding:4px;">Sold</div>';
+                //if (item.Is_viewd == "YES") {
+                //    iconurl = '/img/viewed_redpin.png'
+                //}
+            }
+            if (item.Class == "Rental") {
+                saletype = "<label style=''>Rental</label>";
+                icon.url = '/img/gray_legendMenu.png'
+                DsUrl = '/img/gray_legendMenu.png';
+                var headingtype = '<div style="background-color:gray;text-align:center;border-radius:12px;font-size:12px;padding:4px;">Rental</div>';
+                //if (item.Is_viewd == "YES") {
+                //    iconurl = '/img/viewed_graypin.png'
+                //}
+
+            }
+            if (item.SAFTYON == "Open House Time:") {
+                saletype = "<label style=''>Open House</label>";
+                icon.url = '/img/OpenHousefullBlue.png'
+                DsUrl = '/img/OpenHousefullBlue.png';
+                var headingtype = '<div style="background-color:blue;text-align:center;border-radius:12px;font-size:12px;padding:4px;">Open House</div>';
+                //if (item.Is_viewd == "YES") {
+                //    iconurl = '/img/viewed_graypin.png'
+                //}
+
+            }
+            //if (DsUrl == "")
+            //    var isviewImagediv = "";
+            //else
+            //    var isviewImagediv = '<img src="' + DsUrl + '" width="20" height="20" alt=""/>';
+            //var price = isviewImagediv + '$ ' + (item.PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+            var Latt = item.GeoLat;
+            var Longg = item.GeoLong;
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(Latt, Longg),
+                map: map,
+                icon: icon,
+                anchor: new google.maps.Point(6, 12),
+                optimized: false,
+                id: item.PK_ID,
+                title:item.MLSID
+            });
+            marker.addListener('click', function () {
+                infowindow.close(map, marker);
+            });
+            map.addListener('click', function () {
+                infowindow.close(map, marker);
+            });
+            var timeoutId = null;
+            marker.addListener('mouseover', function () {
+                timeoutId = window.setTimeout(function () {
+                    if (item.SafetyStatus == "Running" && item.TIMEOUTON > 0) {
+                        PkeySM = marker.get("id");
+                        getSafetyManagerReport();
+                        setTimeout(function () { timerforPopup("popup_future_date" + i, timing) }, 1000);
+                    }
+                    infowindow.open(map, marker);
+                }, 1000);
+            });
+            marker.addListener('mouseout', function () {
+                window.clearTimeout(timeoutId)
+                //infowindow.close(map, marker);
+            });
+            var agentphotosrc = '';
+            if (item.PhotoPath != "" && item.PhotoPath != null && item.PhotoPath != ",") {
+                agentphotosrc = item.PhotoPath;
+            }
+            else {
+                agentphotosrc = '/img/addphotopic.png';
+            }
+            if (item.SAFTYON == "Showing Time:") {
+                var agentlabel = 'Showing Agent';
+                detailsbtn = '<a class="anchorclass" style="font-size:12px !important;padding:5px 7px !important;" onclick="return GetBuyerDetails(\'' + item.BuyerID + '\',\'' + item.BuyerImage + '\',\'' + item.BuyerFistName + '\',\'' + item.BuyerLastName + '\',\'' + item.BuyerMobileNo + '\',\'' + item.MLSID + '\',\'' + item.PRP_ADDRESS + '\',\'' + PhotosURL[0] + '\')">Customer Info.</a>';
+            }
+            else {
+                var agentlabel = 'Host Agent';
+                detailsbtn = '<a class="anchorclass" style="font-size:12px !important;padding:5px 30px !important;" onclick="return GetOpenHouseDetails(' + item.PK_ID + ')">Details</a>';
+            }
+            if (item.PRP_ADDRESS != null && item.PRP_ADDRESS != '') {
+                var addr0 = item.PRP_ADDRESS.split(',')[0]
+                var addr11 = item.PRP_ADDRESS.split(',')[1];
+                var addr12 = (item.PRP_ADDRESS.split(',')[2] != undefined) ? "," + item.PRP_ADDRESS.split(',')[2] : "";
+            }
+            var addr0 ='';
+            var addr11 = '';
+            var addr12 = '';
+            if (item.SafetyStatus == "Emergency") {
+                checkinout = '<div class="col-sm-7" style="padding:0;width:63%;margin-top: 5px;"><div class="col-sm-12" style="background-color:#ff5d26;height:38px;color:#fff;line-height:3">'
+			+ '<img src="/img/checkin_rightmark.png" style="margin-bottom:0;float:left">&nbsp;&nbsp;&nbsp; CHECKED IN<b style="float:right">Yes</b></div>'
+			+ '<div class="col-sm-12" style="background-color:#565453;height:38px;color:#fff;line-height:3">'
+			+ '<img src="/img/arrow_small.png" style="margin-bottom:0;float:left">&nbsp; CHECKED OUT<b style="float:right">No</b></div></div>';
+
+                status = '<div class="col-sm-5" style="padding:0;width:37%;margin-top: 5px;"><div class="col-sm-12" style="background-color:#FFC3C3;color:#FA0202;border-radius:5px;padding:1px;">'
+                    + '<div class="col-sm-12" style="text-align:center;padding:4px"><img src="/img/red_alert.png" style="height:20px;margin-bottom:0;"></div>'
+			+ '<div class="col-sm-12" style="text-align:center;font-size:17px;"><img src="/img/watchh.png" style="margin-bottom:4px">&nbsp; 00:00:00</div>'
+			+ '<div class="col-sm-12" style="text-align:center;font-size:11px;">Safety Timer Expired!</div></div></div></div>';
+            }
+            else if (item.SafetyStatus == "Running") {
+                checkinout = '<div class="col-sm-7" style="padding:0;width:63%;margin-top: 5px;"><div class="col-sm-12" style="background-color:#ff5d26;height:38px;color:#fff;line-height:2">'
+           + '<img src="/img/checkin_rightmark.png" style="margin-bottom:0;float:left">&nbsp;&nbsp;&nbsp; CHECKED IN<b style="float:right">' + item.CHECK_IN + '</b></div>'
+           + '<div class="col-sm-12" style="background-color:#565453;height:38px;color:#fff;line-height:3">'
+           + '<img src="/img/arrow_small.png" style="margin-bottom:0;float:left">&nbsp; CHECKED OUT<b style="float:right">No</b></div></div>';
+
+                status = '<div class="col-sm-5" style="padding:0;width:37%;margin-top: 5px;"><div class="col-sm-12" style="background-color:#FFDBDB;border-radius:5px;padding:12px;">'
+			+ '<div class="col-sm-12" style="text-align:center"><img src="/img/watchh.png" style="margin-bottom:0"></div> <div class="col-sm-12" style="text-align:center;font-size:17px;" id="popup_countdowntimer' + i + '"><span id="popup_future_date' + i + '">00:10:00</div>'
+			+ '<div class="col-sm-12" style="text-align:center">Time Remaining</div></div></div></div>';
+            }
+             if (item.SafetyStatus == "Completed") {
+               
+                checkinout = '<div class="col-sm-7" style="padding:0;width:63%;margin-top: 5px;"><div class="col-sm-12" style="background-color:#ff5d26;height:38px;color:#fff;line-height:4">'
+         + '<img src="/img/checkin_rightmark.png" style="margin-top:5px;float:left">&nbsp;&nbsp;CHECKED IN<b style="float:right">' + item.CHECK_IN + '</b></div>'
+         + '<div class="col-sm-12" style="background-color:#565453;height:38px;color:#fff;line-height:4">'
+         + '<img src="/img/arrow_small.png" style="margin-top:7px;float:left;width:26px">&nbsp;CHECKED OUT<b style="float:right">' + item.CHECK_OUT + '</b></div></div>';
+
+                status = '<div class="col-sm-5" style="padding:0;width:37%;margin-top: 5px;"><div class="col-sm-12" style="background-color:#CFF7E1;color:#009444;border-radius:5px;padding:9px;">'
+                    + '<div class="col-sm-12" style="text-align:center"><img src="/img/greencheck.png" style="height:20px;margin-bottom:0"></div>'
+			+ '<div class="col-sm-12" style="text-align:center;font-size:13px;line-height: 1.5">Successfully Checked Out!</div></div></div></div>';
+
+
+                //checkinout = '<div class="col-sm-4" style="padding:0;"><div class="col-sm-12" style="background-color:#ff5d26;height:54px;color:#fff;padding:7px">'
+                //           + '<img src="/img/checkin_rightmark.png" style="height: 20px;margin-bottom:0">&nbsp; CHECKED IN<br><span style="font-size:10px;">' + item.CHECK_IN + '</span></div>'
+                //           + '<div class="col-sm-12" style="background-color:#565453;height:54px;color:#fff;padding:7px;padding-left:10px"> CHECKED OUT<img src="/img/gray_arrow_right.png" style="float:right;height: 18px;">'
+                //           + '<br><span style="font-size:10px;">' + item.CHECK_OUT + '</span>'
+                //           + '</div>';
+                //status = '</div><div class="col-sm-4" style="padding:10px;"><div class="col-sm-12" style="background-color:#CFF7E1;color:#009444;border-radius:5px;padding:7px;"><div class="col-sm-12" style="text-align:center"><img src="/img/greencheck.png" style="margin-bottom:0"></div>'
+                //        + '<div class="col-sm-12" style="text-align:center">Successfully Checked Out!</div></div>'
+                //' </div>'
+            }
+             else if (item.SafetyStatus == "Scheduled") {
+
+                checkinout = '<div class="col-sm-7" style="padding:0;width:63%;margin-top: 5px;"><div class="col-sm-12" style="background-color:#ff5d26;height:38px;color:#fff;line-height:3">'
+          + '<img src="/img/checkin_rightmark.png" style="margin-bottom:0;float:left">&nbsp;&nbsp;&nbsp; CHECKED IN<b style="float:right">No</b></div>'
+          + '<div class="col-sm-12" style="background-color:#565453;height:38px;color:#fff;line-height:3">'
+          + '<img src="/img/arrow_small.png" style="margin-bottom:0;float:left">&nbsp; CHECKED OUT<b style="float:right">No</b></div></div>';
+
+                status = '<div class="col-sm-5" style="padding:0;width:37%;margin-top: 5px;"><div class="col-sm-12" style="background-color:#FFC3C3;color:#FA0202;border-radius:5px;padding:5px;">'
+                    + '<div class="col-sm-12" style="text-align:center;padding:5px;"><img src="/img/red_alert.png" style="height:20px;margin-bottom:0"></div>'
+			+ '<div class="col-sm-12" style="text-align:center"><img src="/img/watchh.png" style="margin-bottom:0"></div> <div class="col-sm-12" style="text-align:center;font-size:17px;">00:00:00</div>'
+			+ '<div class="col-sm-12" style="text-align:center"></div></div></div></div>';
+             }
+            //Infow Window Popup Design Content
+            var content = '<div class="col-sm-12" id="mybox1" style="overflow:hidden;padding:1px"><div class="col-sm-8" style="padding:0;color:black">'
+			+ '<div class="col-sm-12" style="padding:0"><div class="col-md-3" style="top:12px;width:21%">'
+			+ '<img src="' + agentphotosrc + '" style="height:50px;width:50px;border-radius:50px" /></div>'
+			+ '<div class="col-md-7" style="width:65%;top:5px"><label style="color:#ff5d26;font-size: 12px;">' + agentlabel + '</label><br />'
+			+ '<div class="col-md-12" style="font-size:16px;font-weight:bold">' + item.First_Name + ' ' + item.Last_Name + '</div><div class="col-md-12 textlimit" style="font-size:13px;">' + item.MobileNo + '</div>'
+			+ '</div></div>'
+
+			+ '<div class="col-sm-12" style="padding:12px;"><div class="col-md-12" style="font-size:14px;">' + addr0 + '</div>'
+			+ '<div class="col-md-12" style="font-size:14px;">' + addr11 + '' + addr12 + '</div></div>'
+			+ '<div class="col-sm-12" style="padding:12px;border-top:0.5px solid #ff5d26"><div class="col-sm-12" style="color:#ff5d26;font-size: 12px;">Appointment Time:</div>'
+			+ '<div class="col-sm-12" style="font-size: 12px;">' + item.SCHEDULE_TIME + '</div></div></div>'
+
+			+ ' <div class="col-sm-4" style="border-left:0.5px solid #ff5d26;padding: 0px 4px 0px 8px;"><div class="col-sm-12" style="text-align:center;color:#fff;padding:5px">'
+			+ headingtype + '</div>'
+
+			+ '<div class="col-sm-12" style="margin-top:5px;height:100px;position: relative; background-image: url(' + PhotosURL[0] + '); background-size: 100% 100%;"></div>'
+			+ '<div class="col-sm-12" style="text-align:center;color:gray;padding:5px;">MLS#' + item.MLSID + '</div>'
+			+ '<div class="col-sm-12" style="text-align:center;padding:4px">' + detailsbtn + '</div></div>'
+            + checkinout + status;
+            var infowindow = new google.maps.InfoWindow({
+                content: content,
+                minWidth: 700
+            })
+            mymarkers.push(marker);
+            //    var labelText = "<div id='pricecontent' class='map-arrowup'><span>" + ratingprice(item.ListingPrice) + "</span></div>";
+        //    var myOptions = {
+        //        content: labelText,
+        //        boxStyle: {
+        //            border: "none", //1px solid black"
+        //            textAlign: "center",
+        //            fontSize: "7pt",
+        //            //width: "10px",
+        //        },
+        //        disableAutoPan: true,
+        //        pixelOffset: new google.maps.Size(-20, 8),
+        //        position: new google.maps.LatLng(Latt, Longg),
+        //        closeBoxURL: "",
+        //        isHidden: false,
+        //        pane: "mapPane",
+        //        enableEventPropagation: true
+        //    };
+        //    var ibLabel = new InfoBox(myOptions);
+        //    google.maps.event.addListener(map, 'zoom_changed', function () {
+        //        if (map.getZoom() > 11) {
+        //            ibLabel.open(map);
+        //        }
+        //        else
+        //            ibLabel.close(map);
+        //    });
+        //    var l = Latt + "," + Longg;
+            //    m.push(l);
+        });
+        //google.maps.event.addListenerOnce(map, 'tilesloaded', function (event) {
+        //    var bounds = new google.maps.LatLngBounds();
+        //    for (var i = 0; i < mymarkers.length; i++) {
+        //        bounds.extend(mymarkers[i].getPosition());
+        //    }
+        //    map.setCenter(bounds.getCenter());
+        //    map.fitBounds(bounds);
+        //});
+    }
+    function timerforPopup(id, timing) {
+        $("#"+id).countdowntimer({
+            minutes:timing,
+        })
+    }
+    function CreatingPropertyChat(agentid,agentname,agentphoto,mlsid,addr1,addr2,mlsphoto) {
+                $('#prop_mlc').text(mlsid);
+                $('#prop_addr1').text(addr1);
+                $('#prop_addr2').text(addr2);
+                $('#prop_img').attr("src", mlsphoto);
+                $('#property_div').show();
+                creatConnection(agentid, agentname, ' 3 ', agentphoto, mlsid);
+    }
+    var address = "";
+    function GetBuyerDetails(buyerid, buyerphoto, buyerfname, buyerlname, buyermobile,mlsid,mlsddr,mlsphoto) {
+        if (buyerphoto != "" && buyerphoto != null && buyerphoto != ",") {
+            $("#customer_photo").attr('src', buyerphoto)
+        }
+        else {
+            $("#customer_photo").attr('src', '/img/addphotopic.png')
+        }
+        $("#hidden_mlsid").text(mlsid);
+        $("#hidden_addr").text(mlsddr);
+        $("#hidden_mlsphoto").text(mlsphoto);
+        $("#hidden_buyerid").text(buyerid);
+        $("#customer_name").text(buyerfname + ' ' + buyerlname);
+        $("#customer_mobile").text(buyermobile=='null'?"":buyermobile);
+        $("#CustomerInfoPopup").modal('show');
+    } 
+    $("#customerchat").click(function () {
+        CreatingPropertyChat($("#hidden_buyerid").text(), $("#customer_name").text(), $("#customer_photo").attr('src'), $("#hidden_mlsid").text(), $("#hidden_addr").text().split(',')[0], $("#hidden_addr").text().split(',')[1] + ', ' + $("#hidden_addr").text().split(',')[2],  $("#hidden_mlsphoto").text())
+    });
+    function GetOpenHouseDetails(ohpkid) {
+        $.ajax({
+            url: "/Agent/SafetyManager/GetOpenHouseDetails",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { OH_PKID: ohpkid, AgentID: AgentId },
+            success: function (data) {
+                if (data.length > 0) {
+                    address = "";
+                    $("#oh_date").text('');
+                    $("#oh_fromtime").text('');
+                    $("#oh_totime").text('');
+                    $("#oh_addr1").text('');
+                    $("#oh_addr2").text('');
+                    $("#notes").text('');
+                    if (data[0].OpenHouseType == "1") {
+                        $("#oh_notesdiv").hide();
+                        $("#oh_title").text('Public Open House')
+                    }
+                    if (data[0].OpenHouseType == "2") {
+                        $("#oh_notesdiv").show();
+                        $("#oh_title").text('Agent Open House')
+                    }
+                    address = data[0].PRP_ADDRESS;
+                    var addr11 = data[0].PRP_ADDRESS.split(',')[1];
+                    var addr12 = (data[0].PRP_ADDRESS.split(',')[2] != undefined) ? "," + data[0].PRP_ADDRESS.split(',')[2] : "";
+                    $("#oh_date").text(data[0].DATE);
+                    $("#oh_fromtime").text(data[0].FromTime);
+                    $("#oh_totime").text(data[0].ToTime);
+                    $("#oh_addr1").text(data[0].PRP_ADDRESS.split(',')[0]);
+                    $("#oh_addr2").text(addr11 + '' + addr12);
+                    $("#notes").text(data[0].Notes);
+                }
+            },
+            complete: function () {
+                $("#OpenHouseDetailsPopup").modal('show');
+            }
+        });
+    }
+    $("#directionsBtn").click(function () {
+        var street = "https://www.google.com/maps/dir/?api=1&destination=" + address + "&travelmode=drving";
+        window.open(street, '_blank');
+    });
+</script>

@@ -1,0 +1,212 @@
+﻿
+    .subcontactheaderpopup {
+        width: 100%;
+        float: left;
+        height: 30px;
+        background-color: #FFD9CC;
+        margin: 10px 0px 14px 0px;
+        border-bottom: 3px #F05C1C solid;
+    }
+
+    .panel-toolbar {
+            margin: 20px -8px 0px -3px;
+        /*padding-top: 30px;*/
+        height: 100%;
+    }
+
+    .img-responsive {
+        width: 35px;
+        height: 35px;
+    }
+
+    a {
+        font-size: 12px;
+    }
+
+    .media-left {
+        text-align: justify;
+    }
+
+    .brand-myagentbtn {
+        line-height: 20px;
+        text-align: left;
+        margin: -5px 60px 0px 0px;
+    }
+
+    .col-lg-1 {
+        text-align: center;
+        padding: 0px 0px 0px 0px;
+    }
+
+    .media-body {
+        width: 350px;
+        float: left;
+    }
+
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+        color: #555;
+        cursor: default;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-bottom-color: transparent;
+    }
+    /*//For Contact List Page*/
+    .maincontactheader {
+        width: 100%;
+        float: left;
+        height: 107px;
+        background-color: #59294C;
+        margin: -2px 0px -30px 0px;
+    }
+
+    .navbar {
+        height: 60px;
+        background-color: #FF6937;
+        color: #fff;
+        border: none;
+    }
+
+    .headeraddressbook {
+        background-color: #FF5D26;
+        padding: 5px 0px 40px 0px;
+    }
+
+    .tabphone {
+        width: 150px;
+        float: left;
+        height: 28px;
+        background-color: #F05C1C;
+        margin: 2px 0px -4px 0px;
+        -moz-border-radius-topleft: 0px;
+        -moz-border-radius-topright: 5px;
+        -moz-border-radius-bottomleft: 0px;
+        -moz-border-radius-bottomright: 0px;
+        -webkit-border-top-left-radius: 0px;
+        -webkit-border-top-right-radius: 5px;
+        -webkit-border-bottom-left-radius: 0px;
+        -webkit-border-bottom-right-radius: 0px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .persondatabar {
+        height: 44px;
+        width: 98%;
+        float: left;
+        padding: 8px 0px 5px 0px;
+        border-bottom: 1px solid #D2D2D2;
+    }
+
+    .icontabspad {
+        width: 18px;
+        height: 18px;
+        float: left;
+        padding: 1px 20px 10px 20px;
+    }
+
+    .chatandphonespaces {
+        padding: 12px 0px 0px 0px;
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    img {
+        border: 0;
+    }
+
+    .adh2 {
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #FFF2EE;
+        padding: 2px 0px 0px 14px;
+        font-weight: 300;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .adh3 {
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #FF5D26;
+        padding: 2px 0px 0px 14px;
+        font-weight: 300;
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .adh1 {
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #FFF2EE;
+        padding: 8px 0px 0px 14px;
+        font-weight: bold;
+        text-align: left;
+        font-size: 19px;
+    }
+
+    .subactionbar {
+        width: 100%;
+        float: left;
+        height: 32px;
+        background-color: #FFEAE3;
+        margin: -2px 0px -4px 0px;
+        border-bottom: 3px #F05C1C solid;
+    }
+
+    .itemcontacth1 {
+        color: #FF5D26;
+        padding: 3px 0px 50px 20px;
+        font-size: 14px;
+        height: 28px;
+        text-align: left;
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        float: left;
+        width: 100px;
+    }
+
+    .itemcontacth2 {
+        color: #323231;
+        padding: 3px 0px 50px 20px;
+        font-size: 15px;
+        height: 28px;
+        text-align: left;
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        float: left;
+    }
+
+    .tablih2 {
+        color: white;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .col33 {
+        margin: 0px -30px 0px -30px;
+        width: 28%;
+    }
+
+    .selected {
+        color: inherit;
+        box-shadow: #000 2px 2px 10px;
+        border-bottom-right-radius: 10px;
+        margin-bottom: 3px;
+    }
+
+    .row {
+        /*padding-left: 10px;*/
+        /*padding-right: 10px;*/
+    }
+
+    .b {
+        border-radius: 20px;
+    }
+.lbl,.lbl2 {
+            /*color:gray;*/
+    font-weight:400;
+    font-size:11px;
+}
+ a, a:visited {
+        text-decoration: none;
+        color: #FFF;
+     
+    }

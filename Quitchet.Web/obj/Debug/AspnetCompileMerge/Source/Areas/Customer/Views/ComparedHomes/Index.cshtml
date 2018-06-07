@@ -1,0 +1,1069 @@
+﻿@* Compared Home Index *@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link href="~/asset/css/comparehomesbootstrap.min.css" rel="stylesheet" />
+@*<script src="/asset_contacts/js/jquery.min.js"></script>
+    <script src="/asset_contacts/js/jquery.ui.min.js"></script>*@
+<!--Styles of Header and Page -->
+<style>
+    .panel-toolbar {
+        margin: -1px -10px 0px -9px;
+        padding: 14px 0px 0px 0px;
+        background-color: gray;
+        height: 100%;
+    }
+
+    .img-responsive {
+        width: 35px;
+        height: 35px;
+    }
+
+
+    .media-left {
+        text-align: justify;
+    }
+
+    .brand-myagentbtn {
+        line-height: 20px;
+        text-align: left;
+        margin: -5px 60px 0px 0px;
+    }
+
+    .col-lg-1 {
+        text-align: center;
+        padding: 0px 0px 0px 0px;
+    }
+
+    .navbar {
+        height: 64px;
+        background-color: #FF6937;
+        color: #fff;
+        border: none;
+    }
+</style>
+<!-- styles of Content -->
+<style>
+    #contactcanvuss {
+        position: relative;
+        z-index: 100;
+        margin: 226px auto 0;
+        top: -145px;
+        background-color: #FAFAFA;
+        border: 0px solid #333333;
+        width: 100%;
+    }
+
+
+    .panel {
+        margin-bottom: 5px;
+        border-radius: 0px;
+        padding: 0px;
+        border: none;
+    }
+
+    .content-header {
+        background: #f6f8f8;
+        border-bottom: 1px solid #ddd !important;
+    }
+
+    .headeraddressbook {
+        background-color: #FF5D26;
+        padding: 5px 0px 40px 0px;
+    }
+
+    .adrbookbtn1 {
+        width: 180px;
+        height: 30px;
+        padding: 0px 0px 0px 0px;
+        float: left;
+        padding-left: 20px;
+    }
+
+    .adrnextbtn {
+        width: 165px;
+        height: 30px;
+        padding: 0px 0px 0px 0px;
+        float: right;
+    }
+
+    .leftremo {
+        padding-left: 0px;
+    }
+
+    #content {
+        margin-top: 51px;
+        padding: 0px;
+        padding-bottom: 10px;
+        padding-left: 230px;
+        width: 100%;
+        color: #918C8C;
+    }
+
+    .pannelborder {
+        border-right: 1px solid #F5D9D0;
+    }
+
+    .text-orange {
+        color: #FF5F29;
+        text-align: left;
+        font-size: 25px;
+        font-weight: 600;
+    }
+
+    .txtleft {
+        text-align: left;
+        color: #585855;
+        font-size: 18px;
+    }
+
+    p {
+        margin: 1em 0;
+    }
+
+    .spremovetop {
+        /*margin: 37px 0px 0px 0px;*/
+        margin: 10px 0px 0px 0px;
+        padding-top: 20px;
+    }
+
+    .btnb {
+        -webkit-border-radius: 1px !important;
+        -moz-border-radius: 1px !important;
+        -ms-border-radius: 1px !important;
+        -o-border-radius: 1px !important;
+        border-radius: 1px !important;
+        padding-left: 8px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 8px;
+        background-color: #FFF8F5;
+        color: #FF602B;
+        border: 1px solid #FF602B;
+        text-align: center;
+    }
+
+    .text-black {
+        color: #535352;
+        text-align: left;
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    #selectPhotoDiv::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #333333;
+    }
+
+    #selectPhotoDiv::-webkit-scrollbar {
+        width: 1.5%;
+        background-color: #F5F5F5;
+        border-radius: 10px;
+    }
+
+    #selectPhotoDiv::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #FF5D26;
+    }
+
+    .btnc {
+        -webkit-border-radius: 1px !important;
+        -moz-border-radius: 1px !important;
+        -ms-border-radius: 1px !important;
+        -o-border-radius: 1px !important;
+        border-radius: 1px !important;
+        padding-left: 8px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 8px;
+        background-color: #FFF8F5;
+        color: #FF602B;
+        border: 1px solid #FF602B;
+    }
+
+    .col33 {
+        margin: 0px -30px 0px -30px;
+        width: 28%;
+    }
+
+    .toppannelsettings {
+        background-color: #FFFFFF;
+        padding: 13px 0px 12px 0px;
+        border-bottom: 2px solid #FE8259;
+        text-align: center;
+    }
+
+    .setinghedh1 {
+        color: #4A4847;
+        text-align: center;
+        font-size: 19px;
+        font-weight: 400;
+    }
+
+    .captionspace {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .tabsettings {
+        background-color: #FFFFFF;
+        padding: 13px 0px 18px 0px;
+        height: 22px;
+    }
+
+    .setinghedp {
+        color: #FF5F29;
+        text-align: center;
+        font-size: 14px;
+        font-style: italic;
+        line-height: 13px;
+        font-weight: 400;
+    }
+
+    .onetab {
+        width: 80px;
+        float: left;
+    }
+
+    .endtab {
+        width: 50px;
+        float: right;
+        border-left: 1px solid #D1D0D0;
+    }
+
+    .text-bullet-gray {
+        color: #4A4847;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .text-bullet {
+        color: #FF5F29;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .bulletlist {
+        list-style: disc;
+    }
+
+    .text-orange-settings {
+        color: #FF5F29;
+        text-align: left;
+        font-size: 15px;
+        font-weight: 400;
+        padding-left: 6px;
+    }
+
+    .huparrow {
+        width: 22px;
+        height: 16px;
+        text-align: left;
+    }
+
+    .hdash {
+        width: 1px;
+        height: 25px;
+    }
+
+    .togglefloat {
+        float: right;
+    }
+
+    .compareicon {
+        width: 27px;
+        height: 27px;
+        margin: 0px 10px 0px 10px;
+    }
+
+    .link:visited {
+        color: #585855;
+    }
+
+    .popup6 {
+        display: none;
+        position: absolute;
+        left: 30%;
+        margin-left: -281px;
+        top: 15%;
+        margin-top: -100px;
+        background: #3C3C3C;
+        z-index: 100;
+        opacity: 100;
+        background-color: #FFFFFF;
+        border: 1px solid #333333;
+        width: 79%;
+        height: 700px;
+        -webkit-box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        -moz-box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+    }
+
+    .myphotospopcontainer {
+        padding: 25px 0px 25px 0px;
+        text-align: center;
+        margin: -3px -3px 0px -28px;
+    }
+
+    #fullphotopopup {
+        -webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+    }
+
+        #fullphotopopup:before {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: #404040;
+            z-index: -1;
+        }
+
+        #fullphotopopup:after {
+            position: fixed;
+            content: "";
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(76, 76, 76, 0.5);
+            z-index: -2;
+        }
+
+    #selectimagepopup {
+        -webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+    }
+
+    .popup3 {
+        display: none;
+        position: absolute;
+        left: 30%;
+        margin-left: -50px;
+        top: 17%;
+        margin-top: -100px;
+        background: #3C3C3C;
+        z-index: 100;
+        opacity: 100; /* Set the opacity for a slightly transparent Google Form */
+        background-color: #3C3C3C;
+        border: 1px solid #333333;
+        width: 60%;
+        height: 712px;
+        -webkit-box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        -moz-box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+    }
+
+    .popuporangehedr2 {
+        background-color: #FF5F29;
+        height: 55px;
+        width: 100%;
+        padding-top: 9px;
+        margin: 0 auto;
+        text-align: center;
+        color: #FFFFFF;
+        margin: -10px 0px 0px 0px;
+        -webkit-border-radius: 5px 5px 0px 0px;
+        -moz-border-radius: 5px 5px 0px 0px;
+        border-radius: 5px 5px 0px 0px;
+        font-size: 18px;
+    }
+
+    .myphotospopcontainer {
+        padding: 25px 0px 25px 0px;
+        text-align: center;
+        margin: -3px -3px 0px -28px;
+    }
+</style>
+<!--  Sub Menu-->
+<!--Contect -->
+<div id="contactcanvuss">
+    <div class="row">
+        <div class="col-md-9" style="background-color:#FF5D26;height:42px!important">
+            <div class="col-sm-12" style="padding-left: 0px;padding-right: 0px;margin-left: 7px;">
+                <div class="col-sm-4" style="text-align:left">
+                    <button id="previousBtn" type="button" style="background-color:#FF602B;color:#ffffff;border-radius:4px!important;border:solid 1px #ffffff;font-size:12px!important;width:90px;height:26px!important;margin-top:7px!important">
+                        Previous
+                    </button>
+                </div>
+                <div class="col-sm-4" style="text-align:center;margin-top:8px!important">
+                    <span style="font-size:13px!important;font-weight:bold;color:#ffffff;">Main View</span>
+                </div>
+                <div class="col-sm-4" style="text-align:right">
+                    <button id="nextBtn" type="button" style="background-color:#FF602B;color:#ffffff;border-radius:4px!important;border:solid 1px #ffffff;font-size:12px!important;width:90px;height:26px!important;margin-top:7px!important;">
+                        Next
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="col-sm-12" id="viewPaneDiv"></div>
+
+        </div>
+        <div id="CollDiv" class="col-sm-1" style="float:right;top: 55px;width:2.5%;height:30px;padding-right:3px;background-color:white;margin-right:-1%;right:26%!important;padding-left:0px;">
+            <i class="fa fa-angle-double-right" aria-hidden="true" id="Expand" style="float:right; width:23px;font-size: 29px !important;padding-left:5px!important;cursor:pointer"></i>
+        </div>
+        <div class="col-md-3  col33" style="width:27%!important;left:1%!important" id="EditCompareViewsDiv">
+            <div class="toppannelsettings" style="padding-bottom:11px!important;padding-top:12px!important">
+                <span class="setinghedh1" style="font-size:12px!important;font-weight:bold">Edit Compare Views</span>
+            </div>
+            <div class="toppannelsettings">
+
+                <div class="captionspace">
+                    <span class="setinghedp" style="font-size:11px!important">
+                        Re-order and/or hide each of the compared views pages.
+                    </span>
+                </div>
+
+                <div class="tabsettings col-sm-12" style="padding-top:5px!important">
+                    <div class="col-sm-6" style="padding-left:0!important"> <span class="onetab" style="font-size:10px!important;">Re-Order</span></div>
+                    <div class="col-sm-6" style="bottom:5px;left:30px!important">
+                        <span style="font-size:10px!important;padding-right:5px!important;padding-bottom:5px!important">Hide</span>
+                        <span style="font-size:10px!important;">show</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group" id="editCompareViews">
+                        <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                            <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="mainviewUpArrow" onclick="up()"></span></a>
+                            <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                            <a href="#" class="link" style="padding-left:5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="mainviewDownArrow" onclick="down()"></span></a>
+
+                            <span class="text-orange-settings" style="font-size:11px!important">
+                                Main View
+                                <span class="togglebutton togglefloat" style="margin-left:0!important;margin-right:5px!important">
+                                    <label class="switch">
+                                        <input type="checkbox" id="checkboxMainView">
+                                        <div class="slider-md round"></div>
+                                    </label>
+                                </span>
+                            </span>
+                        </li>
+
+                        <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                            <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="masterbedroomUpArrow" onclick="up()"></span></a>
+                            <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                            <a href="#" class="link" style="padding-left:5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="masterbedroomDownArrow" onclick="down()"></span></a>
+
+                            <span class="text-orange-settings" style="font-size:11px!important">
+                                Master Bedroom
+                                <span class="togglebutton togglefloat" style="margin-left:0!important;margin-right:5px!important">
+                                    <label class="switch">
+                                        <input type="checkbox" id="checkboxMasterBedroom">
+                                        <div class="slider-md round"></div>
+                                    </label>
+                                </span>
+                            </span>
+                        </li>
+
+                        <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                            <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="masterbathroomUpArrow" onclick="up()"></span></a>
+                            <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                            <a href="#" class="link" style="padding-left:5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="masterbathroomDownArrow" onclick="down()"></span></a>
+
+                            <span class="text-orange-settings" style="font-size:11px!important">
+                                Master Bathroom
+                                <span class="togglebutton togglefloat" style="margin-left:0!important;margin-right:5px!important">
+                                    <label class="switch">
+                                        <input type="checkbox" id="checkboxMasterBathroom">
+                                        <div class="slider-md round"></div>
+                                    </label>
+                                </span>
+                            </span>
+                        </li>
+
+                        <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                            <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="KitchenUpArrow" onclick="up()"></span></a>
+                            <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                            <a href="#" class="link" style="padding-left:5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="KitchenDownArrow" onclick="down()"></span></a>
+
+                            <span class="text-orange-settings" style="font-size:11px!important">
+                                Kitchen
+                                <span class="togglebutton togglefloat" style="margin-left:0!important;margin-right:5px!important">
+                                    <label class="switch">
+                                        <input type="checkbox" id="checkboxKitchen">
+                                        <div class="slider-md round"></div>
+                                    </label>
+                                </span>
+                            </span>
+                        </li>
+
+                        <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                            <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="LivingRoomUpArrow" onclick="up()"></span></a>
+                            <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                            <a href="#" class="link" style="padding-left:5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="LivingRoomDownArrow" onclick="down()"></span></a>
+
+                            <span class="text-orange-settings" style="font-size:11px!important">
+                                Living/ Guest Room
+                                <span class="togglebutton togglefloat" style="margin-left:0!important;margin-right:5px!important">
+                                    <label class="switch">
+                                        <input type="checkbox" id="checkboxLivingRoom">
+                                        <div class="slider-md round"></div>
+                                    </label>
+                                </span>
+                            </span>
+                        </li>
+
+                        <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                            <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="BackViewUpArrow" onclick="up()"></span></a>
+                            <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                            <a href="#" class="link" style="padding-left:5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="BackViewDownArrow" onclick="down()"></span></a>
+
+                            <span class="text-orange-settings" style="font-size:11px!important">
+                                Back View
+                                <span class="togglebutton togglefloat" style="margin-left:0!important;margin-right:5px!important">
+                                    <label class="switch">
+                                        <input type="checkbox" id="checkboxBackView">
+                                        <div class="slider-md round"></div>
+                                    </label>
+                                </span>
+                            </span>
+                        </li>
+
+                        <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;" id="otherinteriorindex">
+                            <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="OtherInteriorUpArrow" onclick="up()"></span></a>
+                            <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                            <a href="#" class="link" style="padding-left:5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="OtherInteriorDownArrow" onclick="down()"></span></a>
+
+                            <span class="text-orange-settings" style="font-size:11px!important">
+                                Other Interior
+                                <span class="togglebutton togglefloat" style="margin-left:0!important;margin-right:5px!important">
+                                    <label class="switch">
+                                        <input type="checkbox" id="checkboxOtherInterior">
+                                        <div class="slider-md round"></div>
+                                    </label>
+                                </span>
+                            </span>
+                        </li>
+
+                        <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;" id="otherindex">
+                            <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="OtherUpArrow" onclick="up()"></span></a>
+                            <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                            <a href="#" class="link" style="padding-left:5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="OtherDownArrow" onclick="down()"></span></a>
+
+                            <span class="text-orange-settings" style="font-size:11px!important">
+                                Other
+                                <span class="togglebutton togglefloat" style="margin-left:0!important;margin-right:5px!important">
+                                    <label class="switch">
+                                        <input type="checkbox" id="checkboxOtherView">
+                                        <div class="slider-md round"></div>
+                                    </label>
+                                </span>
+                            </span>
+                        </li>
+
+                        <li class="list-downer">
+                            <div class="col-sm-12" style="border-bottom:solid 2px #FF602B;margin-top:10px!important">
+                                &nbsp;
+                            </div>
+
+                            <div class="col-sm-12" style="text-align:center;padding-top:12px!important">
+                                <button type="button" class="btn btn-sm" id="btnSignin" style="height:25px!important;background-color:#FF5D26;color:#FFFFFF;border-radius:5px!important;width:55%!important;font-size:11px;padding-top:3px;">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--start full image popup -->
+<div class="popup6" id="fullphotopopup">
+    <div class="myphotospopcontainer">
+        <div class="scrollbar" id="style-3">
+            <div class="force-overflow">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-10 hover12">
+                        <figure>
+                            <img src="" width="990" height="600" alt="" id="fullimg" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="row">
+                <div class="col-md-3 hover03">
+                    <button id="backphotoBtn" type="button" class="  " style="width: 150px; height: 35px; border-radius: 2px; border: 1px solid #FF602B; background-color: #FF602B; color: white; font-weight: 500; font-size: 17px;">
+                        Back
+                    </button>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3 hover03">
+                    <button id="delphotoBtn" type="button" class="  " style="width: 150px; height: 35px; border-radius: 2px; border: 1px solid #FF602B; background-color: #FF602B; color: white; font-weight: 500; font-size: 17px;">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end ful imag popup-->
+<!-- select Image Popup -->
+<div class="modal fade" id="selectimagepopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" style="z-index:1044;width:50%;height:450px!important">
+        <div class="modal-content" style="width:100%;height:120%;top:44px!important;background-color:#333333;border-radius:0!important;">
+            <div class="modal-header" style="background-color:#FF602B;color:#ffffff;text-align:center;border-bottom:0!important">
+                <b>Select Photo</b>
+            </div>
+            <div class="modal-body" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;min-height:380px;max-height:380px!important;overflow:auto; background-color:#333333;margin:25px 25px 0px 25px!important;padding:15px 0px 15px 0px" id="selectPhotoDiv">
+
+                <a href="#">
+                    <img src="/media/1.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="~/media/2.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="~/media/3.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="~/media/4.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="~/media/5.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="~/media/6.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/7.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/8.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/9.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/10.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/11.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/12.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/13.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/14.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/15.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/16.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/17.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/18.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/19.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/20.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/21.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/22.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/1.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/1.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/16.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/17.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/18.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/19.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/20.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/21.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/22.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/1.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+                <a href="#">
+                    <img src="/media/1.png" width="110" height="80" alt="" style="padding:2px 2px 2px 2px" />
+                </a>
+            </div>
+            <div class="modal-footer" style="border-top:0!important;padding-top:25px!important;padding-left:25px!important;padding-right:25px!important">
+                <button type="button" style="background-color:gray;color:#ffffff;border-radius:4px!important;border:0!important;font-size:12px!important;width:70px;height:28px!important;margin-top:7px!important;float:left" data-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button" style="background-color:#FF602B;color:#ffffff;border-radius:4px!important;border:0!important;font-size:12px!important;width:70px;height:28px!important;margin-top:7px!important">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="popup3" id="afdasdf">
+    <div class="row popuporangehedr2">
+        <span>
+            <img src="/img/share2.png" width="24" height="34" alt="" />
+        </span>Select Photo
+    </div>
+    <div class="myphotospopcontainer">
+        <div class="scrollbar" id="style-3">
+            <div class="force-overflow">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <a href="#">
+                                <img src="/media/1.png" width="144" height="111" alt="" />
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/2.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/3.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/4.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/5.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/6.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/7.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/8.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/9.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/10.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/11.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/12.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/13.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/14.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/15.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/16.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/17.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/18.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/19.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/20.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/21.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/22.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/23.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/24.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/18.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2 hover03">
+                        <figure>
+                            @* <a href="#" onclick="hide('popup3')">
+                                <img src="/img/cancel_btngray.png" width="151" height="43" alt="" /></a>*@
+                            <div class="col-md-3 hover03">
+
+                                <button id="cancelphotoBtn" type="button" class="" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                                    Cancel
+                                </button>
+                        </figure>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-2 hover03">
+                        <figure>
+                            @* <a href="#" onclick="hide('popup3')">
+                                <img src="/img/savebtn_orange.png" width="151" height="43" alt="" /></a>*@
+
+                            <button id="savephotoBtn" type="button" class="" style="width: 135px; height: 40px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                                Save
+                            </button>
+
+                        </figure>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--End select  image popup-->
+<!-- Script -->
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        $('#checkboxMainView,#checkboxMasterBedroom,#checkboxMasterBathroom,#checkboxKitchen,#checkboxLivingRoom,#checkboxBackView,#checkboxOtherInterior,#checkboxOtherView').attr('checked', true);
+        $("#fullphotopopup").hide();
+        $("#selectimagepopup").hide();
+    });
+    //$("#img1").click(function (e) {
+    //    alert($(this).children('img').attr('src'));
+    //    var p = $(this).children('img').attr('src');
+    //    $('#fullimg').attr('src', p);
+    //    $("#fullphotopopup").show();
+    //});
+    //$("#otherindex").click(function (e) {
+    //    var i = $(this).parent().index()+1;
+    //    alert(i);
+    //});
+    //$("#otherinteriorindex").click(function (e) {
+    //    var i = $(this).parent().index() + 1;
+    //    alert(i);
+    //});
+    //$("ul[id*=editCompareViews] li").click(function () {
+    //    alert($(this).html()); // gets innerHTML of clicked li
+    //    alert($(this).text()); // gets text contents of clicked li
+    //    alert($(this).index() + 1);
+    //    $.fn.exchangePositionWith = function (selector) {
+    //        var other = $(selector);
+    //        this.after(other.clone());
+    //        other.after(this).remove();
+    //    };
+    //});
+    function up() {
+        $('ul li').on('click', function (e) {
+            var index = $(this).index();  // Index of clicked item
+            var temp = $(this).html();    // Contents of clicked item
+            var partner;            // The paired element
+            partner = $(this).parent().find('li').get(index - 1);
+            //spartner = $(this).parent().find('li').get(index + 1);
+            // Put this in a try/catch to not throw errors for unmatched list items
+            // (i.e. a list with 9 items, and then clicking on the 9th)
+
+            if (index != 0) {
+                try {
+                    $(this).html(partner.innerHTML);
+                    $(partner).html(temp);
+                } catch (e) { }
+
+            }
+        });
+    }
+
+
+    function down() {
+        $('ul li').on('click', function (e) {
+            var index = $(this).index();  // Index of clicked item
+            var temp = $(this).html();    // Contents of clicked item
+            var partner;                  // The paired element
+
+            partner = $(this).parent().find('li').get(index + 1);
+
+            //spartner = $(this).parent().find('li').get(index + 1);
+            // Put this in a try/catch to not throw errors for unmatched list items
+            // (i.e. a list with 9 items, and then clicking on the 9th)
+            if (index < 7) {
+                try {
+                    $(this).html(partner.innerHTML);
+                    $(partner).html(temp);
+                } catch (e) { }
+            }
+
+        });
+    }
+
+    $("#previousBtn").click(function (e) {
+        $('#selectimagepopup').modal('show');
+    });
+
+    $("#backphotoBtn").click(function (e) {
+        $("#fullphotopopup").hide();
+    });
+    $("#delphotoBtn").click(function (e) {
+        $("#fullphotopopup").hide();
+    });
+    $("#img1,#img2,#img3").click(function (e) {
+        //alert($(this).children('img').attr('src'));
+        var p = $(this).children('img').attr('src');
+        if (p == " ") {
+            $('#selectimagepopup').show();
+        }
+        else {
+            $('#fullimg').attr('src', p);
+            $("#fullphotopopup").show();
+        }
+    });
+    var flag_RightCollapse = 0;
+    $('#Expand').on('click', function () {
+        if (flag_RightCollapse == 0) {
+            $("#Expand").attr('class', 'fa fa-angle-double-left');
+            $("#CollDiv").animate({ 'left': '-3%' }, 'slow', function () {
+            });
+            $('#EditCompareViewsDiv').animate({ 'left': '25%' }, 'slow', function () {
+                $('#EditCompareViewsDiv').hide();
+            });
+            flag_RightCollapse = 1;
+        }
+        else {
+            $('#EditCompareViewsDiv').show();
+            $("#CollDiv").animate({ 'left': '-26%' }, 'slow', function () {
+            });
+            $('#EditCompareViewsDiv').animate({ 'left': '1%' }, 'slow', function () {
+            });
+            $("#Expand").attr('class', 'fa fa-angle-double-right');
+            flag_RightCollapse = 0;
+        }
+    });
+    $("#savephotoBtn,#cancelphotoBtn").click(function () {
+        $('#selectimagepopup').hide();
+    });
+</script>

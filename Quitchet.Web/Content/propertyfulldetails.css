@@ -1,0 +1,53 @@
+﻿/*////css------------------------------property details------------------*/
+
+  .mainfeaturediv {
+        padding-left: 0%;
+        padding-right: 0%;
+       line-height: 1.4;
+    }
+
+    .mainfeatureheadderdiv {
+        border-right: 1.5px solid #58666e;
+        line-height: 50%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+
+    .mainfeatureheadderdiv1 {
+        line-height: 50%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+
+    .btnclass {
+        border:none;
+        color: black!important;
+        width: 100%;
+        background-color: #ffffff!important;
+        font-size:14px;
+    }
+
+    .btnclass2 {
+        border:none;
+        color: white!important;
+        width: 100%;
+        background-color: #f56331!important;
+        font-size:14px;
+    }
+
+    .mainfeatureheadderdiv2 {
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+
+    .mainfont {
+        /*font-weight: bold;*/
+        font-size: 11px;
+    }
+
+    .mainfont1 {
+        /*font-weight: bold;*/
+        font-size: 11px;
+        color: #ff6937;
+    }
+

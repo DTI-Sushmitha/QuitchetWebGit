@@ -1,0 +1,1373 @@
+﻿@*Customer Listing Details Printing Page Index*@
+@{
+    ViewBag.Title = "NewIndex";
+}
+<link href="https://fonts.googleapis.com/css?family=Inder" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="~/Content/searcfilterpopups.css" rel="stylesheet" />
+<!-- plugins -->
+<link href="~/Content/LayOut.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="/img/logomi.png">
+<!-- end: Css  position:relative; background-size: 100% 100%; background-repeat: no-repeat;-->
+<style>
+    /*/*Scroll CSS*/
+    #AGL_FirstDiv::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+    #AGL_FirstDiv::-webkit-scrollbar {
+        width: 0.5%;
+        background-color: #F5F5F5;
+    }
+
+    #AGL_FirstDiv::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #FF5D26;
+    }
+
+    */ @* Messages DIV *@ #widnow {
+        width: 260px;
+    }
+
+    #title_bar {
+        background: #FF6937;
+        height: 35px;
+        padding-top: 1%;
+        border-radius: 5px;
+    }
+
+    .bord {
+        text-align: center;
+        width: 25px;
+        height: 23px;
+        float: right;
+        cursor: pointer;
+        padding-top: 3px;
+    }
+
+    #box {
+        height: 365px;
+        background: #DFDFDF;
+    }
+
+    #footer {
+        position: fixed;
+        bottom: 0;
+        height: 30px;
+        background: none;
+        margin-left: 15%;
+    }
+    /*For Rounded number*/
+    .numberCircle {
+        border-radius: 40%;
+        width: 24px;
+        color: white;
+        border: 0px solid #666;
+        background-color: rgba(240, 151, 78, 0.84);
+        text-align: center;
+        font-size: 12px;
+        display: block;
+        margin-left: 79px;
+        margin-top: -19px;
+    }
+
+    @* End Messages Div *@ .modal {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        outline: 0;
+    }
+
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+
+    .modal-header {
+        min-height: 16.43px;
+        padding: 15px;
+    }
+
+    .modal-content {
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        F position: relative;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.2);
+        border-radius: 6px;
+        outline: 0;
+    }
+
+    .badge {
+        display: inline-block;
+        min-width: 10px;
+        padding: 3px 7px;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        background-color: #777;
+        border-radius: 5px;
+    }
+
+    .form-control {
+        height: 120px !important;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    /*///CSS for  Property details Modal Popup////*/
+
+    .mainfeaturediv {
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+
+    .mainfeatureheadderdiv {
+        border-right: 1.5px solid #58666e;
+        line-height: 50%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+
+    .mainfeatureheadderdiv1 {
+        line-height: 50%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+
+    .btnclass {
+        color: black !important;
+        width: 100%;
+        background-color: #ffffff !important;
+        font-size: 12px;
+        border-radius: 0px !important;
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        user-select: none;
+        background-image: none;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        user-select: none;
+        background-image: none;
+    }
+
+    .btnclass2 {
+        color: white !important;
+        width: 100%;
+        background-color: #f56331 !important;
+    }
+
+    .mainfeatureheadderdiv2 {
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+
+    .mainfont {
+        font-weight: bold;
+        font-size: 11px;
+    }
+
+    .firstLabel {
+        font-weight: bold;
+        font-size: 11px;
+    }
+
+    .mainfont1 {
+        font-weight: bold;
+        font-size: 11px;
+        color: #ff6937;
+    }
+
+    td {
+        padding: 1px !important;
+        border: 1px solid #ffffff !important;
+    }
+
+    .SecondRef {
+        color: #f56331;
+        font-size: 11px;
+    }
+
+    .listPointer {
+        font-weight: bold;
+        font-size: 25px;
+        color: #f56331;
+        position: relative;
+        top: -2px;
+    }
+     .RoundEdgespn {
+        display: inline-block;
+        min-width: 10px;
+        padding: 3px 7px;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        background-color: #777;
+        border-radius: 4px;
+    }
+    .img-circle {
+        border-radius: 50%;
+    }
+      /*styles for listing image backgrounds in div - Start*/
+         .bgimage{
+	background-size:contain !important;
+	background-position:center !important;
+	background-repeat:no-repeat !important;
+     /*position:relative; background-size: 100% 100%; background-repeat: no-repeat;*/
+    }
+</style>
+@*// onclick="Fun_Fav_Change('AGL_ImageFavourite')"*@
+    <div class="col-sm-12" id="AGL_FirstDiv" style="font-family: 'Inder', sans-serif;padding-left: 0px; margin-top:-1%; padding-right: 0; overflow-y: auto;overflow-x:hidden;font-family: 'Inder', sans-serif;">
+        <div class="col-sm-12" role="document" style="padding-left: 0px; padding-right: 0px">
+            <div style="background-color: #FFFFFF; padding-left: 0; padding-right: 0;">
+                <div style="background-color: #ff6937; color: white; text-align: center; height:40px" id="Div_HouseType">
+                    <h4 style="padding-top:0.5%" id="Agent_HouseType">Rental Details</h4>
+                </div>
+                <div style="width:100%">
+                    <div style="width:30%;float:left;">
+                        <div style="padding-left: 0px; background-color: #59294C;padding-bottom:10px;">
+                            <table>
+                                <tr>
+                                    <td style="border:none !important">
+                                        &nbsp;<img src="/img/addphotopic.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 50%; height:50px; width:50px; border:#ff5d26" id="AGL_AgentImage">
+                                    </td>
+                                    <td style="border:none !important">
+                                        &nbsp;&nbsp;<label id="AGLAgentName" style="padding-top: 15%!important; text-align: center; font-size: large; color: aliceblue;  margin-bottom: 0!important"></label>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <div style="margin-left: 2%; padding-top: 0">
+                                <span id="AGL_AgentAddressOne" style="text-align: left; font-size: 10px; color: aliceblue; display: -webkit-box; padding-top: 3%">
+
+                                </span>
+                                <span id="AGL_AgentAddressTwo" style="text-align: left; font-size: 10px; color: aliceblue; display: -webkit-box;">
+
+                                </span>
+                            </div>
+                            @*  <table style="border:none !important;">
+                                    <tr>
+                                        <td width="80%" style="border:none !important">&nbsp;</td>
+                                        <td width="10%" style="border:none !important">
+                                            <a id="phone_img" href="#">
+                                                <img src="~/img/mbwhite.png" />
+                                            </a>
+                                        </td>
+                                        <td style="border:none !important">&nbsp;</td>
+                                        <td width="10%" style="border:none !important">
+                                            <a id="chat_div" href="#">
+                                                <img src="~/img/chat_iconMyAgent_MP.png" />
+                                            </a>
+                                        </td>
+                                        <td style="border:none !important">&nbsp;</td>
+                                    </tr>
+                                </table>*@
+                        </div>
+                        <div style="float:left;width:75%">
+                            &nbsp;
+                        </div>
+                        <div style="padding-top: 4%">
+                            <span id="AGL_sale_rent" class="RoundEdgespn">For Rent</span>
+                        </div>
+                        <div style="padding-left:10%">
+                            <label id="lbl_price" style="color: #f56331; font-size: x-large; font-weight: bold;">$ 1,600/mo</label>
+                        </div>
+                        <div style="width:60%;float:left">
+                            &nbsp
+                        </div>
+                        <table style="border:none !important;float:right">
+                            <tr>
+                                <td>
+                                    <img id="AGL_ViewedIcon" src="~/img/viewedicon.png" style="height:25px;width:25px;" />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <a href="#">
+                                        <img id="AGL_ImageFavourite" src="~/img/hearticon.png" width="20" height="20" alt="" style="text-decoration:none;height:25px;width:25px;" />
+                                    </a>
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                        <br />
+                        <div style="padding-left:10%;">
+                            <label id="AGL_PropertyAdessOne" style="font-size: initial; font-weight: bold; color: #1C1C1B;"></label>
+                            <br />
+                            <label id="AddressTwoo" style="font-size: medium; font-weight: bold;"></label>
+                            <br />
+                            <label id="AGL_Property_MLSID" style="font-size: 10px; font-weight: bold;"></label>
+                        </div>
+                        @*<hr style="margin-top:50" />*@
+                        @*   <div style="float:left;margin-left:4%;width:50%;">
+                                <button type="button" id="btn_Drivenby" class="btn btn-sm" style="background-color: #f56331; color: white; font-weight: bold; height:30px; width:75%; border-radius: 3px !important">Drive By</button>
+                            </div>
+                            <div>
+                                <button type="button" id="btn_streetview" class="btn btn-sm" style="background-color: #f56331; color: white; font-weight: bold; height:30px; width:40%; border-radius: 3px !important">Street View</button>
+                            </div>*@
+                    </div>
+                    <div style="width:69%;margin-top:-17.5%;margin-left:30%;">
+                        <div id="AGL_HomePopupImgDiv" class="bgimage" style="position:relative;background: url(/img/NoImage.png); height: 422px; width:101.5%;">
+                            <div class="col-sm-12" style="margin-top: 25%;">
+                                <a href="#">
+                                    <img src="/img/SliderBackArrow.png" width="21" height="36" alt="" style="margin-left:0; margin-top:20%;" onclick="AGL_HomePopupSlideImage('Previous')" id="AGL_HomepopupPrevImgBtn" hidden>
+                                </a>
+                                <a href="#">
+                                    <img src="/img/SliderNextArrow.png" id="AGL_HomepopupNextImgBtn" width="21" height="36" alt="" style="float: right; margin-right:0px;margin-top:20%;" onclick="AGL_HomePopupSlideImage('Next')" hidden>
+                                </a>
+                            </div>
+                            <div style="background: rgba(0, 0, 0, 0.55); position:absolute;bottom:0; text-align: center; width: 100%; margin-left: 0%">
+                                <span style="color: white" id="AFL_ImageCountOOF">1</span>
+                                <span style="color: white">&nbsp;of&nbsp;</span>
+                                <span style="color: white" id="AGL_HomeTotalPhotocount">25</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="background-color: #434343; padding-top: .5%; padding-bottom: .5%; min-height:30px">
+                    <div>
+                        @*<button  type="button" disabled class="btn btn-sm" style="background-color: #f56331; float:left; height:30px;margin-left:1%; border-color: #f56331; color: white; font-weight: bold; border-radius: 3px !important"><span class="glyphicon glyphicon-camera" style="color: #FF9B79;"></span>&nbsp &nbsp Add Photos Or Videos</button>*@
+                        @*<button id="btn_Mynote" type="button" disabled class="btn btn-sm" style="background-color: #f56331; height:30px;margin-left:1%;border-color: #f56331; color: white; font-weight: bold; border-radius: 3px !important"><img src="~/img/notes_icon.png" style="height: 14px" />&nbsp;<span style="padding-top:10px">My Note</span></button>*@
+                        @*<button id="sharepopupbtn" type="button" class="btn btn-sm" style="background-color: #f56331; height:30px;border-color: #f56331; color: white; font-weight: bold; border-radius: 3px !important;float:right; position:relative;"><img src="~/img/shareicon2.png" style="height: 14px" />&nbsp;<span style="padding-top:10px">Share</span></button>*@
+                        <button id="printbutton" onclick='printDiv();' type="button" class="btn btn-sm" style="background-color: #f56331; height:30px;border-color: #f56331; color: white; font-weight: bold; border-radius: 3px !important; float:right;position:relative;right:10px;"><img src="~/img/printer.png" style="height: 14px" />&nbsp;<span style="padding-top:10px">Print</span></button>
+                        @*<input hidden="hidden" type="file" id="FileUploader" onchange="showimagepreview(this)" />*@
+                    </div>
+                    <div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+                <div style="background-color: #7D7D7C; text-align: center;">
+                    <span style="color: white; font-size: 11px;">Days On Queitchet:</span><span id="AGL_DaysOnQuitChet" style="color: #ef8f6e; font-size: 11px;">10</span>
+                </div>
+                @*Collapse Divs*@
+
+                @*Start: Listing agent remarks*@
+                <div class="col-sm-12" style=" color:white;background-color: #f56331; text-align:center"><label style="position:relative;">Listing Agent Remarks</label></div>
+                <div>
+                    <div style="padding-bottom:10px;">
+                        <br />
+                        <span id="span_agentremarks" style="font-size: 11px; display: -webkit-box; font-weight: bold;">
+                        </span>
+                    </div>
+                </div>
+                @*End: Listing agent remarks*@
+
+                @*Start: Home Main Features*@
+                <div id="div_HomeMainFeatures">
+                    <div class="col-sm-12" style=" color:white; background-color:#f56331; text-align:center"><label style="position:relative;">Main Features</label></div>
+                    <div class="col-sm-12">
+                        <hr style="margin-top: 0%; margin-bottom: 0%" />
+                    </div>
+                    <div class="col-sm-12">
+                        <div id="div_collapse_mainfetures1">
+                            <table border="0" style="width:100%">
+                                <tr>
+                                    <td style="width:10%">
+                                        <label id="lbl_type_mainfeatures" class="mainfont">Type:</label>
+                                    </td>
+                                    <td style="width:14%;">
+                                        <span id="span_type_mainfeatures" class="mainfont1"></span>
+                                    </td>
+                                    <td rowspan="3">
+                                        <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -32px;height: 80px;width: 3px;margin-top: -19%;">
+                                    </td>
+                                    <td style="width:10%">
+                                        <label id="lbl_subdivison" class="mainfont">Subdivison:</label>
+                                    </td>
+                                    <td style="width:14%;">
+                                        <span id="span_subdivison" class="mainfont1"></span>
+                                    </td>
+                                    <td rowspan="3">
+                                        <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -32px;height: 80px;width: 3px;margin-top: -19%;">
+                                    </td>
+                                    <td style="width:10%">
+                                        <label id="lbl_bedrooms_mainfeatures" class="mainfont">Bedrooms:</label>
+                                    </td>
+                                    <td style="width:14%;">
+                                        <span id="span_bedrooms_mainfeatures" class="mainfont1"></span>
+                                    </td>
+                                    <td rowspan="3">
+                                        <img src="~/images/ui-bg_glass_100_f6f6f6_1x400.png" style="margin-left: -32px;height: 80px;width: 3px;margin-top: -19%;">
+                                    </td>
+                                    <td style="width:10%">
+                                        <label id="lbl_garagetype_mainfeatures" class="mainfont">Garage Type:</label>
+                                    </td>
+                                    <td style="width:15%">
+                                        <span id="span_garagetype_mainfeatures" class="mainfont1"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:10%">
+                                        <label id="lbl_yearbuilt_mainfeatures" class="mainfont">Year Built:</label>
+                                    </td>
+                                    <td style="width:14%;">
+                                        <span id="span_yearbuilt_mainfeatures" class="mainfont1"></span>
+                                    </td>
+
+                                    <td style="width:10%">
+                                        <label id="lbl_stories_mainfeatures" class="mainfont">#stories:</label>
+                                    </td>
+                                    <td style="width:15%;">
+                                        <span id="span_stories_mainfeatures" class="mainfont1"></span>
+                                    </td>
+                                    <td style="width:10%">
+                                        <label id="lbl_bathrooms_mainfeatures" class="mainfont">Bathrooms:</label>
+                                    </td>
+                                    <td style="width:15%;">
+                                        <span id="span_bathrooms_mainfeatures" class="mainfont1"></span>
+                                    </td>
+                                    <td style="width:10%">
+                                        <label id="lbl_garagecap_mainfeatures" class="mainfont">Garage Capasity:</label>
+                                    </td>
+                                    <td style="width:15%">
+                                        <span id="span_garagecap_mainfeatures" class="mainfont1"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:10%">
+                                        <label id="lbl_lotsize_mainfeatures" class="mainfont">Lot Size:</label>
+                                    </td>
+                                    <td style="width:14%;">
+                                        <span id="span_lotsize_mainfeatures" class="mainfont1"></span>
+                                    </td>
+                                    <td style="width:10%">&nbsp;</td>
+                                    <td style="width:15%;">&nbsp;</td>
+                                    <td style="width:10%">
+                                        <label id="lbl_sqft_mainfeatures" class="mainfont">Sqft:</label>
+                                    </td>
+                                    <td style="width:15%;">
+                                        <span id="span_sqft_mainfeatures" class="mainfont1"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="col-sm-12">&nbsp;</div>
+                            @* room sizes *@
+                            <div class="col-sm-12 mainfeaturediv" id="div_tog_roomsizes" style=" text-align:center;background-color: #FFE8E0; width 103%">
+                                <a class="btn btn-primary" id="btn_roomsizes" @*data-toggle="collapse" data-target="#div_collapse_mainfetures2" aria-expanded="false" aria-controls="collapseExample" *@ style="color: black!important; width: 100%; background-color: #FFE8E0!important; border-bottom: 1px solid #de9c85!important">
+                                    Room Sizes
+                                    <span class="fa fa-angle-down" id="aroomsizes" style="color: #f56331; float: right; font-size: 20px; margin-right: 1.5%"></span>
+                                </a>
+                            </div>
+                            <div class="col-sm-12">
+                                <hr style="margin-top: 0%; margin-bottom: 0%" />
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="div_collapse_mainfetures2" class="collapse">
+                                    <table border="0" style="width:100%">
+                                        <tr>
+                                            <td style="width:10%">
+                                                <label id="lbl_livingrm_mainfeatures" class="mainfont">Living Rm:</label>
+                                            </td>
+                                            <td style="width:9%;">
+                                                <span id="span_livingrm_mainfeatures" class="mainfont1"></span>
+                                            </td>
+                                            <td rowspan="3">&nbsp;</td>
+                                            <td style="width:10%">
+                                                <label id="lbl_bonus_mainfeatures" class="mainfont">Bonus Rm:</label>
+                                            </td>
+                                            <td style="width:9%;">
+                                                <span id="span_bonusfeatures" class="mainfont1"></span>
+                                            </td>
+                                            <td rowspan="3">&nbsp;</td>
+                                            <td style="width:10%">
+                                                <label id="lbl_masterrm_mainfeatures" class="mainfont">Master BR:</label>
+                                            </td>
+                                            <td style="width:10%;">
+                                                <span id="span_masterrm_mainfeatures" class="mainfont1"></span>
+                                            </td>
+                                            <td style="width:10%">
+                                                <label id="lbl_bedroom4_mainfeatures" class="mainfont">Bedroom #4:</label>
+                                            </td>
+                                            <td style="width:9%">
+                                                <span id="span_bedroom4_mainfeatures" class="mainfont1"></span>
+                                            </td>
+                                            <td rowspan="3">&nbsp;</td>
+                                            <td style="width:10%">
+                                                <label id="lbl_screend_mainfeatures" class="mainfont">Screened Porch:</label>
+                                            </td>
+                                            <td style="width:15%">
+                                                <span id="span_screend_mainfeatures" class="mainfont1"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:10%">
+                                                <label id="lbl_dinningrm_mainfeatures" class="mainfont">Dinning Rm:</label>
+                                            </td>
+                                            <td style="width:10%;">
+                                                <span id="span_dinningrm_mainfeatures" class="mainfont1"></span>
+                                            </td>
+                                            <td style="width:10%">
+                                                <label id="lbl_sunrm_mainfeatures" class="mainfont">Sun Rm:</label>
+                                            </td>
+                                            <td style="width:10%;">
+                                                <span id="span_sunrm_mainfeatures" class="mainfont1"></span>
+                                            </td>
+                                            <td style="width:10%">
+                                                <label id="lbl_bedroom2_mainfeatures" class="mainfont">Bedroom #2:</label>
+                                            </td>
+                                            <td style="width:10%;">
+                                                <span id="span_bedroom2_mainfeatures" class="mainfont1"></span>
+                                            </td>
+                                            <td style="width:10%">
+                                                <label id="lbl_bedroom5_mainfeatures" class="mainfont">Bedroom #5:</label>
+                                            </td>
+                                            <td style="width:10%;">
+                                                <span id="span_bedroom5_mainfeatures" class="mainfont1"></span>
+                                            </td>
+                                            <td style="width:10%">
+                                                <label id="lbl_deck_mainfeatures" class="mainfont">Deck:</label>
+                                            </td>
+                                            <td style="width:10%">
+                                                <span id="span_deck_mainfeatures" class="mainfont1"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:10%"><label id="lbl_breakfastrm_mainfeatures" class="mainfont">Breakfast Rm:</label></td>
+                                            <td style="width:10%;"><span id="span_breakfastrm_mainfeatures" class="mainfont1">14X16 </span></td>
+                                            <td style="width:10%">&nbsp;</td>
+                                            <td style="width:10%;">&nbsp;</td>
+                                            <td style="width:10%">
+                                                <label id="lbl_bedroom3_mainfeatures" class="mainfont">Bedroom #3:</label>
+                                            </td>
+                                            <td style="width:10%;">
+                                                <span id="span_bedroom3_mainfeatures" class="mainfont1">14X16</span>
+                                            </td>
+                                            <td style="width:10%">&nbsp;</td>
+                                            <td style="width:10%;">&nbsp;</td>
+                                            <td style="width:10%">
+                                                <label id="lbl_laundry_mainfeatures" class="mainfont">Laundry Rm:</label>
+                                            </td>
+                                            <td style="width:10%;">
+                                                <span id="span_laundry_mainfeatures" class="mainfont1">14X16</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="col-sm-12">&nbsp</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*End: Main Features*@
+
+                @*Start: Lots Property Home Features*@
+                <div id="div_LotslandPropertyHomeFeatures" hidden>
+                    <div class="col-sm-12" style=" color:white; background-color:#f56331; text-align:center"><label style="position:relative;">Property Features</label></div>
+                    <div class="col-sm-12">
+                        <hr style="margin-top: 0%; margin-bottom: 0%" />
+                    </div>
+                    <div class="col-sm-12">
+                        <div id="div_collapse_mainfetures1">
+                            <table border="0" style="width:100%">
+                                <tr style="width:20%">
+                                    <td style="width:1%">
+                                        <label class="mainfont">Type:</label>
+                                    </td>
+                                    <td style="width:5%;">
+                                        <span id="LotProperty_Type" class="mainfont1"></span>
+                                    </td>
+                                    <td style="width:1%">
+                                        <label class="mainfont">Subdivision:</label>
+                                    </td>
+                                    <td style="width:5%">
+                                        <span id="lotProperty_Subdivision" class="mainfont1"></span>
+                                    </td>
+                                    <td style="width:5%">
+                                        <label class="mainfont">Property Description:</label>
+                                    </td>
+                                    <td style="width:30%">
+                                        <span id="lotProperty_Description" class="mainfont1"></span>
+                                    </td>
+                                </tr>
+                                <tr style="width:20%">
+                                    <td style="width:5%">
+                                        <label class="mainfont">Lot Average:</label>
+                                    </td>
+                                    <td style="width:5%;">
+                                        <span id="LotProperty_Average" class="mainfont1"></span>
+                                    </td>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                            </table>
+                            <div class="col-sm-12">&nbsp;</div>
+                        </div>
+                    </div>
+
+                    @*Start: Lake Property Features*@
+                    <div class="col-sm-12" style=" color:#f56331;background-color:#FFE8E0; text-align:center"><label style="position:relative;">Lake Property Features</label></div>
+                    <div>
+                        <div style="padding-bottom:10px;">
+                            <br />
+                            <div id="lotProperty_Features" style="text-align:left"></div>
+                        </div>
+                    </div>
+                    @*End: Lake Property Features*@
+                    @*Start: Equestrian Property Features*@
+                    <div class="col-sm-12" style=" color:#f56331;background-color:#FFE8E0; text-align:center"><label style="position:relative;">Equestrian Property Features</label></div>
+                    <div>
+                        <div style="padding-bottom:10px;">
+                            <div id="lotEquestrian_Features" style="text-align:left"></div>
+                        </div>
+                    </div>
+                    @*End: Equestrian Property Features*@
+                    @*Start: Road Footage*@
+                    <div class="col-sm-12" style=" color:#f56331;background-color:#FFE8E0; text-align:center"><label style="position:relative;">Road Footage</label></div>
+                    <div>
+                        <div style="padding-bottom:10px;padding-left:50px">
+                            <div id="lotRoadFootage" style="text-align:left"></div>
+                        </div>
+                    </div>
+                    @*End: Road Footage*@
+                    @*Start: Topography*@
+                    <div class="col-sm-12" style=" color:#f56331;background-color:#FFE8E0; text-align:center"><label style="position:relative;">Topography</label></div>
+                    <div>
+                        <div style="padding-bottom:10px; padding-left:50px;">
+                            <label id="lotTopography" style="text-align:left"></label>
+                        </div>
+                    </div>
+                    @*End: Topography*@
+                    @*Start: Amenitites*@
+                    <div class="col-sm-12" style=" color:#f56331;background-color:#FFE8E0; text-align:center"><label style="position:relative;">Amenities</label></div>
+                    <div>
+                        <div style="padding-bottom:10px;text-align:center;padding-left:50px">
+                            <div id="lotAmenities" style="text-align:left;"></div>
+                        </div>
+                    </div>
+                    @*End: Amenities*@
+                </div>
+                @*End: Lots Property Home Features*@
+
+                @*Start Schools*@
+                <div class="col-sm-12" style=" color:white;background-color: #f56331; text-align:center"><label style="position:relative;">Schools</label></div>
+                <div class="col-sm-12">
+                    <div id="div_collapse_mainfetures1" style="font-size:11px">
+                        <table border="0" style="width:100%;font-size:11px;text-align:center">
+                            <tr>
+                                <td><label class="firstLabel">Elementary:  </label> <label class="SecondRef" id="AGL_Elementary"></label></td>
+                                <td><label class="firstLabel">Middle:  </label><label class="SecondRef" id="AGl_Middle"></label></td>
+                                <td><label class="firstLabel">High School:  </label><label class="SecondRef" id="AGl_HighSchool"></label></td>
+                            </tr>
+                        </table>
+                        <div class="col-sm-12">&nbsp</div>
+                    </div>
+                </div>
+                @*End Schools*@
+                @*Start Convenants and restrictions*@
+                <div id="lot_convenantsAndRestrictions">
+                    <div class="col-sm-12" style=" color:white;background-color: #f56331; text-align:center"><label style="position:relative;">Convenants & Restrictions</label></div>
+                    <div class="col-sm-12">
+                        <div id="" style="font-size:11px">
+                            <table border="0" style="width:100%;font-size:11px; text-align:center">
+                                <tr>
+                                    <td><label class="firstLabel">Convenants:</label>  <label class="SecondRef" id="lot_convenants"></label></td>
+                                    <td><label class="firstLabel">Restrictions:</label> <label class="SecondRef" id="lot_Restrictions"></label></td>
+                                </tr>
+                            </table>
+                            <div class="col-sm-12">&nbsp</div>
+                        </div>
+                    </div>
+                </div>
+                @*End Convenants and restrictions*@
+                @*Start Home Features and Eminities*@
+                <div id="div_HMFeaturesAndEminities">
+                    <div class="col-sm-12" style=" color:white;background-color: #f56331;text-align:center"><label style="position:relative;">Home Features & Amenities</label></div>
+                    <div class="col-sm-12" style=" color:#f56331;background-color:#FFE8E0;text-align:center"><label style="position:relative;">Interior Home</label></div>
+                    <div class="col-sm-12">
+                        <table border="0" style="width:100%">
+                            <tr>
+                                <td style="width:10%">
+                                    <label id="lbl_appliances_interior" class="mainfont">Appliances:</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_appliances_interior" class="mainfont1"></span>
+                                </td>
+                                <td style="width:10%">
+                                    <label id="lbl_fireplace_interior" class="mainfont">Fireplace:</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_fireplace_interior" class="mainfont1"</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:10%">
+                                    <label id="lbl_floors_interior" class="mainfont">Floors:</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_floors_interior" class="mainfont1">Carpet, vinyl, hardwood</span>
+                                </td>
+                                <td style="width:10%">
+                                    <label id="lbl_garage_interior" class="mainfont">Garage:</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_garage_interior" class="mainfont1">door opener, yard door</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:10%">
+                                    <label id="lbl_mbrfeatures_interior" class="mainfont">Master Br features:</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_mbrfeatures_interior" class="mainfont1"></span>
+                                </td>
+                                <td style="width:10%">
+                                    <label id="lbl_basement_interior" class="mainfont">Basement:</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_basement_interior" class="mainfont1"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:10%">
+                                    <label id="lbl_laundry_interior" class="mainfont">Laundry:</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_laundry_interior" class="mainfont1"></span>
+                                </td>
+                                <td style="width:10%">
+                                    <label id="lbl_storagespace_interior" class="mainfont">Storage Space:</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_storagespace_interior" class="mainfont1"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:10%">
+                                    <label id="lbl_specialtyrm_interior" class="mainfont">Specialty Room:</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_specialtyrm_interior" class="mainfont1"></span>
+                                </td>
+                                <td style="width:10%">
+                                    <label id="lbl_otherfeatures_interior" class="mainfont">Other Interior Features:</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_otherfeatures_interior" class="mainfont1"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style=" color:#f56331;background-color:#FFE8E0; text-align:center"><label style="position:relative;">Exterior Home</label></div>
+                    <div class="col-sm-12">
+                        <table border="0" style="width:100%">
+                            <tr>
+                                <td style="width:10%">
+                                    <label id="lbl_lotdescription_exterior" class="mainfont">Lot Description</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_lotdescription_exterior" class="mainfont1"></span>
+                                </td>
+                                <td style="width:10%">
+                                    <label id="lbl_roof_exterior" class="mainfont">Roof</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_roof_exterior" class="mainfont1">architectural</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:10%">
+                                    <label id="lbl_fondation_exterior" class="mainfont">Foundation</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_fondation_exterior" class="mainfont1"></span>
+                                </td>
+                                <td style="width:10%">
+                                    <label id="lbl_driveway_exterior" class="mainfont">Driveway</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_driveway_exterior" class="mainfont1"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:10%">
+                                    <label id="lbl_finish_exterior" class="mainfont">Exterior Finish</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_finish_exterior" class="mainfont1"></span>
+                                </td>
+                                <td style="width:10%">
+                                    <label id="lbl_otherfeatures_exterior" class="mainfont">Other Exterior Features:</label>
+                                </td>
+                                <td style="width:40%">
+                                    <span id="span_otherfeatures_exterior" class="mainfont1"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-12" style=" color:#f56331;background-color:#FFE8E0;text-align:center"><label style="position:relative;">Aminities</label></div>
+                    <div class="col-sm-12">
+                        <table border="0" style="width:100%">
+                            <tr>
+                                <td style="width:10%">
+                                    <label id="lbl_community_aminities" class="mainfont">HOA/Community Aminities</label>
+                                </td>
+                                <td style="width:90%">
+                                    <span id="span_community_aminities" class="mainfont1"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:10%">
+                                    <label id="lbl_condo_aminities" class="mainfont">Condo Amenities Included</label>
+                                </td>
+                                <td style="width:90%">
+                                    <span id="span_condo_aminities" class="mainfont1"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                @*End Home features and eminities*@
+
+                @*Start Utilities Heating and Cooling*@
+                <div id="utilities_Heating_Cooling">
+                    <div class="col-sm-12" style=" color:white;background-color: #f56331; text-align:center"><label style="position:relative;">Utilities / Heating and Cooling</label></div>
+                    <div class="col-sm-12">
+                        <div id="div_collapse_mainfetures1" style="font-size:11px">
+                            <table border="0" style="width:100%;font-size:11px; text-align:center">
+                                <tr>
+                                    <td><label class="firstLabel">Water:</label>  <label class="SecondRef" id="lot_Utilities_Water"></label></td>
+                                    <td><label class="firstLabel"> Middle:</label><label class="SecondRef" id="lot_Utilities_Sewer"></label></td>
+                                </tr>
+                            </table>
+                            <div class="col-sm-12">&nbsp</div>
+                        </div>
+                    </div>
+                </div>
+                @*End Start Utilities Heating and Cooling*@
+
+                @*Start: Home Utilities and Cleaning*@
+                <div id="div_HMutilitiesAndCooling">
+                    <div class="col-sm-12" style=" color:white;background-color: #f56331;text-align:center"><label style="position:relative;">Utilities/Heating and Cooling</label></div>
+                    <table border="0" style="width:100%">
+                        <tr>
+                            <td style="width:10%">
+                                <label id="lbl_water_heating" class="mainfont">Water</label>
+                            </td>
+                            <td style="width:20%;">
+                                <span id="span_water_heating" class="mainfont1"></span>
+                            </td>
+                            <td style="width:10%">
+                                <label id="lbl_garbagepick_heating" class="mainfont">Garbage Pickup</label>
+                            </td>
+                            <td style="width:20%;">
+                                <span id="span_garbagepick_heating" class="mainfont1"></span>
+                            </td>
+                            <td style="width:10%">
+                                <label id="lbl_heatsystem_heating" class="mainfont">Heating System</label>
+                            </td>
+                            <td style="width:20%">
+                                <span id="span_heatsystem_heating" class="mainfont1"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%">
+                                <label id="lbl_sewer_heating" class="mainfont">Sewer</label>
+                            </td>
+                            <td style="width:20%;">
+                                <span id="span_sewer_heating" class="mainfont1"></span>
+                            </td>
+                            <td style="width:10%">
+                                <label id="lbl_waterheater_heating" class="mainfont">Water Heater</label>
+                            </td>
+                            <td style="width:20%;">
+                                <span id="span_waterheater_heating" class="mainfont1">\</span>
+                            </td>
+                            <td style="width:10%">
+                                <label id="lbl_coolsystem_heating" class="mainfont">Cooling System</label>
+                            </td>
+                            <td style="width:20%">
+                                <span id="span_collsystem_heating" class="mainfont1"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                @*END: Utilities and Cleaning*@
+
+                @*Start: Home Finance Information*@
+                <div id="div_HomeFinanceInfo">
+                    <div class="col-sm-12" style=" color:white;background-color: #f56331;text-align:center"><label style="position:relative;">Financial Info</label></div>
+                    <table border="0" style="width:100%">
+                        <tr>
+                            <td style="width:10%">
+                                <label id="lbl_hoafee_finance" class="mainfont">HOA Fee</label>
+                            </td>
+                            <td style="width:20%;">
+                                <span id="span_hoafee_finance" class="mainfont1"></span>
+                            </td>
+                            <td style="width:10%">
+                                <label id="lbl_additionalfee_finance" class="mainfont">Additional Fees</label>
+                            </td>
+                            <td style="width:20%;">
+                                <span id="span_additionalfee_finance" class="mainfont1"></span>
+                            </td>
+                            <td style="width:10%">
+                                <label id="lbl_taxinfo_finance" class="mainfont">Tax Information</label>
+                            </td>
+                            <td style="width:20%">
+                                <span id="span_taxinfo_finance" class="mainfont1"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%">
+                                <label id="lbl_hoafeeterm_finance" class="mainfont">HOA Fee Term</label>
+                            </td>
+                            <td style="width:20%;">
+                                <span id="span_hoafeeterm_finance" class="mainfont1"></span>
+                            </td>
+                            <td style="width:10%">
+                                <label id="lbl_specialoptions_finance" class="mainfont">Special Finance Options</label>
+                            </td>
+                            <td style="width:20%;">
+                                <span id="span_specialoptions_finance" class="mainfont1"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                @*End Finanec Information*@
+
+                @*Start: Lots Finance Information*@
+                <div id="div_LotsFinanceInfo">
+                    <div class="col-sm-12" style=" color:white;background-color: #f56331;text-align:center"><label style="position:relative;">Financial Info</label></div>
+                    <div style="text-align:center">
+                        <table border="0" style="width:100%">
+                            <tr>
+                                <td style="width:10%">
+                                    <label class="mainfont">HOA Fee</label>
+                                </td>
+                                <td style="width:20%;">
+                                    <span id="lot_hoaFee" class="mainfont1"></span>
+                                </td>
+                                <td style="width:10%">
+                                    <label class="mainfont">Additional Fees</label>
+                                </td>
+                                <td style="width:20%;">
+                                    <span id="lot_Additionalfee" class="mainfont1"></span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td style="width:10%">
+                                    <label class="mainfont">HOA Fee Term</label>
+                                </td>
+                                <td style="width:20%;">
+                                    <span id="lot_hoaFeeTerms" class="mainfont1"></span>
+                                </td>
+                                <td style="width:10%">
+                                    <label class="mainfont">Special Finance Options</label>
+                                </td>
+                                <td style="width:20%;">
+                                    <span id="lot_specialFeeterms" class="mainfont1"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                @*End Lots Finance Information*@
+
+                @*Start: Listing Agent*@
+                <div class="col-sm-12" style=" color:white;background-color: #f56331;text-align:center"><label style="position:relative;">Listing Agent</label></div>
+                <div id="div_collapse_listingagent">
+                    <div class="col-sm-12" style="background-color: #B40101; margin-top: -.1%; margin-left: -1.7%; width: 102%; text-align: center; padding-bottom: 2%">
+                        <span style="font-size: 10px; color: white; top:-20px;position:relative;left:-8px">Listing provided By: </span>
+                        <img src="~/img/agentpic_demo.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:50%; height: 50px; width: 50px; margin-top: 15px!important;" id="AGL_AgntImageTwo">
+                        <span id="Listing_username" style="color: white; position:relative; top:-22px"></span><br />
+                        <label id="Listing_agent_office" style="font-size: 10px; color: white; position:relative;top:-18px;left:97px"></label>
+                    </div>
+                </div>
+                @*End: Listing Agent*@
+            </div>
+        </div>
+    </div>
+
+<script>
+    var MlsID = ''; var AgentID = '';
+    var AGL_SharePopURL = ""; var HomeType = ''; var Arr_Images = []; var ImageCount = 1; var PhotosCount = 0; var Str_Geolat = ''; var Str_Geolang = ''; var Arr_Showings = []; var Arr_DocOnOffer = ''; var Arr_MultiUploadImages = [];
+    var Arr_lakeProperties = []; var Arr_Equestrian = []; var Arr_RoadFrontage = []; var Arr_Topography = []; var Arr_Aminities = []; var Arr_PropDescriptions = [];
+    $(document).ready(function () {
+        //-- Read Primarykey and userid from URl
+        var Url = new URLSearchParams(window.location.search);
+        MlsID = Url.get("Mlsid");
+        UserID = Url.get("UserID");
+        GetPropertydetailsByMls(MlsID, UserID);
+    });
+    function GetPropertydetailsByMls(MlsID, UserID) {
+        $.ajax({
+            url: "/FullDetails/GetCustomerListingDetails/",
+            type: "GET",
+            dataType: "json",
+            data: { MlsID: MlsID, UserID: UserID },
+            success: function (data) {
+                BindDatatoHtml(data);
+            },
+            error: function () {
+                alert('nodata');
+            }
+        });
+    }
+    function BindDatatoHtml(data) {
+        $('#div_HomeMainFeatures,#div_HMFeaturesAndEminities,#div_HMutilitiesAndCooling,#div_HomeFinanceInfo').hide();
+        $('#div_LotslandPropertyHomeFeatures,#utilities_Heating_Cooling,#div_LotsFinanceInfo,#lot_convenantsAndRestrictions').hide();
+        if (data[0].Is_Favorite == "NO")
+            $("#AGL_ImageFavourite").attr("src", "/img/heartmi.png");
+        if (data[0].Is_Favorite == "YES")
+            $("#AGL_ImageFavourite").attr("src", "/img/hearticon.png");
+        //if (data[0].Is_Viewd == "NO")
+        //    $('#AGL_ViewedIcon').hide();
+        //else
+        //    $('#AGL_ViewedIcon').show();
+        if (data[0].Class == "Residential" || data[0].Class == "Residential") {
+            if (data[0].Class == "Residential") {
+                $('#Agent_HouseType').html("Home Details");
+                $('#AGL_sale_rent').html('For Sale');
+            }
+            else if (data[0].Class == "Rental") {
+                $('#Agent_HouseType').html("Rental Details");
+                $('#AGL_sale_rent').html('For Rent');
+            }
+            $('#div_HomeMainFeatures,#div_HMFeaturesAndEminities,#div_HMutilitiesAndCooling,#div_HomeFinanceInfo').show();
+            $('#div_LotslandPropertyHomeFeatures,#utilities_Heating_Cooling,#div_LotsFinanceInfo,#lot_convenantsAndRestrictions').hide();
+        }
+        else if (data[0].Class == "Lots/Land") {
+            $('#Agent_HouseType').html("Lots / Land Detail");
+            $('#AGL_sale_rent').html('For Sale');
+            $('#div_HomeMainFeatures,#div_HMFeaturesAndEminities,#div_HMutilitiesAndCooling,#div_HomeFinanceInfo').hide();
+            $('#div_LotslandPropertyHomeFeatures,#utilities_Heating_Cooling,#div_LotsFinanceInfo,#lot_convenantsAndRestrictions').show();
+        }
+        if (data[0].Status == "Active") {
+            $('.RoundEdgespn').css('background-color', 'green');
+            $('#AGL_sale_rent').html('For Sale');
+        }
+        else if (data[0].Status == "Sold") {
+            $('.RoundEdgespn').css('background-color', 'red');
+            $('#AGL_sale_rent').html('Sold');
+        }
+        else if (data[0].Status == "Pending" || data[0].Status == "Contingency Contract") {
+            $('.RoundEdgespn').css('background-color', '#f0e243');
+            $('#AGL_sale_rent').html('Under Contract');
+        }
+        else if (data[0].Status == "OpenHouse") {
+            $('.RoundEdgespn').css('background-color', 'blue');
+            $('#AGL_sale_rent').html('Open House');
+        }
+        if (data[0].Class == "Rental") {
+            $('.RoundEdgespn').css('background-color', 'gray');
+            $('#AGL_sale_rent').html('Rental');
+        }
+        var PropertyPrice = "$ " + (data[0].ListPrice + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        $('#lbl_price').html(PropertyPrice);
+        if (data[0].Have_Agent == "YES") {
+            if (data[0].UserAgent_Image != "" && data[0].UserAgent_Image != "," && data[0].UserAgent_Image != null) {
+                $('#AGL_AgentImage').attr('src', data[0].UserAgent_Image);
+            }
+            else {
+                $('#AGL_AgentImage').attr("src", "/img/addphotopic.png");
+            }
+            $('#AGLAgentName').html(data[0].UserAgent_FirstName + ' ' + data[0].UserAgent_LastName);
+            $('#AGL_AgentAddressOne').html(data[0].UserAgent_OfficeName);
+        }
+        else {
+            
+            if (data[0].AGENT_IMAGE != "" && data[0].AGENT_IMAGE != "," && data[0].AGENT_IMAGE != null){
+                $('#AGL_AgentImage').attr('src', data[0].AGENT_IMAGE);
+                $('#AGL_AgntImageTwo').attr('src', data[0].AGENT_IMAGE);
+            }
+                
+            else {
+                $('#AGL_AgentImage').attr("src", "/img/addphotopic.png");
+                $('#AGL_AgntImageTwo').attr("src", "/img/addphotopic.png");
+            }
+              
+            $('#AGLAgentName').html(data[0].AGENT_FIRSTNAME + ' ' + data[0].AGENT_LASTNAME);
+            $('#AGL_AgentAddressOne').html(data[0].AGENT_OFFICENAME);
+            $('#Listing_username').html(data[0].AGENT_FIRSTNAME + ' ' + data[0].AGENT_LASTNAME);
+            $('#Listing_agent_office').html(data[0].AGENT_OFFICENAME);
+            $('#AgentPhoneOne').html(data[0].AGENT_PHONONO);
+        }
+        $('#AGL_DaysOnQuitChet').html(data[0].DaysInQuitchet);
+        Arr_Images=[]
+        if (data[0].PHOTOLOCATION != '' && data[0].PHOTOLOCATION != ',' && data[0].PHOTOLOCATION != null) {
+            if (data[0].PHOTOLOCATION.indexOf(',') > -1)
+                Arr_Images = data[0].PHOTOLOCATION.split(',');
+            else
+                Arr_Images[0] = data[0].PHOTOLOCATION;
+        }
+        else {
+            Arr_Images[0] = '/img/NoImage.png';
+        }
+        if (parseInt(Arr_Images.length) > 1)
+            $('#AGL_HomepopupNextImgBtn').show();
+        PhotosCount = Arr_Images.length;
+        $('#AGL_HomeTotalPhotocount').html(Arr_Images.length);
+        $('#AGL_HomePopupImgDiv').css("background-image", 'url(' + Arr_Images[0] + ')');
+        $('#AGL_PropertyAdessOne').html(data[0].Address);
+        if (data[0].GeoPostCd != "" && data[0].GeoPostCd != null && data[0].GeoPostCd != " " && data[0].GeoPostCd != ",")
+            $('#AddressTwoo').html(data[0].GeoSecCity + ' ' + data[0].GeoSubdiv + ',' + data[0].GeoPostCd);
+        else
+            $('#AddressTwoo').html(data[0].GeoSecCity + ' ' + data[0].GeoSubdiv);
+        $('#AGL_Property_MLSID').html('MLS#' + data[0].MLSNo);
+        $('#span_agentremarks').html(data[0].ConsRmks);
+        $('#span_type_mainfeatures').html(data[0].Type);
+        $('#span_yearbuilt_mainfeatures').html(data[0].ApxYrBlt);
+        $('#span_lotsize_mainfeatures').html(data[0].LotSzOrAg);
+        $('#span_subdivison').html(data[0].Subdiv);
+        $('#span_stories_mainfeatures').html(data[0].NoStor);
+        $('#span_bedrooms_mainfeatures').html(data[0].NoBR);
+        $('#span_bathrooms_mainfeatures').html(parseInt(data[0].NoHB) + parseInt(data[0].NoFB));
+        $('#span_sqft_mainfeatures').html(data[0].SqFt);
+        $('#span_garagetype_mainfeatures').html(data[0].GarType);
+        $('#span_garagecap_mainfeatures').html(data[0].GarCap);
+        $('#span_livingrm_mainfeatures').html(data[0].LivRmSz);
+        $('#span_dinningrm_mainfeatures').html(data[0].DinRmSz);
+        $('#span_breakfastrm_mainfeatures').html(data[0].BrkftSz);
+        $('#span_bonusfeatures').html(data[0].BOrRSz);
+        $('#span_sunrm_mainfeatures').html(data[0].SunRSz);
+        $('#span_masterrm_mainfeatures').html(data[0].MstrBdSz);
+        $('#span_bedroom2_mainfeatures').html(data[0].Bed2Sz);
+        $('#span_bedroom3_mainfeatures').html(data[0].Bed3Sz);
+        $('#span_bedroom4_mainfeatures').html(data[0].Bed4Sz);
+        $('#span_bedroom5_mainfeatures').html(data[0].Bed5Sz);
+        $('#span_screend_mainfeatures').html(data[0].PorchSz);
+        $('#span_deck_mainfeatures').html(data[0].DeckSz);
+        $('#AGLR_Patio').html(data[0].PatioSz);
+        $('#AGLR_Laundry').html(data[0].LnSz);
+        $('#AGL_Elementary').html(data[0].Elementary);
+        $('#AGl_Middle').html(data[0].Middle);
+        $('#AGl_HighSchool').html(data[0].High);
+        $('#span_appliances_interior').html(data[0].APPLIANCES);
+        $('#span_fireplace_interior').html(data[0].FLOORS);
+        $('#span_floors_interior').html(data[0].FLOORS);
+        $('#span_garagetype_mainfeatures').html(data[0].Garage);
+        $('#span_mbrfeatures_interior').html(data[0].MRBEDFETRS);
+        $('#span_basement_interior').html(data[0].BASEMENT);
+        $('#span_laundry_interior').html(data[0].LAUNDRY);
+        $('#span_storagespace_interior').html(data[0].STORAGESPC);
+        $('#span_specialtyrm_interior').html(data[0].SPECILTYRM);
+        $('#span_otherfeatures_interior').html(data[0].INTERRFTRS);
+        $('#span_lotdescription_exterior').html(data[0].LOTDSCRPTN);
+        $('#span_fondation_exterior').html(data[0].FOUNDATION);
+        $('#span_driveway_exterior').html(data[0].DRIVEWAY);
+        $('#span_finish_exterior').html(data[0].EXTERRFNSH);
+        $('#span_otherfeatures_exterior').html(data[0].EXTERRFTRS);
+        $('#span_hoafeeterm_finance').html(data[0].HOATerm);
+        $('#span_condo_aminities').html(data[0].CNDRGMNCLD);
+        $('#span_community_aminities').html(data[0].HCMNTYMNTS)
+        $('#span_water_heating').html(data[0].WATER);
+        $('#span_garbagepick_heating').html(data[0].GARBAGPCKP);
+        $('#span_waterheater_heating').html(data[0].WATERHEATR);
+        $('#span_sewer_heating').html(data[0].SEWER);
+        $('#span_heatsystem_heating').html(data[0].HETNGSYSTM);
+        $('#span_collsystem_heating').html(data[0].COLNGSYSTM);
+        $('#span_hoafee_finance').html("$ " + (data[0].HAOrRegime + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"))
+        $('#span_additionalfee_finance').html(data[0].ADITIONLFS);
+        var TaxPrice = "$ " + (data[0].TotalTax + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        $('#span_taxinfo_finance').html(TaxPrice + '; ' + data[0].TaxYear);
+
+        if (data[0].AGENT_IMAGE != "" && data[0].AGENT_IMAGE != "," && data[0].AGENT_IMAGE != null)
+            $('#AGL_AgntImageTwo').attr('src', data[0].AGENT_IMAGE);
+        else
+            $('#AGL_AgntImageTwo').attr("src", "/img/addphotopic.png");
+        $('#Listing_username').html(data[0].AGENT_FIRSTNAME + ' ' + data[0].AGENT_LASTNAME);
+        $('#Listing_agent_office').html(data[0].AGENT_OFFICENAME);
+
+
+        //-----------Lots land------------//
+        $('#LotProperty_Type').html(data[0].Type);
+        $('#lotProperty_Subdivision').html(data[0].Subdiv);
+        $('#LotProperty_Average').html(data[0].LotSzOrAg);
+        if (data[0].PRPDSCRPTN != null && data[0].PRPDSCRPTN != '') {
+
+            if (data[0].PRPDSCRPTN.length > 0) {
+                if (data[0].PRPDSCRPTN.indexOf(',') > 0) {
+                    Arr_PropDescriptions = data[0].PRPDSCRPTN.split(',');
+                    $.each(Arr_PropDescriptions, function (i, item) {
+                        $('#lotProperty_Description').append('<label style="">&nbsp;&nbsp;<label class="firstLabel">' + Arr_PropDescriptions[i] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
+                    });
+                }
+                else {
+                    var Amenities = '<label class="firstLabel">' + data[0].PRPDSCRPTN + '</label>';
+                    $('#lotProperty_Description').append(Amenities);
+                }
+            }
+
+        }
+        
+        Arr_lakeProperties = []; Arr_Equestrian = []; Arr_RoadFrontage = []; Arr_Topography = []; Arr_Aminities = [];
+        if (data[0].LAKPRPFTRS != null && data[0].LAKPRPFTRS != '') {
+            if (data[0].LAKPRPFTRS.length > 0) {
+                if (data[0].LAKPRPFTRS.indexOf(',') > 0) {
+                    Arr_lakeProperties = data[0].LAKPRPFTRS.split(',');
+                    $.each(Arr_lakeProperties, function (i, item) {
+                        $('#lotProperty_Features').append('<label style=""><label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + Arr_lakeProperties[i] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
+                    });
+                }
+                else {
+                    var Lakes = '<label style="padding-left:25px"> <label class="listPointer">. </label><label class="firstLabel">' + data[0].AGLot_LakeProperty + '</label></label>';
+                    $('#lotProperty_Features').append(Lakes);
+                }
+            }
+        }
+        if (data[0].EQSTRNPRPF != null && data[0].EQSTRNPRPF != '') {
+            if (data[0].EQSTRNPRPF.length > 0) {
+                if (data[0].EQSTRNPRPF.indexOf(',') > 0) {
+                    Arr_Equestrian = data[0].EQSTRNPRPF.split(',');
+                    $.each(Arr_Equestrian, function (i, item) {
+                        $('#lotEquestrian_Features').append('<label style=""><label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + Arr_lakeProperties[i] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
+                    });
+                }
+                else {
+                    var Equ = '<label style="padding-left:25px"> <label class="listPointer">. </label><label class="firstLabel">' + data[0].EQSTRNPRPF + '</label></label>';
+                    $('#lotEquestrian_Features').append(Equ);
+                }
+            }
+        }
+        if (data[0].ROADFRONTG != null && data[0].ROADFRONTG != '') {
+            if (data[0].ROADFRONTG.length > 0) {
+                if (data[0].ROADFRONTG.indexOf(',') > 0) {
+                    Arr_RoadFrontage = data[0].ROADFRONTG.split(',');
+                    $.each(Arr_RoadFrontage, function (i, item) {
+                        $('#lotRoadFootage').append('<label style=""><label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + Arr_RoadFrontage[i] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
+                    });
+                }
+                else {
+                    var Road = '<div class="col-sm-3">'
+                                       + '<label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + data[0].ROADFRONTG + '</label>'
+                                       + '</div>';
+                    $('#lotRoadFootage').append(Road);
+                }
+            }
+        }
+        if (data[0].TOPOGRAPHY != null && data[0].TOPOGRAPHY != '') {
+            if (data[0].TOPOGRAPHY.length > 0) {
+                if (data[0].TOPOGRAPHY.indexOf(',') > 0) {
+                    Arr_Topography = data[0].TOPOGRAPHY.split(',');
+                    $.each(Arr_Topography, function (i, item) {
+                        $('#lotTopography').append('<label style=""><label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + Arr_Topography[i] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
+                    });
+                }
+                else {
+                    var Topography = '<label style="padding-left:25px"> <label class="listPointer">. </label><label class="firstLabel">' + data[0].TOPOGRAPHY + '</label></label>';
+                    $('#lotTopography').append(Topography);
+                }
+            }
+        }
+        if (data[0].AMENTSNCLD != null && data[0].AMENTSNCLD != '') {
+            if (data[0].AMENTSNCLD.length > 0) {
+                if (data[0].AMENTSNCLD.indexOf(',') > 0) {
+                    Arr_Aminities = data[0].AMENTSNCLD.split(',');
+                    $.each(Arr_Aminities, function (i, item) {
+                        $('#lotAmenities').append('<label style=""><label class="listPointer">.</label>&nbsp;&nbsp;<label class="firstLabel">' + Arr_Aminities[i] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
+                    });
+                }
+                else {
+                    var Amenities = '<label> <label class="listPointer">. </label><label class="firstLabel">' + data[0].AMENTSNCLD + '</label></label>';
+                    $('#lotAmenities').append(Amenities);
+                }
+            }
+        }
+        $('#lot_convenants').html(data[0].COVENANTS);
+        $('#lot_Restrictions').html(data[0].RESTRICTNS);
+        $('#lot_Utilities_Water').html(data[0].WATER);
+        $('#lot_Utilities_Sewer').html(data[0].SEWER);
+
+        $('#lot_hoaFee').html("$ " + (data[0].HAOrRegime + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
+        $('#lot_Additionalfee').html(data[0].ADITIONLFS);
+        $('#lot_hoaFeeTerms').html(data[0].HOATerm);
+        $('#lot_specialFeeterms').html(data[0].SPECLFNNCS);
+    }
+    function AGL_HomePopupSlideImage(ClickStatus) {
+        if (ClickStatus == 'Next') {
+            ImageCount = parseInt(ImageCount + 1);
+            $('#AGL_HomePopupImgDiv').css('background-image', 'url(' + Arr_Images[ImageCount - 1] + ')');
+            $('#AGL_HomepopupPrevImgBtn').show();
+            if (parseInt(ImageCount) == parseInt(PhotosCount))
+                $('#AGL_HomepopupNextImgBtn').hide();
+        }
+        if (ClickStatus == 'Previous') {
+            ImageCount = ImageCount - 1;
+            if (parseInt(ImageCount) == 1)
+                $('#AGL_HomepopupPrevImgBtn').hide();
+            $('#AGL_HomepopupNextImgBtn').show();
+            $('#AGL_HomePopupImgDiv').css('background-image', 'url(' + Arr_Images[ImageCount - 1] + ')');
+        }
+        $('#AFL_ImageCountOOF').html(ImageCount);
+    }
+    function printDiv() {
+        var divContents = $("#AGL_FirstDiv").html();
+        var printWindow = window.open('', '', 'height=400,width=800');
+        printWindow.document.write('');
+        printWindow.document.write(divContents);
+        printWindow.document.write('');
+        printWindow.document.write();
+        printWindow.document.write('')
+        printWindow.document.write('');
+        printWindow.document.close();
+        printWindow.print();
+    }
+
+    function Fun_Fav_Change(imageID) {
+        if ($('#' + imageID).attr('src') == "/img/heartmi.png") {
+            $("#" + imageID).attr("src", "/img/hearticon.png");
+            Favourite = 'true';
+        }
+        else {
+            $("#" + imageID).attr("src", "/img/heartmi.png");
+            Favourite = 'false';
+        }
+        FavImageChanges(MlsID, Favourite)
+    }
+    function FavImageChanges(MlsID, Favourite) {
+        $.ajax({
+            url: "/FullDetails/FavrouriteChanges/",
+            type: "POST",
+            dataType: "json",
+            data: { MLSId: MlsID, Fav: Favourite },
+            success: function (data) {
+            },
+            error: function () {
+            }
+        });
+    }
+</script>

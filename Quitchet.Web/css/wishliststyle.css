@@ -1,0 +1,53 @@
+.headeraddressbook1 {
+    background-color: #FF5D26;
+    padding: 0px 1px 8px 0px;
+    /* height: 25px; */
+}
+#mywishlisttop {
+    position: relative;
+    z-index: 100;
+    margin: 0 auto;
+    padding: 10px;
+    color: #2C2C2C;
+    width: 80%;
+    height: auto;
+}
+#mywishlist {
+    position: relative;
+    z-index: 100;
+    margin: 160px auto 0;
+    padding: 10px;
+    top: -150px;
+    opacity: .95;
+    color: #2C2C2C;
+    background-color: #FFFFFF;
+    width: 80%;
+    height: auto;
+}
+.well-sm {
+    padding: 9px;
+    border-radius: 3px;
+}
+
+.wellorange {
+    background-color: #FDEAE4;
+    border: 1px solid #F7AB92;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+#basicneedspopup {
+    position: relative;
+    z-index: 100;
+    margin: 160px auto 0;
+    padding: 10px;
+    top: -150px;
+    opacity: .95;
+    color: #2C2C2C;
+    background-color: #FFFFFF;
+    background-image: url(/img/bakground_icon_watermark.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80%;
+    height: auto;
+}

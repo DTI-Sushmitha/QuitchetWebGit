@@ -1,0 +1,41 @@
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.pdb
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.pdb
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.pdb
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.pdb
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.pdb
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.csprojResolveAssemblyReference.cache
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.csprojResolveAssemblyReference.cache
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.pdb
+D:\QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.dll
+D:\QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.pdb
+D:\QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.dll
+D:\QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.pdb
+E:\QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.dll
+E:\QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.pdb
+E:\QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.dll
+E:\QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\itextsharp.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\itextsharp.xml
+E:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.csprojResolveAssemblyReference.cache
+D:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\Quitchet.SharedLibraries.pdb
+D:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\itextsharp.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\itextsharp.xml
+D:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.csprojResolveAssemblyReference.cache
+D:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\obj\Debug\Quitchet.SharedLibraries.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.SharedLibraries\bin\Debug\smartystreets-dotnet-sdk.dll

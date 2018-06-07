@@ -1,0 +1,2139 @@
+﻿@* Compared Home Index *@
+@{
+    ViewBag.Title = "Index";
+    var UserType_ID = "0";
+    if (Request.Cookies["UserTypeIDCookie"].Value != "")
+    {
+        UserType_ID = Request.Cookies["UserTypeIDCookie"].Value;
+        if (UserType_ID == "2")
+        {
+            Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+        }
+        else if (UserType_ID == "1")
+        {
+            Layout = "~/Views/Shared/_Layout_MyQuitchet.cshtml";
+        }
+
+    }
+    else
+    {
+        UserType_ID = "";
+    }
+
+
+    var PkeyUserId = "0";
+    if (Request.Cookies["UseridCookie"] != null)
+    {
+        if (Request.Cookies["UseridCookie"].Value != null)
+        {
+            PkeyUserId = Request.Cookies["UseridCookie"].Value;
+        }
+    }
+}
+<link href="~/Content/myquitchet_layout_styles.css" rel="stylesheet" />
+<link href="~/asset/css/comparehomesbootstrap.min.css" rel="stylesheet" />
+<!--Styles of Header and Page -->
+<style>
+    #favouriteLogin::before {
+        position: absolute;
+        content: "";
+        border-top: 15px solid red;
+        border-bottom: 15px solid transparent;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        left: 70%;
+        top: 99px;
+    }
+
+    #btn_editquerygrid:hover, #btn_removequerygrid:hover {
+        color: #FF5D26 !important;
+        background-color: white !important;
+    }
+
+    .jtablepadding {
+        padding-right: 0px;
+    }
+
+    .jtablepaddingfont {
+        padding-left: 3px;
+        padding-right: 0px;
+        color: #ff5d26;
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    /*.ViewedIcon {
+        width: 85%;
+    }*/
+
+    .ViewedIconafter {
+        width: 60%;
+    }
+
+    .IconFeature {
+        width: 30%;
+    }
+
+    .IconFeatureafter {
+        width: 25%;
+    }
+
+    .jtablepaddingfont2 {
+        padding-left: 5px;
+        padding-right: 0px;
+        color: black;
+        margin-left: -12%;
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+
+    .fontjtableprice {
+        font-size: 17px;
+    }
+
+    .fontjtablepriceafter {
+        font-size: 20px;
+    }
+
+    .jtablepaddingfontafter {
+        padding-left: 0px;
+        padding-right: 0px;
+        color: #ff5d26;
+        margin-left: -8%;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .btn_jquerytable {
+        color: #f37b53;
+        background-color: rgba(253, 228, 198, 0.32);
+        width: 100%;
+    }
+
+    .btn_jquerytableremove {
+        color: #f37b53;
+        margin-top: -1%;
+        border: 1px solid;
+        /*border-bottom: 0 !important;*/
+        background-color: rgba(253, 228, 198, 0.32);
+        width: 40%;
+        float: right;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .btn_jquerytableremoveafter {
+        color: #f37b53;
+        margin-left: 225%;
+        margin-top: -0.5%;
+        border: 1px solid;
+        border-bottom: 0 !important;
+        background-color: rgba(253, 228, 198, 0.32);
+        width: 40%;
+    }
+
+    .jtablepaddingclass {
+        padding-left: 0px;
+        padding-right: 0px;
+        border: 1px solid #f37b53 !important;
+        border-radius: 3px;
+        float: left;
+        width: 80%;
+    }
+
+    .jtablepaddingclassafter {
+        padding-left: 0px;
+        padding-right: 0px;
+        border: 1px solid #f37b53 !important;
+        border-radius: 3px;
+        margin-left: -8%;
+        margin-top: -5%;
+    }
+    /*Scroll CSS*/
+    #SummaryDiv::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+    #SummaryDiv::-webkit-scrollbar {
+        width: 3%;
+        background-color: #F5F5F5;
+    }
+
+    #SummaryDiv::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #FF5D26;
+    }
+
+
+    #contentgrid::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+
+    #contentgrid::-webkit-scrollbar {
+        width: 1%;
+        background-color: #F5F5F5;
+    }
+
+    #contentgrid::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: rgb(255, 105, 55);
+    }
+
+
+    #div_homestuff::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+
+    #div_homestuff::-webkit-scrollbar {
+        width: 2%;
+        background-color: #F5F5F5;
+    }
+
+    #div_homestuff::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3) !important;
+        background-color: rgb(255, 105, 55);
+    }
+
+
+    .panel-toolbar {
+        margin: -1px -10px 0px -9px;
+        padding: 14px 0px 0px 0px;
+        background-color: gray;
+        height: 100%;
+    }
+
+    /*.img-responsive {
+        width: 35px;
+        height: 35px;
+    }*/
+
+
+    .media-left {
+        text-align: justify;
+    }
+
+    .brand-myagentbtn {
+        line-height: 20px;
+        text-align: left;
+        margin: -5px 60px 0px 0px;
+    }
+
+    .col-lg-1 {
+        text-align: center;
+        padding: 0px 0px 0px 0px;
+    }
+
+    .navbar {
+        height: 64px;
+        background-color: #FF6937;
+        color: #fff;
+        border: none;
+    }
+
+    .tdjtable {
+        border: 0 !important;
+    }
+
+    .backbtninHeader_orange {
+        padding: 5px 20px;
+        border: none;
+        background-color: #ff5d26;
+        color: #fff;
+    }
+</style>
+<!-- styles of Content -->
+<style>
+    #contactcanvuss {
+        position: relative;
+        z-index: 100;
+        /*margin: 226px auto 0;
+        top: -145px;*/
+        background-color: #FAFAFA;
+        border: 0px solid #333333;
+        width: 100%;
+    }
+
+
+    .panel {
+        margin-bottom: 5px;
+        border-radius: 0px;
+        padding: 0px;
+        border: none;
+    }
+
+    .content-header {
+        background: #f6f8f8;
+        border-bottom: 1px solid #ddd !important;
+    }
+
+    .headeraddressbook {
+        background-color: #FF5D26;
+        padding: 5px 0px 40px 0px;
+    }
+
+    .adrbookbtn1 {
+        width: 180px;
+        height: 30px;
+        padding: 0px 0px 0px 0px;
+        float: left;
+        padding-left: 20px;
+    }
+
+    .adrnextbtn {
+        width: 165px;
+        height: 30px;
+        padding: 0px 0px 0px 0px;
+        float: right;
+    }
+
+    .leftremo {
+        padding-left: 0px;
+    }
+
+    #content {
+        /*margin-top: 51px;
+        padding: 0px;
+        padding-bottom: 10px;
+        padding-left: 230px;
+        width: 100%;
+        color: #918C8C;*/
+    }
+
+    .pannelborder {
+        border-right: 1px solid #F5D9D0;
+    }
+
+    .text-orange {
+        color: #FF5F29;
+        text-align: left;
+        font-size: 25px;
+        font-weight: 600;
+    }
+
+    .txtleft {
+        text-align: left;
+        color: #585855;
+        font-size: 18px;
+    }
+
+    p {
+        margin: 1em 0;
+    }
+
+    .spremovetop {
+        /*margin: 37px 0px 0px 0px;*/
+        margin: 10px 0px 0px 0px;
+        padding-top: 20px;
+    }
+
+    .btnb {
+        -webkit-border-radius: 1px !important;
+        -moz-border-radius: 1px !important;
+        -ms-border-radius: 1px !important;
+        -o-border-radius: 1px !important;
+        border-radius: 1px !important;
+        padding-left: 8px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 8px;
+        background-color: #FFF8F5;
+        color: #FF602B;
+        border: 1px solid #FF602B;
+        text-align: center;
+    }
+
+    .text-black {
+        color: #535352;
+        text-align: left;
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    #selectPhotoDiv::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #333333;
+    }
+
+    #selectPhotoDiv::-webkit-scrollbar {
+        width: 1.5%;
+        background-color: #F5F5F5;
+        border-radius: 10px;
+    }
+
+    #selectPhotoDiv::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #FF5D26;
+    }
+
+    .btnc {
+        -webkit-border-radius: 1px !important;
+        -moz-border-radius: 1px !important;
+        -ms-border-radius: 1px !important;
+        -o-border-radius: 1px !important;
+        border-radius: 1px !important;
+        padding-left: 8px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 8px;
+        background-color: #FFF8F5;
+        color: #FF602B;
+        border: 1px solid #FF602B;
+    }
+
+    .col33 {
+        margin: 0px -30px 0px -30px;
+        width: 28%;
+    }
+
+    .toppannelsettings {
+        background-color: #FFFFFF;
+        padding: 13px 0px 12px 0px;
+        border-bottom: 2px solid #FE8259;
+        text-align: center;
+    }
+
+    .setinghedh1 {
+        color: #4A4847;
+        text-align: center;
+        font-size: 19px;
+        font-weight: 400;
+    }
+
+    .captionspace {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .tabsettings {
+        background-color: #FFFFFF;
+        padding: 13px 0px 18px 0px;
+        height: 22px;
+    }
+
+    .setinghedp {
+        color: #FF5F29;
+        text-align: center;
+        font-size: 14px;
+        font-style: italic;
+        line-height: 13px;
+        font-weight: 400;
+    }
+
+    .onetab {
+        width: 80px;
+        float: left;
+    }
+
+    .endtab {
+        width: 50px;
+        float: right;
+        border-left: 1px solid #D1D0D0;
+    }
+
+    .text-bullet-gray {
+        color: #4A4847;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .text-bullet {
+        color: #FF5F29;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .bulletlist {
+        list-style: disc;
+    }
+
+    .text-orange-settings {
+        color: #FF5F29;
+        text-align: left;
+        font-size: 15px;
+        font-weight: 400;
+        padding-left: 6px;
+    }
+
+    .huparrow {
+        width: 22px;
+        height: 16px;
+        text-align: left;
+    }
+
+    .hdash {
+        width: 1px;
+        height: 25px;
+    }
+
+    .togglefloat {
+        float: right;
+    }
+
+    .compareicon {
+        width: 27px;
+        height: 27px;
+        margin: 0px 10px 0px 10px;
+    }
+
+    .link:visited {
+        color: #585855;
+    }
+
+    .popup6 {
+        display: none;
+        position: absolute;
+        left: 30%;
+        margin-left: -281px;
+        top: 15%;
+        margin-top: -100px;
+        background: #3C3C3C;
+        z-index: 100;
+        opacity: 100;
+        background-color: #FFFFFF;
+        border: 1px solid #333333;
+        width: 79%;
+        height: 700px;
+        -webkit-box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        -moz-box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+    }
+
+    .myphotospopcontainer {
+        padding: 25px 0px 25px 0px;
+        text-align: center;
+        margin: -3px -3px 0px -28px;
+    }
+
+    #fullphotopopup {
+        -webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+    }
+
+        #fullphotopopup:before {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: #404040;
+            z-index: -1;
+        }
+
+        #fullphotopopup:after {
+            position: fixed;
+            content: "";
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(76, 76, 76, 0.5);
+            z-index: -2;
+        }
+
+    #selectimagepopup {
+        -webkit-box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+    }
+
+    .popup3 {
+        display: none;
+        position: absolute;
+        left: 30%;
+        margin-left: -50px;
+        top: 17%;
+        margin-top: -100px;
+        background: #3C3C3C;
+        z-index: 100;
+        opacity: 100; /* Set the opacity for a slightly transparent Google Form */
+        background-color: #3C3C3C;
+        border: 1px solid #333333;
+        width: 60%;
+        height: 712px;
+        -webkit-box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        -moz-box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        box-shadow: 0px 33px 60px 30px rgba(36,36,36,0.64);
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+    }
+
+    .popuporangehedr2 {
+        background-color: #FF5F29;
+        height: 55px;
+        width: 100%;
+        padding-top: 9px;
+        margin: 0 auto;
+        text-align: center;
+        color: #FFFFFF;
+        margin: -10px 0px 0px 0px;
+        -webkit-border-radius: 5px 5px 0px 0px;
+        -moz-border-radius: 5px 5px 0px 0px;
+        border-radius: 5px 5px 0px 0px;
+        font-size: 18px;
+    }
+
+    .myphotospopcontainer {
+        padding: 25px 0px 25px 0px;
+        text-align: center;
+        margin: -3px -3px 0px -28px;
+    }
+
+    /*For selected image*/
+    /*.PopupImagesSelected {
+        border: solid 1px red;
+        margin: 10px;
+    }*/
+
+    .selected {
+        box-shadow: 0px 12px 22px 1px #333;
+    }
+
+
+    .highlighted {
+        border: 2px solid #ffffff;
+        background-image: url(image/tick.png);
+    }
+
+    #selectimagepopup span {
+        bottom: 4px;
+        color: #0f0;
+        left: -15px;
+        position: relative;
+        display: none;
+        border: none;
+    }
+
+        #selectimagepopup span.highlighted {
+            display: inline;
+        }
+</style>
+<!--  Sub Menu-->
+<!--Contect -->
+<div class="col-sm-12" style="background-color:#484848;padding:10px;display:none" id="agentheader">
+    <div class="col-sm-3"><a href="/Agent/MyQuitchet/Index" class="btn btn-default btn-sm backbtninHeader_orange">Back</a></div>
+    <div class="col-sm-5" style="text-align:center"><label style="font-size:16px;color:#fff;">Compared Homes</label></div>
+    <div class="col-sm-4"></div>
+</div>
+<div id="contactcanvuss">
+    <div class="col-sm-12" style="padding-left: 0%; padding-right: 0%">
+        <div class="col-md-9" id="comphomecontent" style="background-color: #FF5D26; height: 42px!important">
+            <div class="col-sm-12" style="padding-left: 0px; padding-right: 0px; margin-left: 7px;">
+                <div class="col-sm-4" style="text-align: left;padding-left:0;">
+                    <button id="previousBtn" type="button" style="background-color: #FF602B; color: #ffffff; border-radius: 4px!important; border: solid 1px #ffffff; font-size: 12px!important; width: 90px; height: 26px!important; margin-top: 7px!important">
+                        Previous
+                    </button>
+                </div>
+                <div class="col-sm-4" style="text-align: center; margin-top: 8px!important">
+                    <span id="span_viewName" style="font-size: 13px!important; font-weight: bold; color: #ffffff;">Main View</span>
+                </div>
+                <div class="col-sm-4" style="text-align: right">
+                    <button id="nextBtn" type="button" style="background-color: #FF602B; color: #ffffff; border-radius: 4px!important; border: solid 1px #ffffff; font-size: 12px!important; width: 90px; height: 26px!important; margin-top: 7px!important;">
+                        Next
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-12" id="viewPaneDiv" style="margin-top: 1%; margin-left: -6%;color:#676d79"></div>
+        </div>
+        <div id="CollDiv" class="col-sm-1" style="float: right; top: 41px; width: 2.5%; height: 30px; padding-right: 3px; background-color: white; margin-right: -1%; right: 26%!important; padding-left: 0px;">
+            <i class="fa fa-angle-double-right" aria-hidden="true" id="Expand" style="float: right; width: 23px; font-size: 29px !important; padding-left: 5px!important; cursor: pointer"></i>
+        </div>
+        <div class="col-md-3  col33" style="width: 27%!important; left: 1%!important" id="EditCompareViewsDiv">
+            <div class="toppannelsettings" style="padding-bottom: 11px!important; padding-top: 12px!important">
+                <span class="setinghedh1" style="font-size: 12px!important; font-weight: bold">Edit Compare Views</span>
+            </div>
+            <div class="toppannelsettings">
+                <div class="captionspace" style="line-height: 10px;">
+                    <span class="setinghedp" style="font-size: 11px!important">
+                        Re-order and/or hide each of the compared views pages.
+                    </span>
+                </div>
+                <div class="tabsettings col-sm-12" style="padding-top: 5px!important">
+                    <div class="col-sm-6" style="padding-left: 0!important"><span class="onetab" style="font-size: 10px!important;">Re-Order</span></div>
+                    <div class="col-sm-6" style="bottom: 5px; left: 15px!important">
+                        <span style="font-size: 10px!important; padding-right: 5px!important; padding-bottom: 5px!important">Hide</span>
+                        <span style="font-size: 10px!important;">show</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group" id="editCompareViews">
+                        @*
+                            <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                                <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="mainviewUpArrow" onclick="up()"></span></a>
+                                <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                                <a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="mainviewDownArrow" onclick="down()"></span></a>
+
+                                <span class="text-orange-settings" id="mainviewspan" style="font-size: 11px!important; font-weight: 600">
+                                    Main View
+                                    <span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">
+                                        <label class="switch">
+                                            <input type="checkbox" name="itemclick" value="1" id="checkboxMainView">
+                                            <div class="slider-md round"></div>
+                                        </label>
+                                    </span>
+                                </span>
+
+                            </li>
+
+                            <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                                <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="masterbedroomUpArrow" onclick="up()"></span></a>
+                                <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                                <a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="masterbedroomDownArrow" onclick="down()"></span></a>
+
+                                <span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">
+                                    Master Bedroom
+                                    <span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">
+                                        <label class="switch">
+                                            <input type="checkbox" name="itemclick" value="2" id="checkboxMasterBedroom">
+                                            <div class="slider-md round"></div>
+                                        </label>
+                                    </span>
+                                </span>
+                            </li>
+
+                            <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                                <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="masterbathroomUpArrow" onclick="up()"></span></a>
+                                <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                                <a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="masterbathroomDownArrow" onclick="down()"></span></a>
+
+                                <span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">
+                                    Master Bathroom
+                                    <span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">
+                                        <label class="switch">
+                                            <input type="checkbox" name="itemclick" value="3" id="checkboxMasterBathroom">
+                                            <div class="slider-md round"></div>
+                                        </label>
+                                    </span>
+                                </span>
+                            </li>
+
+                            <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                                <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="KitchenUpArrow" onclick="up()"></span></a>
+                                <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                                <a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="KitchenDownArrow" onclick="down()"></span></a>
+
+                                <span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">
+                                    Kitchen
+                                    <span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">
+                                        <label class="switch">
+                                            <input type="checkbox" name="itemclick" value="4" id="checkboxKitchen">
+                                            <div class="slider-md round"></div>
+                                        </label>
+                                    </span>
+                                </span>
+                            </li>
+
+                            <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                                <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="LivingRoomUpArrow" onclick="up()"></span></a>
+                                <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                                <a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="LivingRoomDownArrow" onclick="down()"></span></a>
+
+                                <span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">
+                                    Living/ Guest Room
+                                    <span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">
+                                        <label class="switch">
+                                            <input type="checkbox" name="itemclick" value="5" id="checkboxLivingRoom">
+                                            <div class="slider-md round"></div>
+                                        </label>
+                                    </span>
+                                </span>
+                            </li>
+
+                            <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">
+                                <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="BackViewUpArrow" onclick="up()"></span></a>
+                                <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                                <a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="BackViewDownArrow" onclick="down()"></span></a>
+
+                                <span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">
+                                    Back View
+                                    <span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">
+                                        <label class="switch">
+                                            <input type="checkbox" name="itemclick" value="6" id="checkboxBackView">
+                                            <div class="slider-md round"></div>
+                                        </label>
+                                    </span>
+                                </span>
+                            </li>
+
+                            <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;" id="otherinteriorindex">
+                                <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="OtherInteriorUpArrow" onclick="up()"></span></a>
+                                <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                                <a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="OtherInteriorDownArrow" onclick="down()"></span></a>
+
+                                <span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">
+                                    Other Interior
+                                    <span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">
+                                        <label class="switch">
+                                            <input type="checkbox" name="itemclick" value="7" id="checkboxOtherInterior">
+                                            <div class="slider-md round"></div>
+                                        </label>
+                                    </span>
+                                </span>
+                            </li>
+
+                            <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;" id="otherindex">
+                                <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="OtherUpArrow" onclick="up()"></span></a>
+                                <img class="hdash" src="/asset/img/hdash.svg" alt="" />
+                                <a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="OtherDownArrow" onclick="down()"></span></a>
+
+                                <span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">
+                                    Other
+                                    <span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">
+                                        <label class="switch">
+                                            <input type="checkbox" name="itemclick" value="8" id="checkboxOtherView">
+                                            <div class="slider-md round"></div>
+                                        </label>
+                                    </span>
+                                </span>
+                            </li>
+
+                            <li class="list-downer">
+                                <div class="col-sm-12" style="border-bottom: solid 2px #FF602B; margin-top: 10px!important">
+                                    &nbsp;
+                                </div>
+
+                                <div class="col-sm-12" style="text-align: center; padding-top: 12px!important">
+                                    <button type="button" class="btn btn-sm" id="btnSaveChanges" style="height: 25px!important; background-color: #FF5D26; color: #FFFFFF; border-radius: 5px!important; width: 55%!important; font-size: 11px; padding-top: 3px;">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </li>*@
+                    </ul>
+                    <div class="col-sm-12" style="border-bottom: solid 2px #FF602B; margin-top: 10px!important">
+                        &nbsp;
+                    </div>
+
+                    <div class="col-sm-12" style="text-align: center; padding-top: 12px!important">
+                        <button type="button" class="btn btn-sm" id="btnSaveChanges" style="height: 25px!important; background-color: #FF5D26; color: #FFFFFF; border-radius: 5px!important; width: 55%!important; font-size: 11px; padding-top: 3px;">
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--start full image popup -->
+<div class="popup6" id="fullphotopopup">
+    <div class="myphotospopcontainer">
+        <div class="scrollbar" id="style-3">
+            <div class="force-overflow">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-10 hover12">
+                        <figure>
+                            <img src="" width="990" height="600" alt="" id="fullimg" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="row">
+                <div class="col-md-3 hover03">
+                    <button id="backphotoBtn" type="button" class=" " style="width: 150px; height: 35px; border-radius: 2px; border: 1px solid #FF602B; background-color: #FF602B; color: white; font-weight: 500; font-size: 17px;">
+                        Back
+                    </button>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3 hover03">
+                    <button id="delphotoBtn" type="button" class=" " style="width: 150px; height: 35px; border-radius: 2px; border: 1px solid #FF602B; background-color: #FF602B; color: white; font-weight: 500; font-size: 17px;">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end ful imag popup-->
+<!-- select Image Popup -->
+<div class="modal fade" id="selectimagepopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" style="z-index: 1044; width: 50%; height: 450px!important">
+        <div class="modal-content" style="width: 100%; height: 120%; top: 44px!important; background-color: #333333; border-radius: 0!important;">
+            <div class="modal-header" style="background-color: #FF602B; color: #ffffff; text-align: center; border-bottom: 0!important">
+                <b>Select Photo</b>
+            </div>
+            <div class="modal-body" id="div_popUpBody" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; min-height: 380px; max-height: 380px!important; overflow: auto; background-color: #333333; margin: 25px 25px 0px 25px!important; padding: 0px 0px 15px 0px" id="selectPhotoDiv"></div>
+            <input type="file" id="ID_UplaodNewImage" style="display:none" onchange="readURL(this)" />
+            <div class="modal-footer" style="border-top: 0!important; padding-top: 25px!important; padding-left: 25px!important; padding-right: 25px!important">
+                <button type="button" style="background-color: gray; color: #ffffff; border-radius: 4px!important; border: 0!important; font-size: 12px!important; width: 70px; height: 28px!important; margin-top: 7px!important; float: left" data-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button" style="background-color: #FF602B; color: #ffffff; border-radius: 4px!important; border: 0!important; font-size: 12px!important; width: 70px; height: 28px!important; margin-top: 7px!important" data-dismiss="modal" id="SaveSelectedPhoto" hidden="hidden">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup3" id="afdasdf">
+    <div class="row popuporangehedr2">
+        <span>
+            <img src="/img/share2.png" width="24" height="34" alt="" />
+        </span>Select Photo
+    </div>
+    <div class="myphotospopcontainer">
+        <div class="scrollbar" id="style-3">
+            <div class="force-overflow">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <a href="#">
+                                <img src="/media/1.png" width="144" height="111" alt="" />
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/2.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/3.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/4.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/5.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/6.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/7.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/8.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/9.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/10.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/11.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/12.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/13.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/14.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/15.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/16.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/17.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/18.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/19.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/20.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="row photobox">
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/21.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/22.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/23.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/24.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-2 hover12">
+                        <figure>
+                            <img src="/media/18.png" width="144" height="111" alt="" />
+                        </figure>
+                    </div>
+                    <div class="col-md-1 "></div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2 hover03">
+                        <figure>
+                            @* <a href="#" onclick="hide('popup3')">
+                                    <img src="/img/cancel_btngray.png" width="151" height="43" alt="" />
+                                </a>*@
+                            <div class="col-md-3 hover03">
+
+                                <button id="cancelphotoBtn" type="button" class="" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                                    Cancel
+                                </button>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-2 hover03">
+                        <figure>
+                            <button id="savephotoBtn" type="button" class="" style="width: 135px; height: 40px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                                Save
+                            </button>
+                        </figure>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*//Remove Item Pop up*@
+<div class="modal fade" id="compared_homes_RemoveItem" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 18%; width: 25%;">
+        <div class="modal-content">
+            <div class="modal-body" style="text-align: center; height: 234px!important">
+                <h3 style="text-align: center; color: #f56331; line-height: 30px; margin-top: 10px">Remove Listing</h3>
+                <hr style="border-top-color:#f56331" />
+                <p>
+                    Are you sure you want to remove
+                    <br />
+                    this listing from your Compared Homes views?
+                </p>
+                <div class="col-sm-12">&nbsp;</div>
+                <button type="button" id="btn_comparedhome_NotRemoveItem" class="btn btn-sm" data-dismiss="modal" style="background-color: rgba(0,0,0,0.3); color: white; width: 120px; height: 32px!important; border-radius: 5px !important">No</button>
+                <button type="button" id="btn_comparedhome_YesRemoveItem" class="btn btn-sm" data-dismiss="modal" style="background-color: #ff5d26; color: white; width: 120px; height: 32px!important; border-radius: 5px !important">Yes</button>
+                <div class="col-sm-12" style="padding-bottom: 10px!important">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+</div>
+<canvas id="canvas" width="5" height="5"></canvas>
+<div class="dropdown-menu" id="favouriteLogin" style=" display:none; padding:20px;height:100px;width:20%;right:-25px;top:-400px; position:relative; margin-left:50%;">
+    <h1>Remove</h1>
+</div>
+<!--End select  image popup-->
+<!-- Script -->
+<script type="text/javascript">
+    function favouriteLogin(){
+        $('#favouriteLogin').css('display','block');
+    }
+    var checklist = [];
+    var unchecklist = [];
+    var orderlist = [];
+    var orderlist2 = [];
+    var getchecklist = [];
+    var j = 0;
+    var p = -1;
+    var q=1; var upflag = "0";
+    var downflag = "0";
+    var removeMLSID_Comparedhome="";
+    $(document).ready(function (e) {
+        var usertype=@UserType_ID;
+        if(usertype=="2"){
+            $("#agentheader").show();
+        }
+        else{
+            $("#agentheader").hide();
+        }
+        $('#mymenuli').addClass('active');
+        $('a[href="/Customer/ComparedHomes/Index"]').parents('li,ul').addClass('active');
+        $('#checkboxMainView,#checkboxMasterBedroom,#checkboxMasterBathroom,#checkboxKitchen,#checkboxLivingRoom,#checkboxBackView,#checkboxOtherInterior,#checkboxOtherView').attr('checked', true);
+        $("#fullphotopopup").hide();
+        $("#selectimagepopup").hide();
+        if(UserID=!"" || UserID.length>0)
+        {
+            GettingUserSaveChanges();
+        }
+        //  userorderlist();
+        //  OrderViewBonding();
+    });
+    $("#btnSaveChanges").click(function () {
+        var UserID=@PkeyUserId;
+        if(UserID=="" || UserID.length<0)
+        {
+            $('#navLogin').click();
+        }
+        else
+        {
+            checklist = [];
+            unchecklist = [];
+            orderlist = [];
+            $.each($("input[name='itemclick']:checked"), function (i, m) {
+                checklist.push($(m).attr("id"));
+            });
+            $.each($("input[name='itemclick']:not(:checked)"), function (i, n) {
+                unchecklist.push($(n).attr("id"));
+            });
+            $.each($("input[name='itemclick']"), function (i, o) {
+                orderlist.push($(o).val());
+            });
+            var obj = {};
+            obj.MAINVIEW = false;
+            obj.MASTERBEDROOM = false;
+            obj.MASTERBATHROOM = false;
+            obj.KITCHEN = false;
+            obj.Living_Great_Room = false;
+            obj.BACKVIEW = false;
+            obj.Other_Interior = false;
+            obj.OTHER = false;
+            obj.ORDER1 = "";
+            obj.ORDER2 = "";
+            obj.ORDER3 = "";
+            obj.ORDER4 = "";
+            obj.ORDER5 = "";
+            obj.ORDER6 = "";
+            obj.ORDER7 = "";
+            obj.ORDER8 = "";
+            for (var j = 0; j <= checklist.length; j++) {
+
+                if (checklist[j] == "checkboxMainView") {
+                    obj.MAINVIEW = true;
+                }
+                else if (checklist[j] == "checkboxMasterBedroom") {
+                    obj.MASTERBEDROOM = true;
+                }
+                else if (checklist[j] == "checkboxMasterBathroom") {
+                    obj.MASTERBATHROOM = true;
+                }
+                else if (checklist[j] == "checkboxKitchen") {
+                    obj.KITCHEN = true;
+                }
+                else if (checklist[j] == "checkboxLivingRoom") {
+                    obj.Living_Great_Room = true;
+                }
+                else if (checklist[j] == "checkboxBackView") {
+                    obj.BACKVIEW = true;
+                }
+                else if (checklist[j] == "checkboxOtherInterior") {
+                    obj.Other_Interior = true;
+
+                }
+                else if (checklist[j] == "checkboxOtherView") {
+                    obj.OTHER = true;
+                }
+            }
+
+            for (var l = 0; l <= orderlist.length; l++) {
+                if (l == 0) {
+                    obj.ORDER1 = orderlist[l];
+                }
+                else if (l == 1) {
+                    obj.ORDER2 = orderlist[l];
+                }
+                else if (l == 2) {
+                    obj.ORDER3 = orderlist[l];
+                }
+                else if (l == 3) {
+                    obj.ORDER4 = orderlist[l];
+                }
+                else if (l == 4) {
+                    obj.ORDER5 = orderlist[l];
+                }
+                else if (l == 5) {
+                    obj.ORDER6 = orderlist[l];
+                }
+                else if (l == 6) {
+                    obj.ORDER7 = orderlist[l];
+                }
+                else if (l == 7) {
+                    obj.ORDER8 = orderlist[l];
+                }
+            }
+            $.ajax({
+                url: "/Customer/ComparedHomes/UserSaveChanges/",
+                type: "POST",
+                dataType: "json",
+                data: { postdat: obj },
+                // data: '{postdat: ' + JSON.stringify(obj) + '}',
+
+                success: function (data) {
+                    if (data == "Sucess") {
+                    }
+                    else {
+                    }
+                },
+                error: function () {
+                }
+            });
+            location.reload();
+        }
+    });
+    //$('#nextBtn').hide();
+    $("#nextBtn").click(function () {
+        //alert(getchecklist.length)
+        if ( q<= getchecklist.length) {
+            if(q==getchecklist.length){
+                $('#nextBtn').hide ();
+                $('#previousBtn').show();
+            }
+            else{
+                $('#nextBtn').show ();
+                $('#previousBtn').show();
+            }
+            if(q==1)
+                $('#previousBtn').hide();
+            p++;
+            q++;
+            getchecklist[p];
+            bindingchecklist();
+        }
+    });
+    function up() {
+        upflag = "1";
+        downflag = "0";
+    }
+    function down() {
+        upflag = "0";
+        downflag = "1";
+    }
+    //$('ul li').on('click', function (e) {
+    $('.list-group').on('click','.list-side-setting', function(e){
+        var index = $(this).index();  // Index of clicked item
+        var temp = $(this).html();    // Contents of clicked item
+        var partner;            // The paired element
+        if (upflag == "1" && downflag == "0") {
+            partner = $(this).parent().find('li').get(index - 1);
+        }
+        if (upflag == "0" && downflag == "1") {
+            partner = $(this).parent().find('li').get(index + 1);
+        }
+        // Put this in a try/catch to not throw errors for unmatched list items
+        // (i.e. a list with 9 items, and then clicking on the 9th)
+        if (index == 0 || index == 7) {
+            if (index == 0) {
+                if (upflag == "0" && downflag == "1") {
+                    try {
+                        $(this).html(partner.innerHTML);
+                        $(partner).html(temp);
+                    } catch (e) { }
+                }
+            }
+            if (index == 7) {
+                if (upflag == "1" && downflag == "0") {
+                    try {
+                        $(this).html(partner.innerHTML);
+                        $(partner).html(temp);
+                    } catch (e) { }
+                }
+            }
+        }
+        else {
+            try {
+                $(this).html(partner.innerHTML);
+                $(partner).html(temp);
+            } catch (e) { }
+        }
+        upflag = "0";
+        downflag = "0";
+
+    });
+    $("#previousBtn").click(function (e) {
+        // $('#selectimagepopup').modal('show');
+
+        if (p >= 1) {
+            if(p==1){
+                $('#previousBtn').hide();
+                $('#nextBtn').show();
+            }
+            else{
+                $('#previousBtn').show();
+                $('#nextBtn').show();
+            }
+            q--;
+            p--;
+            getchecklist[p];
+            bindingchecklist();
+        }
+    });
+    $("#backphotoBtn").click(function (e) {
+        $("#fullphotopopup").hide();
+    });
+    $("#delphotoBtn").click(function (e) {
+        $("#fullphotopopup").hide();
+    });
+    $("#img1,#img2,#img3").click(function (e) {
+        //alert($(this).children('img').attr('src'));
+        var p = $(this).children('img').attr('src');
+        if (p == " ") {
+            $('#selectimagepopup').show();
+        }
+        else {
+            $('#fullimg').attr('src', p);
+            $("#fullphotopopup").show();
+        }
+    });
+    var flag_RightCollapse = 0;
+    $('#Expand').on('click', function () {
+
+        if (flag_RightCollapse == 0) {
+            $("#Expand").attr('class', 'fa fa-angle-double-left');
+            $("#CollDiv").animate({ 'left': '-3%' }, 'slow', function () {
+            });
+            $('#CollDiv').css('top', '2px')
+            $("#Expand").css('margin-top', '0%');
+            $("#contentgrid").css('width', '102%');
+            $("#contentgrid").css('margin-left', '2%');
+            // $("#div_editbutton").attr('class', 'col-sm-12 jtablepaddingclassafter');
+            //  $('.jtablepaddingclass').css({'padding-left':'0px','padding-right':'0px','border':'1px solid #f37b53!important','border-radius':'3px','margin-left':'-8%','margin-top': '-5%','padding-left':'0px','padding-right':'0px','border':'1px solid #f37b53!important','border-radius':'3px','margin-left':'-8%','margin-top':'-5%'  });
+            $("#btn_removequerygrid").attr('class', 'btn btn_jquerytableremoveafter');
+            $("#span_price").attr('class', 'fontjtablepriceafter');
+            $('#EditCompareViewsDiv').animate({ 'left': '25%' }, 'slow', function () {
+                $('#EditCompareViewsDiv').hide();
+                $('#EditCompareViewsDiv').css('width', '0%');
+                $('#comphomecontent').css('width', '100%');
+
+            });
+
+            flag_RightCollapse = 1;
+        }
+        else {
+
+            $('#EditCompareViewsDiv').show();
+            $("#Expand").css('margin-top', '0%');
+            $('#EditCompareViewsDiv').css('width', '27%');
+            $("#CollDiv").animate({ 'left': '-26%' }, 'slow', function () {
+            });
+            $("#contentgrid").css('width', '106%');
+            $("#contentgrid").css('margin-left', '0.5%');
+            $("#btn_removequerygrid").attr('class', 'btn btn_jquerytableremove');
+            $('#CollDiv').css('top', '41px');
+            $("#span_price").attr('fontjtableprice', '17px');
+            $('#EditCompareViewsDiv').animate({ 'left': '1%' }, 'slow', function () {
+            });
+            $("#Expand").attr('class', 'fa fa-angle-double-right');
+            $('#comphomecontent').css('width', '75%');
+            flag_RightCollapse = 0;
+            $('.jtablepaddingclass').css({ 'padding-left': '0px', 'padding-right': '0px', 'border': '1px solid #f37b53!important', 'border-radius': '3px', 'smargin-left': '-12%' });
+        }
+    });
+    $("#savephotoBtn,#cancelphotoBtn").click(function () {
+        $('#selectimagepopup').hide();
+    });
+    function contentgridView(ViewID) {
+        var sapnviewname = "";
+        var imgsrc = "";
+        if (ViewID == "1") {
+            spanviewname = "Lot Description";
+            imgsrc = "/img/lots_icon.png";
+        }
+        else if (ViewID == "2") {
+            spanviewname = "Bedroom Sizes";
+            imgsrc = "/img/bed_icon.png";
+        }
+        else if (ViewID == "3") {
+            spanviewname = "Master Bath Features";
+            imgsrc = "/img/bathtub_icon.png";
+        }
+        else if (ViewID == "4") {
+            spanviewname = "Appliances";
+            imgsrc = "/img/appliances_icon.png";
+        }
+        else if (ViewID == "5") {
+            spanviewname = "Other Room Sizes";
+            imgsrc = "/img/room_icon.png";
+        }
+        else if (ViewID == "6") {
+            spanviewname = "Exterior Features";
+            imgsrc = "/img/exterior_icon.png";
+        }
+        else if (ViewID == "7") {
+            spanviewname = "Interior Features";
+            imgsrc = "/img/fireplace_icon.png";
+        }
+        else if (ViewID == "8") {
+            spanviewname = "";
+            imgsrc = "";
+        }
+
+        var tab = $('<div style="background-color: white;overflow-y:auto;overflow-x:hidden;height:75vh;width:106%;margin-left:0.5%;" class="col-sm-12" id="contentgrid"></div>');
+        $.ajax({
+            url: "/Customer/ComparedHomes/GetComaparedPropertyDetails",
+            type: "POST",
+            dataType: "json",
+            data: { ViewID: ViewID },
+            success: function (data) {
+                data.sort(function(a, b){return a.PK_CompareHomeID - b.PK_CompareHomeID});
+                $.each(data, function (i, item) {
+                    var Row = "";
+                    var price = (item.PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+                    var Image='';
+                    if(item.PhotoPath==null || item.PhotoPath=="" || item.PhotoPath==",")// || ViewID!=1
+                    {
+                        Image="http://www.valuewalk.com/wp-content/uploads/2017/04/no-thumbnail.png";
+                    }
+                    else{
+
+                        if(item.PhotoPath.indexOf(',')>-1)
+                            Image=item.PhotoPath.split(',')[0];
+                        else
+                            Image=item.PhotoPath;
+                        }
+                    var TableId = "tab"+item.MLSID;
+                    var Div_ImageID='div_'+item.MLSID;
+                    var table = $('<table id=' + TableId + ' class="Jquerygrid" style="margin-left:0px; margin-bottom:0px; width:100%; float:left"></table>');
+                    Row = $('<tr  height="100px"></tr>');
+                    Row.append('<td class="tdjtable" style="width:25%"><div class="col-sm-12" style="background: url('+Image+'); background-size: 100% 100%;background-repeat: no-repeat; height:185px;  width:100%" id='+Div_ImageID+'></div></td>');
+                    Row.append('<td class="tdjtable" style="width:25%">' +
+                        '<div class="col-sm-12 jtablepadding"> &nbsp </div>' +
+                        '<div class="col-sm-3 jtablepadding" ><img id="ViewedIcon" class="ViewedIcon"src="/img/viewed_greenpin.png" /></div>' +
+                        '<div class="col-sm-9 jtablepaddingfont" style="border-right:1px solid #e2a28c;"><span class="fontjtableprice" style="margin-left:-8%;">$' + price + '</span></div>' +
+                         '<div class="col-sm-12 jtablepadding" style="border-right:1px solid #e2a28c;margin-top:-5%;"> &nbsp </div>' +
+                         '<div class="col-sm-12 jtablepadding" style="border-right:1px solid #e2a28c;"><span>' + item.HOMEADDRESS + '</span> </div>' +
+                         '<div class="col-sm-12 jtablepadding" style="border-right:1px solid #e2a28c;"> &nbsp </div>' +
+                         '<div class="col-sm-12 jtablepadding" style="border-right:1px solid #e2a28c;"> &nbsp </div>' +
+                          '<div name="div_editphoto" class="col-sm-12 jtablepaddingclass"> <button class="btn btn_jquerytable" id="edit_photos_comparedhome" onclick="editphotos(\'' + item.MLSID + '\',\'' + item.PK_CompareHomeID + '\')">Edit Photo</button> </div>' +
+                    '</td>');
+                    var homestuff1 = item.HOMESTUFF;
+                    var homestuff = "";
+                    $.each(homestuff1.split(','), function (k, home) {
+                        if (home != "") {
+                            //$.each(home.split(':'), function (l, hometext) {
+                            //    if (hometext != "") {
+                            if (home.indexOf(":") >= 0){
+                                homestuff= homestuff+'<br /><img src="/img/bulletDot.png" />&nbsp '+
+                                       '<span style="color:#FF5D26">'+home.split(':')[0]+':</span> &nbsp '+home.split(':')[1];
+                            }
+                            else{
+                                homestuff = homestuff + '<br /><img src="/img/bulletDot.png" style="margin-top:-2%;" />&nbsp' + home;
+                            }
+                        }
+                    });
+                    var homestuff3 = '<img src="/img/bulletDot.png" />' + homestuff;
+                    Row.append('<td class="tdjtable" style="width:35%">' +
+                        '<div class="col-sm-3 jtablepadding" ><img id="Iconfeature" class="IconFeature" src="'+imgsrc+'" /></div>' +
+                        '<div class="col-sm-9 jtablepaddingfont2"><span="span_view_feature" style="font-size:12px;">' + spanviewname + '</span></div>' +
+                        '<div class="col-sm-12 jtablepadding" style="height:130px;">' +
+                        '<div id="div_homestuff" class="col-sm-12 jtablepadding" style="height:80px;overflow-x:hidden;padding-left:0;">'+ homestuff +
+                        '</div>' +
+                         '<div class="col-sm-12 jtablepadding"> &nbsp </div>' +
+                         '<div class="col-sm-12 jtablepadding"> &nbsp </div>' +
+                        '<div class="col-sm-12" style="margin-left:8%;"> <button class="btn btn_jquerytableremove" style="width:60%;" onclick="deletemls('+item.MLSID+')">Remove</button> </div>' +
+                        '</td>');
+                    // Row.append('</tr>');
+                    table.append(Row);
+                    var trow = $('<tr>');
+                    trow.append('<div class="col-sm-12" style="padding-bottom:1%;">' +
+                         //'<button class="btn btn_jquerytableremove" style="width:40%;" onclick="deletemls('+item.MLSID+')">Remove</button>' +
+                        '<hr style="margin-top:1%;margin-bottom:0;width:400%;border-color:#ff6937;border-width:thin;" />' +
+                        '</div>');
+                    trow.append('</tr>');
+                    table.append(trow);
+                    tab.append(table);
+                });
+                $("#viewPaneDiv").html(tab);
+            }
+        })
+    };
+    function GettingUserSaveChanges() {
+
+        $.ajax({
+            url: "/Customer/ComparedHomes/GetUserSaveChangesDetails",
+            type: "GET",
+            dataType: "json",
+            data: {},
+            success: function (data) {
+                if(data.length==0)
+                {
+                    OrderViewBonding(data);
+                    $('#checkboxMainView').attr('checked', true);
+                    getchecklist.push($('#checkboxMainView').attr("id"));
+                    $('#checkboxMasterBedroom').attr('checked', true);
+                    getchecklist.push($('#checkboxMasterBedroom').attr("id"));
+                    $('#checkboxMasterBathroom').attr('checked', true);
+                    getchecklist.push($('#checkboxMasterBathroom').attr("id"));
+                    $('#checkboxKitchen').attr('checked', true);
+                    getchecklist.push($('#checkboxKitchen').attr("id"));
+                    $('#checkboxLivingRoom').attr('checked', true);
+                    getchecklist.push($('#checkboxLivingRoom').attr("id"));
+                    $('#checkboxBackView').attr('checked', true);
+                    getchecklist.push($('#checkboxBackView').attr("id"));
+                    $('#checkboxOtherInterior').attr('checked', true);
+                    getchecklist.push($('#checkboxOtherInterior').attr("id"));
+                    $('#checkboxOtherView').attr('checked', true);
+                    getchecklist.push($('#checkboxOtherView').attr("id"));
+                }
+                else{
+                    orderlist2.push(data[0].ORDER1);
+                    orderlist2.push(data[0].ORDER2);
+                    orderlist2.push(data[0].ORDER3);
+                    orderlist2.push(data[0].ORDER4);
+                    orderlist2.push(data[0].ORDER5);
+                    orderlist2.push(data[0].ORDER6);
+                    orderlist2.push(data[0].ORDER7);
+                    orderlist2.push(data[0].ORDER8);
+                    OrderViewBonding(data);
+                    for (var l = 0; l <= orderlist2.length; l++) {
+                        if(orderlist2[l]==1 ||orderlist2[l]=='Main View' ||orderlist2[l]=='MainView')
+                        {
+                            if (data[0].MAINVIEW == true) {
+                                $('#checkboxMainView').attr('checked', true);
+                                getchecklist.push($('#checkboxMainView').attr("id"));
+                            }
+                            else if (data[0].MAINVIEW == false){
+                                $('#checkboxMainView').attr('checked', false);
+                            }
+
+                        }
+                        else if(orderlist2[l]==2 || orderlist2[l]=='Master Bedroom' ||orderlist2[l]=='MasterBedroom')
+                        {
+                            if (data[0].MASTERBEDROOM == true) {
+                                $('#checkboxMasterBedroom').attr('checked', true);
+                                getchecklist.push($('#checkboxMasterBedroom').attr("id"));
+                            }
+                            else if(data[0].MASTERBEDROOM == false){
+                                $('#checkboxMasterBedroom').attr('checked', false);
+                            }
+
+                        }
+                        else if(orderlist2[l]==3 || orderlist2[l]=='Master Bathroom' ||orderlist2[l]=='MasterBathroom')
+                        {
+                            if (data[0].MASTERBATHROOM == true) {
+                                $('#checkboxMasterBathroom').attr('checked', true);
+                                getchecklist.push($('#checkboxMasterBathroom').attr("id"));
+                            }
+                            else if(data[0].MASTERBATHROOM == false) {
+                                $('#checkboxMasterBathroom').attr('checked', false);
+                            }
+
+                        }
+                        else if(orderlist2[l]==4 || orderlist2[l]=='Kitchen' ||orderlist2[l]=='Kitchen')
+                        {
+                            if (data[0].KITCHEN == true) {
+                                $('#checkboxKitchen').attr('checked', true);
+                                getchecklist.push($('#checkboxKitchen').attr("id"));
+                            }
+                            else if (data[0].KITCHEN == false) {
+                                $('#checkboxKitchen').attr('checked', false);
+                            }
+
+                        }
+                        else if(orderlist2[l]==5 || orderlist2[l]=='Living/Great Room'  ||orderlist2[l]=='Living_Great_Room')
+                        {
+                            if (data[0].Living_Great_Room == true) {
+                                $('#checkboxLivingRoom').attr('checked', true);
+                                getchecklist.push($('#checkboxLivingRoom').attr("id"));
+                            }
+                            else if(data[0].Living_Great_Room == false) {
+                                $('#checkboxLivingRoom').attr('checked', false);
+                            }
+
+                        }
+                        else if(orderlist2[l]==6 || orderlist2[l]=='Back View' ||orderlist2[l]=='BackView')
+                        {
+                            if (data[0].BACKVIEW == true) {
+                                $('#checkboxBackView').attr('checked', true);
+                                getchecklist.push($('#checkboxBackView').attr("id"));
+                            }
+                            else if(data[0].BACKVIEW == false) {
+                                $('#checkboxBackView').attr('checked', false);
+                            }
+
+                        }
+                        else if(orderlist2[l]==7 || orderlist2[l]=='Other Interior' ||orderlist2[l]=='Other_Interior')
+                        {
+                            if (data[0].Other_Interior == true) {
+                                $('#checkboxOtherInterior').attr('checked', true);
+                                getchecklist.push($('#checkboxOtherInterior').attr("id"));
+                            }
+                            else if (data[0].Other_Interior == false) {
+                                $('#checkboxOtherInterior').attr('checked', false);
+                            }
+
+                        }
+                        else if(orderlist2[l]==8 || orderlist2[l]=='Other')
+                        {
+                            if (data[0].OTHER == true) {
+                                $('#checkboxOtherView').attr('checked', true);
+                                getchecklist.push($('#checkboxOtherView').attr("id"));
+                            }
+                            else if (data[0].OTHER == false) {
+                                $('#checkboxOtherView').attr('checked', false);
+                            }
+
+                        }
+                    }
+                    //alert(getchecklist.length)
+                }
+                setTimeout($("#nextBtn")[0].click(),5000)
+
+            }
+        });
+    };
+    function bindingchecklist() {
+        if (p <= getchecklist.length) {
+            //for (var i = 0; i < checklist.length i)
+            if (getchecklist[p] == "checkboxMainView") {
+                var ViewID = "1";
+                contentgridView(ViewID);
+                $('#span_viewName').html("Main View");
+            }
+            else if (getchecklist[p] == "checkboxMasterBedroom") {
+                var ViewID = "2";
+                contentgridView(ViewID);
+                $('#span_viewName').html("MasterBedroom");
+            }
+            else if (getchecklist[p] == "checkboxMasterBathroom") {
+                var ViewID = "3";
+                contentgridView(ViewID);
+                $('#span_viewName').html("MasterBathroom");
+            }
+            else if (getchecklist[p] == "checkboxKitchen") {
+                var ViewID = "4";
+                contentgridView(ViewID);
+                $('#span_viewName').html("Kitchen");
+            }
+            else if (getchecklist[p] == "checkboxLivingRoom") {
+                var ViewID = "5";
+                contentgridView(ViewID);
+                $('#span_viewName').html("LivingRoom");
+            }
+            else if (getchecklist[p] == "checkboxBackView") {
+                var ViewID = "6";
+                contentgridView(ViewID);
+                $('#span_viewName').html("Back View");
+            }
+            else if (getchecklist[p] == "checkboxOtherInterior") {
+                var ViewID = "7";
+                contentgridView(ViewID);
+                $('#span_viewName').html("Other Interior");
+            }
+            else if (getchecklist[p] == "checkboxOtherView") {
+                var ViewID = "8";
+                contentgridView(ViewID);
+                $('#span_viewName').html("Other");
+            }
+        }
+    };
+    function deletemls(MLSID) {
+        $('#compared_homes_RemoveItem').modal("show");
+        removeMLSID_Comparedhome=MLSID;
+    }
+    var PK_CompareHome_ID=""; var MLS_ID='';  var photo_Location=[];
+    function editphotos(MlsID,PK_CompareHomeID) {
+        $('#div_popUpBody').html('');
+        MLS_ID=MlsID;
+        PK_CompareHome_ID=PK_CompareHomeID;
+        photo_Location=[];
+        ImageURl='';  IsSelectedImage="";  UPSelectImage='';
+        $.ajax({
+            url: "/Customer/SearchFilter/GetFullDetails/",
+            type: "POST",
+            dataType: "json",
+            data: { MLSID: MlsID },
+            success: function (data) {
+                $('#SaveSelectedPhoto').hide();
+                $('#div_popUpBody').html('');
+                $('#div_popUpBody').append('<a href="#" style="float:left"><img src="/img/orangeboximge.png" width="125" height="80" alt="" onclick="UploadNewImage()" style="padding: 2px 2px 2px 2px; margin-top: 5px;" /></a>');
+                if(data.length>0){
+
+                    if (data[0].PHOTOLOCATION.indexOf(',') > -1) {
+                        photo_Location=data[0].PHOTOLOCATION.split(',');
+                    }
+                    else
+                    {
+                        photo_Location[0]=data[0].PHOTOLOCATION;
+                    }
+                    for(var i=0;i<photo_Location.length;i++)
+                    {
+                        var SpanID="POPUPSpan_"+i;
+                        var Div_ImageID="ImageDIvID"+i;
+                        var PhotoBinding=' <a href="#" style="text-decoration:solid"> <div class="col-sm-12" style="background: url('+photo_Location[i]+'); background-size: 100% 100%;background-repeat: no-repeat; height:76px;  width:120px; margin-top:8px;margin-bottom: 3px;margin-left: 3px;margin-right: 3px" id='+Div_ImageID+'   onclick="return PhotoClick(\'' + photo_Location[i] + '\',\'' + MLS_ID + '\' ,\'' + i + '\' )"  id='+i+' ></div> </a>';  //<img src='+photo_Location[i]+' width="110" height="80" alt="" style="position: relative;padding: 2px 2px 2px 2px; margin-top: 5px;"    onclick="return PhotoClick(\'' + photo_Location[i] + '\',\'' + MLS_ID + '\' ,\'' + i + '\' )"  id='+i+' /><span class="tickmark" id='+SpanID+'>&#10004;</span>
+                        $('#div_popUpBody').append(PhotoBinding);
+                    }
+                }
+            },
+            error: function () {
+            }
+        });
+        $('#selectimagepopup').modal('show');
+    }
+    var ImageURl='';
+    var checked=0; var IID=0;
+    var IsSelectedImage="";
+    var UPSelectImage='';
+    function PhotoClick(URL,MLS_ID,i)
+    {
+        var DD= "ImageDIvID"+i; var UIO=''
+        for(var x=0;x<photo_Location.length;x++)
+        {
+            DD= "ImageDIvID"+x;
+            $('#'+DD).css('opacity',1);
+            $('#'+DD).html('');
+            $('#SaveSelectedPhoto').hide();
+        }
+        for(var k=0;k<UpImages;k++)
+        {
+            UIO="UPIG"+k;
+            $('#'+UIO).css('opacity',1);
+            $('#SaveSelectedPhoto').hide();
+        }
+        var Image='<img src="/img/imagecheckicons.png"  style="padding-left:0px;margin-top: -9px;"/>';
+        var DivID= "ImageDIvID"+i;
+        if(i.substr(0,4)=='UPIG')
+        {
+            if(UPSelectImage!=i)
+            {
+                $('#'+i).css('opacity',0.5);
+                UPSelectImage=i;
+                IsSelectedImage='';
+                $('#SaveSelectedPhoto').show();
+            }
+            else
+            {
+                $('#'+i).css('opacity',1);
+                UPSelectImage='';
+                IsSelectedImage='';
+                $('#SaveSelectedPhoto').hide();
+            }
+        }
+        else
+        {
+            for(var x=0;x<photo_Location.length;x++)
+            {
+                DivID= "ImageDIvID"+x;
+                $('#'+DivID).css('opacity',1);
+                $('#'+DivID).html('');
+            }
+            DivID= "ImageDIvID"+i;
+            if(IsSelectedImage==DivID) {
+                IsSelectedImage='';
+                $('#'+DivID).css('opacity',1);
+                $('#'+DivID).html('');
+                $('#SaveSelectedPhoto').hide();
+                UPSelectImage='';
+            }
+            else{
+                $('#'+DivID).css('opacity',0.5);
+                $('#'+DivID).html(Image);
+                IsSelectedImage=DivID;
+                $('#SaveSelectedPhoto').show();
+                UPSelectImage='';
+            }
+        }
+        //if(i.substr(0,3)=='UPI')
+        //{
+        //    if(IsSelectedImage.length==0)
+        //    {
+        //        $('#'+i).css('opacity',0.5);
+        //        $('#SaveSelectedPhoto').show();
+        //        IsSelectedImage=i;
+        //    }
+        //    else{
+        //        $('#'+i).css('opacity',1);
+        //        $('#SaveSelectedPhoto').hide();
+        //    }
+        //}
+        //else{
+        //    var DivID= "ImageDIvID"+i;
+        //    for(var x=0;x<photo_Location.length;x++)
+        //    {
+        //        DivID= "ImageDIvID"+x;
+        //        $('#'+DivID).css('opacity',1);
+        //        $('#'+DivID).html('');
+        //    }
+        //    DivID= "ImageDIvID"+i;
+        //    if(IsSelectedImage==DivID) {
+        //        IsSelectedImage='';
+        //        $('#'+DivID).css('opacity',1);
+        //        $('#'+DivID).html('');
+        //        $('#SaveSelectedPhoto').hide();
+        //    }
+        //    else{
+        //        $('#'+DivID).css('opacity',0.5);
+        //        $('#'+DivID).html(Image);
+        //        IsSelectedImage=DivID;
+        //        $('#SaveSelectedPhoto').show();
+        //    }
+        //}
+        ImageURl=URL;
+    }
+    $('#SaveSelectedPhoto').click(function(){
+
+        var DivID='div_'+MLS_ID;
+        $('#'+DivID).css('background-image','url('+ImageURl +')');
+        var ViewID="";
+        if (p <= getchecklist.length) {
+            if (getchecklist[p] == "checkboxMainView") {
+                ViewID = "1";
+            }
+            else if (getchecklist[p] == "checkboxMasterBedroom") {
+                ViewID = "2";
+            }
+            else if (getchecklist[p] == "checkboxMasterBathroom") {
+                ViewID = "3";
+            }
+            else if (getchecklist[p] == "checkboxKitchen") {
+                ViewID = "4";
+            }
+            else if (getchecklist[p] == "checkboxLivingRoom") {
+                ViewID = "5";
+            }
+            else if (getchecklist[p] == "checkboxBackView") {
+                ViewID = "6";
+
+            }
+            else if (getchecklist[p] == "checkboxOtherInterior") {
+                ViewID = "7";
+            }
+            else if (getchecklist[p] == "checkboxOtherView") {
+                ViewID = "8";
+            }
+        }
+        var PhotoURL;var MlsidPhotoPath='';
+        if(Base64String!="")
+        {
+            PhotoURL==Base64String;
+            $('#'+DivID).css('background-image','url('+base64imageurl+')');
+            MlsidPhotoPath='';
+        }
+        else{
+            $('#'+DivID).css('background-image','url('+ImageURl +')');
+            MlsidPhotoPath=ImageURl;
+            Base64String='';
+        }
+        $.ajax({
+            url: "/Customer/ComparedHomes/PostuplaodedPhoto/",
+            type: "POST",
+            dataType: "json",
+            data: {PK_CompareHome_ID:PK_CompareHome_ID, MLSID: MLS_ID,ViewID:ViewID,Photo:Base64String,MlsidPhotoPath:MlsidPhotoPath},
+            success: function (data) {
+
+            },
+            error: function () {
+            }
+        });
+        Base64String='';MlsidPhotoPath='';
+    });
+    function convertFileToDataURLviaFileReader(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                callback(reader.result);
+            }
+            reader.readAsDataURL(xhr.response);
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+    }
+    function UploadNewImage()
+    {
+        $('#ID_UplaodNewImage').click();
+    }
+    var Base64String=''; var base64imageurl=''; var UpImages=0;
+    function readURL(input) {
+        var NewPhoto="";
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var UPID="UPIG"+parseInt(parseInt(UpImages));
+                var SpanID="SPUP_"+parseInt(parseInt(UpImages));
+                UpImages=UpImages+1;
+                NewPhoto='<a href="#" style="text-decoration:solid"><img src='+e.target.result+' width="120" height="80" alt="" style="position: relative;padding: 2px 2px 2px 2px; margin-top: 5px;"    onclick="return PhotoClick(\'' + e.target.result + '\',\'' + MLS_ID + '\' ,\'' +UPID + '\' )"  id='+UPID+' /><span class="tickmark" id='+SpanID+'>&#10004;</span></a>';
+                //NewPhoto=='<a href="#" style="text-decoration:solid"><div class="col-sm-12" style="background: url('+e.target.result+'); background-size: 100% 100%;background-repeat: no-repeat; height:80px;  width:120;margin: 3px;"   onclick="return PhotoClick(\'' +e.target.result+ '\',\'' + MLS_ID + '\' ,\'' + UPID + '\' )"  id='+UPID+' ></div> </a>';
+                $('#div_popUpBody').append(NewPhoto);
+                base64imageurl=e.target.result;
+                Base64String=(e.target.result).split(',')[1];
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $('#btn_comparedhome_YesRemoveItem').click(function(){
+        //var RMLSID=removeMLSID_Comparedhome;
+        Compareitemremove(removeMLSID_Comparedhome)
+    });
+    function Compareitemremove(RMLSID){
+        $.ajax({
+            url: "/Customer/ComparedHomes/DeleteMLSID/",
+            type: "POST",
+            dataType: "json",
+            data: { MLSID: RMLSID },
+            success: function (data) {
+                if (data == "Sucess") {
+                }
+                else {
+                }
+            },
+            error: function () {
+            }
+        });
+        bindingchecklist();
+        //location.reload();
+    }
+    var orederlistbind=[];
+    function OrderViewBonding(data){
+        var tab = $('<div class="col-sm-12" style="padding-left:0px;padding-right:0px;"></div>');
+        var MainView=(' <li class="list-side-setting" style="height: auto; padding-top: 7px; padding-bottom: 7px;">'+
+              '  <a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="mainviewUpArrow" onclick="up()"></span></a>'+
+                '<img class="hdash" src="/asset/img/hdash.svg" alt="" />'+
+              ' <a href="#" class="link" style="padding-left: 5px;">'+
+              '<span class="glyphicon glyphicon-arrow-down huparrow" id="mainviewDownArrow" onclick="down()"></span></a>'+
+                '<span class="text-orange-settings" id="mainviewspan" style="font-size: 11px!important; font-weight: 600">'+
+                    'Main View'+
+                    '<span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">'+
+                        '<label class="switch">'+
+                            '<input type="checkbox" name="itemclick" value="1" id="checkboxMainView">'+
+                            '<div class="slider-md round"></div>'+
+                        '</label>'+
+                    '</span>'+
+                '</span>'+
+            '</li>');
+
+        var MasterBedRoom=('<li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">'+
+                                     '<a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="masterbedroomUpArrow" onclick="up()"></span></a>'+
+                                     '<img class="hdash" src="/asset/img/hdash.svg" alt="" />'+
+                                     '<a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="masterbedroomDownArrow" onclick="down()"></span></a>'+
+                                        '<span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">'+
+                                         'Master Bedroom'+
+                                         '<span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">'+
+                                             '<label class="switch">'+
+                                                 '<input type="checkbox" name="itemclick" value="2" id="checkboxMasterBedroom">'+
+                                                 '<div class="slider-md round"></div>'+
+                                             '</label>'+
+                                         '</span>'+
+                                     '</span>'+
+                                 '</li>');
+
+        var MasterBathRoom=('<li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">'+
+                                        '<a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="masterbathroomUpArrow" onclick="up()"></span></a>'+
+                                        '<img class="hdash" src="/asset/img/hdash.svg" alt="" />'+
+                                        '<a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="masterbathroomDownArrow" onclick="down()"></span></a>'+
+                                        '<span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">'+
+                                            'Master Bathroom'+
+                                            '<span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">'+
+                                                '<label class="switch">'+
+                                                    '<input type="checkbox" name="itemclick" value="3" id="checkboxMasterBathroom">'+
+                                                    '<div class="slider-md round"></div>'+
+                                                '</label>'+
+                                            '</span>'+
+                                        '</span>'+
+                                    '</li>');
+
+        var Kitchen=(' <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">'+
+                                    '<a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="KitchenUpArrow" onclick="up()"></span></a>'+
+                                    '<img class="hdash" src="/asset/img/hdash.svg" alt="" />'+
+                                    '<a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="KitchenDownArrow" onclick="down()"></span></a>'+
+                                    '<span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">'+
+                                        'Kitchen'+
+                                        '<span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">'+
+                                            '<label class="switch">'+
+                                                '<input type="checkbox" name="itemclick" value="4" id="checkboxKitchen">'+
+                                                '<div class="slider-md round"></div>'+
+                                            '</label>'+
+                                        '</span>'+
+                                    '</span>'+
+                                '</li>');
+
+        var LivingRoom=(' <li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">'+
+                                    '<a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="LivingRoomUpArrow" onclick="up()"></span></a>'+
+                                    '<img class="hdash" src="/asset/img/hdash.svg" alt="" />'+
+                                    '<a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="LivingRoomDownArrow" onclick="down()"></span></a>'+
+                                    '<span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">'+
+                                        'Living/ Guest Room'+
+                                        '<span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">'+
+                                            '<label class="switch">'+
+                                                '<input type="checkbox" name="itemclick" value="5" id="checkboxLivingRoom">'+
+                                                '<div class="slider-md round"></div>'+
+                                            '</label>'+
+                                        '</span>'+
+                                    '</span>'+
+                                '</li>');
+
+        var BackView=('<li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;">'+
+                                    '<a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="BackViewUpArrow" onclick="up()"></span></a>'+
+                                    '<img class="hdash" src="/asset/img/hdash.svg" alt="" />'+
+                                    '<a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="BackViewDownArrow" onclick="down()"></span></a>'+
+                                    '<span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">'+
+                                        'Back View'+
+                                        '<span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">'+
+                                            '<label class="switch">'+
+                                                '<input type="checkbox" name="itemclick" value="6" id="checkboxBackView">'+
+                                                '<div class="slider-md round"></div>'+
+                                            '</label>'+
+                                        '</span>'+
+                                    '</span>'+
+                                '</li>');
+
+        var OtherInterior=('<li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;" id="otherinteriorindex">'+
+                                    '<a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="OtherInteriorUpArrow" onclick="up()"></span></a>'+
+                                    '<img class="hdash" src="/asset/img/hdash.svg" alt="" />'+
+                                    '<a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="OtherInteriorDownArrow" onclick="down()"></span></a>'+
+                                    '<span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">'+
+                                        'Other Interior'+
+                                        '<span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">'+
+                                            '<label class="switch">'+
+                                                '<input type="checkbox" name="itemclick" value="7" id="checkboxOtherInterior">'+
+                                                '<div class="slider-md round"></div>'+
+                                            '</label>'+
+                                        '</span>'+
+                                    '</span>'+
+                                '</li>');
+
+        var Other=('<li class="list-side-setting" style="height: 35px; padding-top: 7px; padding-bottom: 7px;" id="otherindex">'+
+                                    '<a href="#" class="link"><span class="glyphicon glyphicon-arrow-up huparrow" id="OtherUpArrow" onclick="up()"></span></a>'+
+                                    '<img class="hdash" src="/asset/img/hdash.svg" alt="" />'+
+                                    '<a href="#" class="link" style="padding-left: 5px;"><span class="glyphicon glyphicon-arrow-down huparrow" id="OtherDownArrow" onclick="down()"></span></a>'+
+                                    '<span class="text-orange-settings" style="font-size: 11px!important; font-weight: 600">'+
+                                        'Other'+
+                                        '<span class="togglebutton togglefloat" style="margin-left: 0!important; margin-right: 5px!important">'+
+                                            '<label class="switch">'+
+                                                '<input type="checkbox" name="itemclick" value="8" id="checkboxOtherView">'+
+                                                '<div class="slider-md round"></div>'+
+                                            '</label>'+
+                                        '</span>'+
+                                    '</span>'+
+                                '</li>');
+        if(data.length==0)
+        {
+            tab.append(MainView);
+            tab.append(MasterBedRoom);
+            tab.append(MasterBathRoom);
+            tab.append(Kitchen);
+            tab.append(LivingRoom);
+            tab.append(BackView);
+            tab.append(OtherInterior);
+            tab.append(Other);
+        }
+        else
+        {
+            for (var l = 0; l <= orderlist2.length; l++) {
+                if(orderlist2[l]==1 ||orderlist2[l]=='Main View' ||orderlist2[l]=='MainView')
+                {
+                    tab.append(MainView);
+                }
+                else if(orderlist2[l]==2 ||orderlist2[l]=='Master Bedroom' ||orderlist2[l]=='MasterBedroom')
+                {
+                    tab.append(MasterBedRoom);
+                }
+                else if(orderlist2[l]==3 ||orderlist2[l]=='Master Bathroom' ||orderlist2[l]=='MasterBathroom')
+                {
+                    tab.append(MasterBathRoom);
+                }
+                else if(orderlist2[l]==4 ||orderlist2[l]=='Kitchen' ||orderlist2[l]=='Kitchen')
+                {
+                    tab.append(Kitchen);
+                }
+                else if(orderlist2[l]==5 ||orderlist2[l]=='Living/Great Room' ||orderlist2[l]=='Living_Great_Room')
+                {
+                    tab.append(LivingRoom);
+                }
+                else if(orderlist2[l]==6 ||orderlist2[l]=='Back View' ||orderlist2[l]=='BackView')
+                {
+                    tab.append(BackView);
+                }
+                else if(orderlist2[l]==7 ||orderlist2[l]=='Other Interior' ||orderlist2[l]=='Other_Interior')
+                {
+                    tab.append(OtherInterior);
+                }
+                else if(orderlist2[l]==8 ||orderlist2[l]=='Other')
+                {
+                    tab.append(Other);
+                }
+            }
+        }
+        $("#editCompareViews").html(tab);
+    }
+</script>

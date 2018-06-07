@@ -1,0 +1,315 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+<link href="~/Content/Agentprofile.css" rel="stylesheet" />
+<div class="col-sm-12" style="background-color: gray;padding: 10px;color: white;text-align: center;">
+    <span style="text-align: center;font-size:16px;">
+        Agent Profile
+    </span>
+    <span style="text-align: right;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </span>
+</div>
+<div class="col-sm-12" style="background-color:#59294C;color:white;padding:10px">
+    <div class="col-sm-1" style="padding-right:0">
+        <img src="/asset_contacts/img/bob1.png" class="img-circle img-responsive" alt="">
+    </div>
+    <div class="col-sm-6" style="display:table-cell;vertical-align:middle;text-align:left;padding:0">
+        <div class="col-sm-12"><label id="agentname" style="font-size:17px;">Bob Morgan</label></div>
+        <div class="col-sm-12"><label id="agentcompany">ABC Reality</label></div>
+    </div>
+    <div class="col-sm-5" style="text-align:right;display:table-cell;vertical-align:middle;padding-top:7px;">
+        <a href="#" style="padding:10px">
+            <img src="/asset_contacts/img/Phoneicon_MyAgent_MP.png" alt="Call Agent" class="">
+        </a>
+        <a href="#" style="padding:10px"><img src="/asset_contacts/img/chat_iconMyAgent_MP.png" alt="Chat with Agent" class=""></a>
+        <a href="#" class="btn btn-default btn-sm" style="color: #e0d6d6;background-color: transparent;border-color: #ccc;">
+            <i class="fa fa-share-alt"></i>&nbsp;&nbsp;Share
+        </a>
+
+    </div>
+</div>
+<div class="col-sm-12" style="background-color:#ff5d26;font-size:15px">
+    <ul id="tabs-demo2" class="nav nav-tabs nav-tabs-v1" role="tablist" style="margin-top: 1%;margin-left: 18%;">
+        <li role="presentation" class="active">
+            <a href="#tabs-demo2-area1" id="tabs-demo2-1" role="tab" aria-controls="tabs-demo2-area1" data-toggle="tab">
+                <span class="steptabsround"></span>About
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#tabs-demo2-area2" id="tabs-demo2-2" role="tab" aria-controls="tabs-demo2-area2" data-toggle="tab">
+                <span class="steptabsround"></span>Active Listing
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#tabs-demo2-area3" id="tabs-demo2-3" role="tab" aria-controls="tabs-demo2-area3" data-toggle="tab">
+                <span class="steptabsround"></span>Recent Sales
+            </a>
+        </li>
+    </ul>
+
+</div>
+<div id="tabsDemo2Content" class="tab-content tab-content-v1 col-md-12" style="background-color: #fff;min-height:69vh;max-height:69vh;overflow-y:auto">
+    <div role="tabpanel" class="tab-pane fade active in tabcontent1" id="tabs-demo2-area1">
+        <div class="col-md-12">&nbsp;</div>
+        <div class="col-md-12" style="text-align:center;font-size:15px;font-weight:bold">
+            <button id="btnbuyer" class="buyer">Buyer Agent</button>&nbsp;&nbsp;
+            <button id="btnlisting" class="listing">Listing Agent</button>
+        </div>
+        <div class="col-sm-12" style="padding:15px">
+            <label for="inputEmail3" class="control-label" style="color:#FF6937 !important;font-size:15px;">About</label>
+            <div class="col-md-12 about" id="SummaryDiv">
+                <label class="control-label" for="exampleInputEmail1" id="summarycontent">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio
+                    doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio
+                    doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.
+                </label>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-md-6" style="padding-left:0;text-align:left; ">
+                    <label for="inputEmail3" style="color: #FF6937 !important;font-size:15px;">Experience</label><br />
+                    <label for="inputEmail3" style="">5 Years</label>
+                    <span>&nbsp;</span>
+                    <div class="col-sm-12">&nbsp;</div>
+                    <br />
+                    <label for="inputEmail3" class="control-label" style="color: #FF6937 !important;font-size:15px;">Areas Served</label>
+                    <div class="row">
+                        <div class="col-md-6" style="padding-left:0;text-align:left;">
+                            <img src="/img/bulletDot.png" style="margin-bottom:1px;" /> &nbsp; <span>Greenville,SC</span><br />
+                        </div>
+                        <div class="col-md-6" style="padding-left:0;text-align:left;">
+                            <img src="/img/bulletDot.png" style="margin-bottom:1px;" /> &nbsp;<span>Anderson,SC</span><br />
+                        </div>
+                        <div class="col-md-6" style="padding-left:0;text-align:left;">
+                            <img src="/img/bulletDot.png" style="margin-bottom:1px;" /> &nbsp; <span>Spantanburg,SC</span><br />
+                        </div>
+                        <div class="col-md-6" style="padding-left:0;text-align:left;">
+                            <img src="/img/bulletDot.png" style="margin-bottom:1px;" /> &nbsp;<span>Greer,SC</span><br />
+                        </div>
+                    </div>
+                    <div class="col-sm-12">&nbsp;</div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button id="agentweb" class="btn agentwebs">Agent Website</button>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-md-6" style="padding-right:0;">
+                    <label for="inputEmail3" class="control-label" style="width: 100%;text-align:left; color: #FF6937 !important;font-size:15px;">Testimonals</label>
+                    <section id="carousel">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-12 col-md-offset-2" style="padding-right:0;padding-left:0;">
+                                    <div class="quote" style="display:none;"><i class="fa fa-quote-left fa-4x"></i></div>
+                                    <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
+                                        <!-- Carousel indicators -->
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#fade-quote-carousel" data-slide-to="0"></li>
+                                            <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
+                                            <li data-target="#fade-quote-carousel" data-slide-to="2" class="active"></li>
+                                            <li data-target="#fade-quote-carousel" data-slide-to="3"></li>
+                                            <li data-target="#fade-quote-carousel" data-slide-to="4"></li>
+                                            <li data-target="#fade-quote-carousel" data-slide-to="5"></li>
+                                        </ol>
+                                        <!-- Carousel items -->
+                                        <div class="carousel-inner">
+                                            <div class="item">
+                                                <blockquote>
+                                                    <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                </blockquote>
+                                            </div>
+                                            <div class="item">
+                                                <blockquote>
+                                                    <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                </blockquote>
+                                            </div>
+                                            <div class="active item">
+                                                <blockquote>
+                                                    <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                </blockquote>
+                                            </div>
+                                            <div class="item">
+                                                <blockquote>
+                                                    <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                </blockquote>
+                                            </div>
+                                            <div class="item">
+                                                <blockquote>
+                                                    <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                </blockquote>
+
+                                            </div>
+                                            <div class="item">
+                                                <blockquote>
+                                                    <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                                </blockquote>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                    <div class="col-sm-12" style="padding-right:0;">
+                        <div class="col-sm-9" style="padding-right:0;text-align:right">
+                            <span style="font-size:16px;color:#ff6937;">Maria Jhones</span><br />
+                            <span style="font-size:16px;">Customer one</span>
+                        </div>
+                        <div class="col-sm-3" style="padding-left:0;padding-right:0;text-align:right;">
+                            <img src="/asset_contacts/img/bob1.png" class="img-circle avatar1" alt="">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <hr />
+            
+
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane fade tabcontent1" id="tabs-demo2-area2">
+        <div class="col-sm-12" style="padding:0;height:100px;position:relative">
+            <div class="col-sm-3" style="padding:0;background-image:url(../../../../img/picture_area.png);background-repeat:no-repeat;background-size:100% 100%;height:115px;">
+            </div>
+            <div class="col-sm-3" style="border-right:1px solid lightgray;padding-left:20px;height:100px;">
+                <table>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            <img src="/img/viewed_greenpin.png" width="20" height="20" alt="">
+                            <span style="font-weight:bold;color: #FF6937 !important;font-size:15px">$ 325,600</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="font-weight:bold;font-size:16px">10 Braeburn Drive</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="font-size:13px;">Simpsonville,SC 29681</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color:#878a8c !important;font-size:12px;">MLS#0123456789</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-2">
+                <table>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            <span class="bedndbathno">4</span>
+                            &nbsp;&nbsp;<span>Bedrooms</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="bedndbathno">3</span>&nbsp;&nbsp;<span>Bathrooms</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="sqft">3,600 sqft</span>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="col-sm-4" style="height:100px;position:relative;">
+                <div class="col-sm-8" style="position:relative;text-align:center">
+                    <div style="position:absolute;background-color:#fd6c053d;top:82px;
+                                        height:30px;border:1px solid #ff5e0057;width:80%;border-radius:5px 5px 0px 0px">
+                        Drive by
+                        <input type="checkbox" style="margin-left:8px;">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <img src="~/img/hearticon.png" style="float:right;margin-top:25px;" />
+                </div>
+                <div class="col-sm-2">
+                    <a href="#" style="color:#ff5d26"><img src="/img/SliderNextArrow.png" width="23" style="margin-top:50px;" height="32" alt=""></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div role="tabpanel" class="tab-pane fade tabcontent1" id="tabs-demo2-area3">
+        <div class="col-sm-12" style="padding:0;height:100px;position:relative">
+            <div class="col-sm-3" style="padding:0;background-image:url(../../../../img/picture_area.png);background-repeat:no-repeat;background-size:100% 100%; height:115px;">
+            </div>
+            <div class="col-sm-3" style="border-right:1px solid lightgray;padding-left:20px;height:100px;">
+                <table>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            <img src="/img/viewed_greenpin.png" width="20" height="20" alt="">
+                            <span style="font-weight:bold;color: #FF6937 !important;font-size:15px">$ 325,600</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="font-weight:bold;font-size:16px">10 Braeburn Drive</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="font-size:13px;">Simpsonville,SC 29681</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="color:#878a8c !important;font-size:12px;">MLS#0123456789</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-2">
+                <table>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            <span class="bedndbathno">4</span>
+                            &nbsp;&nbsp;<span>Bedrooms</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="bedndbathno">3</span>&nbsp;&nbsp;<span>Bathrooms</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="sqft">3,600 sqft</span>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="col-sm-4" style="height:100px;position:relative;">
+                <div class="col-sm-8" style="position:relative;text-align:center">
+                    @*<div style="position:absolute;background-color:#fd6c053d;top:82px;
+                            height:30px;border:1px solid #ff5e0057;width:80%;border-radius:5px 5px 0px 0px">
+                            Drive by
+                            <input type="checkbox" style="margin-left:8px;">
+                        </div>*@
+                </div>
+                <div class="col-sm-2">
+                    <img src="~/img/hearticon.png" style="float:right;margin-top:25px;" />
+                </div>
+                <div class="col-sm-2">
+                    <a href="#" style="color:#ff5d26"><img src="/img/SliderNextArrow.png" width="23" style="margin-top:50px;" height="32" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

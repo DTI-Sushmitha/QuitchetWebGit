@@ -1,0 +1,908 @@
+﻿@{
+    <!-- Homn Page Index-->
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var StatusList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Approve", Value = "1" },
+        new SelectListItem { Text = "Pending", Value = "2" },
+        new SelectListItem { Text = "Close", Value = "3" },
+    };
+}
+
+<!-- start: Css -->
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.ui.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/plugins/moment.min.js"></script>
+<script src="/js/plugins/jquery.nicescroll.js"></script>
+
+
+<!-- plugins -->
+
+<link rel="stylesheet" type="text/css" href="/css/plugins/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/plugins/mediaelementplayer.css" />
+<link rel="stylesheet" type="text/css" href="/css/plugins/animate.min.css" />
+@*<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">*@
+
+@*<link href="/css/style2.css" rel="stylesheet">*@
+<link href="/css/style.css" rel="stylesheet">
+
+<link href="/css/style3popup.css" rel="stylesheet">
+<!-- end: Css -->
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+Quitchet::Landing
+    <div id="content">
+        <div class="tabs-wrapper text-center">
+            <!-- First Landing tool BAr1-->
+            <div class="panel box-shadow-none text-left content-header" id="paneltoolbar1">
+                <div class="panel-toolbar" style="padding-bottom: 0px;">
+                    <div class="col-md-12">
+                        <div class="row landing-toolbar">
+                            <div class="col-md-2">
+                                <div class="icontoolbarmywi">
+                                    <img src="/img/icon_mybasicneeds.png" width="24" height="24" alt="" />
+                                </div>
+                                <div class="titletoolsicon">My Basic Needs</div>
+                                <span class="togglebutton">
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </span>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="icontoolbarmywi">
+                                    <img src="/img/icon_whishlist.png" width="16" height="20" alt="" />
+                                </div>
+                                <div class="titletoolsicon">My Wish List &nbsp &nbsp &nbsp </div>
+                                <span class="togglebutton">
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </span>
+                            </div>
+
+
+
+                            <div class="col-lg-2" style="padding-bottom: 10px">
+                                @Html.DropDownList("dropdown1", new List<SelectListItem>
+                        {
+                            new SelectListItem{ Text="Person-1", Value = "Person-1" },
+                            new SelectListItem{ Text="Person-2", Value = "Person-2" },
+                            new SelectListItem{ Text="Person-3", Value = "Person-3" }
+                         }, "---Select---", new { @class = "form-control" })
+
+                            </div>
+
+                            <div class="col-md-2">
+                                @* <img src="/img/filtersbutton.png" width="169" height="36" alt="" /></div>*@
+
+                                <button type="button" class="form-control" id="searchfilters">
+                                    <span class="glyphicon glyphicon-filter" style="color: orange"></span>Filters 
+                                </button>
+
+
+
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="pull-right">
+                                    <button type="button" class="form-control" style="background-color: #ff6937; color: white; width: 95%">
+                                        SaveSearch 
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownList("dropdown1", new List<SelectListItem>
+                        {
+                            new SelectListItem{ Text="Person-1", Value = "Person-1" },
+                            new SelectListItem{ Text="Person-2", Value = "Person-2" },
+                            new SelectListItem{ Text="Person-3", Value = "Person-3" }
+                         }, "Sort By"
+
+                         , new { @class = "form-control", @Style = "background-color:#ff6937; color:white; width:60%;" })
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Search-Community-close Div-->
+        <div id="middlemenu">
+            <div id="contactform">
+
+                <div class="searchcommunicateclose">Search. Communicate. Close.</div>
+                <div class="tabs-area">
+                    <div class="tabs-area">
+
+                        <ul id="tabs-demo6" class="nav nav-tabs nav-tabs-v6" role="tablist">
+
+                            <li role="presentation" class="active">
+                                <a href="#tabs-demo7-area2" role="tab" id="tabs-demo6-2" data-toggle="tab" aria-expanded="true">Homes</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#tabs-demo7-area3" id="tabs-demo6-3" role="tab" data-toggle="tab" aria-expanded="false">Rental</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#tabs-demo7-area4" role="tab" id="tabs-demo6-4" data-toggle="tab" aria-expanded="false">Lots / Land</a>
+                            </li>
+                        </ul>
+
+                        <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
+
+                            <div role="tabpanel" class="tab-pane active" id="tabs-demo7-area2" aria-labelledby="tabs-demo7-area2">
+                                <div class="search" style="text-align: right;">
+                                    <span class="fa fa- icon-search searchiconholder">
+                                        <a href="#">
+                                            <img src="/img/serchpane.png" width="43" height="43" alt="" /></a></span>
+                                    <div class="searchborder">
+                                        <div class="form-group form-animate-text">
+
+                                            @Html.TextBox("Search1", "", new { @class = "form-text", placeholder = "Search: MLS, City, School, etc", @style = "width:100%;max-width: 467px;" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area3" aria-labelledby="tabs-demo7-area3">
+                                <div class="search" style="text-align: right;">
+                                    <span class="fa fa- icon-search searchiconholder">
+                                        <a href="#">
+                                            <img src="/img/serchpane.png" width="43" height="43" alt="" /></a></span>
+                                    <div class="searchborder">
+                                        <div class="form-group form-animate-text">
+                                            @Html.TextBox("Search1", "", new { @class = "form-text", placeholder = "Search: MLS, City, School, etc", @style = "width:100%;max-width: 467px;" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area4" aria-labelledby="tabs-demo7-area4">
+                                <div class="search" style="text-align: right;">
+                                    <span class="fa fa- icon-search searchiconholder">
+                                        <a href="#">
+                                            <img src="/img/serchpane.png" alt="" /></a></span>
+                                    <div class="searchborder">
+                                        <div class="form-group form-animate-text">
+                                            <div class="col=sm-12">
+
+                                                @Html.TextBox("Search1", "", new { @class = "form-text", placeholder = "Search: MLS, City, School, etc", @style = "width:100%;max-width: 467px;" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            @*  </ul>*@
+            <div class="tab-content tab-content-v5">
+                <div class="tab-pane fade" id="tabs-demo6-area2">
+                </div>
+                <div class="tab-pane fade" id="tabs-demo6-area3">
+
+
+                    <span class="fa fa- icon-search searchiconholder">
+                        <img src="/img/serchpane.png" width="43" height="43" alt="" /></span>
+                    <div class="searchborder">
+                        <div class="form-group form-animate-text">
+                            <input type="text" class="form-text" required>
+                            <span class="bar"></span>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="tab-pane fade" id="tabs-demo6-area4">
+
+
+
+                    <div class="search searchborder">
+                        <span class="fa fa-search icon-search" style="font-size: 23px;"></span>
+                        <div class="form-group form-animate-text">
+                            <input type="text" class="form-text" required>
+                            <span class="bar"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="tab-pane fade" id="tabs-demo6-area5">
+                    <div class="text-center">
+                        <i class="img-intro icon-checkmark-circle"></i>
+                    </div>
+                    <h3 class="head text-center">thanks for staying tuned! <span style="color: #f48250;">♥</span> Bootstrap</h3>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div id="popup1search" style="width: 75%;">
+            <!--Nav Tab -->
+
+            <div style="margin: 0 0 0 25%">
+
+                <ul id="tabs-demo2" class="nav nav-tabs nav-tabs-v1" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#tabs-demo2-area1" id="tabs-demo2-1" role="tab" aria-controls="tabs-demo2-area1" data-toggle="tab"><span class="steptabsround">1</span>Basic Filters</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tabs-demo2-area2" id="tabs-demo2-2" role="tab" aria-controls="tabs-demo2-area2" data-toggle="tab"><span class="steptabsround">2</span>Advance Filters</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tabs-demo2-area3" id="tabs-demo2-3" role="tab" aria-controls="tabs-demo2-area3" data-toggle="tab"><span class="steptabsround">3</span>Utilities Filters</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!--Tab Panes-->
+            <div id="tabsDemo2Content" class="tab-content tab-content-v1 col-md-12" style="padding-left: 40px; padding-right: 40px">
+                <div role="tabpanel" class="tab-pane fade active in tabcontent1" id="tabs-demo2-area1" style="height: 850px;">
+                    <div class="col-md-12 row" style="padding-left: 3px;">
+                        <label>Driving Distance</label>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+
+                                                <div class="col-sm-4">
+                                                    @* <input type="number" class="form-control" id="inputEmail3" placeholder="Minutes…">*@
+                                                    @Html.TextBox("inputMinutes", "", new { @style = "height: 35px", @class = "form-control ", @placeholder = " Minutes", @type = "number", @min = "0", @max = "60", @id = "inputMinutes" })
+                                                </div>
+                                                <div class="col-sm-2 removedpaddings">
+                                                    <label for="inputEmail3" class="control-label" contenteditable="true">From</label>
+                                                </div>
+                                                <div class="col-sm-6 removedpaddings">
+                                                    @* <input type="email" class="form-control" id="inputEmail3" placeholder="Address / Location…">*@
+                                                    @Html.TextBox("inputAddress", "", new { @class = "form-control ", @placeholder = " Address / Location…", @style = "height: 35px" })
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <div class="col-sm-3">
+                                                    <label for="inputEmail3" class="control-label ">Property Type</label>
+                                                </div>
+
+
+
+                                                <div class="col-sm-9">
+                                                    @Html.DropDownList("lotFeatures", StatusList, "--Select--", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "width:100%;height: 35px", @multiselection = "true" })
+                                                    @*<select class="form-control">
+                                                        <option>Any</option>
+                                                        <!-- - the default selection & its functionality is equal to selecting all options-->
+                                                        <option>Single Family - Detached</option>
+                                                        <option>Condo/Townhouse</option>
+                                                        <option>Mobile Home</option>
+                                                        <option>Modular</option>
+                                                        <option>Other</option>
+                                                    </select>*@
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+
+                                <div class="col-md-6">
+                                    <label class="control-label spanssliderpadding" for="exampleInputEmail1">Price</label>
+                                    @*<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">*@
+
+                                    @*<div class="slider-bubble">Max</div>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 60%;"></div>
+                                        </div>*@
+                                    @* <div id="slider-range" class="slider" style="border-radius:25px;"></div>*@
+
+                                    <div id="slider-range"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label" for="exampleInputEmail1">Bathrooms </label>
+                                    <br>
+                                    <div class="btn-group btn-group-justified" style="height: 35px" id="btns">
+                                        <a href="#" class="btn btn-default">Any</a>
+                                        <a href="#" class="btn btn-default">1+</a>
+                                        <a href="#" class="btn btn-default">2+</a>
+                                        <a href="#" class="btn btn-default">3+</a>
+                                        <a href="#" class="btn btn-default">4+</a>
+                                        <a href="#" class="btn btn-default">5+</a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label" for="exampleInputEmail1">Bedrooms</label>
+                                                <br>
+                                                <div class="btn-group btn-group-justified" style="height: 35px">
+                                                    <a href="#" class="btn btn-default">Any</a>
+                                                    <a href="#" class="btn btn-default">1+</a>
+                                                    <a href="#" class="btn btn-default">2+</a>
+                                                    <a href="#" class="btn btn-default">3+</a>
+                                                    <a href="#" class="btn btn-default">4+</a>
+                                                    <a href="#" class="btn btn-default">5+</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label spanssliderpadding" for="exampleInputEmail1">Sqft</label>
+                                                <br>
+
+                                                <div id="slider-range2"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr class="hr2">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label class="control-label" for="exampleInputEmail1">Schools</label>
+                                            @*<input class="form-control" id="exampleInputEmail1"
+                                                                    placeholder="Search for Schools… " type="search">*@
+                                            @Html.TextBox("inputSchool", "", new { @class = "form-control ", @placeholder = "Search for Schools…", @type = "search", @style = "height: 35px" })
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label" for="exampleInputEmail1">Garage Type</label>
+                                    <br>
+                                    <div class="btn-group btn-group-justified" style="height: 35px">
+                                        <a href="#" class="btn btn-default">Any</a>
+                                        <a href="#" class="btn btn-default">Carport</a>
+                                        <a href="#" class="btn btn-default">Garage</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="exampleInputEmail1">Master Bedrooms</label>
+                                            <br>
+                                            <div class="btn-group btn-group-justified" style="height: 35px">
+                                                <a href="#" class="btn btn-default">Any</a>
+                                                <a href="#" class="btn btn-default">Main Floor</a>
+                                                <a href="#" class="btn btn-default">Second Floor</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label spanssliderpadding" for="exampleInputEmail1">Lot Acreage</label>
+                                            <br>
+                                            @*<div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 60%;"></div>
+                                                </div>*@
+                                            <div id="slider-range3"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+
+                                                    <label class="control-label" for="exampleInputEmail1">Number of Stories</label>
+                                                    <br>
+                                                    <div class="col-md-12">
+                                                        <label class="checkbox-inline">
+                                                            @* <input type="checkbox" value="">A*@
+                                                            @Html.CheckBox("check")Any</label>
+                                                        <label class="checkbox-inline">
+                                                            @* <input type="checkbox" value="">*@
+                                                            @Html.CheckBox("check")1</label>
+                                                        <label class="checkbox-inline">
+                                                            @* <input type="checkbox" value="">*@
+                                                            @Html.CheckBox("check")1.5</label>
+                                                        <label class="checkbox-inline">
+                                                            @* <input type="checkbox" value="">*@
+                                                            @Html.CheckBox("check")2
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            @*<input type="checkbox" value="">*@
+                                                            @Html.CheckBox("check")Tri / Split</label>
+                                                        <label class="checkbox-inline">
+                                                            @* <input type="checkbox" value="">*@
+                                                            @Html.CheckBox("check")3+</label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="control-label" for="exampleInputEmail1">SubDivision</label>
+                                                    <br>
+                                                    @*          <input class="form-control" id="exampleInputEmail1"
+                                                            placeholder="Search for Subdivisions… " type="search">*@
+                                                    @Html.TextBox("inputAge", "", new { @class = "form-control ", @placeholder = "Search for Subdivisions…", @type = "search", @style = "height: 35px" })
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+
+                                                    <label class="control-label" for="exampleInputEmail1">Garage Capacity</label>
+                                                    <br>
+
+                                                    <div class="btn-group btn-group-justified" style="height: 35px">
+                                                        <a href="#" class="btn btn-default">Any</a>
+                                                        <a href="#" class="btn btn-default">1+</a>
+                                                        <a href="#" class="btn btn-default">2+</a>
+                                                    </div>
+
+
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="control-label" for="exampleInputEmail1">Age</label>
+                                                    <br>
+                                                    @* <input class="form-control" id="exampleInputEmail1"
+                                                                            placeholder="Any, To be built, Under construction, New, 1-5, etc…" type="search">*@
+                                                    @Html.TextBox("inputAge", "", new { @class = "form-control ", @placeholder = "Any, To be built, Under construction", @type = "search", @style = "height: 35px" })
+                                                </div>
+                                            </div>
+                                            <hr class="hr2">
+
+
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="alert alert-dismissable alert-success">
+                                                        2+ Bedrooms,  2+ Bathrooms, 1000-2000 Sqft,  .
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="hr">
+                                            <div class="row">
+                                                <div class="col-md-3"><a href="#" class="closeorangebtn" id="closebtn1">Close</a></div>
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-3"><a href="#" class="graybtn">Reset</a></div>
+                                                <div class="col-md-3"><a href="#" class="closeorangebtn">Apply</a></div>
+                                                <div class="col-md-1"></div>
+
+                                            </div>
+
+
+
+
+                                            @*<div role="tabpanel" class="tab-pane fade" id="tabs-demo2-area2" aria-labelledby="tabs-demo2-area2">
+                                                                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                                                                    </div>
+                                                                    <div role="tabpanel" class="tab-pane fade" id="tabs-demo2-area3" aria-labelledby="tabs-demo2-area3">
+                                                                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                                                                    </div>*@
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade tabcontent1" id="tabs-demo2-area2">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="inputEmail3" class="control-label">Lot Features</label><br />
+                                                @Html.DropDownList("lotFeatures", StatusList, "--Select--", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "width:100%", @multiselection = "true" })
+                                                @*  <select class="form-control" multiple="multiple">
+                                                        <option>Cul-de-Sac</option>
+                                                        <option>Fenced Yard</option>
+                                                        <option>Mountain View</option>
+                                                        <option>Mountain</option>
+                                                        <option>On Golf Course</option>
+                                                        <option>Sidewalk</option>
+                                                        <option>Water Access</option>
+                                                        <option>Water Front</option>
+                                                    </select>*@
+                                            </div>
+
+                                            <div class="col-sm-6 removedpaddings">
+                                                <label for="inputEmail3" class="control-label">Appliances</label><br />
+                                                @Html.DropDownList("lotFeatures", StatusList, "--Select--", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "width:100%", @multiselection = "true" })
+                                                @*<select class="form-control">
+                                                        <option>option one</option>
+                                                        <option>option two</option>
+                                                        <option>option three</option>
+                                                        <option>option four</option>
+                                                    </select>*@
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="inputEmail3" class="control-label">Foundation Type</label>
+                                                <br>
+                                                <div class="btn-group btn-group-justified" style="height: 35px">
+                                                    <a href="#" class="btn btn-default">Any</a>
+                                                    <a href="#" class="btn btn-default">Basement</a>
+                                                    <a href="#" class="btn btn-default">Crawl Space</a>
+                                                    <a href="#" class="btn btn-default">Slab</a>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6 removedpaddings">
+                                                <label for="inputEmail3" class="control-label">Master Features</label>
+                                                <div class="col-md-12">
+                                                    <label class="checkbox-inline">
+                                                        @Html.CheckBox("check")
+
+                                                        @* <input type="checkbox" value="">*@Double Sink</label>
+                                                    <label class="checkbox-inline">
+                                                        @*  <input type="checkbox" value="">*@
+                                                        @Html.CheckBox("check")Full Bath</label>
+                                                    <label class="checkbox-inline">
+                                                        @*<input type="checkbox" value="">*@
+                                                        @Html.CheckBox("check")Walk-In Closest</label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="inputEmail3" class="control-label">Exterior Features</label>
+                                                @Html.DropDownList("lotFeatures", StatusList, "--Select--", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "width:100%", @multiselection = "true" })
+                                                @*<select class="form-control">
+                                                        <option>Deck/Patio</option>
+                                                        <!-- - this check box option represents 2 fields: Deck OR Patio-->
+                                                        <option>Handicap Access</option>
+                                                        <option>Outdoor Fireplace</option>
+                                                        <option>option four</option>
+                                                        <option>Pool - Above Ground</option>
+                                                        <option>Pool - In Ground</option>
+                                                        <option>Porch - Screened</option>
+                                                        <option>Sprinkler</option>
+                                                        <!--- In Ground - this option represents 2 fields: Sprinkler In Ground - Full Yard OR Sprinkler In Ground - Half Yard-->
+                                                    </select>*@
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="inputEmail3" class="control-label">Laundry Room</label>
+                                                <br>
+                                                <div class="btn-group btn-group-justified" style="height: 35px">
+                                                    <a href="#" class="btn btn-default">Any</a>
+                                                    <a href="#" class="btn btn-default">Walk-In Only</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="inputEmail3" class="control-label">Interior Features</label>
+                                                @Html.DropDownList("lotFeatures", StatusList, "--Select--", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "width:100%", @multiselection = "true" })
+                                                @*<select class="form-control">
+                                                        <option>Ceiling - 9ft+/Vaulted</option>
+                                                        <!--- this check box option represents 2 fields: Ceiling - 9ft OR Ceiling - Cathedral/Vaulted -->
+                                                        <option>Open Floor Plan</option>
+                                                        <option>Walk-In Closet</option>
+                                                        <option>Countertops - Granite</option>
+                                                        <option>Countertops - Solid Surface</option>
+                                                        <option>Countertops - Other</option>
+                                                        <option>Wet Bar</option>
+                                                        <option>Central Vacuum</option>
+                                                        <option>Handicap Access</option>
+                                                        <option>WIn-Law Suite</option>
+                                                        <option>Intercom</option>
+                                                    </select>*@
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="inputEmail3" class="control-label">Fire Place</label>
+                                                <br>
+                                                <div class="btn-group btn-group-justified" style="height: 35px">
+                                                    <a href="#" class="btn btn-default">Any</a>
+                                                    <a href="#" class="btn btn-default">Gas</a>
+                                                    <a href="#" class="btn btn-default">Wood Burning</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="inputEmail3" class="control-label">Flooring Type</label>
+                                                <br>
+                                                <div class="btn-group btn-group-justified" style="height: 35px">
+                                                    <a href="#" class="btn btn-default">Any</a>
+                                                    <a href="#" class="btn btn-default">Hardwood</a>
+                                                    <a href="#" class="btn btn-default">Pine</a>
+                                                    <a href="#" class="btn btn-default">Carpet</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="inputEmail3" class="control-label">Community Amenities</label>
+                                                <div class="col-md-12">
+                                                    <label class="checkbox-inline">
+                                                        @* <input type="checkbox" value="">*@
+                                                        @Html.CheckBox("check")Gated Community</label>
+                                                    <label class="checkbox-inline">
+                                                        @* <input type="checkbox" value="">*@
+                                                        @Html.CheckBox("check")Pool</label>
+                                                    <label class="checkbox-inline">
+
+                                                        @Html.CheckBox("check")Lawn Maintenanace</label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <hr class="hr2">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-dismissable alert-success">
+                                        Summary.
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="hr">
+                            <div class="row">
+                                <div class="col-md-3"><a href="#" class="closeorangebtn" id="closebtn2">Close</a></div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3"><a href="#" class="graybtn">Reset</a></div>
+                                <div class="col-md-3"><a href="#" class="closeorangebtn">Apply</a></div>
+                                <div class="col-md-1"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane fade tabcontent1" id="tabs-demo2-area3">
+
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="inputEmail3" class="control-label">Heating System</label>
+                                                <br>
+                                                <div class="btn-group btn-group-justified">
+                                                    <a href="#" class="btn btn-default">Any</a>
+                                                    <a href="#" class="btn btn-default">Gas</a>
+                                                    <a href="#" class="btn btn-default">Eletric</a>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6 removedpaddings">
+                                                <label for="inputEmail3" class="control-label">Water Type</label>
+                                                <br>
+                                                <div class="btn-group btn-group-justified">
+                                                    <a href="#" class="btn btn-default">Any</a>
+                                                    <a href="#" class="btn btn-default">Public</a>
+                                                    <a href="#" class="btn btn-default">Well</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="inputEmail3" class="control-label">Water Heater Type</label>
+                                                <br>
+                                                <div class="btn-group btn-group-justified">
+                                                    <a href="#" class="btn btn-default">Any</a>
+                                                    <a href="#" class="btn btn-default">Tankless</a>
+                                                    <a href="#" class="btn btn-default">Gas</a>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="inputEmail3" class="control-label">Sewer Type</label>
+                                                <br>
+                                                <div class="btn-group btn-group-justified">
+                                                    <a href="#" class="btn btn-default">Any</a>
+                                                    <a href="#" class="btn btn-default">Public</a>
+                                                    <a href="#" class="btn btn-default">Septic</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <hr class="hr2">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-dismissable alert-success">
+                                        Summary.
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="hr">
+                            <div class="row">
+                                <div class="col-md-3"><a href="#" class="closeorangebtn" id="closebtn3">Close</a></div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3"><a href="#" class="graybtn">Reset</a></div>
+                                <div class="col-md-3"><a href="#" class="closeorangebtn">Apply</a></div>
+                                <div class="col-md-1"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#popup1search').hide();
+        $('#paneltoolbar2').hide();
+        $('#deletepopup').hide();
+        $(".nav-tabs a").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+
+    });
+    $("#searchsavedfilters").click(function (e) {
+        $('#paneltoolbar1').hide();
+        // e.preventDefault();
+        $('#paneltoolbar2').show();
+
+    });
+
+    $("#searchfilters").click(function (e) {
+        $('#middlemenu').hide();
+        //    $('#paneltoolbar2').hide();
+        // e.preventDefault();
+
+        $('#popup1search').animate({ height: '820px' }, 500)
+        $('#popup1search').show();
+        $('#paneltoolbar2').hide();
+    });
+
+
+    $("#savedsearches").click(function (e) {
+        $('#popup1search').hide();
+        $('#middlemenu').hide();
+        // e.preventDefault();
+        $('#paneltoolbar1').hide();
+        $('#paneltoolbar2').show();
+    });
+    $("#closebtn1,#closebtn2,#closebtn3").click(function (e) {
+
+        // e.preventDefault();
+        $('#popup1search').hide();
+
+    });
+    $("#tabs-demo2-3").click(function (e) {
+
+        $('#popup1search').animate({ height: '480px' }, 500)
+    });
+    $("#tabs-demo2-2").click(function (e) {
+
+        $('#popup1search').animate({ height: '705px' }, 500)
+    });
+    $("#tabs-demo2-1").click(function (e) {
+
+        $('#popup1search').animate({ height: '820px' }, 500)
+    });
+
+</script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#slider-range,#slider-range2,#slider-range3").slider({
+            range: true,
+            min: 0,
+            max: 500,
+
+            values: [75, 300],
+            slide: function (event, ui) {
+                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            }
+        });
+        $("#amount").val("$" + $("#slider-range,#slider-range2").slider("values", 0) +
+          " - $" + $("#slider-range,#slider-range2,#slider-range3").slider("values", 1));
+    });
+    $('.slider').slider({
+        handle: round,
+        tooltip: true,
+    });
+</script>
+<style type="text/css">
+    #slider-range, #slider-range2, #slider-range3 {
+        background: #FF5D26;
+    }
+</style>

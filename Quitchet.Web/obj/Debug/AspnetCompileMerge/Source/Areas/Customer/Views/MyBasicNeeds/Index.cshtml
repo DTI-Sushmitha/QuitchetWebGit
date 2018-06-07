@@ -1,0 +1,763 @@
+﻿@*My Basic Needs Index Page *@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    var StatusList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Approve", Value = "1" },
+        new SelectListItem { Text = "Pending", Value = "2" },
+        new SelectListItem { Text = "Close", Value = "3" },
+    };
+}
+
+<link rel="stylesheet" type="text/css" href="/asset_contacts/css/bootstrap.min.css">
+<link href="~/css/wishliststyle.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style type="text/css">
+    .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+        border-radius: 15px !important;
+        color: #FF5D26 !important;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+        background: #FF5D26 !important;
+        border: solid 2px #ffffff !important;
+    }
+
+    ui-widget.ui-widget-content {
+        border: 0 !important;
+    }
+
+    .ui-slider .ui-slider-handle {
+        height: 1.8em !important;
+        width: 1.8em !important;
+       
+    }
+
+    output {
+        padding-top:0px!important;
+        position: absolute;
+        background-image: linear-gradient(top, #444444, #999999);
+        width: 55px;
+        height: 28px;
+        text-align: center;
+        color: #808080;
+        background-color:#ffffff;
+        border-radius: 10px;
+        border:solid 1px #808080;
+        display: inline-block;
+        font: bold 15px/30px Georgia;
+        bottom: 15%;
+        left: 0;
+        margin-left: 2%;
+
+    }
+
+        output:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 10px solid #ffffff;
+            border-left: 5px solid #808080;
+            border-right: 5px solid #808080;
+            top: 100%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -1px;
+            z-index:10!important
+        }
+
+      
+        
+
+
+
+
+
+    #slider-range, #slider-range2, #slider-range3 {
+        background-color: #FF5D26 !important;
+    }
+
+    .col-md-12 {
+        padding-right: 4px;
+        padding-left: 7px;
+    }
+
+    .btn-default:hover, .btn-default:active, .btn-default:focus {
+        color: #ffffff !important;
+        background-color: #FF5D26 !important;
+        border-color: #FF5D26 !important;
+    }
+
+    .btn-success, .label-success, .alert-success, .badge-success, .alert-heder {
+        color: #EB511E !important;
+        border-top: 2px solid #FF5F29;
+        border-bottom: 2px solid #FF5F29;
+        background-color: rgba(255, 141, 86, 0.40) !important;
+        text-align: center;
+        padding: 6px 0px 6px 0px;
+    }
+
+    .tab-content-v1 {
+        border-left: 0px solid #918C8C;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(function () {
+       
+        $("#slider-range").slider({
+
+            range: true,
+            min: 0,
+            max: 500,
+            values: [0, 500],
+            slide: function (event, ui) {
+              
+
+                var newPoint, offset, newPlace;
+
+                var newPoint1, offset1, newPlace1;
+                var minimum = 0;
+                var maximum = 500;
+
+                var el = $('#slider-range');
+                var width = el.width();
+               
+                // Figure out placement percentage between left and right of input
+                newPoint = (ui.values[0] - parseInt(minimum)) / (parseInt(maximum) - parseInt(minimum));
+                newPoint1 = (ui.values[1] - parseInt(minimum)) / (parseInt(maximum) - parseInt(minimum));
+                // Janky value to get pointer to line up better
+                offset = -1.3;
+                offset1 = -1.3;
+                // Prevent bubble from going beyond left or right (unsupported browsers)
+                if (newPoint < 0) { newPlace = 0; }
+                else if (newPoint > 1) { newPlace = width; }
+                else { newPlace = width * newPoint + offset; offset -= newPoint; }
+               
+
+                if (newPoint1 < 0) { newPlace1 = 0; }
+                else if (newPoint1 > 1) { newPlace1 = width; }
+                else { newPlace1 = width * newPoint1 + offset1; offset1 -= newPoint1; }
+               
+                //  el
+                //.next("#stat")
+                //.css({
+                //    left: newPlace,
+                //    marginLeft: offset + "%"
+                //})
+                //.text(el.val());
+
+                $('#stat').css('left', newPlace);
+                $('#stat').css('marginleft', offset+"%");
+                
+                $('#end').css('left', newPlace1-345);
+                $('#end').css('marginleft', offset1 + "%");
+
+                $('#stat').html(ui.values[0]);
+
+                $('#end').html(ui.values[1]);
+             }
+        });
+    });
+
+
+    $(function () {
+
+        $("#slider-range2").slider({
+
+            range: true,
+            min: 0,
+            max: 500,
+            values: [0, 500],
+            slide: function (event, ui) {
+
+
+                var newPoint, offset, newPlace;
+
+                var newPoint1, offset1, newPlace1;
+                var minimum = 0;
+                var maximum = 500;
+
+                var el = $('#slider-range2');
+                var width = el.width();
+
+                // Figure out placement percentage between left and right of input
+                newPoint = (ui.values[0] - parseInt(minimum)) / (parseInt(maximum) - parseInt(minimum));
+                newPoint1 = (ui.values[1] - parseInt(minimum)) / (parseInt(maximum) - parseInt(minimum));
+                // Janky value to get pointer to line up better
+                offset = -1.3;
+                offset1 = -1.3;
+                // Prevent bubble from going beyond left or right (unsupported browsers)
+                if (newPoint < 0) { newPlace = 0; }
+                else if (newPoint > 1) { newPlace = width; }
+                else { newPlace = width * newPoint + offset; offset -= newPoint; }
+
+
+                if (newPoint1 < 0) { newPlace1 = 0; }
+                else if (newPoint1 > 1) { newPlace1 = width; }
+                else { newPlace1 = width * newPoint1 + offset1; offset1 -= newPoint1; }
+
+                //  el
+                //.next("#stat")
+                //.css({
+                //    left: newPlace,
+                //    marginLeft: offset + "%"
+                //})
+                //.text(el.val());
+
+                $('#lstat').css('left', newPlace);
+                $('#lstat').css('marginleft', offset + "%");
+
+                $('#lend').css('left', newPlace1 - 345);
+                $('#lend').css('marginleft', offset1 + "%");
+
+                $('#lstat').html(ui.values[0]);
+
+                $('#lend').html(ui.values[1]);
+            }
+        });
+    });
+   
+ 
+
+</script>
+<!-- WishList Div-->
+<div class="row headeraddressbook1" style="height:42%!important;">
+    <div class="adrbookbtn3 col-sm-12" style="text-align: right; padding-right: 15px;">
+        @*<img src="/img/Savechanges.png" width="160" height="30" alt="" />*@
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4" style="color:#ffffff;font-weight:500;text-align:center;top:11px!important;padding-left:0!important;padding-right: 130px;"><span>My Basic Needs</span></div>
+        <div class="col-sm-4" style="padding-top: 6px;">
+            <button id="savechangesBtn" type="button" class="" style="width:150px; height:30px; border:1px solid white; background-color:#FF6937; color:white; font-weight:500;font-size:13px;border-radius:5px!important">
+                Save Changes
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="myBasicNeeds" style="margin-left:100px!important;margin-right:250px!important;margin-top:20px!important;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row" id="listingtyperow">
+                <div class="col-md-12 text-center">
+                    <div class="wellorange well-sm" style="height: 42px!important;padding-top:6px!important;">
+                        <label style="font-weight:600!important;color:#555;padding-right:10px!important">Listing Type </label>
+                        <div class="btn-group btn-group-sm">
+                            <select class="form-control" title="Rentals" style="border-color:#FF6937;border-radius:5px!important;height:28px!important;width:200px!important;padding:5px!important;font-size:12px!important" id="ListingType">
+                                <option value="1">For Sale</option>
+                                <option value="2">Rentals </option>
+                                <option value="3">Lots / Land </option>
+                            </select>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Start My Basic needs Popup-->
+<div id="basicneedspopup" style="background:none!important">
+    <div id="ii" class="tab-content tab-content-v1 col-md-12" style="background-image:url(/img/bakground_icon_watermark.png)!important;background-size:50%!important;background-repeat:no-repeat!important;background-position:center">
+        <div role="tabpanel" class="tab-pane active in tabcontent1" id="iii" style="height:auto;width:764px!important;padding-right:0px!important;right:23px!important">
+            <div class="row">
+                <div class="row" style="padding-bottom:10px!important">
+                    <div class="col-sm-3" style="font-weight:bold">Driving Distance Filter</div>
+                    <div class="col-sm-9"></div>
+                </div>
+                <div class="row" style="margin-left:0!important;margin-right:0!important">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        @* <input type="number" class="form-control" id="inputEmail3" placeholder="Minutes…">*@
+                                        @Html.TextBox("inputMinutes", "", new { @style = "height:30px;font-size:12px!important", @class = "form-control ", @placeholder = " Minutes...", @type = "number", @min = "0", @max = "60", @id = "inputMinutes" })
+                                    </div>
+                                    <div class="col-sm-2 removedpaddings" style="padding-left:0!important;padding-right:0!important">
+                                        <label for="inputEmail3" class="control-label" style="padding-top: 4px;">From</label>
+                                    </div>
+                                    <div class="col-sm-6 removedpaddings" style="right:35px!important;padding-right:0!important">
+                                        @* <input type="email" class="form-control" id="inputEmail3" placeholder="Address / Location…">*@
+                                        @Html.TextBox("inputAddress", "", new { @class = "form-control ", @placeholder = " Address / Location...", @style = "height:30px;font-size:12px!important;padding:5px!important" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row" style="margin-left:70px!important">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-3" style="padding-left:10px!important">
+                                        <label for="inputEmail3" class="control-label " style="padding-top:4px!important">Property Type</label>
+                                    </div>
+                                    <div class="col-sm-9" style="padding-left:0!important;padding-right:0!important">
+                                        @Html.DropDownList("lotFeatures", StatusList, "Single Family", new { @class = "form-control-star col-sm-6 ", @id = "lotFeatures", @style = "padding: 5px 5px 5px 11px; border-radius: 5px !important; left: 27px; width: 223.25px; height: 30px; font-size: 12px !important;", @multiselection = "true" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row" style="padding-left:0!important;padding-right:0!important">
+                    <div class="col-md-12">
+                        <div class="row" style="padding-bottom:10px!important">
+                            <div class="col-md-6" style="padding-left:23px!important;">
+                                <label class="control-label spanssliderpadding" for="exampleInputEmail1" style="padding-bottom:35px!important">Price</label>
+                                <div id="slider-range" name="PriceSlider" style="height:4px!important;width:350px!important;left:10px!important"></div>
+                                <output for="PriceSlider"  id="stat" style="z-index:10!important"></output>
+                                <output for="PriceSlider" id="end" style="margin-left:360px;z-index:10!important" ></output>
+                            </div>
+                            <div class="col-md-6" id="DivLotAcreage">
+                                <label class="control-label spanssliderpadding" for="exampleInputEmail1" style="padding-bottom:35px!important">Lot Acreage</label>
+                                <div id="slider-range2" name="lotacreSlider" style="height:4px!important;width:350px!important;margin-left:13px!important"></div>
+                                <output for="lotacreSlider"  id="lstat" style="margin-left:0!important;z-index:10!important"></output>
+                                <output for="lotacreSlider" id="lend" style="margin-left: 350px;z-index:10!important"></output>
+                            </div>
+                        </div>
+
+
+                        <div class="row" style="padding-bottom:10px!important;" id="DivBedBathRooms">
+                            <div class="col-md-12" style="padding-top: 10px;">
+                                <div class="row" style="margin-left:0!important">
+                                    <div class="col-md-6" style="width:416px!important">
+                                        <label class="control-label" for="exampleInputEmail1" style="padding-bottom:4px!important">Bedrooms</label>
+                                        <br>
+                                        <div class="rentalbedroombtngroup btn-group btn-group-justified" style="height: 30px">
+                                            <a href="#" id="rentalbedroomany" data-index="1" name="bedrooms" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-top-right-radius:0!important;border-bottom-right-radius:0!important;font-size:11px!important">Any</a>
+                                            <a href="#" data-index="2" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;font-size:11px!important">1+</a>
+                                            <a href="#" data-index="3" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;font-size:11px!important">2+</a>
+                                            <a href="#" data-index="4" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;font-size:11px!important">3+</a>
+                                            <a href="#" data-index="5" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;font-size:11px!important">4+</a>
+                                            <a href="#" data-index="6" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-top-left-radius:0!important;border-bottom-left-radius:0!important;font-size:11px!important">5+</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="width:425px!important">
+                                        <label class="control-label" for="exampleInputEmail1" style="padding-bottom:4px!important">Bathrooms </label>
+                                        <br>
+                                        <div class="rentalbathbtngroup btn-group btn-group-justified" style="height: 30px">
+                                            <a href="#" id="rentalbedroomany" data-index="1" name="rentalbedrooms" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-top-right-radius:0!important;border-bottom-right-radius:0!important;font-size:11px!important">Any</a>
+                                            <a href="#" data-index="2" name="rentalbedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;font-size:11px!important">1+</a>
+                                            <a href="#" data-index="3" name="rentalbedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;font-size:11px!important">2+</a>
+                                            <a href="#" data-index="4" name="rentalbedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;font-size:11px!important">3+</a>
+                                            <a href="#" data-index="5" name="rentalbedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;font-size:11px!important">4+</a>
+                                            <a href="#" data-index="6" name="rentalbedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-top-left-radius:0!important;border-bottom-left-radius:0!important;font-size:11px!important">5+</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="DivMasterBedroom">
+                            <hr style="border-top:2px solid #827f7f!important;width:95%!important" />
+                            <div class="col-md-12" style="padding-top:10px;">
+
+                                <div class="row" style="margin-left:0!important">
+                                    <div class="col-md-6" style="width:416px!important">
+                                        <label class="control-label" for="exampleInputEmail1" style="padding-bottom:4px!important">Master Bedrooms</label>
+                                        <br>
+                                        <div class="masterbedroombtngroup btn-group btn-group-justified" style="height: 30px">
+                                            <a href="#" id="mbedany" data-index="1" name="masterbedrooms" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-top-right-radius:0!important;border-bottom-right-radius:0!important;font-size:11px!important">Any</a>
+                                            <a href="#" data-index="2" name="masterbedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;font-size:11px!important">Main Floor</a>
+                                            <a href="#" data-index="3" name="masterbedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-top-left-radius:0!important;border-bottom-left-radius:0!important;font-size:11px!important">Second Floor</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding-left:15px!important;padding-right:0!important">
+                                        <label class="control-label spanssliderpadding" for="exampleInputEmail1" style="padding-bottom:6px!important">Other Features </label>
+                                        <br />
+                                        <label class="checkbox-inline" style="font-size:12px!important;padding-top: 5px;padding-left: 28px;">
+                                            @Html.CheckBox("check", new { @style = "margin-top:2px!important" })
+                                            Handicap Access
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end of My Basic needs Popup-->
+<!-- start: Javascript -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.ui.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+@*plugins*@
+<script src="/js/plugins/moment.min.js"></script>
+<script src="/js/plugins/jquery.nicescroll.js"></script>
+@*custom*@
+<script src="/js/main.js"></script>
+
+
+<!-- custom -->
+<script type="text/javascript">
+
+   
+    $(document).ready(function () {
+        $('#stat').text('No min');
+        $('#end').text('No Max');
+        $('#end').css('font-size', 'xx-small');
+        $('#stat').css('font-size', 'xx-small');
+
+        $('#lstat').text('No min');
+        $('#lend').text('No Max');
+        $('#lend').css('font-size', 'xx-small');
+        $('#lstat').css('font-size', 'xx-small');
+       
+        $('#DivLotAcreage').hide();
+        $(".nav-tabs a").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+
+      
+
+    });
+
+    
+
+
+    $('#ListingType').change(function () {
+        if ($('#ListingType option:selected').val() == "1")
+        {
+            $('#DivLotAcreage').hide();
+            $('#DivBedBathRooms').show();
+            $('#DivMasterBedroom').show();
+        }
+        else if ($('#ListingType option:selected').val() == "2")
+        {
+            $('#DivLotAcreage').hide();
+            $('#DivBedBathRooms').show();
+            $('#DivMasterBedroom').hide();
+
+        }
+        else if ($('#ListingType option:selected').val() == "3")
+        {
+            $('#DivLotAcreage').show();
+            $('#DivBedBathRooms').hide();
+            $('#DivMasterBedroom').hide();
+        }
+    });
+
+
+
+    //$("#mybasicneedbtn").click(function () {
+    //    $('#mywishlistbtn').removeClass('active');
+    //    $('#wishlistpopup').hide();
+    //    $('#basicneedspopup').show();
+    //    $('#myphotospopup').hide();
+    //});
+    //$("#noBtn").click(function () {
+
+    //    $('#savechangespopup').hide();
+    //});
+    //$("#yesBtn").click(function () {
+
+    //    $('#savechangespopup').hide();
+    //});
+    //$("#savechangesBtn").click(function () {
+
+    //    $('#savechangespopup').show();
+    //});
+
+    //$("#savephotoBtn,#cancelphotoBtn").click(function () {
+    //    $('#selectimagepopup').hide();
+    //});
+    //$("#addnotesbtn").click(function () {
+
+    //    $('#mynotespopup').show();
+    //});
+    //$("#cancelnotesBtn,#donenotesBtn").click(function () {
+    //    $('#mynotespopup').hide();
+    //});
+    //$("#removenoBtn,#removeyesBtn").click(function () {
+    //    $('#remove1,#remove2').attr('checked', false);
+    //    $('#removeentrypopup').hide();
+    //});
+    //$("#sharebtn,#sharebtn2").click(function () {
+
+    //    $('#sharepopup').show();
+    //});
+    //$("#cancelsharebtn").click(function () {
+
+    //    $('#sharepopup').hide();
+    //});
+    //$("#canceladdingphotoBtn").click(function () {
+
+    //    $('#addimagepopup').hide();
+    //});
+    //$("#uploadphotoBtn").click(function () {
+    //    var p1 = $('#path1').val();
+    //    var p2 = $('#path2').val();
+    //    // alert(p);
+    //    $('#img1').text(p1);
+    //    $('#img2').text(p2);
+    //    $('#uploadingpopup').show();
+    //    $('#addimagepopup').hide()
+
+    //});
+    //$("#canceluploadingBtn").click(function () {
+
+    //    $('#uploadingpopup').hide();
+    //});
+
+</script>
+<script>
+    //$ = function (id) {
+    //    return document.getElementById(id);
+    //}
+
+    //var show = function (id) {
+    //    $(id).style.display = 'block';
+    //}
+    //var hide = function (id) {
+    //    $(id).style.display = 'none';
+    //}
+
+</script>
+@*<style>
+        input[type="text"], input[type="password"], textarea {
+            max-width: 100%;
+        }
+
+        #removeentrypopup:after {
+            position: fixed;
+            content: "";
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -2;
+        }
+
+        .subcontactheaderpopup {
+            width: 100%;
+            float: left;
+            height: 30px;
+            background-color: #FFD9CC;
+            margin: 10px 0px 14px 0px;
+            border-bottom: 3px #F05C1C solid;
+        }
+
+
+
+        .img-responsive {
+            width: 35px;
+            height: 35px;
+        }
+
+        a {
+            font-size: 12px;
+        }
+
+        .media-left {
+            text-align: justify;
+        }
+
+        .brand-myagentbtn {
+            line-height: 20px;
+            text-align: left;
+            margin: -5px 60px 0px 0px;
+        }
+
+        .col-lg-1 {
+            text-align: center;
+            padding: 0px 0px 0px 0px;
+        }
+
+        .media-body {
+            width: 350px;
+            float: left;
+        }
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+            color: #555;
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+        }
+        /*//For Contact List Page*/
+        .maincontactheader {
+            width: 100%;
+            float: left;
+            height: 107px;
+            background-color: #59294C;
+            margin: -2px 0px -30px 0px;
+        }
+
+        .navbar {
+            height: 64px;
+            background-color: #FF6937;
+            color: #fff;
+            border: none;
+        }
+
+        .headeraddressbook {
+            background-color: #FF5D26;
+            padding: 11px 0px 31px 0px;
+        }
+
+        .tabphone {
+            width: 150px;
+            float: left;
+            height: 28px;
+            background-color: #F05C1C;
+            margin: 2px 0px -4px 0px;
+            -moz-border-radius-topleft: 0px;
+            -moz-border-radius-topright: 5px;
+            -moz-border-radius-bottomleft: 0px;
+            -moz-border-radius-bottomright: 0px;
+            -webkit-border-top-left-radius: 0px;
+            -webkit-border-top-right-radius: 5px;
+            -webkit-border-bottom-left-radius: 0px;
+            -webkit-border-bottom-right-radius: 0px;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .persondatabar {
+            height: 44px;
+            width: 98%;
+            float: left;
+            padding: 8px 0px 5px 0px;
+            border-bottom: 1px solid #D2D2D2;
+        }
+
+        .icontabspad {
+            width: 18px;
+            height: 18px;
+            float: left;
+            padding: 1px 20px 10px 20px;
+        }
+
+        .chatandphonespaces {
+            padding: 12px 0px 0px 0px;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        img {
+            border: 0;
+        }
+
+        .adh2 {
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #FFF2EE;
+            padding: 2px 0px 0px 14px;
+            font-weight: 300;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .adh3 {
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #FF5D26;
+            padding: 2px 0px 0px 14px;
+            font-weight: 300;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .adh1 {
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #FFF2EE;
+            padding: 8px 0px 0px 14px;
+            font-weight: bold;
+            text-align: left;
+            font-size: 19px;
+        }
+
+        .subactionbar {
+            width: 100%;
+            float: left;
+            height: 32px;
+            background-color: #FFEAE3;
+            margin: -2px 0px -4px 0px;
+            border-bottom: 3px #F05C1C solid;
+        }
+
+        .itemcontacth1 {
+            color: #FF5D26;
+            padding: 3px 0px 50px 20px;
+            font-size: 14px;
+            height: 28px;
+            text-align: left;
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            float: left;
+            width: 100px;
+        }
+
+        .itemcontacth2 {
+            color: #323231;
+            padding: 3px 0px 50px 20px;
+            font-size: 15px;
+            height: 28px;
+            text-align: left;
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            float: left;
+        }
+
+        .tablih2 {
+            color: white;
+            padding: 5px 5px 5px 5px;
+        }
+
+        .col33 {
+            margin: 0px -30px 0px -30px;
+            width: 28%;
+        }
+
+        .selected {
+            color: inherit;
+            box-shadow: #000 2px 2px 10px;
+            border-bottom-right-radius: 10px;
+            margin-bottom: 3px;
+        }
+
+        .row {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .b {
+            border-radius: 20px;
+        }
+    </style>*@
+@*<script type="text/javascript">
+        $('#menu a,img').click(function (e) {
+            //Remove the selected class from all of the links
+            $('#menu a.selected,img.selected').removeClass('selected');
+
+            //Add the selected class to the current link
+            $(this).addClass('selected');
+        });
+
+
+    </script>*@
+
+

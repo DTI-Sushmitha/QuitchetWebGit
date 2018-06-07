@@ -1,0 +1,296 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    var UserID = Request.QueryString["UserID"];
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+    var Email = Request.QueryString["Email"];
+    // var IsFav = Request.QueryString["IsFav"];
+}
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
+<!-- start: Javascript -->
+
+
+@*<link href="~/Content/LayOut.css" rel="stylesheet" type="text/css" />*@
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.ui.min.js"></script>
+<link rel="shortcut icon" href="/img/logomi.png">
+<style>
+    .mtop {
+        margin-top: 10px;
+    }
+    .modal-footer,.modal-header {
+   
+     border-top: 0 !important; 
+}
+</style>
+@*<div class="col-xs-12" style="background-color: #ff5d26; padding:20px">
+        <img src="~/img/quitchetlogo_little.png" style="margin-top:0.5%;margin-left:2%;" />
+    </div>*@
+@*<div class="col-xs-12 mtop" style="">
+        <div class="col-xs-8 col-xs-offset-2 mtop" style="">
+            <div class="col-xs-12" style="text-align:left;margin-top:5px!important">
+                <span style="font-weight:bold;color:#FF5D26;font-size:15px">User Email</span>
+            </div>
+            <div class="col-xs-12 col-md-12 col-sm-12" style="text-align:left;margin-top:5px!important;line-height:12px!important">
+
+                <span id="SPanEmail" style="font-weight:bold;color:dimgrey;font-size:15px"></span>
+            </div>
+        </div>
+    </div>*@
+
+<div class="col-sm-12 col-md-12 col-xs-12" style="background-color: #FFFFFF; padding-left: 0; padding-right: 0;">
+    <div style="background-color: #ff6937; color: white; text-align: left; height:60px">
+        <img src="~/img/quitchetlogo_little.png" style="margin-top:0.5%;margin-left:2%;" />
+    </div>
+    <div class=" col-xs-12 col-md-4 col-sm-12">&nbsp;</div>
+    <div class="col-xs-12 col-md-4 col-sm-12">
+        <form>
+            <div id="ResetPassword" class="col-xs-12 col-md-12 col-sm-12">
+                <div class="col-xs-12 col-md-12 col-sm-12">
+                    &nbsp;
+                </div>
+                <div class="col-xs-12 col-md-12 col-sm-12" style="padding:0px;">
+                    <div class="col-xs-12 col-md-12 col-sm-12" style="text-align:left;margin-top:5px!important">
+                        <span style="font-weight:bold;color:#FF5D26;font-size:15px">User Email</span>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-sm-12" style="text-align:left;margin-top:5px!important;line-height:12px!important">
+
+                        <span id="SPanEmail" style="font-weight:bold;color:dimgrey;font-size:15px"></span>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-sm-12">&nbsp;</div>
+                    <div class="col-xs-12 col-md-12 col-sm-12" style="text-align:left;margin-top:5px!important">
+                        <span style="font-weight:bold;color:#FF5D26;font-size:15px">Reset Password</span>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-sm-12">&nbsp;</div>
+                    <div class="col-xs-12 col-md-12 col-sm-12" style="text-align:center">
+                        @Html.TextBox("UserNewPassword", "", new { @type = "password", @class = "form-control", style = "border-radius:4px!important;", @placeholder = "New Password", @autocomplete = false })
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-sm-12">&nbsp;</div>
+                    <div class="col-xs-12 col-md-12 col-sm-12" style="text-align:center">
+                        @Html.TextBox("UserReNewPassword", "", new { @type = "password", @class = "form-control", style = "border-radius:4px!important", @placeholder = "Confirm Password", @autocomplete = false })
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-sm-12">&nbsp;</div>
+                    <div class="col-xs-12 col-md-5 col-sm-12">
+                        <button type="button" id="ResetOKButton" class="btn btn-sm" style="width:100%; background-color :dimgrey;color:#FFFFFF;border-radius:5px!important;font-size:15px;padding-top:3px;">
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="col-sm-2">
+                        &nbsp;
+                    </div>
+                    <div class="col-xs-12 col-md-5 col-sm-12">
+                        <button type="button" class="btn btn-sm" id="ResetbtnSubmitForgotPassord" style="width:100%;background-color:#FF5D26;color:#FFFFFF;border-radius:5px!important;font-size:15px;padding-top:3px;">
+                            Submit
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <div class="col-xs-12 col-md-12 col-sm-12" style="text-align:center;margin-top:10px;">
+                            <div style="border-radius:5px;text-align:center;border-color:red;background-color:rgb(247, 205, 201);width:100%;margin-left:-13px;padding:5px;margin-bottom:10px;" hidden="hidden" id="DivErrorreset">
+                                <span id="ValidationMessagereset" style="color:red"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <div class="col-xs-12 col-md-12 col-sm-12" style="padding:10px;border-radius: 5px;text-align: center;border-color: red;background-color: rgb(247, 205, 201);width: 100%;margin-left: 0px;margin-bottom: 10px;margin-top: 5px;line-height:18px" id="errormsg" hidden="hidden">
+                            <span id="errormsgText" style="color:red">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<div class="modal" id="SuccessAlertPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 15%; width: 25%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;color:#ff6937;height:45px;padding-top:13px;">
+                <label id="heading">
+                </label>
+                <hr style="color:#ff6937;border: 0.5px solid;margin-top:7px;" />
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="modal-body">
+                <div class="col-md-12" style="text-align: center">
+                    <label id="content_text" style="word-wrap: break-word;"></label>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="modal-footer">
+                    <div class="col-md-12" style="text-align: center">
+                        <button type="button" id="SuccessalertOKbtn" data-dismiss="modal" class="btn btn-primary closeorangebtn" style="border-radius: 5px 5px 5px 5px  !important; background-color: #ff6937!important; color: white;font-size: 15px;">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        if (window.location.toString().indexOf('?') > -1) {
+            FPUserID = window.location.toString().split('?')[1].split('=')[1].split('&')[0];
+            fpemailid = window.location.toString().split('&')[1].split('=')[1].split('&')[0];
+            if (FPUserID != "0") {
+                $("#SPanEmail").text(fpemailid);
+            }
+        }
+    });
+
+    //To Restrict Password mismath RJ
+    //$("#UserReNewPassword").change(function () {
+    //    var pswd = $(this).val();
+
+    //    if ($("#UserNewPassword").val().trim() != "" && $("#UserReNewPassword").val().trim() != "") {
+    //        if ($("#UserReNewPassword").val() == $("#UserNewPassword").val()) {
+    //            $('#ValidationMessagereset').html('');
+    //            $('#DivErrorreset').hide();
+    //            $("#formLogin").css('height', '280px');
+    //            $('#ResetbtnSubmitForgotPassord').attr("disabled", false);
+    //        }
+    //        else {
+    //            $('#errormsg').hide();
+    //            $('#ValidationMessagereset').html('Password mismatched');
+    //            $('#DivErrorreset').show();
+    //            $("#formLogin").css('height', '300px');
+    //            $('#ResetbtnSubmitForgotPassord').attr("disabled", true);
+    //        }
+    //    }
+    //});
+    //--------To Restrict Password Format-------------
+    $("#UserNewPassword").change(function () {
+        var pswd = $(this).val();
+        //validate the length
+        if (pswd.length >= 8 && pswd.match(/[a-z]/) && pswd.match(/[A-Z]/) && pswd.match(/\d/)) {
+            $('#errormsg').hide(); 
+            $('#errormsgText').html('');
+            $("#formLogin").css('height', '280px');
+            $('#UserReNewPassword').removeAttr('disabled');
+            $('#UserReNewPassword').focus();
+            $('#ResetbtnSubmitForgotPassord').attr("disabled", false);
+        }
+        else {
+            $('#UserReNewPassword').attr('disabled', 'diasbled');
+            $('#errormsg').show();
+            $('#errormsgText').html('Password must contain<br /> minimum of 8 characters, 1 uppercase, 1 lowercase and 1 number. No  special Characters may be used.');
+            $("#formLogin").css('height', '360px');
+            $('#ResetbtnSubmitForgotPassord').attr("disabled", true);
+            //$('#UserNewPassword').focus();
+        }
+        if (!isValid($("#UserNewPassword").val())) {
+            $('#UserReNewPassword').attr('disbled', true);
+            $('#errormsg').show();
+            $('#errormsgText').html('Password must contain<br /> minimum of 8 characters, 1 uppercase, 1 lowercase and 1 number. No  special Characters may be used.');
+            $("#formLogin").css('height', '360px');
+            $('#ResetbtnSubmitForgotPassord').attr("disabled", true);
+            //$('#newPwd').val(');
+            //$('#UserNewPassword').focus();
+        }
+    });
+    function isValid(str) {
+        return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
+    }
+    //Restrinct space in first
+    $("#UserNewPassword,#UserReNewPassword").on("keypress", function (e) {
+        if (e.which === 32 && !this.value.length)
+            e.preventDefault();
+    });
+    $('#UserNewPassword').keypress(function (event) {
+        if (event.which == '13') {
+            event.preventDefault();
+            $('#UserReNewPassword').focus();
+        }
+    });
+    $('#UserReNewPassword').keypress(function (event) {
+        if (event.which == '13') {
+            event.preventDefault();
+            $('#ResetbtnSubmitForgotPassord').focus();
+        }
+
+    });
+    //$('#UserReNewPassword').keypress(function (event) {
+    //    if ($("#UserNewPassword").val().trim() != "" && $("#UserReNewPassword").val().trim() != "") {
+    //        if ($("#UserReNewPassword").val() == $("#UserNewPassword").val()) {
+    //            $('#ValidationMessagereset').html('');
+    //            $('#DivErrorreset').hide();
+    //            $("#formLogin").css('height', '280px');
+    //            $('#ResetbtnSubmitForgotPassord').attr("disabled", false);
+    //        }
+    //        else {
+    //            $('#errormsg').hide();
+    //            $('#ValidationMessagereset').html('Password mismatched');
+    //            $('#DivErrorreset').show();
+    //            $("#formLogin").css('height', '300px');
+    //            $('#ResetbtnSubmitForgotPassord').attr("disabled", true);
+    //        }
+    //    }
+    //});
+    $("#ResetbtnSubmitForgotPassord").click(function () {
+        if ($("#UserNewPassword").val() == "" && $("#UserReNewPassword").val() == "") {
+            $('#errormsg').show();
+            $('#errormsgText').html('Please Enter All Fields');
+        }
+         else if ($("#UserNewPassword").val() != "" && $("#UserReNewPassword").val() == "") {
+             $('#errormsg').show();
+             $('#errormsgText').html('Please Re-Enter Password');
+         }
+        
+         else if ($("#UserReNewPassword").val() != "" && $("#UserNewPassword").val() == "") {
+             $('#errormsg').show();
+             $('#errormsgText').html('Please Enter New Password');
+         }
+        
+         else if ($("#UserReNewPassword").val() != "" && $("#UserNewPassword").val() != "") {
+             if ($("#UserReNewPassword").val() != $("#UserNewPassword").val()) {
+                 $('#errormsg').show();
+                 $('#errormsgText').html('Password mismatched!');
+             }
+             else {
+                 $('#errormsg').hide();
+                 $('#errormsgText').html('');
+                 newPwd = $("#UserNewPassword").val()
+                 $.ajax({
+                     url: "@Url.Action("GetUserDetails", "Main")",
+                     type: "GET",
+                 contentType: "application/json;charset=UTF-8",
+                 dataType: "json",
+                 data: { UserId: FPUserID },
+                 success: function (data) {
+                     fname = data[0].First_Name;
+                     resetPassword(fname, newPwd);
+                 },
+                 });
+             }
+         }
+    });
+   
+    function resetPassword(fname, newPwd) {
+        $.ajax({
+            url: "@Url.Action("SendValuesnewPasswordLink", "Main")",
+            type: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            data: { Fname: fname, EmailID: fpemailid, UserID: FPUserID, Newpassword: newPwd },
+            success: function (data) {
+                if (data == "1") {
+                    //alert('Password Changed successfully');
+                    $("#heading").text("Success");
+                    $("#content_text").text("Password updated successfully!");
+                    $("#SuccessAlertPopup").show();
+                   // $(location).attr('href', '../Customer/LandingPage/Index');
+                }
+                else {
+                    $("#heading").text("Success");
+                    $("#content_text").text('something went wrong' + data);
+                    $("#SuccessAlertPopup").show();
+                    //alert('something went wrong' + data);
+                }
+            }
+        });
+    }
+    $('#SuccessalertOKbtn').click(function () {
+        $("#SuccessAlertPopup").hide();
+        $(location).attr('href', '../Customer/LandingPage/Index');
+    })
+</script>

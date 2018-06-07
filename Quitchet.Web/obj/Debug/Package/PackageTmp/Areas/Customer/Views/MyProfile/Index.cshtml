@@ -1,0 +1,674 @@
+﻿@model Quitchet.Core.Models.Customer.MyProfileModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+
+    var PkeyUserId = "0";
+
+
+    if (Request.Cookies["UseridCookie"] != null)
+    {
+        if (Request.Cookies["UseridCookie"].Value != null)
+        {
+            PkeyUserId = Request.Cookies["UseridCookie"].Value;
+        }
+    }
+}
+
+<style>
+      .cr-slider {
+        display: none !important;
+    }
+    .modal-header {
+        min-height: 16.43px;
+        padding: 3px !important;
+        border-bottom: 0px solid #e5e5e5 !important;
+    }
+
+    .modal-footer {
+        border-top: 0px solid #e5e5e5 !important;
+    }
+
+    .modal-body {
+        padding: 0px;
+    }
+</style>
+<div class="col-sm-12" style="text-align:center;background-color:gray;margin-top:-4px!important;height:44px!important;color:#ffffff;font-size:15px!important;font-weight:bold;">
+
+    <label style="margin-top:10px;">
+        My Profile
+    </label>
+
+</div>
+<div class="col-sm-12">&nbsp;</div>
+
+<div class="col-sm-12">
+    <div style="border-radius:5px;text-align:center;border-color:red;background-color:#F7CDC9;width:388px;margin-left:15px;height:25px;margin-bottom:10px;margin-left:50px!important" hidden="hidden" id="DivUserEditError">
+        <span id="editValidationMessage" style="font-size:x-small;color:red"></span>
+    </div>
+</div>
+<div class="col-sm-12">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-8">
+        <form method="post">
+            <div id="EditUserDetailsDiv" style="padding-top:20px!important">
+                <div class="col-sm-12" style="padding-top:10px;">
+                    <div class="col-sm-4" style="text-align:center;bottom:10px;padding-left:0px;width:130px!important">
+                        <img src="~/img/addphotopic.png" class="img-circle avatar" alt="user name" style="height:70px;width:70px;margin-top:0px;" id="editprofilepic" />
+                    </div>
+                    <div class="col-sm-8" style="padding-left:0px!important;">
+                        <button type="button" class="btn btn-sm" style="height: 31px !important;background-color:#FF5D26;color:#FFFFFF;border-radius:5px;width:
+                     200px !important;padding-top:3px;font-size:14px!important;float:left;margin-top:15px!important;" onclick="OpenEditFileUploader()">
+                            <span class="glyphicon glyphicon-plus-sign" style="padding-right:10px;color:#ffffff;"></span>  Edit Photo
+                        </button>
+                        <div hidden="hidden">
+                            <input type="file" id="EditFileUploader" accept="image/*" onchange="showeditimagepreview(this)" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" style="margin-left:35px!important">
+                    <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important">First Name:</label>
+                </div>
+                <div class="col-sm-12" style="margin-left:35px!important">
+                    @Html.TextBox("EditFirstName", "", new { @class = "form-control", style = "border-radius:4px!important;height:25px;font-size:smaller;cursor-color:#ff5d26", @placeholder = "...", @maxLength = "20", @required="required"})
+                </div>
+                <div class="col-sm-12" style="padding-top:5px;margin-left:35px!important">
+                    <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important">Last Name:</label>
+                </div>
+                <div class="col-sm-12" style="margin-left:35px!important">
+                    @Html.TextBox("EditLastName", "", new { @class = "form-control", style = "border-radius:4px!important;height:25px;font-size:smaller;", @placeholder = "...", @maxLength = "20" })
+                </div>
+
+                <div class="col-sm-12" style="padding-top:5px;padding-right:22px;margin-left:35px!important">
+                    <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important">Email:</label>
+                </div>
+                <div class="col-sm-12" style="margin-left:35px!important">
+                    @Html.TextBox("EditEmail", "", new { @class = "form-control", style = "border-radius:4px!important;height:25px;font-size:smaller", @autocomplete = false, @placeholder = "...", @required = "required" })
+                </div>
+
+                @*<div class="col-sm-12" style="padding-top:5px;padding-right:22px;margin-left:35px!important">
+                    <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important">Password:</label>
+                </div>
+                <div class="col-sm-12" style="margin-left:35px!important">
+                    @Html.Password("EditUserPassword", "", new { @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;width:392px;height:25px;font-size:smaller;border-color:dimgrey", @placeholder = "...",@readonly=true })
+                </div>
+                <div class="col-sm-12" style="margin-left:35px!important;padding-top:10px!important">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-6">
+                        <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important;padding-left:40px;"> Show Password:</label>
+                        <span class="togglebutton" style="float:left;">
+                            <label class="switch" style="top:3px!important;">
+                                <input type="checkbox" id="showPass">
+                                <div class="slider-sm round"></div>
+                            </label>
+                        </span>
+                    </div>
+
+                </div>*@
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12" style="margin-left:35px!important;text-align:right;">
+                    <button type="button" class="btn btn-sm" id="changePwdBtn" data-toggle="modal" data-target="#changePasswordPopup" style="height:25px!important;background-color:#F7CDC9;color:#FF5D26;border-radius:5px;width:132px!important;padding-top:3px;font-size:11px!important;border-color:#FF5D26;margin-left:37px!important">
+                        Change Password
+                    </button>
+                </div>
+
+            </div>
+            <div class="col-sm-12" style="padding-top:0px;padding-right:8px;margin-left:35px!important">
+                <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important">Mobile:</label>&nbsp;
+            </div>
+            <div class="col-sm-12" style="margin-left:35px!important">
+                @Html.TextBox("EditMobile", "", new { @class = "form-control", style = "border-radius:4px!important;height:25px;font-size:smaller;", @maxLength = "12" })
+            </div>
+            <div class="col-sm-12" style="padding-top:20px;text-align:right;margin-left:35px!important">
+
+                <button type="button" class="btn btn-sm" id="btncancel" style="height:28px;background-color:dimgrey;color:#FFFFFF;padding-bottom:5px;border-radius:5px!important;font-size:11px!important;">
+                    Cancel
+                </button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-sm" id="btnSaveProfile" style="height:28px;background-color:#FF5D26;color:#FFFFFF;padding-bottom:5px;border-radius:5px!important;font-size:11px!important;">
+                    Save
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-sm-1">&nbsp;</div>
+@*/Logo Cropping popup*@
+<div class="modal fade" id="LogoCropPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF5D26;color:#fff;text-align:center">
+                <label style="font-size:18px"> Crop Image</label>
+            </div>
+            <div class="modal-body" style="padding:0;height:43%">
+                <div class="col-sm-12" style="background-color:#404040de;color:white">
+                    <div class="col-sm-12">&nbsp;</div>
+                    <div id="upload-image"></div>
+                </div>
+            </div>
+
+            <div class="col-sm-12" style="background-color:#1d0b02e0;color:white">
+                <div class="col-sm-6" style="padding:5px">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" style="color:white;background-color:gray;border:none">Cancel</button>
+                </div>
+                <div class="col-sm-6" style="padding:5px">
+                    <button type="button" id="saveCroppedimageBtn" class="btn btn-default btn-sm " style="float:right !important;color:white;background-color:#FF5D26;border:none">Save</button>
+                </div>
+
+
+            </div>
+            <div class="modal-footer" style="padding:0">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="changePasswordPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 8%; width: 21%">
+        <div class="modal-content">
+            <div class="modal-header" style="height:65px">
+                <div class="colo-sm-12" style="text-align: center;font-size: 15px;color:#ff6937;padding-top:13px;">
+                    <label>
+                        Change Password
+                    </label>
+                </div>
+                <hr style="width:100%;color:#ff6937;border: 1px solid;margin-top:7px;" />
+            </div>
+            <div class="modal-body">
+                <form id="myform">
+                    <div class="col-md-12">
+                        <div style="border-radius: 5px;text-align: center;border-color: red;background-color: rgb(247, 205, 201);width: 220px;margin-left: 15px;height: 25px;margin-bottom: 10px;margin-top: 5px;" id="pwerrormsg3" hidden="hidden">
+                            <span id="pwdchangevalidation" style="font-size:x-small;color:red"></span>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <label style="color:#3a3b3d;font-weight:normal">Current Password:</label>
+                        </div>
+                        <div class="col-sm-12">
+                            @Html.TextBox("currentPwd", "", new { @type = "password", @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;height:25px!important;font-size:smaller;" })
+                        </div>
+                        <div class="col-sm-12" style="padding-top:5px;">
+                            <label style="color:#3a3b3d;font-weight:normal">New Password:</label>
+                        </div>
+                        <div class="col-sm-12">
+                            @Html.TextBox("newPwd", "", new { @type = "password", @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;height:25px!important;font-size:smaller;" })
+                        </div>
+                        <div class="col-sm-12" style="border-radius: 5px;text-align: center;border-color: red;background-color: rgb(247, 205, 201);margin-bottom: 10px;margin-top: 10px;line-height:18px" id="pwerrormsg" hidden="hidden">
+                            <span id="" style="color:red">
+                                Password must contain<br /> minimum of 8 characters, 1 uppercase, 1 lowercase and 1 number. No  special Characters may be used.
+                            </span>
+                        </div>
+                        <div class="col-sm-12" style="padding-top:5px;">
+                            <label style="color:#3a3b3d;font-weight:normal">Re-enter New Password:</label>
+                        </div>
+                        <div class="col-sm-12">
+                            @Html.TextBox("confirmPwd", "", new { @type = "password", @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;height:25px!important;font-size:smaller;" })
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12">&nbsp;</div>
+                    @*<div class="col-sm-12" style="text-align: center;padding-top:2%">
+                            <p style="color:#FF5D26;font-size:12px;font-weight:bold;">
+                                Password must contain a minimum of 8 characters, 1 uppercase, 1 lowercase and 1 number. No  special Characters may be used.
+                            </p>
+                        </div>*@
+                    @*<div class="col-sm-12" style="text-align: center;padding-top:2%" id="pwerrormsg2">
+                            <p style="color:#FF5D26;font-size:12px;font-weight:bold;">
+                                Password miss matched. Please Enter Again..!
+                            </p>
+                        </div>*@
+                </form>
+                <div class="modal-footer">
+                    <div class="col-sm-12">
+                        <div class="col-sm-6" style="text-align:center">
+                            <button type="button" id="cancelBtn" data-dismiss="modal" class="btn btn-sm" style="height:26px!important;background-color:dimgrey;color:#FFFFFF;border-radius:5px!important;width:75px!important;font-size:11px;padding-top:3px;">
+                                Cancel
+                            </button>
+                        </div>
+                        <div class="col-sm-6" style="text-align:center">
+                            <button type="button" class="btn btn-sm" id="savePasswordBtn" style="height:26px!important;background-color:#FF5D26;color:#FFFFFF;border-radius:5px!important;width:75px!important;font-size:11px;padding-top:3px;">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- start: Javascript -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.ui.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+@*plugins*@
+<script src="/js/plugins/moment.min.js"></script>
+<script src="/js/plugins/jquery.nicescroll.js"></script>
+@*custom*@
+
+<script src="/js/main.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.5.1/croppie.css" rel="stylesheet">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.5.1/croppie.js"></script>
+<script type="text/javascript">
+    // Used to format phone number
+    function phoneFormatter() {
+        $('#EditMobile').on('input', function () {
+            var number = $(this).val().replace(/[^\d]/g, '')
+            if (number.length == 7) {
+                number = number.replace(/(\d{3})(\d{4})/, "$1-$2");
+            } else if (number.length == 10) {
+                number = number.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+            }
+            $(this).val(number)
+        });
+    };
+    $(phoneFormatter);
+    var currentAddress="",usingBrowser="",IPAddress="",OSName="";
+    var filename="",ExistedImagePath="";
+   //Code to get OS type
+    var OSName = "Unknown";
+    if (window.navigator.userAgent.indexOf("Windows NT 10.0")!= -1) OSName="Windows 10";
+    if (window.navigator.userAgent.indexOf("Windows NT 6.2") != -1) OSName="Windows 8";
+    if (window.navigator.userAgent.indexOf("Windows NT 6.1") != -1) OSName="Windows 7";
+    if (window.navigator.userAgent.indexOf("Windows NT 6.0") != -1) OSName="Windows Vista";
+    if (window.navigator.userAgent.indexOf("Windows NT 5.1") != -1) OSName="Windows XP";
+    if (window.navigator.userAgent.indexOf("Windows NT 5.0") != -1) OSName="Windows 2000";
+    if (window.navigator.userAgent.indexOf("Mac")            != -1) OSName="Mac/IOS";
+    if (window.navigator.userAgent.indexOf("X11")            != -1) OSName="UNIX";
+    if (window.navigator.userAgent.indexOf("Linux")          != -1) OSName="Linux";
+    //code to get IP address
+    $.getJSON('//freegeoip.net/json/?callback=?', function (data) {
+        console.log(JSON.stringify(data, null, 2));
+        IPAddress= JSON.stringify(data.ip);
+        currentAddress=JSON.stringify(data.city+', '+data.region_name+', '+data.country_name+'.');
+        //console.log(JSON.stringify(data.ip));
+        //$('#did').val(JSON.stringify(data.ip));
+        //alert($('#did').val());
+    });
+    //$.get('http://jsonip.com', function (res) {
+    //    IPAddress= res.ip;
+    //});
+    ////code to get current latituide and longitude
+    //if (navigator.geolocation) {
+    //    navigator.geolocation.getCurrentPosition(showPosition);
+    //} else { 
+    //    alert("Geolocation is not supported by this browser.");
+    //}
+    ////Function to  get Current addres
+    //function showPosition(position){ 
+    //    location.latitude=position.coords.latitude;
+    //    location.longitude=position.coords.longitude;
+    //    var geocoder = new google.maps.Geocoder();
+    //    var latLng = new google.maps.LatLng(location.latitude, location.longitude);
+    //    if (geocoder) {
+    //        geocoder.geocode({ 'latLng': latLng}, function (results, status) {
+    //            if (status == google.maps.GeocoderStatus.OK) {
+    //                currentAddress=results[0].formatted_address;
+    //            }
+    //            else {
+    //                alert('Geocoding failed: '+status);
+    //            }
+    //        }); //geocoder.geocode()
+    //    }      
+    //} //showPosition
+    $(document).ready(function () 
+    {
+        $('a[href="/Customer/SearchFilter/Index"]').parents('li,ul').addClass('active');
+        $('#pwerrormsg').hide();
+        $('#pwerrormsg2').hide();
+        $('#pwerrormsg3').hide();
+        GetUserDeatailed(@PkeyUserId);
+        $(".nav-tabs a").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+   
+    $('#changePwdBtn').click(function(){
+        $('#pwerrormsg').hide();
+        $('#pwerrormsg2').hide();
+        $('#pwerrormsg3').hide();
+        $('#currentPwd').val(null);
+        $('#newPwd').val(null);
+        $('#confirmPwd').val(null);
+    });
+
+    function GetUserDeatailed(id) {
+        $.ajax({
+            url: "@Url.Action("GetUserDetails", "Main")",
+            type: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            data: { UserId: id },
+            success: function (data) {
+                if (data[0].Image != "") {
+                    $('#editprofilepic').attr('src',  data[0].Image);
+                    //setCookie("UserProfilePic",data[0].Image);
+                }
+                $('#EditFirstName').val(data[0].First_Name);
+                $('#EditLastName').val(data[0].Last_Name);
+                $('#EditEmail').val(data[0].Email);
+                $('#EditUserPassword').val('DummyPassword');
+                if(data[0].MobileNo==null || data[0].MobileNo=="" ||data[0].MobileNo=="null")
+                    $('#EditMobile').val('');
+                else
+                    $('#EditMobile').val(data[0].MobileNo);
+                ExistedImagePath=data[0].Image;
+            },
+        });
+    }
+
+
+    $('#EditFirstName,#EditLastName').bind('keyup blur', function () {
+        var node = $(this);
+        node.val(node.val().replace(/[^A-Z,a-z]/g, ''));
+    });
+
+
+    function CheckEditEmailValidorNot() {
+        if (!ValidateEditEmail($("#EditEmail").val())) {
+            $('#editValidationMessage').html('Please enter a valid E-mail address');
+            $('#DivUserEditError').show();
+
+            $('#EditEmail').focus();
+            $('#btnCreateAccount').attr("disabled", true);
+        }
+        else {
+            $('#ValidationMessage').html('');
+            $('#DivUserEditError').hide();
+
+            $('#btnCreateAccount').attr("disabled", false);
+            CheckEmailexistOrnot();
+        }
+    }
+
+    //Code Starts
+
+    function validatePhone(txtPhone) {
+
+        var a = txtPhone;
+
+        var filter = /^[0-9-+() ]+$/;
+        if (filter.test(a)) {
+            return true;
+        }    else {
+            return false;
+        }
+    }
+    //Code Ends
+
+    $('#EditMobile').change(function () {
+
+        if (validatePhone($('#EditMobile').val())) {
+            $('#editValidationMessage').html('');
+            $('#DivUserEditError').hide();
+        }
+        else {
+            $('#editValidationMessage').html('Please enter a Valid Phone Number');
+            $('#DivUserEditError').show();
+        }
+    });
+
+    $('#EditEmail').change(function () {
+        CheckEditEmailValidorNot();
+    })
+
+    function ValidateEditEmail(email) {
+        // Validate email format
+        var expr = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        return expr.test(email);
+    };
+
+    function OpenEditFileUploader() {
+        $('#EditFileUploader')[0].click();
+    }
+    //cropimage
+    $image_crop = $('#upload-image').croppie({
+        enableExif: true,
+        viewport: {
+            width: 200,
+            height: 200,
+            type: 'square'
+        },
+        boundary: {
+            width: 300,
+            height: 300
+        }
+    });
+    $('#EditFileUploader').on('change', function () {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $image_crop.croppie('bind', {
+                url: e.target.result
+            }).then(function () {
+                //console.log('jQuery bind complete');
+                $("#LogoCropPopup").modal('show');
+            });
+        }
+        filename=$('#EditFileUploader').val();
+        reader.readAsDataURL(this.files[0]);
+        //alert(this.files[0])
+    });
+    $('#LogoCropPopup').on('shown.bs.modal', function () {
+        $('#upload-image').croppie('bind')
+    });
+    $('#saveCroppedimageBtn').on('click', function (ev) {
+        $image_crop.croppie('result', {
+            type: 'canvas',
+            size: 'viewport'
+        }).then(function (response) {
+            $("#editprofilepic").attr('src', response);
+            //alert(response)
+            $("#LogoCropPopup").modal('hide');
+        });
+    });
+    $('#EditFileUploader').change(function () {
+        // filename = $('#EditFileUploader').val().split('\\').pop();
+        filename=$('#EditFileUploader').val();
+        //var fullPath = document.getElementById('EditFileUploader').value;
+        //if (fullPath) {
+        //    var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+        //    filename = fullPath.substring(startIndex);
+        //    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+        //        filename = filename.substring(1);
+        //    }
+        //    alert(filename);
+        //}
+
+    });
+    function showeditimagepreview(input) {
+
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#editprofilepic').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+
+        }
+    }
+
+    //Ajax call to save profile
+    var profileimg="";
+    $("#btnSaveProfile").click(function () {
+        var id=@PkeyUserId;
+        if ($("#editprofilepic").attr('src').indexOf(',') > -1)
+            profileimg = $("#editprofilepic").attr('src').split(',')[1];
+        //alert(profileimg);
+        if($('#EditFirstName').val().length>0 && $('#EditEmail').val().length>0)
+        {
+            var obj = [id,$('#EditFirstName').val(), 
+                $('#EditLastName').val(),
+                $('#EditEmail').val(),
+                $('#EditMobile').val(), 
+                profileimg,ExistedImagePath];
+            $.ajax({
+                url: "@Url.Action("UpdateMyProfile", "MyProfile")",
+                type: "POST",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                data: JSON.stringify(obj),
+                success: function (data) {
+                    if(data=="1")
+                    {
+                       // alert('Profile Updated');
+                        //window.location.href="../LandingPage/Index";
+                        GetUserDetails(userid);
+                    }
+                    else
+                        alert(data);
+                }
+            });
+        }
+    });
+
+    // NewPAssword Validation
+    $("#newPwd").change(function(){
+        var pswd = $(this).val();
+        //validate the length
+        if ( pswd.length >= 8 && pswd.match(/[a-z]/) && pswd.match(/[A-Z]/) &&  pswd.match(/\d/)) {
+            $('#pwerrormsg').hide();
+            $('#savePasswordBtn').attr("disabled", false);
+            $('#confirmPwd').removeAttr("disabled");
+        }
+
+        else {
+            $('#pwerrormsg').show();
+            $('#confirmPwd').attr("disabled", "disabled");
+            $('#newPwd').focus();
+            $('#savePasswordBtn').attr("disabled", true);
+            
+        }
+        if (!isValid($("#newPwd").val()))
+        {
+            $('#savePasswordBtn').attr("disabled", true);
+            $('#pwerrormsg').show();
+            //$('#newPwd').val(');
+            $('#newPwd').focus();
+            $('#savePasswordBtn').attr("disabled", true);
+        }
+    });
+    function isValid(str){
+        return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
+    }
+    // Save Password Button Event
+    $("#savePasswordBtn").click(function () {
+        if ($('#currentPwd').val().trim() != "" && $('#newPwd').val().trim() != "" && $('#confirmPwd').val().trim() != "") {
+            if($("#newPwd").val()==$("#confirmPwd").val())
+            {
+                $('#pwerrormsg3').hide();
+               
+                changePassword();
+            }
+            else{
+                $('#pwdchangevalidation').text('Password Mismatched');
+              
+                $('#pwerrormsg3').show();
+            }
+
+        }
+        else {
+            if ($('#currentPwd').val().trim() == "" && $('#newPwd').val().trim() != "" && $('#confirmPwd').val().trim() != "") {
+                $('#pwdchangevalidation').text('Please enter Current Password');
+                $('#pwerrormsg3').show();
+                $('#currentPwd').focus();
+                //   $('#savePasswordBtn').attr("disabled", true);
+            } else if ($('#currentPwd').val().trim() != "" && $('#confirmPwd').val().trim() != "" && $('#newPwd').val().trim() == "") {
+                $('#pwdchangevalidation').html('Please enter New Password');
+                $('#pwerrormsg3').show();
+                $('#newPwd').focus();
+                // $('#savePasswordBtn').attr("disabled", true);
+            }
+            else if ($('#currentPwd').val().trim() != "" && $('#confirmPwd').val().trim() == "" && $('#newPwd').val().trim() != "") {
+                $('#pwdchangevalidation').html('Please enter Confirm Password');
+                $('#pwerrormsg3').show();
+                $('#confirmPwd').focus();
+                // $('#savePasswordBtn').attr("disabled", true);
+            }
+            else {
+                $('#pwdchangevalidation').text('Please enter all the fields');
+                $('#pwerrormsg3').show();
+                $('#currentPwd').focus();
+                //  $('#savePasswordBtn').attr("disabled", true);
+            }
+        }
+
+    });
+    // Function to change password
+    function changePassword()
+    {
+      
+        $.ajax({
+            url: "@Url.Action("ChangePassword", "MyProfile")",
+            type: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            data: { oldPwd: $('#currentPwd').val(),newPwd : $('#newPwd').val(),
+                OperatingSystem : OSName, IPAddress : IPAddress, CurrentAddress : currentAddress},
+            success: function (data) {
+                
+                if(data[0].Status=='NEW PASSWORD UPDATED')
+                {
+                    $('#changePasswordPopup').modal('hide');
+                    //alert('Password changed successfully');
+                    //$("#changePasswordPopup").modal("hide");
+                    //$("#heading").text("Alert!");
+                    //$("#content_text").text("Password Changed Successfully..!");
+                    //$("#AlertPopup").modal("show");
+                    $('#currentPwd').val('');
+                    $('#newPwd').val('');
+                    $('#confirmPwd').val('');
+                    //$('#pwdchangevalidation').html('Password Changed Successfully..!');
+                    // $('#pwerrormsg3').show();
+                  
+                    $("#heading").text("Success");
+                    $("#content_text").text("Password Changed Successfully..!");
+                    $("#AlertPopup").modal("show");
+                }
+                else if(data[0].Status=='OLD PASSWORD NOT MATCH')
+                {
+                    //alert('OLD PASSWORD NOT MATCHED');
+                    //$("#changePasswordPopup").modal("hide");
+                    $('#pwdchangevalidation').html('Old Password Not Matched');
+                    $('#pwerrormsg3').show();
+                }
+                else{
+                    //$('#changePasswordPopup').modal('hide');
+                    //alert('erroe : '+data);
+                    $('#pwdchangevalidation').html('Something went wrong please try again');
+                    $('#pwerrormsg3').show();
+                }
+
+            }
+        });
+
+    }
+    $('#alertOKbtn').click(function(){
+        window.location.reload();
+    })
+    
+    $("#btncancel").click(function(){
+        $(location).attr('href', '../LandingPage/Index');
+    });
+
+    $('#confirmPwd').change(function(){
+
+        if($("#newPwd").val()==$("#confirmPwd").val())
+        {
+            $('#pwerrormsg3').hide();
+            $('#savePasswordBtn').attr("disabled", false);
+            //changePassword();
+        }
+        else{
+            $('#savePasswordBtn').attr("disabled", true);
+            $('#pwdchangevalidation').text('Password Mismatched');
+            $('#pwerrormsg3').show();
+        }
+    })
+
+</script>

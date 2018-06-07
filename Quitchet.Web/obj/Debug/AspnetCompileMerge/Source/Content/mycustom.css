@@ -1,0 +1,31 @@
+﻿.mybtn {
+    width: 120px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: #FF6937;
+    color: white;
+    font-weight: 500;
+    font-size: 17px;
+}
+/*For Inner Addons*/
+ .inner-addon {
+        position: relative;
+    }
+
+        /* style glyph */
+        .inner-addon .glyphicon {
+            position: absolute;
+            padding: 7px;
+            pointer-events: none;
+        }
+
+    /* align glyph */
+    .right-addon .glyphicon {
+        right: 0px;
+    }
+
+    /* add padding  */
+    .right-addon input {
+        padding-right: 30px;
+    }

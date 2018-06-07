@@ -1,0 +1,2432 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+<style>
+        .pitem::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        .pitem::-webkit-scrollbar {
+            width: 2%;
+            border-radius: 10px;
+            background-color: #ff6a00;
+        }
+
+        .pitem::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #ff6a00;
+        }
+
+        #div_arearsserved {
+            height: 50px;
+            overflow: scroll;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+            #div_arearsserved::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                border-radius: 10px;
+                background-color: #ffffff;
+            }
+
+            #div_arearsserved::-webkit-scrollbar {
+                width: 2%;
+                border-radius: 10px;
+                background-color: #ff6a00;
+            }
+
+            #div_arearsserved::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                background-color: #ff6a00;
+            }
+
+        /*MyProfile div Style*/
+        #previewbar {
+            background-color: #ff5d26;
+        }
+
+        .radiobuttonsdiv {
+            color: gray;
+            text-align: center;
+            height: 30px;
+            background-color: #f747122b;
+            border-radius: 5px;
+            padding: 5px;
+            margin-top: 4px;
+        }
+
+        .form-control {
+            height: 30px !important;
+        }
+
+        .radio-inline.active {
+            background-color: limegreen;
+        }
+
+        input[type='radio']:checked:after {
+            width: 16px;
+            height: 16px;
+            border-radius: 40px;
+            left: -2px;
+            position: relative;
+            background-color: #f56331;
+            content: '';
+            display: inline-block;
+            visibility: visible;
+            border: 3px solid #d1d3d1;
+            top: -3px;
+        }
+
+        input[type=radio] {
+            margin: 2px;
+            /*margin-left: -24px !important;*/
+        }
+
+        .middile_alignment {
+            vertical-align: middle;
+            line-height: 30px;
+        }
+
+        .agentcitiesdiv {
+            margin-left: 15px;
+           
+            background-color: #b5afaf;
+            border-radius: 5px;
+            height: 30px;
+            color: white;
+            width: 81%;
+        }
+
+        #agentprofilediv {
+            min-height: 86vh;
+            max-height: 86vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+            #agentprofilediv::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                border-radius: 10px;
+                background-color: #ffffff;
+            }
+
+            #agentprofilediv::-webkit-scrollbar {
+                width: 0.8%;
+                border-radius: 10px;
+                background-color: #ff6a00;
+            }
+
+            #agentprofilediv::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                background-color: #ff6a00;
+            }
+
+        .cr-slider {
+            display: none !important;
+        }
+
+        .myactive {
+            background-color: #9896969c !important;
+        }
+
+        .dropdownnames {
+            top: 30px;
+            left: 0px;
+            padding: 0px;
+            /*width: 94px !important;*/
+            min-width: 130px;
+        }
+        /* enable absolute positioning */
+        .inner-addon {
+            position: relative;
+        }
+
+            /* style glyph */
+            .inner-addon .glyphicon {
+                position: absolute;
+                padding: 10px;
+                color: gray;
+                pointer-events: none;
+            }
+
+        /* align glyph */
+        .right-addon .glyphicon {
+            right: 0px;
+        }
+
+        /* add padding  */
+        .right-addon input {
+            padding-right: 30px;
+        }
+        /*.pac-container {
+            z-index: 10000 !important;
+        }*/
+        /*//Start :Autosearch popup styles*/
+
+        .prp-dropdown-content, CitiesListPopup li {
+            color: gray !important;
+            padding-left: 10px;
+        }
+
+        #CitiesList_Div::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        #CitiesList_Div::-webkit-scrollbar {
+            width: 4%;
+            border-radius: 10px;
+            background-color: #ff6a00;
+        }
+
+        #CitiesList_Div::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: gray;
+        }
+        /*// Complete Autosearch popup styles*/
+        .ui-widget.ui-widget-content {
+            padding: 10px !important;
+            border-radius: 5px;
+        }
+
+        .ui-menu .ui-menu-item {
+            padding: 5px !important;
+            border-bottom: 1px solid lightgray;
+        }
+
+        /*Manage Settings div Style*/
+
+        /*header and tab*/
+        #exTab3 .nav-pills > li > a {
+            border-radius: 4px 4px 0 0;
+            padding: 10px 150px;
+            margin-top: 6px;
+        }
+
+        .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+            color: #fff;
+            background-color: #ff5d26;
+        }
+
+        #exTab3 .tab-content {
+            color: white;
+            background-color: #428bca;
+            padding: 5px 15px;
+        }
+
+        #exTab3 {
+            padding: 0;
+            text-align: center;
+            background-color: #a9a9a9;
+            color: white;
+            font-size: 18px;
+            border-bottom: 4px solid #ff5d26;
+        }
+
+        .nav-tabs > li, .nav-pills > li {
+            float: none;
+            display: inline-block;
+            *display: inline; /* ie7 fix */
+            zoom: 1; /* hasLayout ie7 trigger */
+        }
+
+        /*.nav-tabs, .nav-pills {
+            text-align: center;
+        }*/
+
+        .tabheader {
+            background-color: #808080;
+            color: white;
+            padding: 7px;
+            font-size: 15px;
+        }
+        /*Toogle Check box*/
+        .switch {
+            height: 22px;
+            width: 49px;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 20px;
+                width: 20px;
+                left: 1px;
+                bottom: 0;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+        input:checked + .slider {
+            background-color: #ff5d26;
+        }
+
+        .slider.round {
+            border: 1px solid #a7a6a6;
+            border-radius: 25px;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        .slider.round:before {
+            border: 1px solid #f56331;
+            border-radius: 50%;
+        }
+
+        input[type='radio']:checked:after {
+            width: 20px;
+            height: 20px;
+        }
+
+        input[type='radio'] {
+            width: 18px;
+            height: 18px;
+        }
+
+        .radiolabel {
+            vertical-align: bottom;
+            position: relative;
+            top: 1.5px;
+            *overflow: hidden;
+        }
+
+        .textcontrolclass {
+            border: 1px solid #ff5d26;
+            color: #ff5d26;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+
+        .labelgray {
+            color: gray;
+        }
+
+        /*Scroll CSS*/
+        #helpdataDiv::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        #helpdataDiv::-webkit-scrollbar {
+            width: 1.5%;
+            background-color: #f9f9f9;
+        }
+
+        #helpdataDiv::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #FF5D26;
+        }
+        .croppie-container {
+        height: 348px !important;
+    }
+    .tokenfield {
+        height: auto !important;
+    }
+</style>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.6/css/bootstrap-colorpicker.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.5.1/croppie.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/FontAwesome.otf" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.6/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="http://cdn.rawgit.com/tapmodo/Jcrop/master/js/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.5.1/croppie.js"></script>
+<link href="~/AgentStyles/AgentStyles.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" type="text/javascript"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.css" rel="stylesheet" type="text/css" />
+<div id="MyProfileDiv">
+    <div id="horizontalbor" class="col-sm-12">
+        <div class="col-sm-4" style="padding:2px">
+            <a href="/Agent/MyQuitchet/Index" class="btn btn-default btn-sm" id="" style="padding:5px 20px;border-color:#fff;background-color:transparent;color:#fff">Back</a>
+        </div>
+        <div class="col-sm-4 headerintop" style="text-align:center">My Profile</div>
+        <div class="col-sm-4" style="text-align:right">
+            <button type="button" hidden="hidden" id="nm" class="mypopupbtncls btn" style="width:100%;border: 1px solid#fff;border-radius: 5px;background-color: #FF5D26; color: white;font-size: 15px;">get</button>
+        </div>
+    </div>
+    <div class="col-sm-12" style="padding:0" id="agentprofilediv">
+        <div class="col-sm-12" style="background-color:#fff" id="">
+            <div class="col-sm-12" style="padding:10px">&nbsp;</div>
+            <div class="col-sm-1" style="width:5%">&nbsp;</div>
+            <div class="col-sm-10" style="">
+                <div class="col-sm-1">
+                    <img src="/img/addphotopic.png" id="agentprofile_image" style="height:50px;border-radius:50px;width: 50px;" />
+                </div>
+                <div class="col-sm-1" style="width:4%">&nbsp;</div>
+                <div class="col-sm-3">
+                    <button type="button" id="agentprofilepic_editbtn" class="btn btn-sm" style="width:100%;background-color:#FF5D26;color:#FFFFFF;
+                border-radius:5px;padding-top:3px;font-size:14px!important;margin-top:10px!important;" onclick="OpenEditFileUploader(this.id)">
+                        <span class="glyphicon glyphicon-plus-sign" style="padding-right:10px;color:#ffffff;"></span>  Edit Photo
+                    </button>
+                    <div hidden="hidden">
+                        <input type="file" id="EditProfileploader" accept="image/*" onchange="showeditimagepreview(this)" />
+                    </div>
+                </div>
+                <div class="col-sm-1" style="width:4%">&nbsp;</div>
+                <div class="col-sm-1">
+                    <img id="agentlogo_image" src="/img/logo_placeHolder.png" style="height:60px;width: 60px;" />
+                </div>
+                <div class="col-sm-1" style="width:4%">&nbsp;</div>
+                <div class="col-sm-3">
+                    <button type="button" class="btn btn-sm" id="agentlogo_editbtn" style="background-color:#FF5D26;color:#FFFFFF;border-radius:5px;
+                width: 100%;padding-top:3px;font-size:14px!important;margin-top:10px!important;" onclick="OpenEditFileUploader(this.id)">
+                        <span class="glyphicon glyphicon-plus-sign" style="padding-right:10px;color:#ffffff;"></span>  Edit Photo
+
+                    </button>
+                    <input type="file" id="logouploader" accept="image/*" style="display:none" />
+                </div>
+                <div class="col-sm-12">
+                    <hr style="border-bottom:2px solid #FF5D26 !important" />
+                </div>
+                <div class="col-sm-6">
+                    <label class="labelText">First Name:</label>
+                    @Html.TextBox("AgentFirstName", "", new { @class = "form-control", style = "cursor-color:#ff5d26", @readonly = "readonly" })
+                </div>
+                <div class="col-sm-6">
+                    <label class="labelText">Nickname:</label>
+                    @Html.TextBox("AgentNickname", "", new { @class = "form-control", style = "cursor-color:#ff5d26" })
+                </div>
+                <div class="col-sm-6" style="margin-top:10px">
+                    <label class="labelText">Brokerage:</label>
+                    @Html.TextBox("AgentBrokerage", "", new { @class = "form-control", style = "cursor-color:#ff5d26" })
+
+                </div>
+                <div class="col-sm-6" style="margin-top:10px">
+                    <div class="col-sm-6" style="padding:0">
+                        <label class="labelText">Broker-in-Charge:</label>
+                        @*@Html.TextBox("AgentBroker_in_Charge", "", new { @class = "form-control", style = "cursor-color:#ff5d26" })*@
+                        <input type="text" id="AgentBroker_in_Charge" class="form-control" style="" onkeypress="agentautocomplete(this.id)" />
+                    </div>
+                    <div class="col-sm-6" style="padding-right: 0;">
+                        <div class="col-sm-12">&nbsp;</div>
+                        <div class="col-sm-12 radiobuttonsdiv">
+                            <label class="radio-inline control-label labelText">
+                                <input type="radio" name="BrokerInCharge_Status" value="1" />Allow
+                            </label>
+                            <label class="radio-inline control-label labelText">
+                                <input type="radio" name="BrokerInCharge_Status" value="0" />Deny
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="margin-top:10px;">
+                    <div class="col-sm-6" style="font-weight:bold;padding:0">
+                        <label style="font-weight:bold;" class="labelText">Brand Color:</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="labelText">Team Leader:</label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    @*<form class="form-inline" role="form">*@
+                    @*<div class="form-group col-sm-12" style="padding-left: 15px;">*@
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="col-sm-6 middile_alignment" style="padding:0">
+                            <label for="text" class="labelText">Primary &nbsp;&nbsp;</label>
+                        </div>
+                        <div id="cp1" class="col-sm-6 input-group colorpicker-component">
+                            <input type="text" class="form-control" id="PrimaryColor" />
+                            <span class="input-group-addon" id="c1"><i></i></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="col-sm-6 middile_alignment">
+                            <label for="text" class="labelText">Secondary &nbsp;&nbsp;</label>
+                        </div>
+                        <div id="cp2" class="col-sm-6 input-group colorpicker-component">
+                            <input type="text" id="SecondaryColor" class="form-control" />
+                            <span class="input-group-addon" id="c2"><i></i></span>
+                        </div>
+                    </div>
+                    @*</div>*@
+                    @*</form>*@
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-6" style="padding:0">
+                        @*@Html.TextBox("TeamLeader", "", new { @class = "form-control", style = "cursor-color:#ff5d26" })*@
+                        <input type="text" id="TeamLeader" class="form-control" style="" onkeyup="agentautocomplete(this.id)" />
+                    </div>
+                    <div class="col-sm-6" style="padding-right: 0;">
+                        <div class="col-sm-12 radiobuttonsdiv" style="margin-top:0 !important">
+                            <label class="radio-inline control-label labelText">
+                                <input type="radio" name="Teamleader_Status" checked value="1" />Allow
+                            </label>
+                            <label class="radio-inline control-label labelText">
+                                <input type="radio" name="Teamleader_Status" value="0" />Deny
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    &nbsp;
+                </div>
+                <div class="col-sm-6" style="margin-top:10px">
+                    <label class="labelText">Last Name:</label>
+                    @Html.TextBox("AgentLastName", "", new { @class = "form-control", style = "cursor-color:#ff5d26", @readonly = "readonly" })
+                </div>
+                <div class="col-sm-6" style="margin-top:10px">
+                    <label class="labelText">Email:</label>
+                    @Html.TextBox("AgentEmail", "", new { @class = "form-control", style = "cursor-color:#ff5d26", @readonly = "readonly" })
+                    <div style="border-radius: 5px;text-align: center;border-color: red;background-color: rgb(247, 205, 201);margin-bottom: 10px;margin-top: 5px;" id="EmailerrorDiv" hidden="hidden">
+                        <span id="EmailerrorMsg" style="font-size:x-small;color:red">
+                        </span>
+                    </div>
+
+                </div>
+                <div class="col-sm-6" style="margin-top:10px">
+                    <label class="labelText">Mobile:</label>
+                    @Html.TextBox("AgentMobile", "", new { @class = "form-control", style = "cursor-color:#ff5d26", @maxlength = "14",@minlength="14", @readonly = "readonly" })
+                </div>
+                <div class="col-sm-6" style="margin-top:10px">
+                    <label class="labelText">Agent ID:</label>
+                    @Html.TextBox("RetsAgentID", "", new { @class = "form-control", style = "cursor-color:#ff5d26", type = "number", @readonly = "readonly" })
+                </div>
+                <div class="col-sm-6" style="margin-top:10px">
+                    <label class="labelText">Phone:</label>
+                    @Html.TextBox("AgentPhone", "", new { @class = "form-control", style = "cursor-color:#ff5d26", @readonly = "readonly" })
+                </div>
+                @*<div class="col-sm-6" style="margin-top:10px">
+                        <label class="labelText">Password:</label>
+                        @Html.TextBox("AgentPassword", "", new { @class = "form-control", @type = "password", style = "cursor-color:#ff5d26" })
+                        <div style="border-radius: 5px;text-align: center;border-color: red;background-color: rgb(247, 205, 201);margin-bottom: 10px;margin-top: 5px;" id="errormsginprofile" hidden="hidden">
+                            <span id="pwdvalidationtext" style="font-size:x-small;color:red">
+                            </span>
+                        </div>
+                    </div>*@
+                <div class="col-sm-6" style="margin-top:10px">
+                    <label class="labelText">Gender: &nbsp; &nbsp;</label><br />
+                    <div class="dropdown btnmargintop" style="width:100%;">
+                        <button class="btn btn-warning dropdown-toggle sortbtnsli7" type="button" data-toggle="dropdown" style="background-color:#ff6937;height: 30px;text-align:left;width:100%;">
+                            <span id="gendervalue">Select</span>
+                            <span class="glyphicon glyphicon-menu-down arrowdown" style="float:right"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdownnames" style="min-width:100% !important">
+                            <li> <a href="#" id="Male" class="list-group-item sub-item test" style="font-size: 11px; padding-left: 5px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;">Male</a></li>
+                            <li><a href="#" id="Female" class="list-group-item sub-item test" style="font-size: 11px; padding-left: 5px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;">Female</a></li>
+
+                        </ul>
+                    </div>
+                    <div style="border-radius: 5px;text-align: center;border-color: red;background-color: rgb(247, 205, 201);margin-bottom: 10px;margin-top: 5px;" id="AgentGenderErrorDiv" hidden="hidden">
+                        <span style="font-size:x-small;color:red">Please Select Gender</span>
+                    </div>
+                </div>
+                <div class="col-sm-6" style="margin-top:10px">
+                    <button type="button" class="btn btn-mn " style="color:white;background-color:#FF5D26;border:none;width:100%" id="view_safetysettings_btn">
+                        @*<span class="glyphicon glyphicon-wrench" style="color: #f7beaa;right: 20px;"></span>*@
+
+                        <img src="~/img/rench_popup.png" style="margin-bottom:0;margin-right: 20px;" />
+                        Manage Safety Alarm Settings
+                    </button>
+                </div>
+                <div class="col-sm-6" style="margin-top:10px;">
+                    @*<div class="col-sm-6" style="text-align:right;margin-top: 4px;">
+                            <label style="">Show Password</label><span class="togglebutton" style="float:none;padding-top:0px;margin-left:0!important">
+                        </div>
+                        <div class="col-sm-2" style="text-align:left;padding:0;margin-top: 4px;">
+                            <label class="switch" style="top:3px!important;">
+                                <input type="checkbox" id="AgentshowPass">
+                                <div class="slider-sm round"></div>
+                            </label>
+                            </span>
+                        </div>*@
+
+                    <div class="col-sm-4" style="padding:0;float:right">
+                        <button type="button" class="btn btn-mnm" id="changePwdBtn" data-toggle="modal" data-target="#agentchangePasswordPopup"
+                                style="background-color:#F7CDC9;color:#FF5D26;border-radius:5px;float:right;padding-top:3px;border-color:#FF5D26;">
+                            Change Password
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-1">&nbsp;</div>
+
+            </div>
+            <div id="previewbar" class="col-sm-12">
+                <div class="col-sm-4" style="padding:2px">
+                    <button class="btn btn-default btn-sm" id="PreviewBtn" style="padding:5px 20px;border-color:#fff;background-color:transparent;color:#fff">Preview</button>
+                </div>
+                <div class="col-sm-4 headerintop" style="text-align:center">My Profile</div>
+                <div class="col-sm-4" style="text-align:right">
+                </div>
+            </div>
+            <div class="col-sm-12" style="background-color:#fff">
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-1" style="width:5%">&nbsp;</div>
+                <div class="col-sm-10" style="">
+                    <div class="col-sm-6" style="top: 20px;">
+                        <label class="labelText">About:</label>
+                    </div>
+                    <div class="col-sm-6" style="text-align:right">
+                        <label class="labelText">Agent Type: &nbsp; &nbsp;</label>
+                        <div class="dropdown btnmargintop">
+                            <button class="btn btn-warning dropdown-toggle sortbtnsli7" type="button" data-toggle="dropdown" style="background-color:#ff6937;width:128px;text-align:left">
+                                <span id="agentTypetext"> Select Agent</span>
+                                <span class="glyphicon glyphicon-menu-down arrowdown" style="float:right"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdownnames">
+                                <li> <a href="#" id="BuyerAgent" class="list-group-item sub-item" style="font-size: 11px; padding-left: 5px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;" onclick="GetAgetType(1)">Buyer Agent</a></li>
+                                <li><a href="#" id="ListingAgent" class="list-group-item sub-item" style="font-size: 11px; padding-left: 5px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;" onclick="GetAgetType(2)">Listing Agent</a></li>
+                                <li> <a href="#" id="Both" class="list-group-item sub-item" style="font-size: 11px; padding-left: 5px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px;" onclick="GetAgetType(3)">Both</a></li>
+
+                            </ul>
+                        </div>
+                        <div style="border-radius: 5px;text-align: center;border-color: red;background-color: rgb(247, 205, 201);margin-bottom: 10px;margin-top: 5px;" id="AgentTypeErrorDiv" hidden="hidden">
+                            <span style="font-size:x-small;color:red">Please Select Agent Type</span>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12" style="margin-top:10px">
+                        @*@Html.TextArea("AboutAgent", null, new { @class = "form-control", style = "cursor-color:#ff5d26;resize:none;" })*@
+                        <textarea rows="5" class="form-control" style="overflow:hidden; resize:none;border-radius: 5px !important;height:90px !important" id="AboutAgent"></textarea>
+                    </div>
+                    <div class="col-sm-3" style="margin-top:10px">
+                        <label class="labelText">Experience:</label>
+                        @Html.TextBox("AgentExp", "", new { @class = "form-control", style = "cursor-color:#ff5d26", type = "number" })
+                    </div>
+                    <div class="col-sm-9" style="margin-top:4px;padding:0">
+                        <br /><br />
+                        <i style="color:gray">Years</i>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:10px;">
+                        <label id="a" class="labelText">Areas Served:</label>
+                        @*@Html.TextBox("tokenfield", "", new { @class = "form-control", style = "cursor-color:#ff5d26" })*@
+                       
+                    </div>
+                    <div class="col-sm-9 agentcitiesdiv middile_alignment">
+                        <label id="agentcites" class="labelText">Quitchet has populated your cities from MLS  transactions. You may add any other areas saved.</label>
+                    </div>
+                    <div class="col-sm-2" style="">
+                        <button type="button" data-toggle="modal" data-target="#AddAreaPopup" class="btn btn-sm " style="float:right !important;color:white;background-color:#FF5D26;border:none">
+                            <span class="glyphicon glyphicon-plus-sign"></span> &nbsp;Add Area
+                        </button>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:10px;padding-left:14px !important">
+                        <label id="agentservedareastext" class="labelText" hidden="hidden"></label>
+                        <input type="text" id="cities" class="form-control" />
+                    </div>
+                    <div class="col-sm-12">&nbsp;</div>
+                    <div class="col-sm-12" style="padding: 0;">
+                        <div class="col-sm-12">
+                            <label class="labelText">Testimonials</label>
+                            <div class="testimonials" style="margin-top:10px">
+                                @Html.TextBox("Testimonials1", "", new { @class = "form-control", style = "cursor-color:#ff5d26", name = "test[]" })
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="margin-top:10px">
+                            <button type="button" class="btn btn-sm " style="color:white;background-color:#FF5D26;margin-bottom: 10px;border:none" id="addtest2">
+                                <span class="glyphicon glyphicon-plus-sign"></span> &nbsp;Add
+                            </button>
+                        </div>
+                        <div class="col-sm-12" style="display:none;" id="test2div">
+                            @Html.TextBox("Testimonials2", "", new { @class = "form-control", style = "cursor-color:#ff5d26" })
+
+                            <div class="col-sm-12" style="padding:0" id="test2div">
+                                <button type="button" class="btn btn-sm " style="color:white;margin-top: 10px;margin-bottom: 10px;background-color:#FF5D26;border:none" id="addtest3">
+                                    <span class="glyphicon glyphicon-plus-sign"></span> &nbsp;Add
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="display:none;margin-top:10px" id="test3div">
+                            @Html.TextBox("Testimonials3", "", new { @class = "form-control", style = "cursor-color:#ff5d26" })
+
+                            <div class="col-sm-12" style="padding:0">
+                                <button type="button" class="btn btn-sm " style="color:white;margin-top: 10px;margin-bottom: 10px;background-color:#FF5D26;border:none" id="addtest4">
+                                    <span class="glyphicon glyphicon-plus-sign"></span> &nbsp;Add
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" id="test4div" style="display:none;margin-top:10px">
+                            @Html.TextBox("Testimonials4", "", new { @class = "form-control", style = "cursor-color:#ff5d26" })
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="col-sm-12" style="padding-left:0">
+                                <button type="button" class="btn btn-sm " style="color:white;background-color:#FF5D26;border:none" id="addtest5">
+                                    <span class="glyphicon glyphicon-plus-sign"></span> &nbsp;Add
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" id="test5div" style="display:none;">
+                            @Html.TextBox("Testimonials5", "", new { @class = "form-control", style = "cursor-color:#ff5d26" })
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:10px;">
+                        <label class="labelText">Website:</label>
+                        @Html.TextBox("AgentWebsite", "", new { @class = "form-control", style = "cursor-color:#ff5d26", onkeyup = "checkUrl(this.value)" })
+                        <span id="url_errormsg" style="display:none;color:red">Please enter valid url(ex:http://www.quitchet.com).</span>
+                    </div>
+                    <div class="col-sm-12" style="padding:20px">&nbsp;</div>
+                    <div class="col-sm-12" style="padding:0;">
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-sm " style="color:white;background-color:gray;border:none" id="cancelsaveProfile">
+                                Cancel
+                            </button>
+                        </div>
+                        <div class="col-sm-10" style="text-align:center">
+                            <img src="~/img/Qutichet_footerLogo.png" />;
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-sm " style="color:white;background-color:#FF5D26;border:none" id="saveAgentProfile">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="SafetySettingsDiv" style="display:none">
+    <div id="horizontalbor" class="col-sm-12">
+        <div class="col-sm-4" style="padding:2px">
+            <button class="btn btn-default btn-sm" style="padding:5px 20px;border:none;background-color:#ff5d26;color:#fff" id="backto_profilebtn">Back</button>
+        </div>
+        <div class="col-sm-4 headerintop" style="text-align:center">
+            <img src="/img/safety_icon.png" style="margin-bottom:0;margin-right:10px" />Safety Settings
+        </div>
+        <div class="col-sm-4" style="text-align:right;">
+            <a class="btn" id="showHelpPopup" data-target="#HelperPopup" data-toggle="modal">
+                <img src="/img/info_help_icon.png" style="" />
+            </a>
+        </div>
+    </div>
+    <div class="col-sm-12" id="exTab3">
+        <ul class="nav nav-pills">
+            <li class="active">
+                <a href="#1b" data-toggle="tab" id="showingstab_btn">
+                    <img src="/img/howings_tab_icon.png" style="margin-bottom:0;margin-right:10px" />
+                    Showings
+                </a>
+            </li>
+            <li>
+                <a href="#2b" data-toggle="tab" id="openhousestab_btn">
+                    <img src="/img/openHouse_tab.png" style="margin-bottom:0;margin-right:10px" />
+                    Open Houses
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-sm-12 tabheader">
+        <div class="col-sm-12" style="text-align:center">
+            @*<span class="glyphicon glyphicon-wrench" style="color: #a9a9a9;right: 20px;"></span>*@
+            <img src="/img/ranch_icons.png" style="margin-bottom:0;margin-right:10px" /> Manage your Timer Settings here.
+        </div>
+    </div>
+    <div class="col-sm-12">&nbsp;</div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-10">
+        <div class="col-sm-12" style="border:1px solid #ff5d26;padding:0;background-color:#fff">
+            <div class="col-sm-12" style="border-bottom: 1px solid #f7ad94;">
+                <div class="col-sm-6" style="border-right: 1px solid #f7ad94;padding:25px">
+                    <div class="col-sm-6">
+                        <label class="labelText">Safety Timer Status:</label>
+                    </div>
+                    <div class="col-sm-6" style="">
+                        <div class="col-sm-3" style="padding-top: 3px;text-align:right;padding-right:0">
+                            <label id="SafetyTimerOffText" class="labelgray labelText">Off</label>
+                        </div>
+                        <div class="col-sm-6" style="padding-right:0">
+                            <label class="switch">
+                                <input type="checkbox" id="SafetyTimer">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="col-sm-3" style="padding-top: 3px;padding-left:0;">
+                            <label id="SafetyTimerOnText" class="labelgray labelText">On</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" style="padding:20px">
+                    <div class="col-sm-6" style="line-height: 35px;">
+                        <label class="labelText">Emergency Contact:</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <div id="noContacts_div" style="border-radius:5px;background-color:#fddace;border:1px solid red;text-align:center">
+                            <label style="color:red">Use the Quitchet mobile app to select an emergency contact.</label>
+                        </div>
+                        <div id="Contacts_div" class="col-sm-12" style="padding:0">
+                            <div class="col-sm-4" style="padding:0">
+                                <img src="~/img/addphotopic.png" style="height:40px;width:40px;border-radius:50px;" id="EmrgContactPhoto">&nbsp;&nbsp;
+                            </div>
+                            <div class="col-sm-8" style="padding:0">
+                                <div> <label class="labelText" style="font-weight:bold;" id="EmrgContactName">Robert Horton</label></div>
+                                <div><label class="labelText" style="font-weight:bold;" id="EmrgContactNumber">9848012345</label></div>
+                            </div>
+
+
+                            <label class="labelText" style="font-weight:bold;" id="EmrgContactPhoto_val" hidden>http://restapi.devobal.com/QAgentPhotos/Agent20171220154229.png</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12" style="padding: 15px;line-height: 30px;">
+                <div class="col-sm-3" style="" id="safetytimerdiv">
+                    <div class="col-sm-8">
+                        <label class="labelText">Safety Timer Limit:</label>
+                    </div>
+                    <div class="col-sm-4" style="padding:0">
+                        @Html.TextBox("TimerMinutes", "", new { @class = "form-control textcontrolclass", style = "cursor-color:#ff5d26", type = "number" })
+                        <i style="color:gray">Minutes</i>
+                    </div>
+                </div>
+                <div class="col-sm-3" style="">
+                    <div class="col-sm-8">
+                        <label class="labelText">Time Extension Agent:</label>
+                    </div>
+                    <div class="col-sm-4" style="padding:0">
+                        @Html.TextBox("ExtTime", "", new { @class = "form-control textcontrolclass", style = "cursor-color:#ff5d26", type = "number" })
+                        <i style="color:gray">Minutes</i>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="col-sm-8">
+                        <label class="labelText">Timer Authentication Code:</label>
+                    </div>
+                    <div class="col-sm-4" style="padding:0">
+                        @Html.TextBox("AuthCode", "", new { @class = "form-control textcontrolclass", style = "cursor-color:#ff5d26", @maxlength = "4", @minlength = "4" })
+                        <i style="color:gray">4 Digits</i>
+                    </div>
+                </div>
+                <div class="col-sm-3" style="">
+                    <div class="col-sm-8">
+                        <label class="labelText">Emergency Code:</label>
+                    </div>
+                    <div class="col-sm-4" style="padding:0">
+                        @Html.TextBox("EmrgCode", "", new { @class = "form-control textcontrolclass", style = "cursor-color:#ff5d26", @maxlength = "4", @minlength = "4" })
+                        <i style="color:gray">4 Digits</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12" style="border:1px solid #ff5d26;padding:0;margin-top:10px;background-color:#fff">
+            <div class="col-sm-6" style="padding:0;border-right: 1px solid #f7ad94;">
+                <div class="col-sm-12" style="background-color:#F99F7F;color:#fff;padding-left:45px">
+                    <img src="/img/stopwatch_icon.png" style="margin-bottom:0;margin-right:25px" />
+                    <label style="font-size:20px">If Timer Expires:</label>
+                </div>
+                <div class="col-sm-12" style="padding:30px">
+                    <div class="col-sm-12" style="">
+                        Call :&nbsp;&nbsp;
+                        <input type="radio" class="radiolabel" name="Time_Expires" value="None" /> None &nbsp;&nbsp;
+                        @*<input type="radio" class="radiolabel" name="Time_Expires" value="911" /> 911 &nbsp;&nbsp;*@
+                        <input type="radio" class="radiolabel" name="Time_Expires" value="Emergency Contact" /> Emergency Contact
+                    </div>
+                    <div class="col-sm-6" style="margin-top:15px">
+                        <label class="labelText">Text Emergency Contact:</label>
+                    </div>
+                    <div class="col-sm-6" style="margin-top:15px">
+                        <div class="col-sm-3" style="padding-top: 3px;text-align:right;padding-right:0">
+                            <label id="Timer_EmrgText_OffText" class="labelgray labelText">Off</label>
+                        </div>
+                        <div class="col-sm-6" style="padding-right:0">
+                            <label class="switch">
+                                <input type="checkbox" id="Time_Expires_TExt_toEmrgContact">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="col-sm-3" style="padding-top: 3px;padding-left:0;">
+                            <label id="Timer_EmrgText_OnText" class="labelgray labelText">On</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="">
+                        <label class="labelText">Message:</label>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:5px">
+                        <textarea rows="3" class="form-control textcontrolclass" style="overflow:hidden; resize:none;border-radius: 5px !important;height:50px !important" id="Time_Expires_Message"></textarea>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6" style="padding:0;">
+                <div class="col-sm-12" style="background-color:#8E999B;color:#fff;padding-left:45px">
+                    <img src="/img/call_icon_section.png" style="margin-bottom:0;margin-right:25px" />
+                    <label style="font-size:20px">If Emergency Code is entered:</label>
+                </div>
+                <div class="col-sm-12" style="padding:30px">
+                    <div class="col-sm-12" style="">
+                        Call :&nbsp;&nbsp;
+                        <input type="radio" class="radiolabel" name="Emrg" value="None" /> None &nbsp;&nbsp;
+                        @*<input type="radio" class="radiolabel" name="Emrg" value="911" /> 911 &nbsp;&nbsp;*@
+                        <input type="radio" class="radiolabel" name="Emrg" value="Emergency Contact" /> Emergency Contact
+                    </div>
+                    <div class="col-sm-6" style="margin-top:15px">
+                        <label class="labelText">Text Emergency Contact:</label>
+                    </div>
+                    <div class="col-sm-6" style="margin-top:15px">
+                        <div class="col-sm-3" style="padding-top: 3px;text-align:right;padding-right:0">
+                            <label id="Emrg_EmrgText_OffText" class="labelgray labelText">Off</label>
+                        </div>
+                        <div class="col-sm-6" style="padding-right:0">
+                            <label class="switch">
+                                <input type="checkbox" id="Emrg_TExt_toEmrgContact">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="col-sm-3" style="padding-top: 3px;padding-left:0;">
+                            <label id="Emrg_EmrgText_OnText" class="labelgray labelText">On</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="">
+                        <label class="labelText">Message:</label>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:5px">
+                        <textarea rows="3" class="form-control textcontrolclass " style="overflow:hidden; resize:none;border-radius: 5px !important;height:50px !important" id="Emrg_Message"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12" style="border-top:1px solid #ff5d26;padding: 15px;">
+                <div class="col-sm-4" style="">
+                    <div class="btn-group btn-group-sm" style="width:100%">
+                        <button type="button" class="mypopupbtncls btn" id="cancelSafetySettings" style="width:50%;border: 1px solid#fff;background-color: gray; color: white;font-size: 15px;">Cancel</button>
+                        <button type="button" id="saveSafetySettings" class="mypopupbtncls btn" style="width:50%;border: 1px solid#fff;background-color: #FF6937; color: white;font-size: 15px;">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-1">&nbsp;</div>
+
+</div>
+
+@*Safety SAtting Saved Alert Popup*@
+<div class="modal fade" id="SettingSavedPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left:206px">
+    <div class="modal-dialog" role="document" style="padding-top:10%;width:23%;">
+        <div class="modal-content">
+            <div class="modal-body" style="text-align:center;height:200px!important">
+                <big style="text-align:center;color:#f56331;margin-top:10px;font-weight:bold;font-size:18px">
+                    <img src="/img/rench_popup.png" style="margin-bottom:0;margin-right:10px" />Safety Timer Settings Saved
+                </big>
+                <hr style="margin-top:10px;border-top:1px solid #ff5d26;" />
+                <p style="font-size:15px;">Your <span style="color:#ff5d26;font-weight:bold" id="alertvalue">Showings</span> timer settings have been successfully updated!</p>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <button type="button" data-dismiss="modal" id="btnYesRemoveAgent" class="mypopupbtncls btn" style="width:100%;border: 1px solid#fff;border-radius: 5px;background-color: #FF5D26; color: white;font-size: 15px;">Ok</button>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Safety timer Helper Modal Popup*@
+<div class="modal fade" id="HelperPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left:206px">
+    <div class="modal-dialog" role="document" style="padding-top:10%;width:40%;">
+        <div class="modal-content">
+            <div class="modal-body" style="text-align:center;height:420px!important">
+                <big style="text-align:center;color:#f56331;margin-top:10px;font-weight:bold;font-size:18px">
+                    @*<span class="glyphicon glyphicon-wrench" style="color: #a9a9a9;right: 10px;"></span>*@
+
+                    <img src="/img/help_icon.png" style="margin-bottom:0;margin-right:10px" />
+                    Safety Timer Help
+                </big>
+                <hr style="margin-top:10px;border-top:1px solid #ff5d26;" />
+                <div class="col-sm-12" id="helpdataDiv" style="min-height:270px;max-height:270px;text-align: justify;color:#6f6c6c;overflow: auto;">
+                    <p>
+                        You can use the safety timer to contact your emergency contact(s) by text or phone call when a showing or open house goes beyond your preset timeframe, or when you enter your emergency code during a showing / open house.
+                    </p>
+                    <p>
+                        Use the safety timer settings to setup your timer parameters and emergency contact plan.  Once your timer settings are configured & the timer is turned on, it will automatically begin counting down when you check into a showing / open house in Quitchet.
+                        If the timer is allowed to fully expire, Quitchet will use your mobile device’s cellular connection to place a phone call and/or send a text message to your emergency contact(s), based on your safety timer settings.
+                    </p>
+                    <p>
+                        <b style="color:#ff5d26">Safety Timer Limit -</b> you set this amount of time, and Quitchet will begin counting it down from the moment you check into a listing.
+                    </p>
+                    <p>
+                        <b style="color:#ff5d26">Time Extension Amount -</b> you set this amount of time, and if your showing / open house goes beyond the expected time, you can extend the safety timer in time blocks equal to this amount.
+                    </p>
+                    <p>
+                        <b style="color:#ff5d26">Timer Authentication Code -</b> This is a 4-digit pin that you set.  You must know this in order to turn the safety alarm off when you check out of the showing / open house, and/or when adding a time extension to the showing.
+                    </p>
+                    <p>
+                        <b style="color:#ff5d26">Emergency Code -</b> This is an alternate 4-digit pin that you set.  If necessary, you can enter this code to automatically contact your emergency contact(s) while also disabling the timer.
+                    </p>
+                    <p>
+                        <b style="color:#ff5d26">
+                            Emergency Text Messages -
+                        </b> Quitchet will automatically create an emergency message like this “ {Your First Name & Last Name} is contacting you through Quitchet to notify you that he/she may be in an emergency situation at {Listing Address, City, State, Zip Code}. “
+                        In the <b style="color:#ff5d26">Safety Timer Settings</b> you can add a custom message to be included at the end of this message.
+
+                    </p>
+                </div>
+                <div class="col-sm-12"><hr style="margin-top:10px;border-top:1px solid #ff5d26;" /></div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+
+                    <button type="button" data-dismiss="modal" id="Yes" class="mypopupbtncls btn" style="width:100%;border: 1px solid#fff;border-radius: 5px;background-color: #FF5D26; color: white;font-size: 15px;">OK</button>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+@*/Logo Cropping popup*@
+<div class="modal fade" id="LogoCropPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF5D26;color:#fff;text-align:center">
+                <label style="font-size:18px"> Crop Image</label>
+            </div>
+            <div class="modal-body" style="padding:0;height:10%">
+                <div class="col-sm-12" style="background-color:#404040de;color:white">
+                    <div class="col-sm-12">&nbsp;</div>
+                    <div id="upload-image"></div>
+                </div>
+            </div>
+
+            <div class="col-sm-12" style="background-color:#1d0b02e0;color:white">
+                <div class="col-sm-6" style="padding:5px">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" style="color:white;background-color:gray;border:none">Cancel</button>
+                </div>
+                <div class="col-sm-6" style="padding:5px">
+                    <button type="button" id="saveCroppedimageBtn" class="btn btn-default btn-sm " style="float:right !important;color:white;background-color:#FF5D26;border:none">Save</button>
+                </div>
+
+
+            </div>
+            <div class="modal-footer" style="padding:0">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="agentchangePasswordPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 8%; width: 20%">
+        <div class="modal-content">
+            <div class="modal-header" style="height:65px">
+                <div class="colo-sm-12" style="text-align: center;color:#ff6937;padding-top:13px;">
+                    <label>
+                        Change Password
+                    </label>
+                </div>
+                <hr style="width:100%;color:#ff6937;border: 1px solid;margin-top:7px;" />
+            </div>
+            <div class="modal-body">
+                <form id="myform">
+                    <div class="col-md-12">
+                        <div style="border-radius: 5px;text-align: center;border-color: red;background-color: rgb(247, 205, 201);width: 220px;height: 52px;margin-bottom: 10px;margin-top: 5px;" id="errormsginpopup" hidden="hidden">
+                            <span id="pwdchangevalidation" style="font-size:x-small;color:red">
+
+                            </span>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <label style="color:#3a3b3d;font-weight:normal">Current Password:</label>
+                        </div>
+                        <div class="col-sm-12">
+                            @Html.TextBox("agentcurrentPwd", "", new { @type = "password", @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;height:25px!important;font-size:smaller;" })
+                        </div>
+                        <div class="col-sm-12" style="padding-top:5px;">
+                            <label style="color:#3a3b3d;font-weight:normal">New Password:</label>
+                        </div>
+                        <div class="col-sm-12">
+                            @Html.TextBox("agentnewPwd", "", new { @type = "password", @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;height:25px!important;font-size:smaller;" })
+                        </div>
+
+                        <div class="col-sm-12" style="padding-top:5px;">
+                            <label style="color:#3a3b3d;font-weight:normal">Re-enter New Password:</label>
+                        </div>
+                        <div class="col-sm-12">
+                            @Html.TextBox("agentconfirmPwd", "", new { @type = "password", @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;height:25px!important;font-size:smaller;" })
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12">&nbsp;</div>
+
+                </form>
+                <div class="modal-footer">
+                    <div class="col-sm-12" style="padding:0">
+                        <div class="col-sm-6" style="text-align:left;">
+                            <button type="button" id="cancelBtn" data-dismiss="modal" class="btn btn-sm" style="height:26px!important;background-color:dimgrey;color:#FFFFFF;border-radius:5px!important;width:75px!important;font-size:11px;padding-top:3px;">
+                                Cancel
+                            </button>
+                        </div>
+                        <div class="col-sm-6" style="">
+                            <button type="button" class="btn btn-sm" id="savePasswordBtn" style="height:26px!important;background-color:#FF5D26;color:#FFFFFF;border-radius:5px!important;width:75px!important;font-size:11px;padding-top:3px;">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Add Area Modal popup-->
+<div class="modal fade" id="AddAreaPopup" role="dialog">
+    <div class="modal-dialog" style="width: 22%;top:20%">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;padding:5px">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <span class="glyphicon glyphicon-map-marker" style="font-size: 18px;color: #ff5d26a3;top:3px"></span>
+                <label class="modal-title" style="color:#FF5D26;font-size:18px">Add Area</label>
+                <hr style="border-bottom:2px solid #FF5D26 !important;margin:5px" />
+            </div>
+            <div class="modal-body" style="padding-left: 15px !important;padding-right: 15px !important;padding:0">
+                <div class="col-sm-12">
+                    <label>Enter a city/state combination :</label>
+                    <div class="inner-addon right-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                        @Html.TextBox("AgentState", "", new { @class = "form-control", style = "cursor-color:#ff5d26" })
+                    </div>
+                </div>
+                @*<div class="col-sm-12" style="margin-top:10px">
+                    <label>City</label>
+                    <div class="inner-addon right-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                        @Html.TextBox("AgentCity", "", new { @class = "form-control", style = "cursor-color:#ff5d26" })
+                        <div class="prp-dropdown-content" style="margin-bottom: 20px;display:none;max-height:400px!important;padding-left:0!important;padding-right:0!important;overflow:hidden" id="CitiesListPopup">
+                            <div class="modal-body">
+                                <div class="col-sm-12" style="padding:1px;min-height:175px!important">
+                                    <div class="prp-dropdown-content" style="padding-left:0!important;padding-right:0!important;min-height:175px!important;
+max-height:175px!important;overflow-y:auto;display:block;position:relative;box-shadow:0px 0px 0px 0px!important;margin-top:6px!important" id="CitiesList_Div">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="modal-footer">
+                <div class="col-sm-12">
+                    <div class="col-sm-6" style="text-align:left;padding:0">
+                        <button type="button" id="CancelAddingAgentCity" data-dismiss="modal" class="btn btn-sm" style="height:26px!important;background-color:dimgrey;color:#FFFFFF;border-radius:5px!important;width:75px!important;font-size:11px;padding-top:3px;">
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="col-sm-6" style="text-align:right;padding:0">
+                        <button type="button" class="btn btn-sm" id="AddAgentCity" style="height:26px!important;background-color:#FF5D26;color:#FFFFFF;border-radius:5px!important;width:75px!important;font-size:11px;padding-top:3px;">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal Preview Agent -->
+<div class="modal fade" id="PreViewAgent" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left:206px">
+    <div class="modal-dialog" style="width:60%;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="padding:0px;">
+                <div class="col-sm-12" style="background-color: #ff6937; margin-top: -4px;padding: 10px;color: white;text-align: center;border-radius:5px 5px 0 0">
+                    <span style="text-align: center;font-size:16px;">
+                        Agent Preview
+                    </span>
+                    <span style="text-align: right;font-size:15px">
+                        <button type="button" class="close" data-dismiss="modal" style="opacity:1;color:#fff;">
+                            <img src="/img/close_Popup_icon.png" @*style="height:25px;"*@ />
+                        </button>
+                    </span>
+                </div>
+                <div class="col-sm-12" style="background-color:#59294C;color:white;padding:10px" id="agent_div_inpopup">
+                    <div class="col-sm-1" style="padding-right:0">
+                        <img src="/img/addphotopic.png" class="img-circle img-responsive" alt="" id="agentphotoinpopup" style="height:50px;width:50px">
+                    </div>
+                    <div class="col-sm-6" style="display:table-cell;vertical-align:middle;text-align:left;padding:0">
+                        <div class="col-sm-12"><label id="agentname" style="font-size:17px;margin-bottom:0;">Bob Morgan</label></div>
+                        <div class="col-sm-12"><label id="agentcompany" style="margin-bottom:0">ABC Reality</label></div>
+                    </div>
+                    <div class="col-sm-5" style="text-align:right;display:table-cell;vertical-align:middle;padding-top:7px;">
+                        <a style="padding:10px" disabled id="agentphoneinpopup">
+                            <img src="/asset_contacts/img/Phoneicon_MyAgent_MP.png" alt="Call Agent" class="">
+                        </a>
+                        <a disabled style="padding:10px" id="agentchatinpopup"><img src="/asset_contacts/img/chat_iconMyAgent_MP.png" alt="Chat with Agent" class=""></a>
+                        <a disabled class="" style="">
+                            @*<i class="fa fa-share-alt"></i>&nbsp;&nbsp;Share*@
+                            <img src="/img/ShareBtn95x36.png" alt="Call Agent" class="">
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" style="padding:0;height: 540px;">
+                <div class="col-sm-12" style="background-color:#ff5d26;font-size:15px">
+                    <ul id="tabs-demo2" class="nav nav-tabs nav-tabs-v1" role="tablist" style="margin-top: 1%;">
+                        <li role="presentation" class="active" style="width:50%;margin: 0 auto;display: block;text-align: center;">
+                            <a href="#tabs-demo2-area1" id="tabs-demo2-1" role="tab" aria-controls="tabs-demo2-area1" data-toggle="tab">
+                                <img src="/img/user_icon.png" style="height:22px;" />&nbsp;&nbsp; Agent Preview
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="tabsDemo2Content" class="tab-content tab-content-v1 col-md-12">
+                    <div role="tabpanel" class="tab-pane fade active in tabcontent1" id="tabs-demo2-area1">
+                        <div class="col-md-12">&nbsp;</div>
+                        <div class="col-md-12" style="text-align:center;font-size:15px;font-weight:bold">
+                            <button id="btnbuyer" class="buyer">Buyer Agent</button>&nbsp;&nbsp;
+                            <button id="btnlisting" class="listing">Listing Agent</button>
+                        </div>
+                        <div class="col-sm-12" style="padding:15px">
+                            <label for="inputEmail3" class="control-label" style="color:#FF6937 !important;font-size:15px;">About</label>
+                            <div class="col-md-12 about" id="SummaryDiv">
+                                <label class="control-label" for="exampleInputEmail1" id="summarycontent">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio
+                                    doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio
+                                    doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.
+                                </label>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-md-6" style="padding-left:0;text-align:left; ">
+                                    <label for="inputEmail3" style="color: #FF6937 !important;font-size:15px;">Experience</label><br />
+                                    <label for="inputEmail3" style="" id="lbl_experience_agent">5 Years</label>
+                                    <span>&nbsp;</span>
+                                    <div class="col-sm-12">&nbsp;</div>
+                                    <br />
+                                    <label for="inputEmail3" class="control-label" style="color: #FF6937 !important;font-size:15px;">Areas Served</label>
+                                    <div class="row" id="div_arearsserved">
+
+                                    </div>
+                                    <div class="col-sm-12">&nbsp;</div>
+                                    <div class="row">
+                                        <a id="agentweb" target="_blank" class="btn agentwebs">Agent Website</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="padding-right:0;">
+                                    <label for="inputEmail3" class="control-label" style="width: 100%;text-align:left; color: #FF6937 !important;font-size:15px;">Testimonials</label>
+                                    <section id="carousel">
+                                        <div class="row">
+                                            <div class="row" id="dynmiccars">
+                                                <div class="col-md-12 col-md-offset-2" style="padding-right:0;padding-left:0;">
+                                                    <div class="quote" style="display:none;"><i class="fa fa-quote-left fa-4x"></i></div>
+                                                    <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
+                                                        <!-- Carousel indicators -->
+                                                        <ol class="carousel-indicators">
+                                                            <li data-target="#fade-quote-carousel" id="item1o" data-slide-to="0"></li>
+                                                            <li data-target="#fade-quote-carousel" id="item2o" data-slide-to="1"></li>
+                                                            <li data-target="#fade-quote-carousel" id="item3o" data-slide-to="2" class="active"></li>
+                                                            <li data-target="#fade-quote-carousel" id="item4o" data-slide-to="3"></li>
+                                                            <li data-target="#fade-quote-carousel" id="item5o" data-slide-to="4"></li>
+                                                        </ol>
+                                                        <!-- Carousel items -->
+                                                        <div class="carousel-inner">
+                                                            <div class="item" id="item1">
+                                                                <blockquote>
+                                                                    <p id="item1p" class="paragraph pitem"></p>
+                                                                </blockquote>
+                                                            </div>
+                                                            <div class="item" id="item2">
+                                                                <blockquote>
+                                                                    <p id="item2p" class="paragraph pitem"></p>
+                                                                </blockquote>
+                                                            </div>
+                                                            <div class="active item" id="item3">
+                                                                <blockquote>
+                                                                    <p id="item3p" class="paragraph pitem"></p>
+                                                                </blockquote>
+                                                            </div>
+                                                            <div class="item" id="item4">
+                                                                <blockquote>
+                                                                    <p id="item4p" class="paragraph pitem"></p>
+                                                                </blockquote>
+                                                            </div>
+                                                            <div class="item" id="item5">
+                                                                <blockquote>
+                                                                    <p id="item5p" class="paragraph pitem"></p>
+                                                                </blockquote>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </section>
+                                    @*<div class="col-sm-12" style="padding-right:0;">
+                                            <div class="col-sm-9" style="padding-right:0;text-align:right">
+                                                <span style="font-size:14px;color:#ff6937;" id="agentnameinfooter">Maria Jhones</span><br />
+                                                <span style="font-size:14px;" id="agentcompanyinfooter">Customer one</span>
+                                            </div>
+                                            <div class="col-sm-3" style="padding-left:0;padding-right:0;text-align: center;">
+                                                <img src="/img/addphotopic.png" class="img-circle avatar1" alt="" id="agentphotoinfooter">
+                                            </div>
+                                        </div>*@
+
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="col-sm-12" style="text-align:center">
+                                <img src="/img/Qutichet_footerLogo.png" class="" alt="">
+                                <button class="btn btn-default" style="float:right;background-color:gray;color:white;margin-top: 20px;" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="height:50px">
+            </div>
+        </div>
+
+    </div>
+
+</div>
+@*//Agent Profile Div Script//*@
+@*Profile Saved Alert Popup*@
+@*Alert Popup for global*@
+<div class="modal fade" id="ProfileSavedPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 15%; width: 25%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;color:#ff6937;height:45px;padding-top:13px;">
+                <label id="heading1">
+                </label>
+                <hr style="color:#ff6937;border: 0.5px solid;margin-top:7px;" />
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="modal-body">
+                <div class="col-md-12" style="text-align: center">
+                    <label id="content_text1" style="word-wrap: break-word;"></label>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="modal-footer">
+                    <div class="col-md-12" style="text-align: center">
+                        <button type="button" id="SuccessBtn" data-dismiss="modal" class="btn btn-primary closeorangebtn" style="border-radius: 5px 5px 5px 5px  !important; background-color: #ff6937!important; color: white;font-size: 15px;">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //VAlidatye URL
+    function checkUrl(url) {
+        if (url != "") {
+            //regular expression for URL
+            var pattern = /^(http|https)?:\/\/[a-zA-Z0-9-\.]+\.[a-z]{2,4}/;
+
+            if (pattern.test(url)) {
+                //return true;
+                $('#saveAgentProfile').attr("disabled", false);
+                $('#url_errormsg').hide()
+            } else {
+                //return false;
+                $('#saveAgentProfile').attr("disabled", true);
+                $('#url_errormsg').show()
+            }
+        }
+        else {
+            $('#saveAgentProfile').attr("disabled", false);
+            $('#url_errormsg').hide()
+        }
+      
+    }
+   
+    // Used to format phone number
+    function phoneFormatter() {
+        $('#AgentMobile').on('input', function () {
+            var number = $(this).val().replace(/[^\d]/g, '')
+            if (number.length == 7) {
+                number = number.replace(/(\d{3})(\d{4})/, "$1-$2");
+            } else if (number.length == 10) {
+                number = number.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+            }
+            $(this).val(number)
+        });
+    };
+    $(phoneFormatter);
+    var currentAddress = "", usingBrowser = "", IPAddress = "", OSName = "";
+    var filename = "", ExistedImagePath = "";
+    //Code to get OS type
+    var OSName = "Unknown";
+    if (window.navigator.userAgent.indexOf("Windows NT 10.0") != -1) OSName = "Windows 10";
+    if (window.navigator.userAgent.indexOf("Windows NT 6.2") != -1) OSName = "Windows 8";
+    if (window.navigator.userAgent.indexOf("Windows NT 6.1") != -1) OSName = "Windows 7";
+    if (window.navigator.userAgent.indexOf("Windows NT 6.0") != -1) OSName = "Windows Vista";
+    if (window.navigator.userAgent.indexOf("Windows NT 5.1") != -1) OSName = "Windows XP";
+    if (window.navigator.userAgent.indexOf("Windows NT 5.0") != -1) OSName = "Windows 2000";
+    if (window.navigator.userAgent.indexOf("Mac") != -1) OSName = "Mac/IOS";
+    if (window.navigator.userAgent.indexOf("X11") != -1) OSName = "UNIX";
+    if (window.navigator.userAgent.indexOf("Linux") != -1) OSName = "Linux";
+    //code to get IP address
+    //$.getJSON("http://jsonip.com/?callback=?", function (data) {
+    //    IPAddress = data.ip;
+    //});
+    ////code to get current latituide and longitude
+    //if (navigator.geolocation) {
+    //    navigator.geolocation.getCurrentPosition(showPosition);
+    //} else {
+    //    alert("Geolocation is not supported by this browser.");
+    //}
+    ////Function to  get Current addres
+    //function showPosition(position) {
+    //    location.latitude = position.coords.latitude;
+    //    location.longitude = position.coords.longitude;
+    //    var geocoder = new google.maps.Geocoder();
+    //    var latLng = new google.maps.LatLng(location.latitude, location.longitude);
+    //    if (geocoder) {
+    //        geocoder.geocode({ 'latLng': latLng }, function (results, status) {
+    //            if (status == google.maps.GeocoderStatus.OK) {
+    //                currentAddress = results[0].formatted_address;
+    //            }
+    //            else {
+    //                alert('Geocoding failed: ' + status);
+    //            }
+    //        }); //geocoder.geocode()
+    //    }
+    //} //showPosition
+    $.getJSON('//freegeoip.net/json/?callback=?', function (data) {
+        console.log(JSON.stringify(data, null, 2));
+        IPAddress = JSON.stringify(data.ip);
+        currentAddress = JSON.stringify(data.city + ', ' + data.region_name + ', ' + data.country_name + '.');
+        //console.log(JSON.stringify(data.ip));
+        //$('#did').val(JSON.stringify(data.ip));
+        //alert($('#did').val());
+    });
+    $(document).ready(function () {
+        $("#cities").tokenfield();
+        //$("#MyProfileDiv").hide();
+        //$("#SafetySettingsDiv").show();
+        getAgentProfile(AgentId);
+
+        //alert(AgentId)
+      
+    });
+    var $row = $('.testimonials');
+    var inc = 1, maxlength = 5;
+    //$("#addtest2").on('click', function () {
+    //    if (inc < maxlength) {
+    //        inc = inc + 1;
+    //        if (inc == maxlength)
+    //            $("#addtest2").hide()
+    //        var $newRow = $row.clone().insertAfter('.testimonials:last');
+    //        $newRow.find('input').each(function () {
+    //            this.value = '';
+    //        });
+    //        inc=inc++;
+    //    }
+    //});
+    // Add & remove testimonials
+    //Adding Testnomials
+    $("#addtest2").click(function () {
+        $("#addtest2").hide();
+        $("#test2div").show();
+    });
+    $("#addtest3").click(function () {
+        $("#addtest3").hide();
+        $("#test3div").show();
+    });
+    $("#addtest4").click(function () {
+        $("#addtest4").hide();
+        $("#test4div").show();
+    });
+    $("#addtest5").click(function () {
+        $("#addtest5").hide();
+        $("#test5div").show();
+    });
+    //----------------For Showing Password when we select show password-----------------
+    $("#AgentshowPass").change(function () {
+        var checked = $(this).is(":checked");
+        if (checked) {
+            $("#AgentPassword").attr("type", "text");
+        } else {
+            $("#AgentPassword").attr("type", "password");
+        }
+    });
+    //--------------------Code for Email Validation------------
+    $('#AgentEmail').change(function () {
+        var r = ValidateAgentEmail();
+        //if (r == "yes")
+        //   // CheckEmailexistOrnot();
+        //else
+        //{ }
+    })
+    function EmailRegularExpression(email) {
+        // Validate email format
+        var expr = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        return expr.test(email);
+    };
+    function ValidateAgentEmail() {
+        var result = "no";
+        if (!EmailRegularExpression($("#AgentEmail").val())) {
+            $('#EmailerrorMsg').html('Please enter a valid email address');
+            $('#EmailerrorDiv').show();
+            $('#AgentEmail').focus();
+            $('#saveAgentProfile').attr("disabled", true);
+        }
+        else {
+            $('#EmailerrorMsg').html('');
+            $('#EmailerrorDiv').hide();
+            $('#saveAgentProfile').attr("disabled", false);
+            result = "yes";
+        }
+        return result;
+    }
+    //Color Picker Events
+    $('#cp1,#cp2').colorpicker();
+    $('#PrimaryColor').colorpicker({
+        onChange: function (hsb, hex, rgb) {
+            $("#c2").css("background-color", '#' + hex);
+        }
+    });
+    $('#SecondaryColor').colorpicker({
+        onChange: function (hsb, hex, rgb) {
+            $("#c1").css("background-color", '#' + hex);
+        }
+    });
+    //Profile Image uploader & Preview
+    function OpenEditFileUploader(id) {
+        //alert($("#agentprofile_image").attr('src').split(',')[1])
+        if (id == "agentprofilepic_editbtn")
+            $("#EditProfileploader")[0].click();
+        else
+            $("#logouploader")[0].click();
+    }
+    //Show AgentProfile Image Preview
+    function showeditimagepreview(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#agentprofile_image').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+            //  alert(input.files[0])
+            //alert($("#agentprofile_image").attr('src'))
+        }
+    }
+    //cropimage
+    $image_crop = $('#upload-image').croppie({
+        enableExif: true,
+        viewport: {
+            width: 200,
+            height: 200,
+            type: 'square'
+        },
+        boundary: {
+            width: 300,
+            height: 300
+        }
+    });
+    $('#logouploader').on('change', function () {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $image_crop.croppie('bind', {
+                url: e.target.result
+            }).then(function () {
+                //console.log('jQuery bind complete');
+                $("#LogoCropPopup").modal('show');
+            });
+        }
+        reader.readAsDataURL(this.files[0]);
+        //alert(this.files[0])
+    });
+    $('#LogoCropPopup').on('shown.bs.modal', function () {
+        $('#upload-image').croppie('bind')
+    });
+    $('#saveCroppedimageBtn').on('click', function (ev) {
+        $image_crop.croppie('result', {
+            type: 'canvas',
+            size: 'viewport'
+        }).then(function (response) {
+            $("#agentlogo_image").attr('src', response);
+            //alert(response)
+            $("#LogoCropPopup").modal('hide');
+        });
+    });
+    /* when user click on Agent Type dropdown item*/
+    function GetAgetType(id) {
+        switch (id) {
+            case 1: {
+                $('#agentTypetext').text('Buyer Agent');
+                $("#AgentTypeErrorDiv").hide()
+                $('#saveAgentProfile').attr("disabled", false);
+            };
+                break;
+            case 2: {
+                $('#agentTypetext').text('Listing Agent');
+                $("#AgentTypeErrorDiv").hide();
+                $('#saveAgentProfile').attr("disabled", false);
+            };
+                break;
+            case 3: {
+                $('#agentTypetext').text('Both');
+                $("#AgentTypeErrorDiv").hide();
+                $('#saveAgentProfile').attr("disabled", false);
+            };
+                break;
+
+        }
+    }
+    $(".list-group-item").click(function () {
+        var id = $(this).attr('id');
+        $('.list-group-item').removeClass('myactive');
+        $('#' + id).addClass('myactive');
+    })
+    //Passowrd validation in chnage Password Popup
+    // NewPAssword Validation
+    $("#agentnewPwd").change(function () {
+        $("#errormsginpopup").css("height", "52px");
+        $("#pwdchangevalidation").text("Password must contain minimum of 8 characters, 1 uppercase, 1 lowercase and 1 number. No  special Characters may be used.");
+        var pswd = $(this).val();
+        //validate the length
+        if (pswd.length >= 8 && pswd.match(/[a-z]/) && pswd.match(/[A-Z]/) && pswd.match(/\d/)) {
+            $('#errormsginpopup').hide();
+
+            $("#agentconfirmPwd").removeAttr("disabled");
+            $('#agentconfirmPwd').focus();
+        }
+        else {
+            $('#errormsginpopup').show();
+            $('#agentnewPwd').focus();
+            $("#agentconfirmPwd").attr("disabled", "disabled");
+
+        }
+        if (!isValid($("#newPwd").val())) {
+            $('#errormsginpopup').show();
+            //$('#newPwd').val(');
+            $('#agentnewPwd').focus();
+            $("#agentconfirmPwd").attr("disabled", "disabled");
+
+        }
+    });
+    function isValid(str) {
+        return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
+    }
+    // Confirm password Validation
+    $("#agentconfirmPwd").change(function () {
+        if ($(this).val() != $("#agentnewPwd").val()) {
+            $('#errormsginpopup').show();
+            $("#errormsginpopup").css("height", "25px");
+            $("#pwdchangevalidation").text("Password Missmatched.");
+            $("#agentnewPwd").focus();
+            $("#agentconfirmPwd").val('');
+            $("#agentnewPwd").val('');
+            $('#savePasswordBtn').attr("disabled", true);
+        }
+        else
+            $('#savePasswordBtn').attr("disabled", false);
+    });
+    $("#agentnewPwd").change(function () {
+        if ($(this).val() == $("#agentcurrentPwd").val()) {
+            $('#errormsginpopup').show();
+            $("#errormsginpopup").css("height", "50px");
+            $("#pwdchangevalidation").text("Current and New Password Same, Please enter another Password.");
+            $("#agentnewPwd").focus();
+            $("#agentconfirmPwd").val('');
+            $("#agentnewPwd").val('');
+            $('#savePasswordBtn').attr('disabled', true);
+        }
+        else
+            $('#savePasswordBtn').attr('disabled', false);
+    });
+    $('#agentcurrentPwd').keyup(function () {
+        $('#errormsginpopup').hide();
+    })
+    $("#savePasswordBtn").click(function () {
+        if ($('#agentcurrentPwd').val().length > 0 && $('#agentnewPwd').val().length > 0 && $('#agentconfirmPwd').val().length > 0) {
+            var curpwd = $('#agentcurrentPwd').val();
+            var newpwd = $('#agentnewPwd').val();
+            var Username = $('#AgentFirstName').val() + " " + $('#AgentLastName').val();
+            $.ajax({
+                url: "/Agent/AgentProfile/UpdateAgentPassword",
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: { UserName: Username, Currentpwd: curpwd, NewPassword: newpwd, OperatingSystem: OSName, IPAddress: IPAddress, CurrentAddress: currentAddress },
+                success: function (data) {
+                    if (data[0].Status == "NEW PASSWORD UPDATED") {
+                        $('#agentchangePasswordPopup').modal('hide');
+                        $('#agentcurrentPwd').val('');
+                        $('#agentnewPwd').val('');
+                        $("#agentconfirmPwd").val('');
+                    }
+                    else {
+                        $('#agentchangePasswordPopup').modal('show');
+                        $('#pwdchangevalidation').text("OLD PASSWORD NOT MATCHED");
+                        $('#errormsginpopup').show();
+                        $("#errormsginpopup").css("height", "25px");
+                        $('#agentcurrentPwd').focus();
+                    }
+                },
+                error: function (res) {
+
+                }
+            });
+        }
+        else {
+            $('#errormsginpopup').show();
+            $("#errormsginpopup").css("height", "50px");
+            $("#pwdchangevalidation").text("Please Enter Password");
+        }
+    });
+    //Password Validation in Agent Profile
+    $("#AgentPassword").change(function () {
+        $("#errormsginprofile").css("height", "52px");
+        $("#pwdvalidationtext").text("Password must contain minimum of 8 characters, 1 uppercase, 1 lowercase and 1 number. No  special Characters may be used.");
+        var pswd = $(this).val();
+        //validate the length
+        if (pswd.length >= 8 && pswd.match(/[a-z]/) && pswd.match(/[A-Z]/) && pswd.match(/\d/)) {
+            $('#errormsginprofile').hide();
+            $('#saveAgentProfile').attr("disabled", false);
+        }
+        else {
+            $('#errormsginprofile').show();
+            $('#saveAgentProfile').attr("disabled", true);
+            $('#AgentPassword').focus();
+        }
+    });
+    $('#AgentPassword,#AgentState,#AgentCity,#RetsAgentID,#AgentFirstName,#AgentLastName,#AgentNickname,#AgentBrokerage').bind('keypress', function (e) {
+        if ($(this).val().length == 0) {
+            var k = e.which;
+            var ok = k >= 65 && k <= 90 || // A-Z
+                k >= 97 && k <= 122 || // a-z
+                k >= 48 && k <= 57; // 0-9
+            if (!ok) {
+                e.preventDefault();
+            }
+        }
+    });
+    //While open Add Area popup
+    $('#AddAreaPopup').on('shown.bs.modal', function () {
+        $('#AgentState').val('');
+        $('#AgentCity').val('');
+        $('#AgentState').focus();
+        $("#CitiesListPopup").hide();
+    });
+    var statecode = "", citiesList = [];
+    var data = [
+             { "id": "SC", "value": "South Carolina" },
+             { "id": "NC", "value": "North Carolina" },
+
+    ];//States Data(Static)
+    //States Auto complete
+    //$('#AgentState').autocomplete({
+    //    source: data,
+    //    select: function (event, ui) {
+    //        statecode = ui.item.id;
+    //    }
+    //});
+    //Get Cites list based on selecte State
+    @*$("#AgentState").change(function () {
+        $.ajax({
+            url: "@Url.Action("GetCitiesBasedonState", "AgentProfile")",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { statecode: statecode, AgentID: AgentId },
+            success: function (data) {
+                if (data != "") {
+                    $.each(data, function (i, item) {
+                        citiesList.push(item.CITY);
+                    });
+                }
+            }
+        });
+    });*@
+    //open poppup of cities when enters key in city textbox
+    $("#AgentCity").keyup(function () {
+        if ($(this).val() == "")
+            $("#CitiesListPopup").hide();
+        else
+            $("#CitiesListPopup").show();
+    });
+    $("#AgentCity").autocomplete({
+        source: function (request, response) {
+            var results = $.ui.autocomplete.filter(citiesList, request.term);
+            if (!results.length) {
+                $("#AgentCity").text("No results found!");
+            } else {
+                $("#AgentCity").empty();
+                $('#CitiesList_Div').empty();
+                var subd = "";
+                $.each(results, function (i, item) {
+                    if (subd == "") {
+                        subd = "<li style='list-style: none;border-bottom: 1px solid;padding:5px 5px;width:92%'><a onclick=GetCityToTexbox('" + results[i] + "')  href='#' style='text-decoration:none' >" + results[i] + "</a></li>";
+                    }
+                    else {
+                        subd = subd + "<li style='list-style: none;border-bottom: 1px solid;padding:5px 5px;width:92%'><a href='#' style='text-decoration:none' onclick=GetCityToTexbox('" + results[i] + "') >" + results[i] + "</a></li>";
+                    }
+                });
+                var tot = subd;
+                $('#CitiesList_Div').html(tot);
+            }
+        }
+    });
+    //function to get Areas Served(Cities) by Agent From REts
+    function getAreasServedbyAgent(id) {
+        var areas = [];
+        $.ajax({
+            url: "/Agent/AgentProfile/GetAreasServedByAgent",
+            type: "Get",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { AgentID: id },
+            success: function (res) {
+                if (res.length > 0) {
+                    $.each(res, function (i, item) {
+                        alert(res[i].AreasServed)
+                        areas.push(res[i].AreasServed)
+                        $('#cities').tokenfield('createToken', res[i].AreasServed);
+                    });
+                   
+                    $("#agentservedareastext").text(areas.join(':') + ":");
+                   
+                }
+            },
+        });
+    }
+    function GetCityToTexbox(city) {
+        $("#AgentCity").val(city);
+        $("#CitiesListPopup").hide();
+    }
+    $("#AddAgentCity").click(function () {
+        var citylabeltex = $("#agentservedareastext").text();
+        if (citylabeltex.indexOf($("#AgentCity").val() + ", " + statecode) > -1)
+        { }
+        else
+        {
+            $('#cities').tokenfield('createToken', $("#AgentState").val() );
+            $("#agentservedareastext").append(": " + $("#AgentState").val())
+        }
+           
+        $("#AddAreaPopup").modal('hide');
+        // alert($("#AgentCity").val() + ", " + statecode+":")
+    });
+    //Event to get Agents for Brokerage and Team Member
+    function agentautocomplete(controlid) {
+        $("#" + controlid).autocomplete({
+            source: function (request, response) {
+
+                $.ajax({
+                    url: '/Agent/AgentProfile/GetQuitchetAgents',
+                    data: { SearchEmail: request.term },
+                    dataType: "json",
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        if (data.length <= 0) {
+                            //$("#errorMessageforMLSID").text('No Listings Found')
+                            $("#" + controlid).focus();
+                        }
+                        else {
+                            //$("#errorMessageforMLSID").text('')
+                            response($.map(data, function (item) {
+                                if (item.AgentID != AgentId)
+                                {
+                                    return { label: item.EMAIL, value: item.EMAIL};
+                                }
+
+                            }))
+                        }
+                    },
+                    error: function (response) {
+                        //alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        //alert(response.responseText);
+                    }
+                });
+            },
+            select: function (e, i) {
+                //closingMLS_Buying = i.item.value;
+                //alert(i.item.value);
+            },
+            //minLength: 1
+        });
+    }//Auto Complete for Select Agents from Quitchet
+    //Event to get Gender value to the span element
+    $(".test").click(function () {
+        $("#gendervalue").text($(this).text());
+        $("#AgentGenderErrorDiv").hide()
+        $('#saveAgentProfile').attr("disabled", false)
+
+    });
+    var agentlogopath = "", agentprofilepicpath = "";
+    $("#saveAgentProfile").click(function () {
+        $("#nm").click();
+        if ($("#agentlogo_image").attr('src').indexOf(',') > -1)
+            agentlogopath = $("#agentlogo_image").attr('src').split(',')[1];
+        if ($("#agentprofile_image").attr('src').indexOf(',') > -1)
+            agentprofilepicpath = $("#agentprofile_image").attr('src').split(',')[1];
+        //if (agentlogopath == "")
+        //    agentlogopath = $("#agentlogo_image").attr('src').split(',')[1];
+        //if (agentprofilepicpath == "")
+        //    agentprofilepicpath = $("#agentprofile_image").attr('src').split(',')[1];
+        var agentProfileObj = [];
+        if ($("#gendervalue").text() == "Select") {
+            $("#AgentGenderErrorDiv").show()
+            $('#saveAgentProfile').attr("disabled", true);
+        }
+        else if ($("#agentTypetext").text() == " Select Agent") {
+            $("#AgentTypeErrorDiv").show()
+            $('#saveAgentProfile').attr("disabled", true);
+        }
+        else {
+            var brokerincharge_status = false;
+            var teamleader_status = false;
+            if ($("input[name='BrokerInCharge_Status']:checked").val() == "1")
+                brokerincharge_status = true;
+            if ($("input[name='Teamleader_Status']:checked").val() == "1")
+                teamleader_status = true;
+            agentProfileObj = [
+            $("#RetsAgentID").val(),
+            $("#AgentFirstName").val(),
+            $("#AgentLastName").val(),
+            $("#AgentNickname").val(),
+            $("#AgentBrokerage").val(),
+            $("#PrimaryColor").val(),
+            $("#SecondaryColor").val(),
+            ($("#AgentBroker_in_Charge").val() == "") ? "" : $("#AgentBroker_in_Charge").val(),
+           brokerincharge_status,
+            //$("#TeamLeader").val(),
+            ($("#TeamLeader").val() == "") ? "" : $("#TeamLeader").val(),
+            teamleader_status,
+              $("#AgentEmail").val(),
+            $("#gendervalue").text(),
+           $("#AgentWebsite").val(),
+            $("#AgentMobile").val(),
+            $("#AgentPhone").val(),
+            $("#agentTypetext").text(),
+            $("#AboutAgent").val(),
+            $("#AgentExp").val(),
+            //$("#agentservedareastext").text(),
+            agentAreas,
+            $("#Testimonials1").val(),
+            $("#Testimonials2").val(),
+            $("#Testimonials3").val(),
+            $("#Testimonials4").val(),
+            $("#Testimonials5").val(),
+            agentprofilepicpath,
+            agentlogopath
+            ]
+            $.ajax({
+                url: "@Url.Action("InsertAgentProfile", "AgentProfile")",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(agentProfileObj),
+                success: function (res) {
+                    if (res == "Success") {
+                        $("#heading1").text("Success");
+                        $("#content_text1").text("Agent profile successfully updated!");
+                        $("#ProfileSavedPopup").modal("show")
+                        getAgentProfile(AgentId);
+                    }
+                    else {
+                        $("#heading1").text("Alert");
+                        $("#content_text1").text("Failed to update Agent profile!");
+                        $("#ProfileSavedPopup").modal("show")
+                    }
+                },
+                error: function (res) {
+                    $("#heading1").text("Error Message");
+                    $("#content_text1").text("error :" + res);
+                    $("#ProfileSavedPopup").modal("show")
+                }
+            });
+        }
+    });
+    $('#SuccessBtn').click(function () {
+        location.reload();
+    })
+    $("#PreviewBtn").click(function () {
+        var imgsrc = $('#agentprofile_image').attr('src');
+        $("#agentphotoinpopup").attr('src', imgsrc)
+
+        $("#agentname").text($('#AgentFirstName').val() + " " + $('#AgentLastName').val());
+        $("#agentcompany").text($('#AgentBrokerage').val());
+        $("#summarycontent").text($('#AboutAgent').val());
+        $("#lbl_experience_agent").text($('#AgentExp').val() + " Years");
+        $("#agentweb").attr('href', $('#AgentWebsite').val());
+        var tag = $('#agentTypetext').text();
+        //alert($('#agentTypetext').text())
+        if ($('#agentTypetext').text() == "Buyer Agent") {
+            $('#btnbuyer').show();
+            $('#btnlisting').hide();
+        }
+        else if ($('#agentTypetext').text() == "Listing Agent") {
+            $('#btnbuyer').hide();
+            $('#btnlisting').show();
+        }
+        else if ($('#agentTypetext').text() == "Both") {
+            $('#btnbuyer').show();
+            $('#btnlisting').show();
+        }
+
+        var areasserved = $('#agentservedareastext').text();
+        var bindareas = $('<div class="row"></div>');
+        var citieslist = '';
+        if (areasserved.length > 0) {
+            $.each(areasserved.split(':'), function (k, area) {
+                if (area != "") {
+                    if (area.indexOf(":") >= 0) {
+                        //citieslist= citieslist+'<br /><img src="/img/bulletDot.png" />&nbsp '+
+                        //       '<span style="color:#FF5D26">'+home.split(':')[0]+':</span> &nbsp '+home.split(':')[1];
+                        citieslist = citieslist + '<div class="col-md-6" style="padding-left:0;text-align:left;">'
+                                      + '<img src="/img/bulletDot.png" style="margin-bottom:1px;" /> &nbsp; <span>' + area.split(':')[0] + '</span><br />'
+                                  + '</div>';
+                    }
+                    else {
+                        citieslist = citieslist + '<div class="col-md-6" style="padding-left:0;text-align:left;">'
+                                      + '<img src="/img/bulletDot.png" style="margin-bottom:1px;" /> &nbsp; <span>' + area + '</span><br />'
+                                  + '</div>';
+                    }
+                }
+            });
+            bindareas.append(citieslist);
+        }
+        $('#div_arearsserved').html(bindareas);
+        $('#item1p').text('');
+        $('#item2p').text('');
+        $('#item3p').text('');
+        $('#item4p').text('');
+        $('#item5p').text('');
+        if ($('#Testimonials1').val().length > 0) {
+            $('#item1p').text($('#Testimonials1').val());
+        }
+        if ($('#Testimonials2').val().length > 0) {
+            $('#item2p').text($('#Testimonials2').val());
+        }
+        if ($('#Testimonials3').val().length > 0) {
+            $('#item3p').text($('#Testimonials3').val());
+        }
+        if ($('#Testimonials4').val().length > 0) {
+            $('#item4p').text($('#Testimonials4').val());
+        }
+        if ($('#Testimonials5').val().length > 0) {
+            $('#item5p').text($('#Testimonials5').val());
+        }
+        $("#PreViewAgent").modal("show")
+    });
+    $('#cancelsaveProfile').click(function () {
+        location.href = '/Agent/MyQuitchet/Index';
+    })
+    function getAgentProfile(agentid) {
+        //$("#cities").tokenfield('readonly');
+        $.ajax({
+            url: "/Customer/ManageSearchAgent/GetAgentProfile",
+            //url: "Url.Action("GetAgentProfile", "ManageSearchAgent")",
+            type: "GET",
+            dataType: "json",
+            data: { agentid: agentid },
+            success: function (data) {
+                if (data.length > 0) {
+                    $("#RetsAgentID").val(data[0].AgentID)
+                    $("#AgentFirstName").val(data[0].FirstName)
+                    $("#AgentLastName").val(data[0].LastName)
+                    $("#AgentNickname").val(data[0].Nick_Name)
+                    $("#AgentBrokerage").val(data[0].Brokerage)
+                    $("#PrimaryColor").val(data[0].Primary_Color)
+                    $("#PrimaryColor").change();
+                    $("#SecondaryColor").val(data[0].Secondary_Color)
+                    $("#SecondaryColor").change();
+                    $("#AgentBroker_in_Charge").val(data[0].Broker_InCharge)
+                    if (data[0].BrokerInCharge_Status == 0)
+                        $("input[name=BrokerInCharge_Status][value='0']").attr("checked", "checked");
+                    else
+                        $("input[name=BrokerInCharge_Status][value='1']").attr("checked", "checked");
+                    if (data[0].TeamLeader_Status == "0")
+                        $("input[name=Teamleader_Status][value='0']").attr("checked", "checked");
+                    else
+                        $("input[name=Teamleader_Status][value='1']").attr("checked", "checked");
+                    $("#TeamLeader").val(data[0].Team_Leader)
+                    $("#AgentEmail").val(data[0].Email)
+                    if (data[0].Gender != null && data[0].Gender != "")
+                        $("#gendervalue").text(data[0].Gender)
+                    else
+                        $("#gendervalue").text('Select')
+                    $("#AgentWebsite").val(data[0].WebSite)
+                    $("#AgentMobile").val(data[0].MobileNo)
+                    $("#AgentPhone").val(data[0].OfficeNo)
+                    if (data[0].AgentType != null && data[0].AgentType != "")
+                        $("#agentTypetext").text(data[0].AgentType)
+                    else
+                        $("#agentTypetext").text('Select')
+                    //$("#agentTypetext").text(data[0].AgentType)
+                    $("#AboutAgent").val(data[0].About)
+                    $("#AgentExp").val(data[0].Experience)
+                    if (data[0].AreasServed == ""){
+                        getAreasServedbyAgent(data[0].AgentID)
+                    }
+                    else {
+                        $("#agentservedareastext").text(data[0].AreasServed)
+                        var agentCities = [];
+                        if (data[0].AreasServed != '' && data[0].AreasServed != null) {
+                            
+                            if (data[0].AreasServed.indexOf(':') > -1) {
+                                agentCities = data[0].AreasServed.split(':');
+                                $.each(agentCities, function (i, item) {
+                                    $('#cities').tokenfield('createToken', agentCities[i]);
+                                });
+                            }
+                            else {
+                                $('#cities').tokenfield('createToken', data[0].AreasServed);
+                            }
+                        }
+                        //$('#cities').tokenfield('setTokens', data[0].AreasServed);
+                        }
+                    $("#Testimonials1").val(data[0].Testimonials1)
+                    if (data[0].Testimonials2 != null && data[0].Testimonials2 != "") {
+                        $("#addtest2")[0].click();
+                        $("#Testimonials2").val(data[0].Testimonials2)
+                    }
+                    if (data[0].Testimonials3 != null && data[0].Testimonials3 != "") {
+                        $("#addtest3")[0].click();
+                        $("#Testimonials3").val(data[0].Testimonials3)
+                    }
+                    if (data[0].Testimonials4 != null && data[0].Testimonials4 != "") {
+                        $("#addtest4")[0].click();
+                        $("#Testimonials4").val(data[0].Testimonials4)
+                    }
+                    if (data[0].Testimonials5 != null && data[0].Testimonials5 != "") {
+                        $("#addtest5")[0].click();
+                        $("#Testimonials5").val(data[0].Testimonials5)
+                    }
+                    if (data[0].PhotoPath == "") {
+                        if (data[0].IMAGE != null && data[0].IMAGE != "," && data[0].IMAGE != "")
+                            //  agentprofilepicpath = data[0].IMAGE;
+                            $("#agentprofile_image").attr('src', data[0].IMAGE)
+                        else
+                            $("#agentprofile_image").attr('src', '/img/addphotopic.png')
+                    }
+                    else if (data[0].PhotoPath != null && data[0].PhotoPath != "," && data[0].PhotoPath != "") {
+                        // agentprofilepicpath = data[0].PhotoPath;
+                        $("#agentprofile_image").attr('src', data[0].PhotoPath)
+                    }
+                    else
+                        $("#agentprofile_image").attr('src', '/img/addphotopic.png')
+
+                    if (data[0].LogoPath != "" && data[0].LogoPath != "null" && data[0].LogoPath != null) {
+                        // agentlogopath = data[0].LogoPath;
+                        $("#agentlogo_image").attr('src', data[0].LogoPath)
+                    }
+                    else
+                        $("#agentlogo_image").attr('src', '/img/logo_placeHolder.png')
+
+
+                    //$("#agentlogo_image").attr('src',data[0].AgentID)
+                    //$('#imagediv').attr('src', UserProfilePic);
+                    //$('#CurrentUserName').html(AgentLname);
+                    //$('#CurrentUserLastName').html(AgentFname);
+
+                }
+            },
+        });
+    }
+</script>
+@*//Safety Settings Div Script//*@
+<script>
+    var is_sh_oh = "sh", controllerMethod = "/Agent/AgentProfile/SaveShowingsSafetySettings";
+    $("#showingstab_btn").click(function () {
+        $("#alertvalue").text("Showings");
+        $("#safetytimerdiv").show();
+        is_sh_oh = "sh";
+        getSafetySettings(AgentId, is_sh_oh);
+    });//click event for Showings houses Tab in Safety Settings
+    $("#openhousestab_btn").click(function () {
+        is_sh_oh = "oh";
+        $("#alertvalue").text("Open Houses");
+        $("#safetytimerdiv").hide();
+        getSafetySettings(AgentId, is_sh_oh);
+    });//Click event for Oopen houses Tab in Safety Settings tab
+    $("#backto_profilebtn,#cancelSafetySettings").click(function () {
+        $("#MyProfileDiv").show();
+        $("#SafetySettingsDiv").hide();
+    });//Back button click event in Safety Settings div
+    $("#view_safetysettings_btn").click(function () {
+        $("#MyProfileDiv").hide();
+        $("#SafetySettingsDiv").show();
+        getSafetySettings(AgentId, "sh");
+    });//Manage Safety Settings button click event in Agent Profile div
+    $("#saveSafetySettings").click(function () {
+        var SafetySettingsObj = [AgentId,
+        $("#SafetyTimer").prop("checked"),
+         $("#EmrgContactNumber").text(),
+        $("#EmrgContactName").text(),
+        $("#EmrgContactPhoto_val").text(),
+        $("#TimerMinutes").val(),
+        $("#ExtTime").val(),
+        $("#AuthCode").val(),
+        $("#EmrgCode").val(),
+        $("input[name='Time_Expires']:checked").val(),
+        $("#Time_Expires_TExt_toEmrgContact").prop("checked"),
+        $("#Time_Expires_Message").val(),
+        $("input[name='Emrg']:checked").val(),
+        $("#Emrg_TExt_toEmrgContact").prop("checked"),
+        $("#Emrg_Message").val()
+        ];
+        if (is_sh_oh == "oh") {
+            $("#alertvalue").text("Open House");
+            SafetySettingsObj.splice(5, 1);
+            controllerMethod = "/Agent/AgentProfile/SaveOpenHousesSafetySettings";
+        }
+        else {
+            $("#alertvalue").text("Showings");
+        }
+        postSafetySettings(SafetySettingsObj, controllerMethod)
+    });//Click event to get all values of Safety Settings and make an object
+    function postSafetySettings(SafetySettingsObj, controllerMethod) {
+        $.ajax({
+            url: controllerMethod,
+            type: "Post",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(SafetySettingsObj),
+            success: function (data) {
+                if (data == "Success")
+                    $("#SettingSavedPopup").modal('show');
+
+            }
+        });
+    }//Function to save safety settings
+    $("#AuthCode").keyup(function () {
+        if (/\D/g.test(this.value)) {
+            // Filter non-digits from input value.
+            this.value = this.value.replace(/\D/g, '');
+        }
+        if ($(this).val().length == "4") {
+            $('#saveSafetySettings').attr("disabled", false);
+            return false;
+        }
+        else {
+            $(this).focus();
+            $('#saveSafetySettings').attr("disabled", true);
+        }
+    });//Code to accept only four degits and allow only numbers
+    $("#EmrgCode").keyup(function () {
+        if (/\D/g.test(this.value)) {
+            // Filter non-digits from input value.
+            this.value = this.value.replace(/\D/g, '');
+        }
+        if ($(this).val().length == "4") {
+            $('#saveSafetySettings').attr("disabled", false);
+            return false;
+            event.preventDefault();
+        }
+        else {
+            $(this).focus();
+            $('#saveSafetySettings').attr("disabled", true);
+        }
+    });//Code to accept only four degits and allow only numbers
+    $("#SafetyTimer").change(function () {
+        if ($(this).is(":checked")) {
+            $("#SafetyTimerOnText").css("color", "#ff5d26");
+            $('input').css('border-color', '#ff5d26');
+            $('input').css('color', '#ff5d26');
+            $('textarea').css('color', '#ff5d26');
+            $('textarea').css('border-color', '#ff5d26');
+        }
+        else {
+            $('input').css('border-color', 'gray');
+            $('input').css('color', 'gray');
+            $("#SafetyTimerOnText").css("color", "gray");
+            $('textarea').css('border-color', 'gray');
+            $('textarea').css('color', 'gray');
+        }
+
+    });//change event to change text color when it checked
+    $("#Time_Expires_TExt_toEmrgContact").change(function () {
+        if ($(this).is(":checked")) {
+            $("#Timer_EmrgText_OnText").css("color", "#ff5d26");
+        }
+        else
+            $("#Timer_EmrgText_OnText").css("color", "gray");
+    });//change event to change text color when it checked
+    $("#Emrg_TExt_toEmrgContact").change(function () {
+        if ($(this).is(":checked")) {
+            $("#Emrg_EmrgText_OnText").css("color", "#ff5d26");
+        }
+        else
+            $("#Emrg_EmrgText_OnText").css("color", "gray");
+    });//change event to change text color when it checked
+    function getSafetySettings(AgetId, type) {
+        $.ajax({
+            url: "/Agent/AgentProfile/GetAgentSafetySettings",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { AgetId: AgetId, type: type },
+            success: function (data) {
+                if (data.length > 0) {
+
+                    if (type == "sh")
+                        bindShowingsSafetySettings(data)
+                    if (type == "oh")
+                        bindOpenHousesSafetySettings(data)
+                }
+            },
+            error: function (res) {
+                $("#heading").text("Error Message");
+                $("#content_text").text("error :" + res);
+                $("#AlertPopup").modal("show")
+            }
+        });
+    }//Function to Get Safety SEttings based on type of houses
+    function bindShowingsSafetySettings(data) {
+        //$("#SafetyTimer").
+        $("#SafetyTimer").attr("checked", data[0].SH_SafetyTimerStatue)
+        if (data[0].SH_EmergencyContact == "" || data[0].SH_EmergencyContact == null) {
+            $('#Contacts_div').hide();
+            $('#noContacts_div').show();
+        }
+        else {
+            $("#EmrgContactName").text(data[0].SH_EmergencyContactName);
+            $("#EmrgContactNumber").text(data[0].SH_EmergencyContact);
+            $('#Contacts_div').show();
+            $('#noContacts_div').hide();
+            if (data[0].SH_EmergencyContactImage != "") {
+                $("#EmrgContactPhoto").attr('src', data[0].SH_EmergencyContactImage);
+                EmrgContactPhoto_val = data[0].SH_EmergencyContactImage;
+            }
+            else {
+                $("#EmrgContactPhoto").attr('src', '/img/addphotopic.png');
+                EmrgContactPhoto_val = '/img/addphotopic.png';
+            }
+        }
+
+
+        $("#TimerMinutes").val(data[0].SH_SafetyTimerLimit);
+        $("#ExtTime").val(data[0].SH_TimerExtensionAgent);
+        $("#AuthCode").val(data[0].SH_TimerAuthCode);
+        $("#EmrgCode").val(data[0].SH_EmergencyCode);
+        $("input[name=Time_Expires][value='" + data[0].SH_Call_TimerExpire + "']").attr('checked', true);
+        $("#Time_Expires_TExt_toEmrgContact").attr("checked", data[0].SH_TextEmergContact_TimerExpire)
+        $("#Time_Expires_Message").val(data[0].SH_Message_TimerExpire);
+        $("input[name=Emrg][value='" + data[0].SH_Call_CodeEntered + "']").attr('checked', true);
+        $("#Emrg_TExt_toEmrgContact").attr("checked", data[0].SH_TextEmergContact_CodeEntered)
+        $("#Emrg_Message").val(data[0].SH_Message_CodeEntered);
+    }//Function to bind Showings Safetty Settings
+    function bindOpenHousesSafetySettings(data) {
+        //$("#SafetyTimer").
+        $("#SafetyTimer").attr("checked", data[0].OH__SafetyTimerStatue)
+        if (data[0].OH_EmergencyContact == "" || data[0].OH_EmergencyContact == null) {
+            $('#Contacts_div').hide();
+            $('#noContacts_div').show();
+        }
+        else {
+            $("#EmrgContactName").text(data[0].OH_EmergencyContactName);
+            $("#EmrgContactNumber").text(data[0].OH_EmergencyContact);
+            $('#Contacts_div').show();
+            $('#noContacts_div').hide();
+            if (data[0].OH_EmergencyContactImage != "") {
+                $("#EmrgContactPhoto").attr('src', data[0].OH_EmergencyContactImage);
+                EmrgContactPhoto_val = data[0].OH_EmergencyContactImage;
+            }
+            else {
+                $("#EmrgContactPhoto").attr('src', '/img/addphotopic.png');
+                EmrgContactPhoto_val = '/img/addphotopic.png';
+            }
+        }
+
+       
+        // $("#TimerMinutes").val(data[0].OH_SafetyTimerLimit);
+        $("#ExtTime").val(data[0].OH_TimerExtensionAgent);
+        $("#AuthCode").val(data[0].OH_TimerAuthCode);
+        $("#EmrgCode").val(data[0].OH_EmergencyCode);
+        $("input[name=Time_Expires][value='" + data[0].OH_Call_TimerExpire + "']").attr('checked', true);
+        $("#Time_Expires_TExt_toEmrgContact").attr("checked", data[0].OH_TextEmergContact_TimerExpire)
+        $("#Time_Expires_Message").val(data[0].OH_Message_TimerExpire);
+        $("input[name=Emrg][value='" + data[0].OH_Call_CodeEntered + "']").attr('checked', true);
+        $("#Emrg_TExt_toEmrgContact").attr("checked", data[0].OH_TextEmergContact_CodeEntered)
+        $("#Emrg_Message").val(data[0].OH_Message_CodeEntered);
+    }//function to Bind open Houses Safety Settings
+    function clearSafetySettings() {
+        $("input[name=Emrg][value='" + data[0].OH_Call_CodeEntered + "']").attr('checked', true);
+        $("#SafetyTimer").attr("checked", false)
+        $("#EmrgContactNumber").text(''),
+       $("#EmrgContactName").text(''),
+       $("#EmrgContactPhoto_val").text(''),
+       $("#TimerMinutes").val(''),
+       $("#ExtTime").val(''),
+       $("#AuthCode").val(''),
+       $("#EmrgCode").val(''),
+         $("input[name=Time_Expires][value=None]").attr('checked', true);
+        $("#Time_Expires_TExt_toEmrgContact").attr("checked", false)
+        $("#Time_Expires_Message").val(''),
+        $("input[name=Emrg][value=None]").attr('checked', true);
+        $("#Emrg_TExt_toEmrgContact").attr("checked", false)
+        $("#Emrg_Message").val('')
+    }//Function to clear values in Safety Settings Div
+</script>
+@*Token Filed Code for Addign Cities*@
+<script>
+    var agentAreas = '';
+    $("#nm").click(function (e) {
+        e.preventDefault();
+        agentAreas=$('#cities').tokenfield('getTokensList', ': ');
+    });
+    //$("#cities").tokenfield({
+    //        autocomplete: {
+    //            source: function (request, response) {
+    //                $.ajax({
+    //                    url: "/Agent/AgentShowings/AddListingBySearch",
+    //                    data: { SearchEle: request.term,Method: "AgentSearchAddressGet?Address="},
+    //                    dataType: "json",
+    //                    type: "GET",
+    //                    contentType: "application/json; charset=utf-8",
+    //                    success: function (data) {
+    //                        //var data = $.parseJSON(data.d);
+    //                        //response(data)
+    //                        response($.map(data, function (item) {
+    //                            return { label: item.ADDRESS, value:  item.ADDRESS };
+    //                        }))
+    //                    }
+    //                });
+    //            },
+    //            delay: 100,
+    //            showAutocompleteOnFocus: true
+    //        }
+    //    }).data('bs.tokenfield').$input.on('autocompletefocus', function (e, ui) {
+    //        e.preventDefault();
+    //        $(this).val(ui.item.label)
+    //        agentAreas = $('#cities').tokenfield('getTokensList', ': ')
+    //    });
+    $('#cities').on('tokenfield:createtoken', function (event) {
+            var existingTokens = $(this).tokenfield('getTokens');
+            $.each(existingTokens, function (index, token) {
+                if (token.value === event.attrs.value)
+                    event.preventDefault();
+            });
+    });
+    //$('#agentservedareastext').text($('#cities').tokenfield('getTokensList', ': '))
+    //$("form").submit(function (e) {
+    //    e.preventDefault();
+    //    $('.form-data').text($('#tokenfield').tokenfield('getTokensList', ': '));
+    //});
+    
+</script>

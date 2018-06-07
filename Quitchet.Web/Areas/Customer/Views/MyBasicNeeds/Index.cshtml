@@ -1,0 +1,1154 @@
+﻿@*My Basic Needs Index Page *@
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout2.cshtml";
+    Layout = "~/Views/Shared/_Layout_MyQuitchet.cshtml";
+    var StatusList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Approve", Value = "1" },
+        new SelectListItem { Text = "Pending", Value = "2" },
+        new SelectListItem { Text = "Close", Value = "3" },
+    };
+}
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+<link href="~/Content/wishliststyle.css" rel="stylesheet" />
+<script src="~/js/Slider-Common_Functions.js"></script>
+<style type="text/css">
+    leftoutput {
+        margin-left: -19px !important;
+    }
+
+    .btn-group {
+        width: 100%;
+    }
+
+        .btn-group button {
+            width: 100%;
+        }
+
+    .col-md-12 {
+        padding-right: 4px;
+        padding-left: 7px;
+    }
+
+    .btn-default:hover, .btn-default:active, .btn-default:focus {
+        color: #ffffff !important;
+        background-color: #FF5D26 !important;
+        border-color: #FF5D26 !important;
+    }
+
+    .btn-success, .label-success, .alert-success, .badge-success, .alert-heder {
+        color: #EB511E !important;
+        border-top: 2px solid #FF5F29;
+        border-bottom: 2px solid #FF5F29;
+        background-color: rgba(255, 141, 86, 0.40) !important;
+        text-align: center;
+        padding: 6px 0px 6px 0px;
+    }
+
+    .tab-content-v1 {
+        border-left: 0px solid #918C8C;
+    }
+
+    #SummaryDiv::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+    #SummaryDiv::-webkit-scrollbar {
+        width: 2%;
+        border-radius: 10px;
+        background-color: #ff6a00;
+    }
+
+    #SummaryDiv::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #ff6a00;
+    }
+
+    .btn-group .mypopupbtncls {
+        width: 50% !important;
+    }
+</style>
+<!-- WishList Div-->
+<div class="row headeraddressbook1" style="">
+    <div class="adrbookbtn3 col-sm-12" style="text-align: right; padding-right: 15px;">
+        @*<img src="/img/Savechanges.png" width="160" height="30" alt="" />*@
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4" style="color:#ffffff;font-weight:500;text-align:center;top:11px!important;padding-left:0!important;font-size:16px"><span>My Basic Needs</span></div>
+        <div class="col-sm-4" style="padding-top: 6px;">
+            <button id="savechangesBtn" type="button" class="" style="width:150px; height:30px; border:1px solid white; background-color:#FF6937; color:white; font-weight:500;font-size:13px;border-radius:5px!important">
+                Save Changes
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="myBasicNeeds" style="margin-left:10%!important; width:80%; margin-top:20px!important;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row" id="listingtyperow">
+                <div class="col-md-12 text-center">
+                    <div class="wellorange well-sm" style="height: 42px!important;padding-top:4px!important;">
+                        <label style="font-weight:600!important;color:#555;padding-right:10px!important">Listing Type </label>
+                        @*<div class="btn-group btn-group-sm" style="width:20%;">
+                                <select class="form-control" title="Rentals" style="border-color:#FF6937;border-radius:5px!important;height:28px!important;width:200px!important;padding:5px!important;font-size:12px!important" id="ListingType">
+                                    <option value="1">For Sale</option>
+                                    <option value="2">Rentals </option>
+                                    <option value="3">Lots / Land </option>
+                                </select>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Action</a>
+                                    </li>
+                                </ul>
+                            </div>*@
+                        <div class="dropdown">
+                            <button class="dropbtn" style="text-align:left;padding:6px">
+                                <span id="typename">For Sale</span>
+                                <span class="glyphicon glyphicon-triangle-bottom" style="float:right;padding-top:2px"></span>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="#" value="1" id="forsale">For Sale</a>
+                                <a href="#" value="2" id="rental">Rentals</a>
+                                <a href="#" value="3" id="lots">Lots / Land </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Start My Basic needs Popup-->
+<div id="basicneedspopup" style="background:white!important">
+    <div id="ii" class="tab-content tab-content-v1 col-md-12 paddingremoveclassmyquit" style="background-image:url(/img/bakground_icon_watermark.png)!important;background-size:50%!important;background-repeat:no-repeat!important;background-position:center">
+        <div role="tabpanel" class="tab-pane active in tabcontent1" id="iii" style="height:auto;padding-right:0px!important;right:23px!important">
+            <div class="row">
+                <div class="col-md-12 row" style="padding-left:0px !important;display:none">
+                    <label style="font-weight:bold;">Driving Distance Filter</label>
+                </div>
+                <div class="row" style="margin-left:0!important;margin-right:0!important">
+                    <div class="col-md-6 paddingleftremoveclassmyquit" style="display:none">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    @* <input type="number" class="form-control" id="inputEmail3" placeholder="Minutes…">*@
+                                    @Html.TextBox("inputMinutes", "", new
+                               {
+                                   @style = "height:30px;font-size:12px!important",
+                                   @class = "form-control ",
+                                   @placeholder = " Minutes...",
+                                   @type = "number",
+                                   @min = "0"@*, @max = "60"*@,
+                                   @id = "inputMinutes"
+                               })
+                                </div>
+                                <div class="col-sm-2 removedpaddings" style="padding-right:0!important">
+                                    <label for="inputEmail3" class="control-label" style="padding-top: 4px;">From</label>
+                                </div>
+                                <div class="col-sm-6 removedpaddings">
+                                    @* <input type="email" class="form-control" id="inputEmail3" placeholder="Address / Location…">*@
+                                    @Html.TextBox("inputAddress", "", new { @class = "form-control ", @placeholder = " Address / Location...", @style = "height:30px;font-size:12px!important;padding:5px!important" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6 paddingrightremoveclassmyquit" style="padding-left: 0;">
+                        <div class="col-sm-12">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-4" style="padding-left:0px!important">
+                                        <label for="inputEmail3" class="control-label " style="padding-top:4px!important">Property Type</label>
+                                    </div>
+                                    <div class="col-sm-8" style="padding-left:0!important;padding-right:0!important">
+                                        <div id="propertytypediv">
+                                            @Html.DropDownList("propertytype", new List<SelectListItem>
+                                            {
+                                                //new SelectListItem{ Text="Any", Value = "Any" },
+                                                new SelectListItem{ Text="Single Family-Detached", Value = "Single Family-Detached" },
+                                                new SelectListItem{ Text="Condo/Townhouse-Attached", Value = "Condo/Townhouse-Attached" },
+                                                new SelectListItem{ Text="Mobile Home", Value = "Mobile Home" },
+                                                new SelectListItem{ Text="Modular", Value = "Modular" },
+                                                new SelectListItem{ Text="Other", Value = "Other" },
+                                             }
+                                             , new { @class = "form-control", multiple = "multiple" })
+                                        </div>
+                                        <div id="lotspropertytypediv" style="display:none">
+                                            @Html.DropDownList("lotspropertytype", new List<SelectListItem>
+                                            {
+                                                //new SelectListItem{ Text="Any", Value = "Any" },
+                                                new SelectListItem{ Text="Commercial Site", Value = "Commercial Site" },
+                                                new SelectListItem{ Text="Residential Lot", Value = "Residential Lot" },
+                                                new SelectListItem{ Text="Acreage", Value = "Acreage" },
+                                                new SelectListItem{ Text="Other", Value = "Other" },
+                                             }
+                                             , new { @class = "form-control", multiple = "multiple" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <hr class="hrMyBasicNeeds" />
+                <div class="row" style="padding-bottom:10px!important">
+                    <div class="col-md-6 paddingleftremoveclassmyquit">
+                        <label class="control-label spanssliderpadding" for="exampleInputEmail1" style="padding-bottom:15px!important">Price</label>
+                        <label class="control-label" id="basicfromprice" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;" hidden="hidden"></label>
+                        <label class="control-label" id="basictoprice" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;" hidden="hidden"></label>
+                        <br /> <span class="control-label" id="forsale_formatted_from_price" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;"></span>
+                        <span class="control-label" id="forsale_formatted_to_price" style="float:right;height: 15px!important; border: 0; color: #f6931f; font-weight: bold;"></span>
+
+                        <div id="slider-range" name="range-slider" style="margin-left:10px;width:95%;margin-top:2%!important;">
+                            @*<rightoutput for="range-slider" id="stat" style="z-index:10!important;bottom:12px;left:0%"></rightoutput>
+                            <leftoutput for="range-slider" id="end" style="z-index:10!important;bottom:12px;left:100%"></leftoutput>*@
+                        </div>
+                        <span class="control-label" id="rental_formatted_from_price" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;display:none">No Min</span>
+                        <span class="control-label" id="rental_formatted_to_price" style="float:right;height: 15px!important; border: 0; color: #f6931f; font-weight: bold;display:none">No Max</span>
+                        <div id="rentalslider-range" name="range-rentalslider" style="display:none;margin-left:10px;width:95%;margin-top:2%!important;">
+                        </div>
+                    </div>
+                    <div class="col-md-6 paddingrightremoveclassmyquit" id="DivLotAcreage">
+                        <label class="control-label" id="lotfromacres" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;" hidden="hidden"></label>
+                        <label class="control-label" id="Lottoacres" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;" hidden="hidden"></label>
+                        <label class="control-label spanssliderpadding" for="exampleInputEmail1" style="padding-bottom:15px!important">Lot Acreage</label>
+                        <br /> <span class="control-label" id="lotacrg_formatted_from" style="height: 15px!important; border: 0; color: #f6931f; font-weight: bold;">No Min</span>
+                        <span class="control-label" id="lotacrg_formatted_to" style="float:right;height: 15px!important; border: 0; color: #f6931f; font-weight: bold;">No Max</span>
+                        <div id="slider-range3" name="range-slider3" style="margin-left:5px;width:95%;margin-top:2%!important;">
+                            @*<rightoutput for="range-slider3" id="stat3" style="z-index:10!important;bottom:12px;left:0%"></rightoutput>
+                            <leftoutput for="range-slider3" id="end3" style="z-index:10!important;bottom:12px;left:100%"></leftoutput>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:10px!important;" id="DivBedBathRooms">
+                    <div class="col-md-12 paddingremoveclassmyquit" style="padding-top: 10px;">
+                        <div class="row" style="margin-left:0!important">
+                            <div class="col-md-6 paddingleftremoveclassmyquit">
+                                <label class="control-label" for="exampleInputEmail1" style="padding-bottom:4px!important">Bedrooms</label>
+                                <br>
+                                <div class="bedroombtngroup btn-group btn-group-justified" style="height: 30px">
+                                    <a href="#" id="bedroomany" data-index="Any" name="bedrooms" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-top-right-radius:0!important;border-bottom-right-radius:0!important;">Any</a>
+                                    <a href="#" id="bedroom2" data-index="1" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;">1+</a>
+                                    <a href="#" id="bedroom3" data-index="2" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;">2+</a>
+                                    <a href="#" id="bedroom4" data-index="3" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;">3+</a>
+                                    <a href="#" id="bedroom5" data-index="4" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;">4+</a>
+                                    <a href="#" id="bedroom6" data-index="5" name="bedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-top-left-radius:0!important;border-bottom-left-radius:0!important;">5+</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 paddingrightremoveclassmyquit">
+                                <label class="control-label" for="exampleInputEmail1" style="padding-bottom:4px!important">Bathrooms </label>
+                                <br>
+                                <div class="bathbtngroup btn-group btn-group-justified" style="height: 30px">
+                                    <a href="#" id="bathroomany" data-index="Any" name="bathrooms" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-top-right-radius:0!important;border-bottom-right-radius:0!important;">Any</a>
+                                    <a href="#" id="bath2" data-index="1" name="bathrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;">1+</a>
+                                    <a href="#" id="bath3" data-index="2" name="bathrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;">2+</a>
+                                    <a href="#" id="bath4" data-index="3" name="bathrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;">3+</a>
+                                    <a href="#" id="bath5" data-index="4" name="bathrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;">4+</a>
+                                    <a href="#" id="bath6" data-index="5" name="bathrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-top-left-radius:0!important;border-bottom-left-radius:0!important;">5+</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row" id="DivMasterBedroom">
+                    <hr style="border-top:2px solid #827f7f!important;width:95%!important" />
+                    <div class="col-md-12 paddingremoveclassmyquit" style="padding-top:10px;">
+
+                        <div class="row" style="margin-left:0!important">
+                            <div class="col-md-6 paddingleftremoveclassmyquit" style="">
+                                <label class="control-label" for="exampleInputEmail1" style="padding-bottom:4px!important">Master Bedrooms</label>
+                                <br>
+                                <div class="masterbedroombtngroup btn-group btn-group-justified" style="height: 30px">
+                                    <a href="#" id="mbedany" data-index="Any" name="masterbedrooms" class="btn active btn-default" data-btn-class="btn mybtncls" style="border-top-right-radius:0!important;border-bottom-right-radius:0!important;">Any</a>
+                                    <a href="#" id="mbed2" data-index="2" name="masterbedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-radius:0!important;">Main Floor</a>
+                                    <a href="#" id="mbed3" data-index="3" name="masterbedrooms" class="btn btn-default" data-btn-class="btn mybtncls" style="border-top-left-radius:0!important;border-bottom-left-radius:0!important;">Second Floor</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 paddingrightremoveclassmyquit" style="padding-left:15px!important;padding-right:0!important">
+                                <label class="control-label spanssliderpadding" for="exampleInputEmail1" style="padding-bottom:6px!important">Other Features </label>
+                                <br />
+                                <label class="checkbox-inline" style="font-size:12px!important;padding-top: 5px;padding-left: 20px;">
+                                    @Html.CheckBox("check", new { @style = "margin-top:2px!important" })
+                                    Handicap Access
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end of My Basic needs Popup-->
+<!--Save Changes Confirmation Popup-->
+<div class="modal fade" id="SaveSearchModal" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 10%; width: 25%;left:5%;">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;padding-bottom:0px;">
+                <h3 style="color: #FF6937; margin-top: 0px">Save Changes</h3>
+                <hr style="border: 0 ! important; border-top: 1.5px solid  #FF6937 !important;" />
+            </div>
+            <div class="modal-body" style="min-height: 120px;padding-top:0px;">
+                <div class="col-sm-12" style="text-align:center;font-size:15px;">Are you sure you want to save these changes ?</div>
+                <div>&nbsp;</div>
+
+                <div class="col-md-12" id="SummaryDiv" style="text-align: center; background-color: #E5E5E5; color: black; overflow: auto; border-radius: 5px; height: 91px; overflow-y: auto; overflow-x: hidden;padding-top:15px;padding-bottom:15px;margin-bottom:20px;">
+                    <label class="control-label" for="exampleInputEmail1" id="summarycontent" style="font-style:italic;">
+                        @*3 Bedrooms;2Bathrooms;Master Bedroom-Main Floor,Handicap Access*@
+                    </label>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="mypopupbtncls btn" data-dismiss="modal" id="cancelsavebtn" style="border-radius: 7px 0px 0px 7px;border: 1px solid#fff;background-color: gray; color: white;font-size: 15px;">No</button>
+                        <button type="button" id="savesearch" class="mypopupbtncls btn" style="border: 1px solid#fff;border-radius: 0px 7px 7px 0px;background-color: #FF6937; color: white;font-size: 15px;">Yes</button>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- start: Javascript -->
+<!-- custom -->
+<script>
+    var listtype = "1";
+    $(".dropdown-content a").click(function () {
+        $("#typename").text($(this).text());
+        $("#propertytype > option").attr("selected", false);
+        $('#propertytype').multiselect('refresh');
+        $("#lotspropertytype > option").attr("selected", false);
+        $('#lotspropertytype').multiselect('refresh');
+        propertytext = "Any";
+        hproperty = "Any";
+        if ($(this).attr('value') == "1") {
+            listtype = "1";
+            $('#DivLotAcreage').hide();
+            $('#DivBedBathRooms').show();
+            $('#DivMasterBedroom').show();
+            $('#rentalslider-range,#rental_formatted_from_price,#rental_formatted_to_price').hide();
+            $('#slider-range,#forsale_formatted_from_price,#forsale_formatted_to_price').show();
+            $('#lotspropertytypediv').hide();
+            $('#propertytypediv').show();
+            getdetails(1);
+
+        }
+        else if ($(this).attr('value') == "2") {
+            listtype = "2";
+            $('#DivLotAcreage').hide();
+            $('#DivBedBathRooms').show();
+            $('#DivMasterBedroom').hide();
+            $('#rentalslider-range,#rental_formatted_from_price,#rental_formatted_to_price').show();
+            $('#slider-range,#forsale_formatted_from_price,#forsale_formatted_to_price').hide();
+            $('#lotspropertytypediv').hide();
+            $('#propertytypediv').show();
+            getdetails(2);
+        }
+        else if ($(this).attr('value') == "3") {
+            listtype = "3";
+            $('#DivLotAcreage').show();
+            $('#DivBedBathRooms').hide();
+            $('#DivMasterBedroom').hide();
+            $('#rentalslider-range,#rental_formatted_from_price,#rental_formatted_to_price').hide();
+            $('#slider-range,#forsale_formatted_from_price,#forsale_formatted_to_price').show();
+            $('#lotspropertytypediv').show();
+            $('#propertytypediv').hide();
+            getdetails(3);
+        }
+    })
+
+</script>
+<style>
+    /*//For Pointer type handlers form Slider*/
+  /*.ui-slider .ui-slider-handle {
+      top:3px;
+      margin-left:-6px !important;
+       width: 0 !important; 
+  height: 0 !important; 
+  border-top: 0 solid transparent !important;
+  border-left: 6px solid transparent !important;
+  border-right: 6px solid transparent !important;
+  border-bottom: 20px solid #ff5d26 !important;
+  background:none !important;
+}*/
+  /*.ui-widget-header{
+      left: 2% ;
+    width: 96% ;
+  }*/
+  
+</style>
+<script type="text/javascript">
+    // alert(values.length)
+    var minutestext = "";
+    var addresstext = "";
+    var bathroomstext = "";
+    var bedroomstext = "";
+    var MasterBedroomstext = "";
+    var hproperty = "";
+    var propertytext = "Any";
+    var lotacefrom = "0";
+    var lotaceto = "50";
+    var sfromprice = "0", stoprice = "10000000";
+    var rfromprice = "0", rtoprice = "80001";
+    $("#forsale_formatted_from_price").html('No Min');
+    $("#forsale_formatted_to_price").html('No Max');
+    //For Sale Price Slider
+    var slider = $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 100,
+        step:0.5,
+        values: [0, 100],
+        slide: function (event, ui) {
+            //$(this).slider('option', 'step', 0.5);
+            var handle = $('.ui-state-active', this),
+           handleWidth = handle.width(),
+           position = handle.position(),
+           marginLeft;
+            if (ui.handle.nextSibling) {
+                marginLeft = -handleWidth - 4.5;
+                if (getRealValue(ui.values[0]) < 1000000)
+                    handle.css('margin-left', marginLeft + 'px');
+                else {
+                    handle.css('margin-left', marginLeft + 1 + 'px');
+                }
+            }
+            else {
+                handle.css('margin-left', '0px');
+            }
+            //if (ui.handle.nextSibling) {
+            //    $('.ui-state-default', this).css('margin-left', (ui.values[1] - ui.values[0] < 1) ? '' : '')
+            //    $('.ui-state-active', this).css('margin-left', (ui.values[1] - ui.values[0] <= 1) ? '-19px' : '')
+            //}
+            //else {
+            //    $('.ui-state-default', this).css('margin-left', (ui.values[1] - ui.values[0] < 1) ? '' : '')
+            //   // if (getRealValue(ui.values[1]) < 1000000)
+            //        $('.ui-state-active', this).css('margin-left', (ui.values[1] - ui.values[0] < 1) ? '4px' : '')
+            //    //else
+            //     //   $('.ui-state-active', this).css('margin-left', (ui.values[1] - ui.values[0] < 1) ? '3px' : '')
+            //}
+
+            if (ui.values[1] - ui.values[0] < 1) {
+                return false;
+            }
+            else {
+                var previousVal = $(this).slider("value");
+                //$('.ui-slider-handle', this).css('margin-left', '0')
+                var statd = getRealValue(ui.values[0]);
+                var endd = getRealValue(ui.values[1]);
+                statd = getFormattedPrice(statd);
+                endd = getFormattedPrice(endd);
+                $("#forsale_formatted_from_price").html(statd);
+                $("#forsale_formatted_to_price").html(endd);
+                if (ui.values[0] == 0 && ui.values[1] == 100) {
+                    $("#forsale_formatted_from_price").html('No Min');
+                    $("#forsale_formatted_to_price").html('No Max');
+                }
+                else if (ui.values[0] != 0 && ui.values[1] == 100) {
+                    $("#forsale_formatted_from_price").html(statd);
+                    $("#forsale_formatted_to_price").html('No Max');
+                }
+                else if (ui.values[0] == 0 && ui.values[1] != 100) {
+                    $("#forsale_formatted_from_price").html('No Min');
+                    $("#forsale_formatted_to_price").html(endd);
+                }
+                else {
+                    $('#forsale_formatted_from_price').html(statd);
+                    $('#forsale_formatted_to_price').html(endd);
+                }
+                sfromprice = getRealValue(ui.values[0]), stoprice = getRealValue(ui.values[1]);
+            }
+            $('#basicfromprice').text(getRealValue(ui.values[0]));
+           $('#basictoprice').text(getRealValue(ui.values[1]));
+            SummeryNew(listtype)
+        }
+    });
+    //Rental Price Slider
+    var rentalslider = $("#rentalslider-range").slider({
+        range: true,
+        min: 0,
+        max: 112,
+        values: [0, 112],
+        step:1,
+        slide: function (event, ui) {
+            var threshold, mg = 0;
+            if (getRentalPriceRealValue(ui.values[0]) < 8000)
+                threshold = 4;
+            else if (getRentalPriceRealValue(ui.values[0]) > 8000 && getRentalPriceRealValue(ui.values[0]) < 15000){
+                mg = 5;
+                threshold = 2;
+            }
+                
+            else if (getRentalPriceRealValue(ui.values[0]) > 15000) {
+                mg = 5;
+                threshold = 1;
+            }
+            var handle = $('.ui-state-active', this),
+         handleWidth = handle.width(),
+         position = handle.position(),
+         marginLeft;
+            if (ui.handle.nextSibling) {
+                marginLeft = -handleWidth - mg ;
+                    handle.css('margin-left', marginLeft + 'px');
+            }
+            else {
+                handle.css('margin-left', '0px');
+            }
+            if (ui.values[1] - ui.values[0] < threshold) {
+                return false;
+            }
+            else {
+                var statd = getRentalPriceRealValue(ui.values[0]);
+                var endd = getRentalPriceRealValue(ui.values[1]);
+                statd =getFormattedPrice_Rental(statd);
+                endd = getFormattedPrice_Rental(endd);
+                if (ui.values[0] == 0 && ui.values[1] == 112) {
+                    $('#rental_formatted_from_price').html('No Min');
+                    $('#rental_formatted_to_price').html('No Max');
+                }
+                else if (ui.values[0] != 0 && ui.values[1] == 112) {
+                    $('#rental_formatted_from_price').html(statd);
+                    $('#rental_formatted_to_price').html('No Max');
+                }
+                else if (ui.values[0] == 0 && ui.values[1] != 112) {
+                    $('#rental_formatted_from_price').html('No Min');
+                    $('#rental_formatted_to_price').html(endd);
+                }
+                else {
+                    $('#rental_formatted_from_price').html(statd);
+                    $('#rental_formatted_to_price').html(endd);
+                }
+             
+                rfromprice = getRentalPriceRealValue(ui.values[0]), rtoprice = getRentalPriceRealValue(ui.values[1]);
+                $('#basicfromprice').text(getRentalPriceRealValue(ui.values[0]));
+                $('#basictoprice').text(getRentalPriceRealValue(ui.values[1]));
+                SummeryNew(listtype)
+            }
+
+        }
+    });
+    //Lot Areage Price Slider
+    var lotacrgSlider = $("#slider-range3").slider({
+        range: true,
+        min: 0,
+        max: 18,
+        values: [0, 18],
+        slide: function (event, ui) {
+            if (ui.values[1] - ui.values[0] < 1) {
+                return false;
+            }
+            else {
+
+                var statd = getLotAcrgRealValue(ui.values[0]);
+                var endd = getLotAcrgRealValue(ui.values[1]);
+                if (ui.values[0] == 0 && ui.values[1] == 18) {
+                    $('#lotacrg_formatted_from').html('No Min');
+                    $('#lotacrg_formatted_to').html('No Max');
+                }
+                else if (ui.values[0] != 0 && ui.values[1] == 18) {
+                    $('#lotacrg_formatted_from').html(statd +" acres" );
+                    $('#lotacrg_formatted_to').html('No Max');
+                }
+                else if (ui.values[0] == 0 && ui.values[1] != 18) {
+                    $('#lotacrg_formatted_from').html('No Min');
+                    $('#lotacrg_formatted_to').html(endd + " acres");
+                }
+                else {
+                    $('#lotacrg_formatted_from').html(statd + " acres");
+                    $('#lotacrg_formatted_to').html(endd + " acres");
+                }
+              
+                lotacefrom = getLotAcrgRealValue(ui.values[0]), lotaceto = getLotAcrgRealValue(ui.values[1]);
+                $('#lotfromacres').text(getLotAcrgRealValue(ui.values[0]));
+                $('#Lottoacres').text(getLotAcrgRealValue(ui.values[1]));
+                SummeryNew(listtype)
+            }
+
+        }
+    });
+    $(document).ready(function () {
+        $('#DivLotAcreage').hide();
+        $(".nav-tabs a").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+        //$('#myhome').addClass('active');
+        $('#mymenuli').addClass('active');
+        $('a[href="/Customer/MyBasicNeeds/Index"]').parents('li,ul').addClass('active');
+        getdetails("1");
+
+    });
+    $('#propertytype').multiselect({
+        //nonSelectedText: 'Any Property Type',
+        //numberDisplayed: 1
+        nonSelectedText: 'Any Property Type',
+        numberDisplayed: 1,
+        includeSelectAllOption: true,
+        allSelectedText: 'Any',
+        selectAllText: 'Any',
+    });
+    $('#lotspropertytype').multiselect({
+        //nonSelectedText: 'Any Property Type',
+        //numberDisplayed: 1
+        nonSelectedText: 'Any Property Type',
+        numberDisplayed: 1,
+        includeSelectAllOption: true,
+        allSelectedText: 'Any',
+        selectAllText: 'Any',
+    });
+    $('#inputMinutes').keyup(function (event) {
+        //if ($(this).val() > 59 || $(this).val() < 1) {
+        //    $(this).val("");
+        //}
+        minutestext = $(this).val();
+    });
+    $('#inputAddress').change(function (event) {
+        addresstext = $(this).val();
+        SummeryNew(listtype);
+    });
+    $('#inputMinutes').change(function (event) {
+        minutestext = $(this).val();
+        SummeryNew(listtype);
+    });
+    $('#savechangesBtn11').click(function () {
+        $("#SaveSearchModal").modal("show");
+    });
+    $('#savechangesBtn').click(function () {
+        $("#SaveSearchModal").modal("show");
+        $("#savesearch").click(function () {
+            var obj = {};
+            if (listtype == "1") {
+                obj.Filter_TypeID = "1";
+                obj.Distance_Minutes = $('#inputMinutes').val();
+                obj.Distance_Location = $('#inputAddress').val();
+                obj.Property_Type = propertytext;
+                obj.From_Price = $('#basicfromprice').text();
+                obj.To_Price = $('#basictoprice').text();
+                obj.Bedrooms = bedroomstext;
+                obj.Bathrooms = bathroomstext;
+                obj.Master_Bedroom = MasterBedroomstext;
+                if ($('#check').is(":checked"))
+                    obj.HandicapAccess = $('#check').val();
+                else
+                    obj.HandicapAccess = false;
+                obj.From_LotAcreage = "";
+                obj.To_LotAcreage = "";
+                // sfromprice = $('#basicfromprice').text(), stoprice = $('#basictoprice').text();
+
+                SummeryNew("1");
+            }
+            else if (listtype == "2") {
+                obj.Filter_TypeID = "2";
+                obj.Distance_Minutes = $('#inputMinutes').val();
+                obj.Distance_Location = $('#inputAddress').val();
+                obj.Property_Type = propertytext;
+                obj.From_Price = $('#basicfromprice').text();
+                obj.To_Price = $('#basictoprice').text();
+                obj.Bedrooms = bedroomstext;
+                obj.Bathrooms = bathroomstext;
+                obj.Master_Bedroom = "";
+                obj.HandicapAccess = $('#check').val();
+                obj.From_LotAcreage = "";
+                obj.To_LotAcreage = "";
+                //rfromprice = $('#basicfromprice').text(), rtoprice = $('#basictoprice').text();
+                SummeryNew("2");
+            }
+            else if (listtype == "3") {
+                obj.Filter_TypeID = "3";
+                obj.Distance_Minutes = $('#inputMinutes').val();
+                obj.Distance_Location = $('#inputAddress').val();
+                obj.Property_Type = propertytext;
+                obj.From_Price = $('#basicfromprice').text();
+                obj.To_Price = $('#basictoprice').text();
+                obj.Bedrooms = "";
+                obj.Bathrooms = "";
+                obj.Master_Bedroom = "";
+                obj.HandicapAccess = $('#check').val();
+                obj.From_LotAcreage = $('#lotfromacres').text();
+                obj.To_LotAcreage = $('#Lottoacres').text();
+                //   sfromprice = $('#basicfromprice').text(), stoprice = $('#basictoprice').text();
+                SummeryNew("3");
+            }
+            $.ajax({
+                url: "/Customer/MyBasicNeeds/PostBasicNeeds/",
+                type: "POST",
+                dataType: "json",
+                data: { postdat: obj },
+                success: function (data) {
+                    if (data == "Sucess") {
+                        $("#SaveSearchModal").modal("hide");
+                        getdetails(listtype);
+                    }
+                    else {
+                    }
+                },
+                error: function () {
+                }
+            });
+        });
+    });
+    function getdetails(type) {
+        $(".bedroombtngroup>a").attr("class", 'btn btn-default');
+        $(".bathbtngroup>a").attr("class", 'btn btn-default');
+        $(".masterbedroombtngroup>a").attr("class", 'btn btn-default');
+        $.ajax({
+            url: "/Customer/MyBasicNeeds/GetBasicNeeds",
+            type: "POST",
+            dataType: "json",
+            data: { type: type },
+            success: function (data) {
+                $('#slider-range').trigger('slide');
+                if (data != "") {
+                    $('#basicfromprice').text(data[0].From_Price);
+                    $('#basictoprice').text(data[0].To_Price);
+                    $('#inputMinutes').val(data[0].Distance_Minutes);
+                    $('#inputAddress').val(data[0].Distance_Location);
+                    addresstext = data[0].Distance_Location;
+                        minutestext = data[0].Distance_Minutes;
+                    if (data[0].Filter_TypeID == "3") {
+                        if (data[0].From_Price != "" && data[0].To_Price != "") {
+                            sfromprice = data[0].From_Price, stoprice = data[0].To_Price;
+                            $("#forsale_formatted_from_price").html(getFormattedPrice(data[0].From_Price));
+                            $("#forsale_formatted_to_price").html(getFormattedPrice(data[0].To_Price));
+
+                            $("#slider-range").slider('values', 0, getIndexValue(data[0].From_Price)); // sets first handle (index 0) to 50
+                            $("#slider-range").slider('values', 1, getIndexValue(data[0].To_Price));
+                        }
+                        else {
+                            $('#basicfromprice').text('0');
+                            $('#basictoprice').text('10000000');
+                            $('#forsale_formatted_from_price').text('No Min');
+                            $('#forsale_formatted_to_price').text('No Max');
+                            sfromprice = 'No Min', stoprice = 'No Max';
+                        }
+
+                        if (data[0].From_LotAcreage != "" && data[0].To_LotAcreage != "") {
+                            $('#lotfromacres').text(data[0].From_LotAcreage);
+                            $('#Lottoacres').text(data[0].To_LotAcreage);
+                            lotacefrom = data[0].From_LotAcreage, lotaceto = data[0].To_LotAcreage;
+                            $("#lotacrg_formatted_from").html(data[0].From_LotAcreage + " acres");
+                            $("#lotacrg_formatted_to").html(data[0].To_LotAcreage + " acres");
+
+                            $("#slider-range3").slider('values', 0, getLotAcrgIndexValue(data[0].From_LotAcreage)); // sets first handle (index 0) to 50
+                            $("#slider-range3").slider('values', 1, getLotAcrgIndexValue(data[0].To_LotAcreage));
+                          
+                        }
+                        else {
+                            
+                        }
+                    }
+                    else if (data[0].Filter_TypeID == "2") {
+                        rfromprice = data[0].From_Price, rtoprice = data[0].To_Price;
+                        if (data[0].From_Price != "" && data[0].To_Price != "") {
+                            $("#rental_formatted_from_price").html(getFormattedPrice_Rental(data[0].From_Price));
+                            $("#rental_formatted_to_price").html(getFormattedPrice_Rental(data[0].To_Price));
+
+                            $("#rentalslider-range").slider('values', 0, getRentalPriceIndexValue(data[0].From_Price)); // sets first handle (index 0) to 50
+                            $("#rentalslider-range").slider('values', 1, getRentalPriceIndexValue(data[0].To_Price));
+                        }
+                        else {
+                            $('#basicfromprice').text('0');
+                            $('#basictoprice').text('7000');
+                            $('#rental_formatted_from_price').text('No Min');
+                            $('#rental_formatted_to_price').text('No Max');
+                            rfromprice = 'No Min', rtoprice = 'No Max';
+                        }
+                    }
+                    else {
+                      
+                        sfromprice = data[0].From_Price, stoprice = data[0].To_Price;
+                        if (data[0].From_Price != "" && data[0].To_Price != "") {
+                            $("#forsale_formatted_from_price").html(getFormattedPrice(data[0].From_Price));
+                            $("#forsale_formatted_to_price").html(getFormattedPrice(data[0].To_Price));
+                           
+                            $("#slider-range").slider('values', 0, getIndexValue(data[0].From_Price)); // sets first handle (index 0) to 50
+                            $("#slider-range").slider('values', 1, getIndexValue(data[0].To_Price));
+                        }
+                        else {
+
+                            $('#basicfromprice').text('0');
+                            $('#basictoprice').text('10000000');
+                            $('#forsale_formatted_from_price').text('No Min');
+                            $('#forsale_formatted_to_price').text('No Max');
+                            sfromprice = 'No Min', stoprice ='No Max';
+                        }
+                    }
+                    bathroomstext = data[0].Bathrooms;
+                    bedroomstext = data[0].Bedrooms;
+                    $("#" + $(".bathbtngroup>a").filter("[data-index='" + data[0].Bathrooms + "']").prop('id') + "").addClass('active');
+                    $("#" + $(".bedroombtngroup>a").filter("[data-index='Any']").prop('id') + "").removeClass('active');
+                    $("#" + $(".bedroombtngroup>a").filter("[data-index='" + data[0].Bedrooms + "']").prop('id') + "").addClass('active');
+                    $("#" + $(".masterbedroombtngroup>a").filter("[data-index='Any']").prop('id') + "").removeClass('active');
+                    var mbedindex = "";
+                    if (data[0].Master_Bedroom == "Main Floor") {
+                        mbedindex = 2;
+                        MasterBedroomstext = "Main Floor";
+                    }
+                    else if (data[0].Master_Bedroom == "Second Floor") {
+                        mbedindex = 3;
+                        MasterBedroomstext = "Second Floor";
+                    }
+                    else {
+                        mbedindex = "Any";
+                        MasterBedroomstext = "Any";
+                    }
+                    $("#" + $(".masterbedroombtngroup>a").filter("[data-index='" + mbedindex + "']").prop('id') + "").addClass('active');
+                    if (data[0].HandicapAccess == "True")
+                        $('#check').attr('checked', true);
+                    else
+                        $('#check').attr('checked', false);
+
+                    var p = data[0].Property_Type;
+                    
+                    if (p == "Condo/Townhouse")
+                        p = "Condo/Townhouse-Attached"
+                    if (data[0].Filter_TypeID == "3") {
+                        if (p == "Any") {
+                            $("#lotspropertytype").multiselect('selectAll', false);
+                        }
+                        else {
+                            if (p.indexOf(',') != -1) {
+                                var dataarray = p.split(",");
+                                $("#lotspropertytype").multiselect("select", dataarray);
+                            }
+                            else {
+                                $("#lotspropertytype").multiselect("select", p);
+                            }
+                        }
+                        propertytext = data[0].Property_Type;
+                    }
+                    else {
+                        if (p == "Any") {
+                            $("#propertytype").multiselect('selectAll', false);
+                        }
+                        else {
+
+                            if (p.indexOf(',') != -1) {
+                                var dataarray = p.split(",");
+                                $("#propertytype").multiselect("select", dataarray);
+                            }
+                            else {
+                                $("#propertytype").multiselect("select", p);
+                            }
+
+                        }
+                        propertytext = data[0].Property_Type;
+                    }
+                   
+                }
+                else {
+                    $('#forsale_formatted_from_price').text('No Min');
+                    $('#forsale_formatted_to_price').text('No Max');
+                    $("#slider-range").slider('values', 0, getIndexValue(0)); // sets first handle (index 0) to 50
+                    $("#slider-range").slider('values', 1, getIndexValue(10000000));
+                    $('#inputMinutes').val("");
+                    $('#inputAddress').val("");
+                    sfromprice = 'No Min', stoprice = 'No Max';
+                    $("#" + $(".bathbtngroup>a").filter("[data-index='Any']").prop('id') + "").addClass('active');
+                    $("#" + $(".bedroombtngroup>a").filter("[data-index='Any']").prop('id') + "").addClass('active');
+                    $("#" + $(".masterbedroombtngroup>a").filter("[data-index='Any']").prop('id') + "").addClass('active');
+                    $('#check').attr('checked', false);
+                }
+                SummeryNew(type);
+            },
+            error: function () {
+            }
+        });
+
+    }
+    $("a[name=bedrooms]").on("click", function () {
+        var a = $(this).text();
+        bedroomstext = $(this).data("index");
+        SummeryNew(listtype);
+    });
+    $("a[name=bathrooms]").on("click", function () {
+        var a = $(this).text();
+        bathroomstext = $(this).data("index");
+        SummeryNew(listtype);
+    });
+    $("a[name=masterbedrooms]").on("click", function () {
+        MasterBedroomstext = $(this).text();
+        var a = $(this).data("index");
+        SummeryNew(listtype);
+    });
+    $('#ListingType').change(function () {
+        $("#propertytype > option").attr("selected", false);
+        $('#propertytype').multiselect('refresh');
+        $("#lotspropertytype > option").attr("selected", false);
+        $('#lotspropertytype').multiselect('refresh');
+        propertytext = "Any";
+        hproperty = "Any";
+        if ($('#ListingType option:selected').val() == "1") {
+            $('#DivLotAcreage').hide();
+            $('#DivBedBathRooms').show();
+            $('#DivMasterBedroom').show();
+            $('#rentalslider-range').hide();
+            $('#slider-range').show();
+            $('#lotspropertytypediv').hide();
+            $('#propertytypediv').show();
+            getdetails(1);
+        }
+        else if ($('#ListingType option:selected').val() == "2") {
+            $('#DivLotAcreage').hide();
+            $('#DivBedBathRooms').show();
+            $('#DivMasterBedroom').hide();
+            $('#rentalslider-range').show();
+            $('#slider-range').hide();
+            $('#lotspropertytypediv').hide();
+            $('#propertytypediv').show();
+            getdetails(2);
+        }
+        else if ($('#ListingType option:selected').val() == "3") {
+            $('#DivLotAcreage').show();
+            $('#DivBedBathRooms').hide();
+            $('#DivMasterBedroom').hide();
+            $('#rentalslider-range').hide();
+            $('#slider-range').show();
+            $('#lotspropertytypediv').show();
+            $('#propertytypediv').hide();
+            getdetails(3);
+        }
+    });
+    $(".bedroombtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".bedroombtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+
+    });
+    $(".bathbtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".bathbtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    $(".masterbedroombtngroup>a").on("click", function () {
+        var defaultClass = "btn btn-default";
+        var toBeAssignedClass = $(this).attr("data-btn-class");
+        $(".masterbedroombtngroup>a").attr("class", defaultClass);
+        $(this).attr("class", toBeAssignedClass);
+    });
+    //$('#inputAddress').on("change", function () {
+    //    addresstext = $(this).val();
+    //});
+    google.maps.event.addDomListener(window, 'load', function () {
+        var places = new google.maps.places.Autocomplete(document.getElementById('inputAddress'));
+    });
+   
+    $("#propertytype").change(function () {
+
+        //hproperty = "";
+        //propertytext = "";
+        //$('#propertytype :selected').each(function (i, sel) {
+        //    propertytext = $(sel).text() + "," + propertytext;
+        //    hproperty = $(sel).val() + "," + hproperty;
+        //});
+        //hproperty = hproperty.substring(0, hproperty.length - 1);
+        //propertytext = propertytext.substring(0, propertytext.length - 1);
+        hproperty = "";
+        propertytext = "";
+        if ($("#propertytype").val() != null) {
+            if ($("#propertytype").val().length == "5") {
+                 hproperty = "Any", propertytext = "Any";
+            }
+            else {
+                $('#propertytype :selected').each(function (i, sel) {
+                    propertytext = $(sel).text() + "," + propertytext;
+                    hproperty = $(sel).val() + "," + hproperty;
+                });
+               hproperty = hproperty.substring(0, hproperty.length - 1);
+                propertytext = propertytext.substring(0, propertytext.length - 1);
+            }
+        }
+        else {
+            hproperty = 'Any';
+            propertytext = 'Any';
+        }
+        SummeryNew(listtype);
+    })
+    $("#lotspropertytype").change(function () {
+
+        //hproperty = "";
+        //propertytext = "";
+        //$('#lotspropertytype :selected').each(function (i, sel) {
+        //    propertytext = $(sel).text() + "," + propertytext;
+        //    hproperty = $(sel).val() + "," + hproperty;
+        //});
+        //hproperty = hproperty.substring(0, hproperty.length - 1);
+        //propertytext = propertytext.substring(0, propertytext.length - 1);
+        //SummeryNew(listtype);
+        hproperty = "";
+        propertytext = "";
+        if ($("#lotspropertytype").val() != null) {
+            if ($("#lotspropertytype").val().length == "4") {
+                 hproperty = "Any", propertytext = "Any";
+            }
+            else {
+                $('#lotspropertytype :selected').each(function (i, sel) {
+                    propertytext = $(sel).text() + "," + propertytext;
+                    hproperty = $(sel).val() + "," + hproperty;
+                });
+                 hproperty = hproperty.substring(0, hproperty.length - 1);
+                propertytext = propertytext.substring(0, propertytext.length - 1);
+            }
+        }
+        else {
+             hproperty = 'Any';
+            propertytext = 'Any';
+        }
+    })
+</script>
+<script>
+    function clearFields() {
+        $("#inputMinutes").val('');
+        $("#inputAddress").val('');
+        forprice(0, 10000000);
+        knowwidth(0, 10000000);
+        forLot(0, 50);
+        Lotknowwidth(0, 50);
+        knowrentalpricewidth(0, 80001);
+        forrentalprice(0, 80001);
+        $("#propertytype > option").attr("selected", false);
+        $('#propertytype').multiselect('refresh');
+        $(".bedroombtngroup>a").attr("class", 'btn btn-default');
+        $(".bathbtngroup>a").attr("class", 'btn btn-default');
+        $(".masterbedroombtngroup>a").attr("class", 'btn btn-default');
+    }
+    function SummeryNew(fid) {
+        var HMinutes = "";
+        var HAddress = "";
+        var HPropertyType = "";
+        var HPriceRange = "";
+        var HBathromms = "";
+        var HBedrooms = "";
+        var HMasterBedRoom = "";
+        var LotAceRange = "";
+        if (fid == "1") {
+            var Hminutes1 = $('#inputMinutes').val();
+            var addretext = $('#inputAddress').val();
+
+            if (Hminutes1 != "") {
+                HMinutes = "Minutes : " + Hminutes1 + ",";
+            }
+            if (addretext != "") {
+                HAddress = "Address : " + addretext + ",";
+            }
+            if (propertytext != "Any" && propertytext != "") {
+                HPropertyType = "Property Type :" + propertytext + ",";
+            }
+            if (sfromprice != "0" || stoprice != "10000000") {
+                HPriceRange = "Price Range : " + sfromprice + "-" + stoprice + ",";
+            }
+            else {
+                HPriceRange = "Price Range : No Min-No Max,";
+            }
+            if (bathroomstext != "Any") {
+                HBathromms = bathroomstext + "+ Bath Rooms, ";
+            }
+            else {
+                HBathromms = " Bath Rooms:" + bathroomstext + ",";
+            }
+            if (bedroomstext != "Any") {
+                HBedrooms = bedroomstext + "+ Bed Rooms ,";
+            }
+            else {
+                HBedrooms = "Bed Rooms : " + bedroomstext + ",";
+            }
+            if (MasterBedroomstext != "Any") {
+                HMasterBedRoom = "Master Bed Rooms : " + MasterBedroomstext + ",";
+            }
+            $("#summarycontent").text('');
+            $("#summarycontent").text(HMinutes + ' ' + HAddress + ' ' + HPropertyType + ' ' + HPriceRange + ' ' + HBathromms + ' ' + HBedrooms + ' ' + HMasterBedRoom);
+        }
+        else if (fid == "2")
+        {
+            var Hminutes1 = $("#inputMinutes").val();
+            var addresstext = $("#inputAddress").val();
+
+            if (Hminutes1 != "") {
+                HMinutes = "Minutes : " + Hminutes1 + ",";
+            }
+            if (addresstext != "") {
+                HAddress = "Address : " + addresstext + ",";
+            }
+            if (propertytext != "Any" && propertytext != "") {
+                HPropertyType = "Property Type :" + propertytext + ",";
+            }
+            if (rfromprice != "0" || rtoprice != "80001") {
+                HPriceRange = "Price Range : " + rfromprice + "-" + rtoprice + ",";
+            }
+            else {
+                HPriceRange = "Price Range : No Min-No Max,";
+            }
+
+            if (bathroomstext != "Any") {
+                HBathromms = bathroomstext + "+ Bath Rooms,";
+            }
+            else {
+                HBathromms = " Bath Rooms:" + bathroomstext + ",";
+            }
+            if (bedroomstext != "Any") {
+                HBedrooms = bedroomstext + "+ Bed Rooms ,";
+            }
+            else {
+                HBedrooms = "Bed Rooms : " + bedroomstext + ",";
+            }
+            $("#summarycontent").text('');
+            $("#summarycontent").text(HMinutes + ' ' + HAddress + ' ' + HPropertyType + ' ' + HPriceRange + ' ' + HBathromms + ' ' + HBedrooms);
+        }
+        else {
+            var Hminutes1 = $("#inputMinutes").val();
+            var addresstext = $("#inputAddress").val();
+
+            if (Hminutes1 != "") {
+                HMinutes = "Minutes : " + Hminutes1 + ",";
+            }
+            if (addresstext != "") {
+                HAddress = "Address : " + addresstext + ",";
+            }
+            if (propertytext != "Any" && propertytext != "") {
+                HPropertyType = "Property Type :" + propertytext + ",";
+            }
+            if (sfromprice != "0" || stoprice != "10000000") {
+                HPriceRange = "Price Range : " + sfromprice + "-" + stoprice + ",";
+            }
+            else {
+                HPriceRange = "Price Range : No Min-No Max,";
+            }
+            if (sfromprice != "0" || stoprice != "10000000") {
+                HPriceRange = "Price Range : " + sfromprice + "-" + stoprice + ",";
+            }
+            else {
+                HPriceRange = "Price Range : No Min-No Max,";
+            }
+            if (lotacefrom != "0" || lotaceto != "50") {
+                LotAceRange = "Lot Acreage : " + lotacefrom + "-" + lotaceto + ",";
+            }
+            else {
+                LotAceRange = "Price Range : No Min-No Max,";
+            }
+            $("#summarycontent").text('');
+            $("#summarycontent").text(HMinutes + ' ' + HAddress + ' ' + HPropertyType + ' ' + HPriceRange + ' ' + LotAceRange );
+
+        }
+    }
+</script>
+
+
+

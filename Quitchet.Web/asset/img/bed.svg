@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3172.31 -17802.631 27.566 27.566">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.849;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: rgba(149,152,154,0.01);
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        fill: #ff602b;
+      }
+    </style>
+  </defs>
+  <g id="Group_5153" data-name="Group 5153" class="cls-1" transform="translate(-3172.31 -17802.631)">
+    <g id="Group_5152" data-name="Group 5152">
+      <g id="Group_5151" data-name="Group 5151">
+        <path id="Path_8244" data-name="Path 8244" class="cls-2" d="M0,0H27.566V27.566H0Z"/>
+      </g>
+      <path id="Path_8245" data-name="Path 8245" class="cls-3" d="M18.25,22.153v5.206h5.318Z" transform="translate(-13.219 -16.046)"/>
+      <path id="Path_8246" data-name="Path 8246" class="cls-3" d="M24.534,17.928v5.444H3.032V14H0V33.848H3.032V28.886h21.5v4.962h3.032V17.928Z" transform="translate(0 -10.141)"/>
+    </g>
+  </g>
+</svg>

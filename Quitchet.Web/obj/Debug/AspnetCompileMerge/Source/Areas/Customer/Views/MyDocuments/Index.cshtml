@@ -1,0 +1,435 @@
+﻿@*My Documents View *@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link href="~/asset/css/imagehover.css" rel="stylesheet" />
+<script src="~/asset/js/main.js"></script>
+<link href="~/css/plugins/font-awesome.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="/js/jquery.min.js"></script>
+@*<link href="/css/style3popup.css" rel="stylesheet">*@
+<style>
+    input[type="text"], input[type="password"] {
+        max-width: 2800px;
+        border-radius: 6px !important;
+    }
+
+    option {
+        /* Whatever color  you want */
+        background-color: #ffffff;
+        color: black;
+    }
+
+    .inner-addon {
+        position: relative;
+    }
+        /* style glyph */
+        .inner-addon .glyphicon {
+            position: absolute;
+            padding: 7px;
+            pointer-events: none;
+        }
+    /* align glyph */
+    .right-addon .glyphicon {
+        right: 0px;
+    }
+    /* add padding  */
+    .right-addon input {
+        padding-right: 30px;
+    }
+</style>
+@*<div id="content">*@
+<div class="row">
+    <main class="mainb">
+    <div class="col-sm-12" style="text-align:center;height:40px;width:98%">
+        <div class="btn-group" id="my_styles">
+  <button type="button" class="btn btn-default active">
+      <labelb for="tab1" class=" ">My Documents </labelb></button>
+    <button type="button" class="btn btn-default"><labelb for="tab3">Schedule Showings </labelb></button>
+</div>
+@*<input id="tab1" type="radio" name="tabs" checked">
+<labelb for="tab1" class="sellertabselcted ">My Documents </labelb>
+<input id="tab2" type="radio" name="tabs" >
+<labelb for="tab2">Shared With Me </labelb>*@
+@*<input id="tab3" type="radio" name="tabs">
+<labelb for="tab3">Schedule Showings </labelb>*@
+        </div>
+    <div class="row">
+    <div class="col-sm-12" style="background-color:gray;padding:5px 5px 5px 5px;width:98%">
+        <div class="col-sm-6">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-5" style="text-align:center">
+                  <div class="inner-addon right-addon">  <i class="glyphicon glyphicon-search" style="color:#ff6937"></i>
+                @Html.TextBox("search", "", new { @style = "height: 29px;width:100%;background-color: #FDEAE4;border: 1px solid #F7AB92;", @class = "form-control", @placeholder = "Search Files", @id = "search" })
+        </div>
+            </div>
+            <div class="col-sm-4">
+                            @Html.DropDownList("dropdown1", new List<SelectListItem>
+                        {
+                            new SelectListItem{ Text="Newest", Value = "Person-1" },
+                            new SelectListItem{ Text="Oldest", Value = "Person-2" },
+                            new SelectListItem{ Text="Title A-Z", Value = "Person-3" },
+                            new SelectListItem{ Text="Title Z-A", Value = "Person-3" },
+                            new SelectListItem{ Text="Creator A-Z", Value = "Person-3" },
+                            new SelectListItem{ Text="Creator Z-A", Value = "Person-3" },
+                         }, "Sort By"
+                         , new { @class = "form-control", @Style = "background-color:#ff6937; color:white;height:29px;width:100%;border-radius:5px" })
+                 </div>
+        </div>
+        <div class="col=sm-6 pull-right" style="padding-right:15px;">
+              <button id="addfolderbtn" type="button" class="" style="width: 120px; height: 30px; border-radius: 3px; background-color: #FF6937; color: white; font-weight: 400; font-size: 12px;">
+                  @*<i class="material-icons" style="font-size:20px">create_new_folder</i>  *@
+                  <i class="fa fa-folder-open" aria-hidden="true"></i><span style="padding-left:5px">New Folder</span></button>
+            &nbsp;
+              <button id="uploadbtn" type="button" class="" style="width: 120px; height: 30px; border-radius: 3px; background-color: #FF6937; color: white; font-weight: 400; font-size: 12px;">
+                   <i class="fa fa-cloud-upload" aria-hidden="true"></i><span style="padding-left:5px">Upload</span></button>
+        </div>
+    </div>
+        </div>
+            <div class="col-sm-1" id="optionsdiv" style="background-color:#FFF;text-align:center"><br />
+                @*<span class="glyphicon glyphicon-transfer"></span>*@
+                <div>
+                    <a href="#">
+                <i class="fa fa-exchange glyph" aria-hidden="true"></i><br />
+                <label class="lbl2">Move</label>
+                        </a><br />
+                        </div>
+                <div>
+                    <a href="#">
+                <i class="fa fa-pencil-square-o glyph" aria-hidden="true"></i><br />
+                <label class="lbl2">Rename</label></a><br />
+                </div>
+                <div>
+                    <a href="#">
+                <i class="fa fa-trash glyph" aria-hidden="true"></i><br />
+                <label class="lbl2">Delete</label>
+                        </a><br />
+                    </div>
+                <div>
+                    <a href="#">
+                <span class="glyphicon glyphicon-log-in glyph"></span><br />
+                <label class="lbl2">Export</label>
+                        </a><br />
+                    </div>
+                <div>
+                    <a href="#">
+                <i class="fa fa-share-alt glyph" aria-hidden="true"></i><br />
+                <label class="lbl2">Share</label>
+                        </a><br />
+                    </div>
+                <div>
+                    <a href="#">
+                <span class="glyphicon glyphicon-print glyph"></span><br />
+                <label class="lbl2">Print</label></a><br />
+                    </div>
+            </div>
+    <div class="col-sm-11"><section id="content2">
+<!-- Start: listing -->
+<div class="section">
+  <div style="border-bottom:2px solid #F85B42"> </div>
+</div>
+<div class="left_contentlist">
+<form action="filter" method="post">
+<div class="itemconfiguration" style="padding-left: 30px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 doccontainer">   <figure class="imghvr-zoom-out-left">
+       <img src="/asset/img/folder_added.png" width="101" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/folder_added.png" width="101" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/folder_added.png" width="101" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/folder_added.png" width="101" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer"> <img src="/asset/img/newdoc.png" width="90" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/filedoc.png" width="90" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/filedoc.png" width="90" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/filedoc.png" width="90" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/filedoc.png" width="90" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/filedoc.png" width="90" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/filedoc.png" width="90" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/filedoc.png" width="90" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/filedoc.png" width="90" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+      <div class="col-md-2 doccontainer">
+        <figure class="imghvr-push-down">
+        <img src="/asset/img/filedoc.png" width="90" class="text-center folderposition" />
+        <div class="folderlabel">
+          <h5 class="th3folder">Column title</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </form>
+    </div>
+<!-- end: listing -->
+</section></div>
+    </main>
+</div>
+<!-- Add Folder Popup -->
+<div id="addfolderpopup" class="popupsavedsearches">
+    <div class="row popupcleanhedr">
+        <i class="fa fa-folder" aria-hidden="true" style="width: 29px; height: 24px"></i>
+        <span style="padding-left: 10px;">Add Folder</span>
+    </div>
+    <hr class="sepratorpopup" style="margin-top: -3px;">
+    <div class="">
+        <div class="row">
+            <!-- start: 1st row -->
+            <!-- closed: phone -->
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-md-11 center">
+                    <label>Folder Name</label>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-md-10 center">
+                    @Html.TextBox("folderName", "", new { @style = "height: 35px;width:100%;background-color: #FDEAE4;border: 1px solid #F7AB92;", @class = "form-control", @placeholder = " .....", @id = "foldername" })
+                </div>
+            </div>
+        </div>
+        <div style="margin: 25px 0px 10px 30px" class="row">
+            <div style="float: left" class="col-sm-6">
+                <button id="cancelBtn" type="button" class=" graybtn" style="width: 120px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                    Cancel</button>
+            </div>
+            <div style="float: right" class="col-sm-6">
+                <button id="saveBtn" type="button" class="closeorangebtn" style="width: 120px; height: 40px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                    Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .lbl2 {
+        color: gray;
+        font-size: 11px;
+    }
+
+    .glyph {
+        font-size: 25px;
+        color: #FF5F29;
+    }
+
+    .mainb {
+        background: #fff;
+        -webkit-box-shadow: 0px 6px 10px -5px rgba(0,0,0,0.08);
+        -moz-box-shadow: 0px 6px 10px -5px rgba(0,0,0,0.08);
+        box-shadow: 0px 6px 10px -5px rgba(0,0,0,0.08);
+        min-width: 100%;
+        max-width: 100%;
+        padding: 0px 0px 0px 0px;
+    }
+
+    main {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 8px 0px 0px 0px;
+    }
+
+    input[type=checkbox], input[type=radio] {
+        margin: 8px 0 0;
+        margin-top: 1px\9;
+        line-height: normal;
+    }
+
+    labelb {
+        display: inline-block;
+        /*margin: 0px -1px 7px -1px;
+    padding: 9px 92px;*/
+        font-weight: 400;
+        font-size: 18px;
+        text-align: center;
+        color: #FF5F29;
+        border-radius: 0px 0px 0px 0px;
+        -moz-border-radius: 0px 0px 0px 0px;
+        -webkit-border-radius: 0px 0px 0px 0px;
+        /*border-right: 2px solid #efefef;*/
+    }
+
+    .topdirectionbtn {
+        margin: -2px 4px 4px 0px;
+        float: right;
+    }
+
+    input[type=checkbox], input[type=radio] {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    input {
+        display: none;
+    }
+
+
+
+    .container {
+        width: 97%;
+        padding-right: 15px;
+        padding-left: 25px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    left_contentlist {
+        width: 100%;
+        float: left;
+        padding: 0 0 0 0px;
+        position: relative;
+        float: left;
+        background-image: url(images/bubble.png);
+        background-color: black;
+    }
+
+    .itemconfiguration {
+        height: 440px;
+        /* width: 100%; */
+        background-color: #565453;
+        overflow-y: auto;
+        float: left;
+        position: relative;
+        margin-left: -36px;
+    }
+
+    .doccontainer {
+        border: 1px solid #6E7172;
+        border-radius: 6px;
+        margin: 5px 9px 13px 15px;
+    }
+
+    #tab1:checked ~ #content1,
+    #tab2:checked ~ #content2,
+    #tab3:checked ~ #content3,
+    #tab4:checked ~ #content4 {
+        display: block;
+    }
+
+    .row {
+        /*background-color:#6E7172;*/
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    input:checked + labelb {
+        color: #FFFFFF;
+        background-color: #FF5F29;
+    }
+
+    .section {
+        display: none;
+        padding: 0px 0 0;
+        border-top: 1px solid #ddd;
+        background-color: #FFFFFF;
+    }
+
+    .folderposition {
+        margin-left: 43px;
+        margin-top: 19px;
+    }
+
+    .folderlabel {
+        background: #6C6967;
+        text-align: center;
+        color: #dfdfdf;
+        font-size: 13px;
+        margin-left: 35px;
+        margin-bottom: 16px;
+        padding: 0px 1px;
+        border-radius: 49px;
+        height: 24px;
+    }
+
+    .th3folder {
+        line-height: 23px;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#addfolderpopup").hide();
+    });
+    $("#addfolderbtn").click(function (e) {
+        $("#addfolderpopup").show();
+    });
+    $("#saveBtn,#cancelBtn").click(function (e) {
+        $("#addfolderpopup").hide();
+    });
+    $(".btn-group > .btn").click(function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        $(this).attr("background").val("red");
+    });
+</script>

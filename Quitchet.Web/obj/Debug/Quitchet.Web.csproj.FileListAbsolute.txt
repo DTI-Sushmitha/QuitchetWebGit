@@ -1,0 +1,335 @@
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Helpers.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Mvc.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Razor.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Helpers.xml
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Mvc.xml
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Razor.xml
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.xml
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Helpers.dll
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Mvc.dll
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Razor.dll
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.dll
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Helpers.xml
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Mvc.xml
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Razor.xml
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.xml
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+C:\Users\US\Downloads\QuitchetNew\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Helpers.dll
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Mvc.dll
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Razor.dll
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.dll
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Helpers.xml
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Mvc.xml
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Razor.xml
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.xml
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+C:\Users\US\Downloads\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\Microsoft.Web.Infrastructure.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Helpers.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Mvc.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Razor.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Helpers.xml
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Mvc.xml
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Razor.xml
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.xml
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.xml
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.xml
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Helpers.dll
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Mvc.dll
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Razor.dll
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.dll
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.dll
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.dll
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Helpers.xml
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Mvc.xml
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.Razor.xml
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.xml
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.xml
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.xml
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+D:\prp\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+D:\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+D:\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+D:\Quitchet\Quitchet.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\Quitchet\Quitchet.Web\bin\System.Web.Helpers.dll
+D:\Quitchet\Quitchet.Web\bin\System.Web.Mvc.dll
+D:\Quitchet\Quitchet.Web\bin\System.Web.Razor.dll
+D:\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.dll
+D:\Quitchet\Quitchet.Web\bin\System.Web.WebPages.dll
+D:\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.dll
+D:\Quitchet\Quitchet.Web\bin\System.Web.Helpers.xml
+D:\Quitchet\Quitchet.Web\bin\System.Web.Mvc.xml
+D:\Quitchet\Quitchet.Web\bin\System.Web.Razor.xml
+D:\Quitchet\Quitchet.Web\bin\System.Web.WebPages.xml
+D:\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.xml
+D:\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.xml
+D:\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+D:\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+D:\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.Helpers.dll
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.Mvc.dll
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.Razor.dll
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.WebPages.dll
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.Helpers.xml
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.Mvc.xml
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.Razor.xml
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.WebPages.xml
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+C:\Users\US\Desktop\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll.config
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Helpers.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Mvc.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Razor.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Helpers.xml
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Mvc.xml
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Razor.xml
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.xml
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.xml
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.xml
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll.config
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Helpers.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Mvc.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Razor.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.pdb
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.pdb
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.pdb
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.pdb
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Newtonsoft.Json.xml
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Helpers.xml
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Mvc.xml
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Razor.xml
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.xml
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.xml
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.xml
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\Newtonsoft.Json.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Net.Http.Formatting.dll
+D:\19-8-17-12-18pmQuitchetProject\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Net.Http.Formatting.xml
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll.config
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Newtonsoft.Json.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Net.Http.Formatting.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Helpers.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Mvc.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Razor.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.pdb
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.pdb
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.pdb
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.pdb
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Newtonsoft.Json.xml
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Net.Http.Formatting.xml
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Helpers.xml
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Mvc.xml
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Razor.xml
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.xml
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.xml
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.xml
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\GoogleMaps.LocationServices.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Management.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Management.Instrumentation.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\Newtonsoft.Json.xml
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Net.Http.Formatting.xml
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Helpers.xml
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Mvc.xml
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.Razor.xml
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.xml
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Deployment.xml
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\bin\System.Web.WebPages.Razor.xml
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+D:\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll.config
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Security.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Owin.dll
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.xml
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Security.xml
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll.config
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Security.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Owin.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.pdb
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.pdb
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.pdb
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.pdb
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.xml
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Security.xml
+E:\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+E:\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+E:\QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll.config
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Security.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Owin.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.xml
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Security.xml
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll.config
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Web.pdb
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Security.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Owin.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Core.pdb
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Data.pdb
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.Services.pdb
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Quitchet.SharedLibraries.pdb
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.xml
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\Microsoft.Owin.Security.xml
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.csprojResolveAssemblyReference.cache
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\obj\Debug\Quitchet.Web.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\itextsharp.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\itextsharp.xml
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\itextsharp.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Web\bin\itextsharp.xml

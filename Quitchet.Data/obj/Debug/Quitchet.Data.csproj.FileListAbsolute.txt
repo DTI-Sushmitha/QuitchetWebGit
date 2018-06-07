@@ -1,0 +1,44 @@
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.pdb
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.pdb
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.pdb
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.csprojResolveAssemblyReference.cache
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.pdb
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.pdb
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.csprojResolveAssemblyReference.cache
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.csprojResolveAssemblyReference.cache
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.dll
+D:\QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.csprojResolveAssemblyReference.cache
+D:\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.dll
+D:\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.pdb
+E:\QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.dll
+E:\QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.pdb
+E:\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.csprojResolveAssemblyReference.cache
+E:\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.dll
+E:\QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.csprojResolveAssemblyReference.cache
+E:\Final-QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\itextsharp.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\itextsharp.xml
+D:\Final-QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\Quitchet.Data.pdb
+D:\Final-QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\itextsharp.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\itextsharp.xml
+D:\Final-QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.csprojResolveAssemblyReference.cache
+D:\Final-QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Data\obj\Debug\Quitchet.Data.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Data\bin\Debug\smartystreets-dotnet-sdk.dll

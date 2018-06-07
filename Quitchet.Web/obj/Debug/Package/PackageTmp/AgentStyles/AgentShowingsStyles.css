@@ -1,0 +1,37 @@
+﻿/*For Header Menu Tab changed Styles*/ 
+#exTab3 .nav-pills > li > a {
+    border-radius: 4px 4px 0 0;
+    padding: 7px 32px;
+    margin-top: 2px;
+}
+.backbtninHeader_orange{
+    padding:5px 20px;border:none;background-color:#ff5d26;color:#fff
+}
+.iconsin_Tab{
+    margin-bottom:0;margin-right:10px;height:30px
+}
+ 
+        .labelorange{
+            color:#ff5d26
+        }
+         .labelwhite{
+            color:#fff
+        }
+         .prev_btn{
+             background-color:transparent;
+             border-color:#ff5d26;
+             color:#ff5d26;
+             font-weight:bold;
+         }
+         .btngray_disable{
+             background-color:lightgray;
+             color:#fff;
+         }
+         .btnorange{
+             color:#fff;
+             background-color:#ff5d26;
+         }
+         .btngray{
+             color:#fff;
+             background-color:gray;
+         }

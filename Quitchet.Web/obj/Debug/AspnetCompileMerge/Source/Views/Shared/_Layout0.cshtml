@@ -1,0 +1,631 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <meta charset="utf-8">
+
+    <meta charset="utf-8">
+    <meta name="description" content="Miminium Admin Template v.1">
+    <meta name="author" content="Isna Nur Azis">
+    <meta name="keyword" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quitchet::Landing</title>
+    <!-- start: Css -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <!-- plugins -->
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/animate.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/nouislider.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/ionrangeslider/ion.rangeSlider.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/ionrangeslider/ion.rangeSlider.skinFlat.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/bootstrap-material-datetimepicker.css" />
+    <!-- end: Css -->
+
+    <link rel="shortcut icon" href="/img/logomi.png">
+    <script type="text/javascript">
+        $("#author_bio_wrap_toggle").click(function () {
+
+            $("#author_bio_wrap").slideToggle("slow");
+
+            if ($("#author_bio_wrap_toggle").text() == "Expand Author Details") {
+                $("#author_bio_wrap_toggle").html("Notifications")
+            }
+            else {
+                $("#author_bio_wrap_toggle").text("Notifications")
+            }
+
+        });
+    </script>
+    <style>
+         .navbar {
+        height: 60px;
+        background-color: #FF6937;
+        color: #fff;
+        border: none;
+    }
+        .author_bio_toggle_wrapper {
+            height: 58px;
+            padding: 10px 0px 0px 0px;
+        }
+
+        #author_bio_wrap {
+            margin-top: 0px;
+            margin-bottom: 60px;
+            background: #FCFCFC;
+            width: auto;
+        }
+
+        .notificon {
+            width: 22px;
+            height: 30px;
+            text-align: left;
+            float: left;
+            padding-top: 8px;
+        }
+
+        .liorngbrdr {
+            border-bottom: 1px solid #F0E1DA;
+            height: 53px;
+            padding: 3px 0px 8px 0px;
+        }
+
+        .text-notification {
+            color: #373737;
+            line-height: 14px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 400;
+            padding: 7px;
+            padding-top: 7px;
+            padding-right: 7px;
+            padding-bottom: 7px;
+            padding-left: 7px;
+            float: left;
+            width: 88%;
+        }
+
+        #left-menu .sub-left-menu a {
+            color: #454341;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 13px;
+            border-bottom: 1px solid #D1D1D1;
+        }
+
+        /*a, a:visited {
+            text-decoration: none;
+            color: #FFF;
+            display: block;
+        }*/
+
+        .ripple a {
+            cursor: pointer;
+            user-select: none;
+            -webkit-text-decoration: none;
+            -moz-text-decoration: none;
+            -ms-text-decoration: none;
+            -o-text-decoration: none;
+            text-decoration: none;
+            position: relative;
+        }
+
+        a, a:hover {
+            -webkit-text-decoration: none;
+            -moz-text-decoration: none;
+            -ms-text-decoration: none;
+            -o-text-decoration: none;
+            text-decoration: none;
+            color: #FFFFFF;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body id="mimin" class="dashboard">
+    <!-- start: Header -->
+    <div class="col-sm-12">
+        <nav class="navbar navbar-default header navbar-fixed-top">
+            <div class="col-md-12 nav-wrapper">
+                <div class="col-sm-12 navbar-header" style="width: 100%;">
+                    <div class="opener-left-menu is-open">
+                        <span class="top"></span>
+                        <span class="middle"></span>
+                        <span class="bottom"></span>
+                    </div>
+                    <a href="index.html" class="navbar-brand">
+                        <b>
+                            <img src="/img/quitchetlogo_little.png" width="140" height="38" alt="" /></b>
+                    </a>
+                    <div style="margin: 0 auto; width: 450px">
+                        <ul class="tnav nav-pills">
+                            <li>
+                                <a href="/Customer/MyHome/Index" id="myhome">
+                                    <img src="/img/myq1.png" width="30px" height="30px" alt="" /><br>
+                                    Home</a>
+                            </li>
+                            <li>
+                                <a href="/Customer/SearchFilter/Index">
+                                    <img src="/img/searchm.png" width="30px" height="30px" alt="" /><br>
+                                    Search</a>
+                            </li>
+                            <li>
+                                <a href="/Customer/Favourites/Index">
+                                    <img src="/img/heartm.png" width="30px" height="30px" alt="" /><br>
+                                    Favorites</a>
+                            </li>
+                            <li>
+                                <a href="/Customer/SavedSearch/Index" id="savedsearches">
+                                    <div style="margin: 0px 0px 0px 20px">
+                                        <img src="/img/savedsearchesm.png" width="30px" height="30px" alt="" />
+                                    </div>
+                                    Saved Searches</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right user-nav">
+
+                        <li class="welcome-name"><span>Welcome</span></li>
+
+
+
+
+
+                        <li class="dropdown avatar-dropdown">
+                            <img src="/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" />
+
+                            <li class="user-name">
+                                <label style="margin-bottom: 0px" id="username"><span>Guest</span></label>
+                                <button type="button" class="form-control" value="SignOut" style="background-color: #ff6937; color: white; width: 95%; height: 20px; font-size: 13px; padding-top: 1px">
+                                    Sign In
+                                  
+                                </button>
+                            </li>
+                            <ul class="dropdown-menu user-dropdown">
+                                <li><a href="#"><span class="fa fa-user"></span>My Profile</a></li>
+                                <li><a href="#"><span class="fa fa-calendar"></span>My Calendar</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="more">
+                                    <ul>
+                                        <li><a href="#"><span class="fa fa-cogs"></span></a></li>
+                                        <li><a href="#"><span class="fa fa-lock"></span></a></li>
+                                        <li><a href="#"><span class="fa fa-power-off "></span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#" class="opener-right-menu">
+                            <img src="/img/expand_icon.png" width="36" height="40" alt="" /></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- end: Header -->
+    <!-- start:Left Menu -->
+    <div class="container-fluid mimin-wrapper">
+        <div id="left-menu">
+            <div class="sub-left-menu scroll">
+                <div id="Tabs" role="tabpanel" style="background-color:#FF6937">
+                    <div class="left-bg">
+                        <ul class="nav nav-tabs">
+                            <li class="active" style="width: 52%;">
+                                <a data-toggle="tab" href="#personal">User Tools</a>
+                            </li>
+                            <li style="width: 48%">
+                                <a data-toggle="tab" href="#employment">Messages</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-content" style="padding-top: 20px">
+                    <div role="tabpanel" class="tab-pane active" id="personal">
+                        <ul class="nav nav-list">
+                            <li class="active ripple">
+                                <a class="tree-toggle nav-header"><span>
+                                    <img src="/img/manageagent_icon.png" width="31" height="30" alt="" /></span>Manage Agent<span class="fa-angle-right fa right-arrow text-right"></span>
+                                </a>
+                            </li>
+                            <li class="ripple"><a class="tree-toggle nav-header"><span>
+                                <img src="/img/Closer_icon.png" width="31" height="31" alt="" /></span> Closer  <span class="fa-angle-right fa right-arrow text-right"></span></a>
+                            </li>
+                            <li class="ripple"><a class="tree-toggle nav-header"><span>
+                                <img src="/img/shareicon.png" width="24" height="35" alt="" /></span> Share  <span class="fa-angle-right fa right-arrow text-right"></span></a>
+                            </li>
+                            <li class="ripple"><a href="calendar.html"><span>
+                                <img src="/img/customerfeedback.png" width="36" height="30" alt="" /></span>Customer Support /Feedback</a></li>
+                           
+                            <li>
+                                <span>
+                                 <img src="/img/bell_icon.png" width="33" height="33" alt="" /></span>
+                               @* <div class="author_bio_toggle_wrapper">*@
+                                    <a style="height: 48px; border-bottom: 1px solid #A3A3A3" href="#0" id="aa" data-toggle="collapse" data-target="#demo">Notifications</a>
+                                @*</div>*@
+                                    <div id="demo" class="col-md-12 collapse">
+   
+                                        <ul class="list-group">
+                                            <li class="list-side-setting liorngbrdr">
+                                                <img class="notificon" src="/img/dociconnotif.png" alt="" />
+                                                <span class="text-notification"><strong>Bob Morga</strong>n has shared new documents with you. </span></li>
+                                            <li class="list-side-setting liorngbrdr">
+                                                <img class="notificon" src="/img/calen2.png" alt="" />
+                                                <span class="text-notification"><strong>Jon Wilson</strong> has accepted your {Event Title} invite.</span> </li>
+                                            <li class="list-side-setting liorngbrdr">
+                                                <img class="notificon" src="/img/chat22.png" alt="" />
+                                                <span class="text-notification"><strong>Bob Morgan</strong> sent you a new message. </span></li>
+                                            <li class="list-side-setting liorngbrdr">
+                                                <img class="notificon" src="/img/savedsearchesfold.png" alt="" />
+                                                <span class="text-notification"><strong>Bob Morgan</strong> has shared new documents with you. </span></li>
+                                            <li class="list-side-setting liorngbrdr">
+                                                <img class="notificon" src="/img/sellertoolicon.png" alt="" />
+                                                <span class="text-notification"><strong>Bob Morgan</strong> has shared new documents with you. </span></li>
+                                            <li class="list-side-setting liorngbrdr">
+                                                <img class="notificon" src="/img/requesticon.png" alt="" />
+                                                <span class="text-notification"><strong>Bob Morgan</strong> has shared new documents with you. </span></li>
+                                        </ul>
+                                   
+                                    </div>
+                            </li>
+
+                            </ul>
+                        
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="employment">
+                        <ul class="nav nav-list">
+                            <li></li>
+                            <li class="ripple"><a href="calendar.html"><span>
+                                <img src="/img/Closer_icon.png" width="36" height="30" alt="" /></span>Messages   </a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <!-- end: Left Menu -->
+
+    <!-- start: right menu -->
+    <div id="right-menu">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" href="#right-menu-user">
+                    <img src="/img/manageagent_icon.png" width="31" height="30" alt="" />
+                </a>
+            </li>
+            <p>1365656</p>
+            <li>
+                <a data-toggle="tab" href="#right-menu-config">
+                    <img src="/img/manageagent_icon.png" width="31" height="30" alt="" />
+                </a>
+            </li>
+        </ul>
+
+
+
+
+        <!-- end: right menu -->
+
+    </div>
+    <div id="googlemaps"></div>
+    @*<div id="popup1search">
+                <ul id="tabs-demo2" class="nav nav-tabs nav-tabs-v1" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#tabs-demo2-area1" id="tabs-demo2-1" role="tab" data-toggle="tab" aria-expanded="true"><span class="steptabsround">1</span>Basic Filters</a>
+                        </li>
+                        <li role="presentation" class="">
+                            <a href="#tabs-demo2-area2" role="tab" id="tabs-demo2-2" data-toggle="tab" aria-expanded="false"><span class="steptabsround">2</span>Advance Filters</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tabs-demo2-area3" id="tabs-demo2-3" role="tab" data-toggle="tab" aria-expanded="false"><span class="steptabsround">3</span>Utilities Filters</a>
+                        </li>
+
+                    </ul>
+
+                    <div id="tabsDemo2Content" class="tab-content tab-content-v1 col-md-12">
+                        <div role="tabpanel" class="tab-pane fade active in" id="tabs-demo2-area1" aria-labelledby="tabs-demo2-area1">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <div class="col-sm-4">
+                                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Minutes…">
+                                                    </div>
+                                                    <div class="col-sm-2 removedpaddings">
+                                                        <label for="inputEmail3" class="control-label" contenteditable="true">From</label>
+                                                    </div>
+                                                    <div class="col-sm-6 removedpaddings">
+                                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Address / Location…">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <div class="col-sm-4">
+                                                        <label for="inputEmail3" class="control-label">Property Type</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <select class="form-control">
+                                                            <option>option one</option>
+                                                            <option>option two</option>
+                                                            <option>option three</option>
+                                                            <option>option four</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label spanssliderpadding" for="exampleInputEmail1">Price</label>
+                                            <br>
+                                            <div class="slider-bubble">Max</div>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 60%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="exampleInputEmail1">Bathrooms </label>
+                                            <br>
+                                            <div class="btn-group btn-group-justified">
+                                                <a href="#" class="btn btn-default">Any</a>
+                                                <a href="#" class="btn btn-default">1+</a>
+                                                <a href="#" class="btn btn-default">2+</a>
+                                                <a href="#" class="btn btn-default">3+</a>
+                                                <a href="#" class="btn btn-default">4+</a>
+                                                <a href="#" class="btn btn-default">5+</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="control-label" for="exampleInputEmail1">Bedrooms</label>
+                                                    <br>
+                                                    <div class="btn-group btn-group-justified">
+                                                        <a href="#" class="btn btn-default">Any</a>
+                                                        <a href="#" class="btn btn-default">1+</a>
+                                                        <a href="#" class="btn btn-default">2+</a>
+                                                        <a href="#" class="btn btn-default">3+</a>
+                                                        <a href="#" class="btn btn-default">4+</a>
+                                                        <a href="#" class="btn btn-default">5+</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="control-label spanssliderpadding" for="exampleInputEmail1">Sqft</label>
+                                                    <br>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" style="width: 60%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr class="hr2">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <form role="form">
+                                                                <div class="form-group">
+                                                                    <label class="control-label" for="exampleInputEmail1">Schools</label>
+                                                                    <input class="form-control" id="exampleInputEmail1"
+                                                                        placeholder="Search for Schools… " type="search">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="control-label" for="exampleInputEmail1">Garage Type</label>
+                                                            <br>
+                                                            <div class="btn-group btn-group-justified">
+                                                                <a href="#" class="btn btn-default">Any</a>
+                                                                <a href="#" class="btn btn-default">Carport</a>
+                                                                <a href="#" class="btn btn-default">Garage</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label" for="exampleInputEmail1">Master Bedrooms</label>
+                                                                    <br>
+                                                                    <div class="btn-group btn-group-justified">
+                                                                        <a href="#" class="btn btn-default">Any</a>
+                                                                        <a href="#" class="btn btn-default">Main Floor</a>
+                                                                        <a href="#" class="btn btn-default">Second Floor</a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label spanssliderpadding" for="exampleInputEmail1">Lot Acreage</label>
+                                                                    <br>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar" role="progressbar" style="width: 60%;"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <label class="control-label" for="exampleInputEmail1">Number of Stories</label>
+                                                                            <br>
+                                                                            <div class="col-md-12">
+                                                                                <label class="checkbox-inline">
+                                                                                    <input type="checkbox" value="">Any</label>
+                                                                                <label class="checkbox-inline">
+                                                                                    <input type="checkbox" value="">1</label>
+                                                                                <label class="checkbox-inline">
+                                                                                    <input type="checkbox" value="">1.5</label>
+                                                                                <label class="checkbox-inline">
+                                                                                    <input type="checkbox" value="">2</label>
+                                                                                <label class="checkbox-inline">
+                                                                                    <input type="checkbox" value="">Tri / Split</label>
+                                                                                <label class="checkbox-inline">
+                                                                                    <input type="checkbox" value="">3+</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <label class="control-label" for="exampleInputEmail1">SubDivision</label>
+                                                                            <br>
+                                                                            <input class="form-control" id="exampleInputEmail1"
+                                                                                placeholder="Search for Subdivisions… " type="search">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <label class="control-label" for="exampleInputEmail1">Garage Capacity</label>
+                                                                            <br>
+                                                                            <div class="btn-group btn-group-justified">
+                                                                                <a href="#" class="btn btn-default">Any</a>
+                                                                                <a href="#" class="btn btn-default">1+</a>
+                                                                                <a href="#" class="btn btn-default">2+</a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <label class="control-label" for="exampleInputEmail1">Age</label>
+                                                                            <br>
+                                                                            <input class="form-control" id="exampleInputEmail1"
+                                                                                placeholder="Any, To be built, Under construction, New, 1-5, etc…" type="search">
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr class="hr2">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="alert alert-dismissable alert-success">
+                                                                                2+ Bedrooms,  2+ Bathrooms, 1000-2000 Sqft,  .
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr class="hr">
+                                                                    <div class="row">
+                                                                        <div class="col-md-3"><a href="#" class="closeorangebtn">Close</a></div>
+                                                                        <div class="col-md-2"></div>
+                                                                        <div class="col-md-3"><a href="#" class="graybtn">Reset</a></div>
+                                                                        <div class="col-md-3"><a href="#" class="closeorangebtn">Apply</a></div>
+                                                                        <div class="col-md-1"></div>
+                                                                    </div>
+                                                                    <div role="tabpanel" class="tab-pane fade" id="tabs-demo2-area2" aria-labelledby="tabs-demo2-area2">
+                                                                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                                                                    </div>
+                                                                    <div role="tabpanel" class="tab-pane fade" id="tabs-demo2-area3" aria-labelledby="tabs-demo2-area3">
+                                                                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+    <!-- start: Mobile -->
+    <div id="mimin-mobile" class="reverse">
+        <div class="mimin-mobile-menu-list">
+            <div class="col-md-12 sub-mimin-mobile-menu-list animated fadeInLeft">
+                <ul class="nav nav-list">
+                    <li class="active ripple">
+                        <a class="tree-toggle nav-header">Manage Agent 
+                        </a>
+
+                    </li>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">Layout
+                        
+                        </a>
+
+                    </li>
+                </ul>
+
+
+                <button id="mimin-mobile-menu-opener" class="animated rubberBand btn btn-circle btn-danger">
+                    <span class="fa fa-bars"></span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <!-- end: Mobile -->
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <!-- start: Javascript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.ui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- plugins -->
+    <script src="/js/plugins/moment.min.js"></script>
+    <script src="/js/plugins/jquery.nicescroll.js"></script>
+    <!-- custom -->
+    <script src="/js/main.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".nav-tabs a").click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        });
+        $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
+    </script>
+    
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD0X4v7eqMFcWCR-VZAJwEMfb47id9IZao"></script>
+    <script type="text/javascript">
+        // The latitude and longitude of your business / place
+        var position = [34.8526, -82.3940];
+        function showGoogleMaps() {
+            var latLng = new google.maps.LatLng(position[0], position[1]);
+            var mapOptions = {
+                zoom: 12, // initialize zoom level - the max value is 21
+                streetViewControl: true, // hide the yellow Street View pegman
+                scaleControl: true,
+                draggable: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                center: latLng
+            };
+            map = new google.maps.Map(document.getElementById('googlemaps'),mapOptions);
+            // Show the default red marker at the location
+            marker = new google.maps.Marker({
+                position: latLng,
+                map: map,
+                draggable: false,
+                animation: google.maps.Animation.DROP
+            });
+        }
+         google.maps.event.addDomListener(window, 'load', showGoogleMaps);
+      
+    </script>
+</html>

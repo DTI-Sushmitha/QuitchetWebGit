@@ -1,0 +1,1218 @@
+﻿@*Customer/ClosedParties for Closure Index*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+<link href="~/AgentStyles/Select-Styles-JS/bootstrap-select.min.css" rel="stylesheet" />
+<script src="~/AgentStyles/Select-Styles-JS/bootstrap-select.min.js"></script>
+<style>
+    #TimePicker:after {
+        border-bottom: 13px solid #fffcfc;
+        border-top: 5px solid transparent;
+        content: "";
+        position: absolute;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        top: -17px;
+        left: 14px;
+        width: 8px;
+    }
+     #S_TimePicker:after {
+        border-bottom: 13px solid #fffcfc;
+        border-top: 5px solid transparent;
+        content: "";
+        position: absolute;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        top: -17px;
+        left: 14px;
+        width: 8px;
+    }
+        /* enable absolute positioning */
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 6px;
+  color:gray;
+  pointer-events: none;
+}
+
+/* align glyph */
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.right-addon input { padding-right: 30px; }
+  .btn-group .mypopupbtncls{
+        width:50% !important;
+    }
+</style>
+<style>
+    #ui-datepicker-div {
+        margin-left: -103px !important;
+    }
+
+    .ui-datepicker-header {
+        text-transform: uppercase !important;
+        background-color: transparent;
+        color: #ff5d26;
+        font-weight: normal;
+        border: none !important;
+        font-size: 15px;
+        font-weight: bold;
+        /*-webkit-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, 2);
+        -moz-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+        box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+        text-shadow: 1px -1px 0px #000;
+        filter: dropshadow(color=#000, offx=1, offy=-1);
+        line-height: 30px;*/
+    }
+
+    .ui-datepicker table {
+        color: gray !important;
+    }
+
+
+    .ui-datepicker-prev, .ui-datepicker-next {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        cursor: pointer;
+        /*background-image: url('../img/arrow.png');*/
+        background-repeat: no-repeat;
+        line-height: 600%;
+        overflow: hidden;
+    }
+
+    .ui-datepicker tbody td:last-child {
+        border-right: 0px;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+        border: none !important;
+    }
+
+    .ui-datepicker tbody tr:last-child {
+        border-bottom: 0px;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default {
+        background: none !important;
+        text-align: center;
+    }
+
+    .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+        background-color: #ff5d26 !important;
+    }
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+     width: 100px !important;
+}
+    .btn-group > .btn:first-child {
+        padding: 3px;
+    }
+      .photos2 {
+        height: 50px;
+        width: 50px;
+        border-radius: 50px;
+        margin-bottom: 0;
+    }
+       /*Common Scroll Class*/
+ .scrolls_divs::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        .scrolls_divs::-webkit-scrollbar {
+            width: 0.8%;
+            border-radius: 10px;
+            background-color: #ff6a00;
+        }
+
+        .scrolls_divs::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #ff6a00;
+        }
+        /*Common Scroll Class End*/
+</style>
+<div class="col-sm-12" style="background-color:#636369; height:45px;" id="headerdiv1">
+    <div class="col-sm-4">
+        <a href="/Customer/MyQuitchet/Index" class="btn" id="Btn_Back" style="border-radius: 3px !important; border: none; border-image: none; left: 16px; top: 8px; width: 71px; height: 26px; color: white; padding-top: 4px; font-size: 12px; font-weight: 500; position: relative; float: left; background-color: #ff5d26;">Back</a>
+    </div>
+    <div class="col-sm-4" style="text-align:center;line-height:2.5">
+        <img src="/img/closer.png" alt="" style="height:30px;width:30px;margin-right: 10px;margin-bottom:0">
+        <span style="color:white; position:relative;font-weight:bold;font-size:16px;">
+        Closer</span>
+    </div>
+    @*<div class="col-sm-4" style="text-align:right">
+        <a href="#" id="editBtn" class="btn" style="display:none;border-radius: 3px !important; border: none; border-image: none; left: 16px; top: 8px; width: 71px; height: 26px; color: white; padding-top: 4px; font-size: 12px; font-weight: 500; position: relative; background-color: #ff5d26;">Edit</a>
+    </div>*@
+</div>
+<div class="col-sm-12" id="closinglistsheader" style="padding:10px;color:#fff;font-size:15px;text-align:center;background-color:#ff5d26">Your Closing Parties</div>
+    <div class="col-sm-12" style="padding:0px;display:none" id="CloserManageDiv">
+    <div class="col-sm-8 scrolls_divs" style="padding:0px;max-height:85vh;overflow-x:hidden;overflow-y:auto" id="CloserManageDiv_Data">
+        <div class="col-sm-12" style="padding:10px;background-color: #ff5d26;margin-bottom: 10px;">
+            <div class="col-sm-4">
+                <a href="#" id="backtoClosingsBtn" class="btn btn-default btn-sm" style="padding:3px 22px;background-color:transparent;color:#fff;float:left">Back</a>
+            </div>
+            
+            <div class="col-sm-4" style="text-align:center;">
+                <span style="color:white; position:relative;font-size:13px;">
+                    Closing Parties
+                </span>
+            </div>
+        </div>
+        <div id="assignedtome_div">
+            <div onclick="BindAssignedMe()" style="cursor:pointer; background-color:#646464;font-size:14px;color:#fff;padding:10px;" data-toggle="collapse" data-target="#assignedtome_div_data">
+             Assigned to me:
+            </div>
+            <div class="col-sm-12 collapse" style="margin-bottom: 10px;background-color:#ffffff;padding:10px;max-height:340px;overflow-y:auto;overflow-x:hidden" id="assignedtome_div_data">
+             
+            </div>
+        </div>
+        <div id="assignedtomyagent_div">
+            <div onclick="BindAssignedMyAgent()" style="border-top:1px solid #c3bfbf;border-bottom:1px solid #c3bfbf; background-color:#646464;font-size:14px;color:#fff;padding:10px;cursor:pointer;" data-toggle="collapse" data-target="#assignedtomyagent_div_data">
+                Assigned to my Agent:
+            </div>
+            <div id="assignedtomyagent_div_data" class="collapse" style="max-height:340px;overflow-y:auto;overflow-x:hidden">
+             
+            </div>
+
+        </div>
+        <div id="assignedtolistingagent_div">
+            <div onclick="BindAssignedListingAgent()" style="background-color:#646464;font-size:14px;color:#fff;padding:10px;cursor:pointer;" data-toggle="collapse" data-target="#assignedtolistingagent_div_data">
+                Assigned to Listing Agent:
+            </div>
+            <div id="assignedtolistingagent_div_data" class="collapse" style="max-height:340px;overflow-y:auto;overflow-x:hidden">
+              
+            </div>
+        </div>
+    </div>
+        <div class="col-sm-8" style="float:left;padding:0px;" id="ScheduleDiv" hidden="hidden">
+            <div class="col-sm-12" style="padding:10px;background-color:#ff5d26;text-align:center;color:#fff">
+                <div class="col-sm-4">
+                    <a href="#" class="btn" id="BacktoManageBtn" style="padding:2px 10px;display:none;border-radius: 3px !important; border: 1px solid; color: white;  font-size: 12px;  float: left; ">Back</a>
+                </div>
+                <div class="col-sm-4" style="">
+                    <span style="" id="schedule_edit_text">Schedule Service</span>
+                </div>
+            </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-7" style="padding-left:0px;padding-right:0px">
+                        <div class="col-sm-2" style="padding-left:0px;padding-right:0px;width:58px!important">
+                            <img src="~/asset_contacts/img/7th.png" id="cp_photo" style="margin-bottom:4px!important;height:50px;width:50px" />
+                        </div>
+                        <div class="col-sm-10" style="text-align:left;line-height:16px!important;padding-left: 0px;padding-top: 8px;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label id="cp_name" style="font-size:13px;font-weight:bold;padding-bottom:5px;margin:0px 0px 0px 0px">Kent Mitchell</label><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span id="cp_company" style="font-size:12px;color:#ff5d26;padding:0px 0px 0px 0px;font-weight:bold">A Better Home Inspections</span><br>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12">
+                    <div class="col-sm-2" style="padding-right:0">&nbsp;</div>
+                    <div class="col-sm-6" style="padding-left:0">
+                        <label style="font-size:11px;color:gray">
+                            Enter the data and time you would like the services rendered.
+                        </label>
+                    </div>
+                    <div class="col-sm-4">&nbsp;</div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12" style="font-size:11px;color:gray">
+                    <div class="col-sm-2" style="padding-right:0">&nbsp;</div>
+                    <div class="col-sm-6" style="padding-left:0">
+                        <div class="col-sm-2" style="padding-left:0;padding-right:0;width:24px">
+                            Date
+                        </div>
+                        <div class="col-sm-5" style="margin-top:-5px">
+                            @*<input type="text" placeholder="Date" id="S_Service_Date" class="form-control" style="top: -5px;position: relative; float: right; border-radius:3px; border-color:#ff5d26 !important; height:24px;font-size:11px">
+                            <span class="glyphicon glyphicon-calendar" style="left:76px;color:darkgray;top:-23px;">
+                            </span>*@
+                            <div class="inner-addon right-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                                @Html.TextBox("S_Service_Date", "", new { @class = "form-control", style = "cursor-color:#ff5d26;border-color: #ff6937;height: 24px; ", placeholder = "Date" })
+
+                            </div>
+                        </div>
+                        <div class="col-sm-2" style="padding-right: 0px;width: 42px;">Time</div>
+                        <div class="col-sm-2" style="padding:0">
+                            <input id="S_Service_Time" placeholder="Any " onclick="OpenTimepicker('S_TimePicker', 'S_Service_Time')" type="text" class="form-control" readonly style="border:1px #ff6a00 solid;position:relative;left:5px;width:85px;background-color:white;font-size:11px;height:24px;top:-5px;border-radius:3px" data-toggle="collapse" data-target="#S_TimePicker" />
+                            <span class="glyphicon glyphicon-triangle-bottom" style="left:70px;color:black;top:-23px;">
+                            </span>
+                            <div id="S_TimePicker" class="collapse" style="width:100px; background-color:white; position:absolute; left:5px;top:30px;box-shadow: 4px 16px 8px 0px rgba(0,0,0,0.2);border-radius:5px;padding:0px 0px 0px 0px">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">&nbsp;</div>
+                </div>
+
+                <div class="col-sm-12" id="msgdiv">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-9">
+                        <label style="font-size:11px;color:#ff5d26;font-weight:bold">Message:</label>
+                        <br>
+                        <textarea id="msg" rows="15" style="border-radius:4px;border:0.5px solid #ff5d26;width:100%;margin-top:10px;resize:none;overflow:hidden;
+                font-size:11px;padding:10px 10px 10px 10px"></textarea>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4">
+                        <div class="btn-group btn-group-sm" style="width:100%">
+                            <button type="button" class="mypopupbtncls btn" data-dismiss="modal" id="CancelSchedule" style="width:50%;border-radius: 5px 0px 0px 5px;border: 1px solid#fff;padding:5px;background-color: gray; color: white;font-size: 15px;">No</button>
+                            <button type="button" id="Save_ScheduleService" class="mypopupbtncls btn" style="width:50%;border: 1px solid#fff;border-radius: 0px 5px 5px 0px;background-color: #FF6937; color: white;font-size: 15px;">Yes</button>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    <div class="col-sm-4" style="float:right;padding:0px; background-color:white; height:86vh" id="listingsdiv">
+        <div id="agentcolorsdiv" class="col-sm-12" style="background-color:#99A3A4;padding:0;">
+            <div class="col-sm-9" style="padding:0;height:15%">
+                <div class="col-sm-12" style="position:relative;padding-right:0">
+                    <div class="col-sm-3" style="padding:0">
+                        <span class="contactspan3" style="top:20px;position:relative;">
+                            <img src="~/img/avatar.jpg" id="ba_photo" height="50" width="50" style="border-radius:50%;" />
+                        </span>
+                    </div>
+                    <div class="col-sm-9" style="top:5px;padding-left:0">
+                        <label hidden="hidden" id="ba_id"></label>
+                        <label hidden="hidden" id="myagent_id"></label>
+                        <label hidden="hidden" id="listingagent_id"></label>
+                        <label hidden="hidden" id="ba_email"></label>
+                        <label hidden="hidden" id="ba_mobile"></label>
+                        <label hidden="hidden" id="ba_phone"></label>
+                        <table>
+                            <tr><td><span id="ba_name" style="color: white; font-size: 18px; font-weight: bold; position: relative;">Bob Morgan</span></td></tr>
+                            <tr><td><span id="ba_company" style="color: #c3bfbf; font-size: 12px; font-weight: normal; position: relative;">Berkshire Hathaway</span></td></tr>
+                            @*<tr><td><span id="ba_service" style="color: #c3bfbf; font-size: 12px; font-weight: normal; position: relative;">Home Services</span></td></tr>
+                            <tr><td><span id="ba_office" style="color: #c3bfbf; font-size: 12px; font-weight: normal; position: relative;">C.Dan Joyner<span> REALTORS</span></span></td></tr>*@
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3" style="height:15%;line-height:78px; vertical-align:middle;box-shadow: 0 3px 5px rgba(0, 0, 0, 1);">
+                <div class="col-sm-6" style="text-align:left;padding:0;top: 20px;">
+                    <img class="ba_call" src="~/img/phone_icon_agnt-1.png" style="height:28px;width:28px;cursor:pointer;" />
+                </div>
+                <div class="col-sm-6" style="text-align:center;top: 20px;">
+                    <img class="ba_chat" src="~/img/chat_icon_agent-1.png" id="bc_chat_icon" style="height:28px;width:28px;cursor:pointer;" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12" style="background-color:#fff;padding:3px;height:100px;box-shadow: 0 10px 10px -10px #000000;">
+            <div class="col-sm-5" style="padding:0;">
+                <div class="col-sm-12 textlimit" id="closinglist_addr1" style="margin-top:10px;font-weight:bold;font-size:15px;color:black">10 Breaburn Drive</div>
+                <div class="col-sm-12 textlimit" id="closinglist_addr2" style="margin-top:8px;font-size:14px;color:black;">Greenville, Sc 123695</div>
+                <div class="col-sm-12" id="closinglist_mlsid" style="color:black;">MLS#12345678</div>
+            </div>
+            <div class="col-sm-3" style="padding:0">
+                <div class="col-sm-12" id="closinglist_price" style="padding:0;color:#ff5d26;font-weight:bold;font-size:15px;line-height:5">$125,658</div>
+            </div>
+            <div class="col-sm-4" id="closinglist_image" style="background-size: 100% 100%;background-image:url(/img/NoImage.png);background-position:center;background-repeat: no-repeat;height:90px;"></div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12" style="padding:0px;background-color:#fff;max-height:470px;min-height:470px;overflow-x:hidden;overflow-y:auto;" id="ClosingListsDiv">
+
+</div>
+<div class="modal fade" id="ClosoreMsgSentPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 10%; width: 28%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;color:#ff6937;height:45px;padding-top:13px;padding-left:10px!important;padding-right:10px!important">
+                <label id="" style="font-weight:bold;font-size:13px!important">
+                    <img src="~/img/chat22.png" style="margin-bottom:4px!important" /> &nbsp;&nbsp;<b>Message Sent</b>
+                </label>
+                <hr style="color:#ff6937;border: 1px solid;margin-top:5px;margin-bottom:10px" />
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="modal-body" style="padding-bottom:5px!important;padding-top:5px!important">
+                <div class="col-md-12" style="text-align: center;padding-top:10px!important">
+                    <label id="" style="word-wrap: break-word;">
+                        Your service request message has been sent to <span id="CPFN">Raju</span>&nbsp;<span id="CPLN">Macherla</span>
+                    </label>
+                </div>
+                <div class="col-md-12" style="text-align: center;padding-top:15px!important">
+                    <label id="" style="word-wrap: break-word;">
+                        Quitchet will notify you when you receive a response.
+                    </label>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="modal-footer">
+                    <div class="col-md-12" style="text-align: center">
+                        <button type="button" id="SavealertOKbtn" data-dismiss="modal" class="btn btn-primary closeorangebtn" style="width: 75%;border-radius: 2px 2px 2px 2px  !important; background-color: #ff6937!important; color: white;font-size: 12px;border:0px">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="NoClosingsPopup" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left: 206px">
+    <div class="modal-dialog" role="document" style="padding-top: 10%; width: 22%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;color:#ff6937;height:45px;padding-top:13px;padding-left:10px!important;padding-right:10px!important">
+                <label id="" style="font-weight:bold;font-size:13px!important">
+                  <b>Quitchcet Closer</b>
+                </label>
+                <hr style="color:#ff6937;border: 1px solid;margin-top:5px;margin-bottom:10px" />
+            </div>
+           
+            <div class="modal-body" style="padding-bottom:5px!important;padding-top:5px!important">
+                <div class="col-md-12" style="padding-top:10px!important">
+                    <b id="" style="word-wrap: break-word;">
+                       For Buyers and Sellers:
+                    </b>
+                </div>
+                <div class="col-md-12" style="text-align: left;padding-top:10px!important">
+                    <label id="" style="word-wrap: break-word;">
+                        Once you have a home under contract, and your Agent has changed it in Quitchet, you or your Agent
+                        will be able to schedule all inspections and appointments from this page.<br /><br />
+                        If you have a home under contract that is not displayed here, Message your Agent.
+                    </label>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="modal-footer">
+                    <div class="col-md-12" style="text-align: center">
+                        <button type="button" id="" data-dismiss="modal" class="btn btn-primary closeorangebtn" style="width: 75%;border-radius: 2px 2px 2px 2px  !important; background-color: #ff6937!important; color: white;font-size: 12px;border:0px">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* Phone Call Popup*@
+<div class="modal fade" id="PhoneCallModel" style="padding-left: 206px; z-index: 1500;">
+    <div class="modal-dialog" role="document" style="padding-top: 15%; width: 25%">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center; border-bottom: none; padding-bottom: 0px;">
+                <h5 style="color: #FF6937; margin-top: -2%; font-weight: 600;">Phone Call</h5>
+                <img src="~/img/phone_icon_brand-1.png" />&nbsp; <span id="name" style="font-size: 12px; color: black; font-weight: bold; margin-top: 0px">Phone Call</span>
+                <hr style="border: 0 ! important; margin-top: 2%; margin-bottom: 5%; border-top: 1px solid  #FF6937 !important;" />
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <img style="margin-right: 1px;" src="~/img/mb.png" />&nbsp;  <span style="font-size: 11px; color: #FF6937;">Mobile</span>
+                </div>
+                <div class="col-sm-6">
+                    <span id="phonenumber" style="font-size: 11px;">987654321</span>
+                </div>
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="col-sm-12">
+                <hr style="margin-bottom: 2%; margin-top: 2%;" />
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-12" style="text-align: center">
+                    <a href="#" class="btn" id="phonecall_popup_cancel" data-dismiss="modal" style="border-radius: 5px !important; background-color: gray; color: white; font-weight: 500; font-size: 11px;">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('a[href="/Customer/ClosedParties/Index"]').parents('li,ul').addClass('active');
+        $('#mymenuli').addClass('active');
+        getUserClosings();
+        //$("#CloserManageDiv").hide();
+        //$("#listingsdiv").hide();
+    });
+    //$("#Btn_Back").click(function)
+    $("#S_Service_Date").datepicker({
+        beforeShow: function (input, inst) {
+            inst.dpDiv.css({ marginLeft: '-75px' });
+        },
+        dateFormat: 'mm/dd/yy',
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        mindate: 0,
+        onSelect: function (date) {
+            message = message.replace(repdate, date);
+            repdate = date;
+            // alert(message)
+            $("#msg").html(message);
+        },
+    })//DAte Picker in Schedule Closing Party
+    var PrevID = ""; var unavailableDates = [];
+    function OpenTimepicker(id, id2) {
+        $(document).mouseup(function (e) {
+            var container = $("#S_TimePicker");
+            // if the target of the click isn't the container nor a descendant of the container
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                container.removeClass('collaspe in');
+            }
+        });
+        if (PrevID != "") {
+            $('#' + PrevID).empty();
+        }
+        var timepickerhtml = "<div class='col-sm-12' style='background-color: white; border-radius:7px;padding:5px 0px 3px 0px;z-index:1048'><div class='col-sm-4'><div><i class='glyphicon glyphicon-menu-up' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='HoursUp'></i></div><div><span id='Hours' style='color:black'></span></div><div><i class='glyphicon glyphicon-menu-down' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='HoursDown'></i></div></div><div class='col-sm-4' style='padding-left:10px'><div><i class='glyphicon glyphicon-menu-up' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='MinUp'></i></div><div><span id='Minutes'  style='color:black'></span></div><div><i class='glyphicon glyphicon-menu-down' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='MinDown'></i></div></div><div class='col-sm-4' style='padding-left:5px'><div><i class='glyphicon glyphicon-menu-up' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='AP_UP'></i></div><div style='text-align:center'><span id='AM_PM' style='font-size:10px;color:black;font-weight:bold'></span></div><div><i class='glyphicon glyphicon-menu-down' aria-hidden='true' style='font-size:12px; font-weight:bold;color:#ff6a00' id='AP_Down'></i></div></div></div>";
+        $('#' + id).html(timepickerhtml);
+        // TimePickerEvents();
+        PrevID = id;
+        $('#Hours').html(hours);
+        if ($('#Hours').html().length == 1) {
+            $('#Hours').html('0' + $('#Hours').html());
+        }
+        $('#Minutes').html(minutes);
+        if ($('#Minutes').html().length == 1) {
+            $('#Minutes').html('0' + $('#Minutes').html());
+        }
+        $('#AM_PM').html(ampm);
+        TimePickerEvents(id2);
+    }
+    var date = new Date();
+    var hours = '12';
+    var minutes = '0';
+    var ampm = 'PM';
+    //hours = date.getHours();
+    //minutes = date.getMinutes();
+    ampm = hours >= 12 ? 'PM' : 'AM';
+    //hours = hours % 12;
+    hours = hours < 10 ? '0' + hours : hours; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    $('#S_TimePicker').val(hours + ':' + minutes + ' ' + ampm);
+    //$('#S_TimePicker').val("00:00 AM");
+    function TimePickerEvents(TPID) {
+        //----------AM UP Change functionality
+        $('#AP_UP,#AP_Down').click(function () {
+            var String = $('#AM_PM').html();
+            if ($('#AM_PM').html() == 'PM') {
+                $('#AM_PM').html('AM');
+            }
+            else {
+                $('#AM_PM').html('PM');
+            }
+        })
+        ///------Minutes Management
+        $('#MinUp').click(function () {
+            if (parseInt($('#Minutes').html()) > 0) {
+                var Min = parseInt($('#Minutes').html()) - 1;
+                $('#Minutes').html(Min);
+            }
+            else {
+                var Min = 59;
+                $('#Minutes').html(Min);
+            }
+            if ($('#Minutes').html().length == 1) {
+                $('#Minutes').html('0' + $('#Minutes').html());
+            }
+        })
+        $('#MinDown').click(function () {
+            if (parseInt($('#Minutes').html()) < 59) {
+                var Min = parseInt($('#Minutes').html()) + 1;
+                $('#Minutes').html(Min);
+            }
+            else {
+                var Min = 00;
+                $('#Minutes').html(Min);
+            }
+
+            if ($('#Minutes').html().length == 1) {
+                $('#Minutes').html('0' + $('#Minutes').html());
+            }
+        })
+        //-----Hours Management-------
+        $('#HoursUp').click(function () {
+            if (parseInt($('#Hours').html()) > 1) {
+                var Hours = parseInt($('#Hours').html()) - 1;
+                $('#Hours').html(Hours);
+            }
+            else {
+                var Hours = 12;
+                $('#Hours').html(Hours);
+            }
+            if ($('#Hours').html().length == 1) {
+                $('#Hours').html('0' + $('#Hours').html());
+            }
+        })
+        $('#HoursDown').click(function () {
+            if (parseInt($('#Hours').html()) < 12) {
+                var Hours = parseInt($('#Hours').html()) + 1;
+                $('#Hours').html(Hours);
+            }
+            else {
+                var Hours = 01;
+                $('#Hours').html(Hours);
+            }
+            if ($('#Hours').html().length == 1) {
+                $('#Hours').html('0' + $('#Hours').html());
+            }
+        })
+        $('#HoursUp,#HoursDown,#MinUp,#MinDown,#AP_UP,#AP_Down').click(function () {
+            $('#' + TPID).val();
+            var Time = $('#Hours').html() + ':' + $('#Minutes').html() + ' ' + $('#AM_PM').html();
+            $('#' + TPID).val(Time);
+            message = message.replace(reptime, Time);
+            $("#msg").html(message);
+            reptime = Time;
+        })
+    }
+    $('#CancelEditSchedule').click(function () {
+        $('#EditScheduleDiv').hide();
+        $('#CloserManageDiv_Data').show();
+    })
+    $('#ScheduleService').click(function () {
+        $("#ClosureMsgSentPopup").modal("show");
+        $("#btnEditSchedule").text('Edit Schedule');
+        $('#CloserManageDiv_Data').show();
+        $('#ScheduleDiv').hide();
+    });
+    $('#CancelSchedule,#BacktoManageBtn').click(function () {
+        $("#BacktoManageBtn").hide();
+        $("#Btn_Back").hide();
+       // $("#editBtn").show();
+        //$("#btnEditSchedule").text('Schedule Service');
+        $('#CloserManageDiv_Data').show();
+        $('#ScheduleDiv').hide();
+    });
+    $('#backtoClosingsBtn').click(function () {
+        //$("#editBtn").hide();
+        $("#BacktoManageBtn").hide();
+        $("#headerdiv1").show();
+       // $("#btnEditSchedule").text('Schedule Service');
+        $('#CloserManageDiv').hide();
+        $('#ClosingListsDiv').show();
+        $('#Btn_Back').show();
+        $("#closinglistsheader").show();
+    });
+    $('#alertOKbtn').click(function () {
+        $("#btnEditSchedule").text('Edit Schedule');
+        $('#CloserManageDiv_Data').show();
+        $('#ScheduleDiv').hide();
+    });
+    $("#statusdropdown").change(function () {
+        if($(this).val()!="Not Set")
+        {
+            $("#btnEditSchedule").text('Edit Schedule');
+        }
+        else {
+            $("#btnEditSchedule").text('Schedule Service');
+        }
+    });
+</script>
+<script>
+    var message, repdate = "##DATE##", reptime = "##TIME##";
+    var watemark = '<div style="padding:30px;text-align:center"><img src="/img/Closer_dashboard.png" /></div>';
+    function getUserClosings() {
+        $.ajax({
+            url: "/Customer/ClosedParties/GetUserClosingListigns",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: "",
+            success: function (data) {
+                if (data.length > 0) {
+                    BindClosings(data);
+                }
+                else {
+                    $('#NoClosingsPopup').modal('show')
+                }
+            }
+        });
+    }//Function to get Closing s in Buying Tab
+    function BindClosings(data) {
+        $("#ClosingListsDiv").empty(data);
+        $.each(data, function (i, exp) {
+            var imagepin = "", price = "";
+            var bedrooms, bathrooms, sqftAcres;
+            var BtnPrevImgId = "Prev" + data[i].MLSID;
+            var BtnNextImgId = "Next" + data[i].MLSID;
+            var PrpImagesArray = []
+            var DivImgId = "div_" + data[i].MLSID;
+            var PhotosURL = [], TotalImages = [];
+            PrpImagesArray = [];
+            debugger
+            if (data[i].PRP_IMAGES != null && data[i].PRP_IMAGES != "" && data[i].PRP_IMAGES != "null") {
+                var c = data[i].PHOTO_COUNT;
+                if (data[i].PRP_IMAGES.indexOf(',') > -1) {
+                    PrpImagesArray = data[i].PRP_IMAGES.split(',');
+                    TotalImages.push(data[i].PRP_IMAGES);
+                    //if (TotalImages.length > 0)
+                        PhotosURL = data[i].PRP_IMAGES.split(',');
+                   
+                }
+                else
+                    PhotosURL[0] = data[i].PRP_IMAGES;
+            }
+            else
+                PhotosURL[0] = "/img/NoImage.png";
+            if (data[i].Class == "Rental") {
+                price = "$ " + (data[i].PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + "/mo";
+                //if (data[i].Is_Viewd == "YES")
+                //    imagepin = '<img src="/img/viewed_graypin.png" height="20" style="position:relative; top:-2px" />'
+                //else
+                imagepin = '<img src="/img/gray_legendMenu.png" height="20" style="position:relative; top:-2px" />'
+            }
+            else {
+                price = "$ " + (data[i].PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+                if (data[i].Status == "Active") {
+                    //if (data[i].Is_Viewd == "YES")
+                    //    imagepin = '<img src="/img/viewed_greenpin.png" height="20" style="position:relative; top:-2px" />'
+                    //else
+                    imagepin = '<img src="/img/Green_legend_Menu.png" height="20" style="position:relative; top:-2px" />'
+                }
+                else if (data[i].Status == "Pending") {
+                    //if (data[i].Is_Viewd == "YES")
+                    imagepin = '<img src="/img/yellow_legendMenu.png" height="20" style="position:relative; top:-2px;margin-left: -3px;" />'
+                    //else
+                    //    imagepin = '<img src="/img/viewed_yellowpin.png" height="20" style="position:relative; top:-2px" />'
+                }
+                else if (data[i].Status == "Sold") {
+                    //if (data[i].Is_Viewd == "YES")
+                    imagepin = '<img src="/img/red_legendMenu.png" height="20" style="position:relative; top:-2px;margin-left: -3px;" />'
+                    //else
+                    //    imagepin = '<img src="/img/viewed_yellowpin.png" height="20" style="position:relative; top:-2px" />'
+                }
+            }
+            if (data[i].PHOTO_COUNT > 1) {
+                var photosdiv = '<div class="col-sm-2" style="height: 110px; position: relative; background-image: url(' + PhotosURL[0] + '); background-size: 100% 100%;" id="' + DivImgId + '">'
+                                       + '<div class="col-sm-12" style="margin-top: 13%;padding: 15px;"><a href="#"><img src="/img/SliderBackArrow.png" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "-1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" width="21" height="29" alt="" style="margin-left: -20%;" id="' + BtnPrevImgId + '" hidden="hidden"/></a>'
+                                       + '<a href="#"><img src="/img/SliderNextArrow.png" width="21" height="29" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" alt="" style="float: right;margin-right: -20%;" id="' + BtnNextImgId + '"   /></a></div>'
+                                       + '</div>';
+            }
+            else {
+                var photosdiv = '<div class="col-sm-2" style="height: 110px; position: relative; background-image: url(' + PhotosURL[0] + '); background-size: 100% 100%;" id="' + DivImgId + '">'
+                                       + '<div class="col-sm-12" style="margin-top: 13%;padding: 15px;"><a href="#"><img src="/img/SliderBackArrow.png" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "-1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" width="21" height="29" alt="" style="margin-left: -20%;" id="' + BtnPrevImgId + '" hidden="hidden"/></a>'
+                                       + '<a href="#"><img src="/img/SliderNextArrow.png" width="21" height="29" onclick="return PrpImageSlider(\'' + imgindex + '\',\'' + "1" + '\',\'' + DivImgId + '\',\'' + PrpImagesArray + '\',\'' + data[i].MLSID + '\')" alt="" style="float: right;margin-right: -20%;" id="' + BtnNextImgId + '"    hidden="hidden"/></a></div>'
+                                       + '</div>';
+            }
+            var listing = '<div class="col-sm-12" style="padding: 15px;border-bottom: 2px solid #ff5d26;">' + photosdiv
+                          + '<div class="col-sm-7" style="border-right: 1px solid lightgray;height: 110px;"><div class="col-sm-12">' + imagepin
+                          + '<span id="Rate" style="left:2px;color:#ff5d26;font-size:16px; font-weight:bold; position:relative; ">' + price + '</span></div>'
+                          + '<div class="col-sm-12" style="font-weight:bold;font-size:18px;">' + data[i].PRP_ADDRESS.split(',')[0] + '</div>'
+                          + '<div class="col-sm-12" style="font-size:14px">' + data[i].PRP_ADDRESS.split(',')[1] + ', ' + data[i].PRP_ADDRESS.split(',')[2] + '</div>'
+                           + '<div class="col-sm-12" style="font-size:14px">MLS#' + data[i].MLSID + '</div></div>'
+                           + '<div class="col-sm-3" style="text-align:center;line-height:6"><a href="#" onclick="return ShowListingManage(\'' + data[i].PK_ClosingID + '\')" style="font-weight:bold;text-decoration:none;font-size:16px;color:#ff5d26">Manage</a>'
+                           + '<img class="sideArrow" style="top:28px;float: right; position: relative;cursor:pointer" src="/img/lit_icon_btn.png" onclick="return CustomerFullViewListing(\'' + data[i].MLSID + '\')"></div>'
+                          + '</div>';
+            $("#ClosingListsDiv").append(listing);
+        });
+    }//Bind Closings in Buying Tab
+    var closingPKeyID = "", isQC_User = '';
+    function ShowListingManage(PK_ClosingID) {
+        //$("#editBtn").show();
+        closingPKeyID = PK_ClosingID; 
+        $('#ClosingListsDiv').hide();
+        $('#Btn_Back').hide();
+        $("#closinglistsheader").hide();
+        $('#CloserManageDiv_Data,#CloserManageDiv').show();
+       
+        $.ajax({
+            url: "/Agent/AgentCloser/GetClosingListDetails",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { PK_ClosingID: PK_ClosingID },
+            success: function (data) {
+                var price;
+                if (data[0].Class == "Rental") {
+                    price = "$ " + (data[0].PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + "/mo";
+                }
+                else {
+                    price = "$ " + (data[0].PRP_PRICE + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+                }
+                //if (data[0].PHOTO_COUNT > 0)
+                //    $('#closinglist_image').css({ 'background-image': 'url(' + data[0].PRP_IMAGES.split(',')[0] + ')' });
+                //else
+                //    $('#closinglist_image').css({ 'background-image': 'url(/img/picture_area.png)' });
+                //if (data[0].PRP_IMAGES != '' && data[0].PRP_IMAGES != ',' && data[0].PRP_IMAGES != null) {
+                //    if (data[0].PHOTO_COUNT.indexOf(',')>-1)
+                //        $('#closinglist_image').css({ 'background-image': 'url(' + data[0].PRP_IMAGES.split(',')[0] + ')' });
+                //    else
+                //        $('#closinglist_image').css({ 'background-image': 'url('+data[0].PRP_IMAGES+')' });
+                //}
+                //else {
+                //    $('#closinglist_image').css({ 'background-image': 'url(/img/picture_area.png)' });
+                //}
+                debugger
+                if (data[0].PRP_IMAGES != '' && data[0].PRP_IMAGES != null && data[0].PRP_IMAGES != "null") {
+
+                    if (data[0].PRP_IMAGES.indexOf(',') > -1) {
+                        $('#closinglist_image').css('backgroundImage', 'url(' + data[0].PRP_IMAGES.split(',')[0] + ')');
+                    }
+                    else {
+                        $('#closinglist_image').css('backgroundImage', 'url(' + data[0].PRP_IMAGES + ')');
+                    }
+                }
+                else {
+                    $('#closinglist_image').css('backgroundImage', 'url("/img/addphotopic.png")');
+                }
+                $("#closinglist_price").text(price);
+                $("#closinglist_addr1").text(data[0].PRP_ADDRESS.split(',')[0]);
+                
+                var addr11 = data[0].PRP_ADDRESS.split(',')[1];
+                var addr12 = (data[0].PRP_ADDRESS.split(',')[2] != "undefined") ? ", " + data[0].PRP_ADDRESS.split(',')[2] : "";
+                $("#closinglist_addr2").text(addr11 + addr12);
+                $("#closinglist_mlsid").text("MLS#" + data[0].MLSID);
+                if (data[0].ListingAgentID == data[0].BuyerAgentID) {
+                    $("#assignedtolistingagent_div").hide();
+                }
+                //if (data[0].Closing_TypeID == "1" || (data[0].Closing_TypeID == "2" && closingType == "Buying")) {
+                //    if (AgentId == data[0].ListingAgentID) {
+                //        $("#assignedtoagentDiv").hide();
+                //    }
+                //    else {
+                //        $("#assignedtoagentDiv").show();
+                //    }
+                //    $("#listingagenttype").text('Listing Agent');
+                //    $("#customertype").text("Buyer");
+                $("#ba_id").text(data[0].BuyerAgent_PKUserID);
+                if (data[0].BuyerAgent_PKUserID == null || data[0].BuyerAgent_PKUserID == ''){
+                    //    $("#bc_chat_icon").hide();
+                    isQC_User = 'NO';
+                }
+                
+                else {
+                    isQC_User = 'YES';
+                    //$("#bc_chat_icon").show();
+                    }
+                    
+                $("#myagent_id").text(data[0].BuyerAgentID);
+                    //$("#listingagent_phone").text(data[0].ListingAgent_MobileNo);
+                if (data[0].BuyerAgent_Image != null && data[0].BuyerAgent_Image != "" && data[0].BuyerAgent_Image != ",")
+                    $("#ba_photo").attr('src', data[0].BuyerAgent_Image);
+                    else
+                        $("#ba_photo").attr('src', "/img/addphotopic.png");
+                $("#ba_name").text(data[0].BuyerAgent_FirstName + " " + data[0].BuyerAgent_LastName);
+                
+                $("#ba_email").text(data[0].BuyerAgent_Email);
+                $("#ba_mobile").text(data[0].BuyerAgent_MobileNo);
+                $("#ba_company").text(data[0].BuyerAgent_Office);
+                    $("#ba_phone").text((data[0].BuyerAgent_MobileNo == null) ? "No Phone" : data[0].BuyerAgent_MobileNo);
+
+                    $("#listingagent_id").text(data[0].ListingAgentID);
+                    if (data[0].BuyerAgent_Primary_Color != null && data[0].BuyerAgent_Primary_Color != '') {
+                        $('#agentcolorsdiv').css('background-color', data[0].BuyerAgent_Primary_Color);
+                    }
+                    else {
+                        $('#agentcolorsdiv').css('background-color', '#99A3A4');
+                    }
+                    if (data[0].BuyerAgent_Secondary_Color != null && data[0].BuyerAgent_Secondary_Color != '') {
+                        $('#agentcolorsdiv').css('color', data[0].BuyerAgent_Secondary_Color);
+                    }
+                    else {
+                        $('#agentcolorsdiv').css('color', 'black');
+                    }
+                //    if (data[0].BuyerID != "" && data[0].BuyerID != null) {
+                //        if (data[0].Buyer_Image != null && data[0].Buyer_Image != "" && data[0].Buyer_Image != ",")
+                //            $("#sellerbuyer_photo").attr('src', data[0].Buyer_Image);
+                //        else
+                //            $("#sellerbuyer_photo").attr('src', "/img/addphotopic.png");
+                //        $("#sellerbuyer_name").text(data[0].Buyer_FirstName + " " + data[0].Buyer_LastName);
+                //        //alert(data[0].SellerID)
+                //        $("#sellerbuyer_id").text(data[0].BuyerID);
+                //     $("#la_phone").text((data[0].Buyer_MobileNo == null) ? "No Phone" : data[0].Buyer_MobileNo);
+                //        $("#hadseller").show();
+                //        $("#noseller").hide();
+                //    }
+                //    else {
+                //        $("#hadseller").hide();
+                //        $("#noseller").show();
+                //    }
+                //}
+
+                //else if (data[0].Closing_TypeID == "2" && closingType == "Selling") {
+                //    $("#listingagenttype").text('Buyer Agent');
+                //    $("#customertype").text("Seller");
+                //    $("#listingagent_id").text(data[0].BuyerAgentID);
+                //    $("#listingagent_phone").text(data[0].BuyerAgent_MobileNo);
+                //    if (data[0].BuyerAgent_Image != null && data[0].BuyerAgent_Image != "" && data[0].BuyerAgent_Image != ",")
+                //        $("#listingagent_photo").attr('src', data[0].BuyerAgent_Image);
+                //    else
+                //        $("#listingagent_photo").attr('src', "/img/addphotopic.png");
+                //    $("#listingagent_name").text(data[0].BuyerAgent_FirstName + " " + data[0].BuyerAgent_LastName);
+                //    $("#listingagent_company").text(data[0].BuyerAgent_Office);
+                //    if (data[0].SellerID != "" && data[0].SellerID != null) {
+                //        if (data[0].Seller_Image != null && data[0].Seller_Image != "" && data[0].Seller_Image != ",")
+                //            $("#sellerbuyer_photo").attr('src', data[0].Seller_Image);
+                //        else
+                //            $("#sellerbuyer_photo").attr('src', "/img/addphotopic.png");
+                //        $("#sellerbuyer_name").text(data[0].Seller_FirstName + " " + data[0].Seller_LastName);
+                //        //alert(data[0].SellerID)
+                //        $("#sellerbuyer_id").text(data[0].SellerID);
+                //        $("#sellerbuyer_phone").text((data[0].Seller_MobileNo == null) ? "No Phone" : data[0].Seller_MobileNo);
+                //        $("#hadseller").show();
+                //        $("#noseller").hide();
+                //    }
+                //    else {
+                //        $("#hadseller").hide();
+                //        //  $("#noseller").show();
+                //    }
+                //}
+            }
+        });
+    }
+    $(".ba_chat").click(function () {
+        var bg = $("#closinglist_image").css('background-image');
+        bg = bg.replace('url(', '').replace(')', '');
+        bg = bg.replace('"', '');
+        bg = bg.replace('"', '');
+
+        $('#prop_mlc').text($("#closinglist_mlsid").text());
+        $('#prop_addr1').text($('#closinglist_addr1').text());
+        $('#prop_addr2').text($('#closinglist_addr2').text());
+        $('#prop_img').attr('src', bg);
+        $('#property_div').show();
+        if (isQC_User == 'YES')
+            creatConnection($("#ba_id").text(), $("#ba_name").text(), ' 1 ', $("#ba_photo").attr('src'), $("#closinglist_mlsid").text().split('#')[1]);
+        else if (isQC_User == 'NO')
+            creatConnectionforNonQCUsers($("#ba_email").text(), $("#ba_mobile").text(), $("#ba_name").text(), $("#closinglist_mlsid").text().split('#')[1], ' 3 ', $("#ba_photo").attr('src'))
+        //creatConnection($("#ba_id").text(), $("#ba_name").text(), ' 1 ', $("#ba_photo").attr('src'), $("#closinglist_mlsid").text().split('#')[1]);
+    })//Chat Event for Listing Agent
+    $(".ba_call").click(function () {
+        $("#PhoneCallModel").modal('show');
+        $("#name").text($("#ba_name").text())
+        $("#phonenumber").text($("#ba_phone").text())
+    })//CAll event for Listing Agent
+    function BindAssignedMe() {
+        // alert($("#assignedtome_Data_Div").html().length)
+        //if ($("#assignedtome_div_data").html().length <= 0) {
+            closingpartiesget(closingPKeyID, userid, 'Me')
+        //}
+
+    }//function to call Closer parties In Assigned ME tab
+    function BindAssignedMyAgent() {
+       // if ($("#assignedtobuyer_Data_Div").html().length <= 0) {
+            closingpartiesget(closingPKeyID, $("#myagent_id").text(), 'MyBuyer')
+       // }
+    }//function to call closer parties list in Assigned to my Buyer Section
+    function BindAssignedListingAgent() {
+        //if ($("#assignedtoagent_Data_Div").html().length <= 0) {
+        closingpartiesget(closingPKeyID, $("#listingagent_id").text(), 'ListingAgent')
+       // }
+    }//function to call closer parties in Assigned to Listing Agent Tab
+    function closingpartiesget(closingid, assignedid, tab) {
+        $.ajax({
+            url: "/Agent/AgentCloser/GetClosingPartiesinManage",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { FK_ClosingID: closingid, AssignedID: assignedid },
+            success: function (data) {
+                if (data.length > 0) {
+                    if (tab == "Me") {
+                        bindSectionOne(data);
+                    }
+                    else if (tab == "MyBuyer") {
+                        bindSectionTwo(data);
+                    }
+                    else if (tab == "ListingAgent") {
+                        bindSectionThree(data);
+                    }
+                }
+                else {
+                    if (tab == "Me") {
+                        $("#assignedtome_div_data").empty();
+                        $("#assignedtome_div_data").append(watemark);
+                    }
+                    else if (tab == "MyBuyer") {
+                        $("#assignedtomyagent_div_data").empty();
+                        $("#assignedtomyagent_div_data").append(watemark);
+                    }
+                    else if (tab == "ListingAgent") {
+                        $("#assignedtolistingagent_div_data").empty();
+                        $("#assignedtolistingagent_div_data").append(watemark);
+                    }
+                }
+            }
+        });
+    }//get Closer Parties
+    function bindSectionOne(data) {
+      //  $("#editbtn").text('Edit')
+        $("#assignedtome_div_data").empty();
+        var tab = $('<div class="collapse" style="background-color: white;" id="AssignedMe"></div>');
+        var TableId = "table_1";
+        var table = $('<table id=' + TableId + ' style="width:100%;border-bottom: 1px solid #c0bdbd;"></table>');
+        $.each(data, function (i, item) {
+            var btn = '', photosrc = "";
+            if (item.Status == "Not Set") {
+                var statusdropdown = '<select disabled="true" style="pointer-events:none !important" data-container="body" class="selectpicker statusselect" id="' + item.PK_CloserPartyID + '" data-index="' + item.PK_CloserPartyID + '"><option value="Not Set">Not set</option>'
+                                 + '<option value="Pending">Pending</option><option value="Confirmed">Confirmed</option></select>';
+                btn = '<button class="QuitChetOrangeButton" onclick="schedule_edit(\'' + item.PK_CloserPartyID + '\',\'schedule\')" id="btnEditSchedule" style="padding:6px 25px; height:auto !important">Schedule Service</button>'
+            }
+            else if (item.Status == "Pending") {
+                var statusdropdown = '<select data-container="body" class="selectpicker statusselect" id="' + item.PK_CloserPartyID + '" data-index="' + item.PK_CloserPartyID + '">'
+                                 + '<option value="Pending">Pending</option><option value="Confirmed">Confirmed</option></select>';
+                btn = '<button class="QuitChetOrangeButton" onclick="schedule_edit(\'' + item.PK_CloserPartyID + '\',\'editschedule\')" id="btnEditSchedule" style="padding:6px 25px; height:auto !important">Edit Schedule</button>'
+            }
+            else if (item.Status == "Confirmed") {
+                btn = '';
+                var statusdropdown = '<select data-container="body" class="selectpicker statusselect" id="' + item.PK_CloserPartyID + '" data-index="' + item.PK_CloserPartyID + '">'
+                                 + '<option value="Pending">Pending</option><option value="Confirmed">Confirmed</option></select>';
+            }
+            if (item.CloserImage_Path != "" && item.CloserImage_Path != null && item.CloserImage_Path != "null")
+                photosrc = item.CloserImage_Path;
+            else
+                photosrc = '/img/addphotopic.png';
+            var sdate = ((item.ScheduleDate != null) ? item.ScheduleDate : '')
+            var stime = ((item.ScheduleTime != null) ? item.ScheduleTime : '')
+            var assignedtome = '<div class="col-sm-4" style="border-right: 1px solid #ff5d266b;"><label style="font-weight:bold;font-size:15px;color:#ff5d26">' + item.CloserPartyType + '</label>'
+                                + '<div class="col-sm-12" style="padding-left:0px;padding-right:0px"><div class="col-sm-2" style="padding-left:0px;padding-right:0px">'
+                                + '<img src="' + photosrc + '" style="border-radius:50px;margin-bottom:4px!important;height:50px;width:50px" /></div>'
+                                + '<div class="col-sm-10" style="text-align:left;padding-left: 15px;padding-top: 5px;"><label id="lblContactName" style="font-size:12px;font-weight:bold;margin:0px 0px 0px 0px;top:5px;">' + item.Name + '</label><br>'
+                                + '<span id="spnContactPhone" style="font-size:small;color:dimgray;padding:0px 0px 0px 0px;">' + item.CompanyName + '</span><br></div></div></div>'
+                                + '<div class="col-sm-8" style="padding:0;padding-top: 15px;"><div class="col-sm-12" style="padding-bottom: 4px;"><div class="col-sm-6"><div class="col-sm-12" style="padding-left:0px;padding-right:0px">'
+                                + '<div style="padding-left:0px;padding-right:0px;width:10%;float:left;padding-top:7px"><label style="font-size:13px;color:#ff5d26"><i class="fa fa-at"></i></label></div>'
+                                + '<div style="text-align:left;line-height:12px!important;padding-left: 15px;padding-top: 5px;"><table style="width:150px"><tr><td>'
+                                + '<span id="spnContactPhone" style="font-size:12px;color:dimgray;padding:0px 0px 0px 0px;font-style:italic">' + item.Address.split(',')[0] + '</span><br></td></tr>'
+                                + '<tr><td><span id="spnContactPhone" style="font-size:12px;color:dimgray;padding:0px 0px 0px 0px;font-style:italic">' + item.Address.split(',')[1] + '</span><br></td></tr></table></div></div></div>'
+                                + '<div class="col-sm-6" style="text-align:right;padding-right:0px;">' + btn + '</div></div><div class="col-sm-12">&nbsp;</div>'
+                                + '<div class="col-sm-12" style="border-top: 1px solid #ff5d266b;padding-top: 7px;height:39px; padding-left:0px;padding-right:0px;background-color:#f55e0614">'
+                                + '<div class="col-sm-5" style="border-right: 1px solid #ff5d266b;padding-top: 3px;"><div class="col-sm-6" style="padding:0"><i class="glyphicon glyphicon-calendar" style="color:#ff5d26"></i>  <label id="sdate">' + sdate + '</label></div>'
+                                + '<div class="col-sm-6" style="padding:0"><i class="glyphicon glyphicon-time" style="color:#ff5d26"></i><label id="sdate">&nbsp;' + stime + '</label></div></div>'
+                                + '<div class="col-sm-7"><div class="col-sm-3" style="padding-top: 3px !important;padding:0">Status :</div>'
+                                + '<div class="col-sm-7">'+statusdropdown+'</div>'
+                                + '</div></div>'
+            var trow = $('<tr style="border-bottom: 0.5px solid lightgray;padding:10px"></tr>');
+            //trow.append('<td style="background-color: #fbaf8c;width: 50px;text-align: center;"><a href="#" onclick="removeCloserParty(' + item.PK_CloserPartyID + ',\'me\')"><img src="/img/removebtn_icon.png" /></span></a></td>');
+            trow.append('<td >' + assignedtome + '</td>');
+            table.append(trow);
+            tab.append(table);
+            setTimeout(function () {
+                $("#" + item.PK_CloserPartyID).val(item.Status);
+                $("#" + item.PK_CloserPartyID).selectpicker('refresh');
+            }, 800);
+        })
+        $("#assignedtome_div_data").append(table);
+       // $("#table_1 tbody tr").find('td:first-child').hide();
+        $('.selectpicker').selectpicker('render');
+
+        // $("#" + item.PK_CloserPartyID);
+    }//Binding Closer parties In Assigned ME tab
+    function bindSectionTwo(data) {
+       
+      //  $("#editbtn").text('Edit')
+        $("#assignedtomyagent_div_data").empty();
+        var tab = $('<div style="background-color: white;" id="table2"></div>');
+        var TableId = "table_2";
+        var table = $('<table id=' + TableId + ' style="width:100%;border-bottom: 1px solid #c0bdbd;"></table>');
+        $.each(data, function (i, item) {
+            var btn2 = '';
+            if (item.Status == "Not Set" || item.Status == "Pending")
+                btn2 = '<div class="btn-group" style="width:100%"><button type="button" class="btn btn-primary" style="background-color:#EFEFEF;border:none;color:black;width:40%;text-align: left;padding:6px;">Status:</button>'
+                           + '<button type="button" style="background-color:#FF7926;border:none;width:60%" class="btn btn-primary"><div class="orangetail"></div><i class="fa fa-check fa-1" aria-hidden="true" style="float:left;margin-top:3px"></i>Pending</button></div>';
+            else if (item.Status == "Confirmed")
+                btn2 = '<div class="btn-group" style="width:100%"><button type="button" class="btn btn-primary" style="background-color:#EFEFEF;border:none;color:black;width:40%;text-align: left;padding:6px">Status:</button>'
+                               + '<button type="button" style="background-color:#43B75A;border:none;width:60%" class="btn btn-primary"><div class="greentail"></div><i class="fa fa-check fa-1" aria-hidden="true" style="float:left;margin-top:3px"></i>Confirmed</button></div>';
+            if (item.CloserImage_Path != "" && item.CloserImage_Path != null && item.CloserImage_Path != "null")
+                photosrc = item.CloserImage_Path;
+            else
+                photosrc = '/img/addphotopic.png';
+            var sdate2 = ((item.ScheduleDate != null) ? item.ScheduleDate : '')
+            var stime2 = ((item.ScheduleTime != null) ? item.ScheduleTime : '')
+            var assignedtobuyer = ' <div class="col-sm-12" style="border-bottom:1px solid #ff5d26;height:120px;background-color:#fff"> <div class="col-sm-4" style="height:120px;">'
+                               + '<div class="col-sm-12" style="font-size:16px;color:#ff5d26;font-weight:bold;padding: 10px;">' + item.CloserPartyType + '</div>'
+                               + '<div class="col-sm-4" style=""><img class="photos2" src="' + photosrc + '" /></div><div class="col-sm-8" style="padding:0;top:5px">'
+                               + '<div class="col-sm-12" style="padding:0;font-size:16px;font-weight:bold">' + item.Name + '</div><div class="col-sm-12" style="padding:0">' + item.CompanyName + '</div></div></div>'
+                               + '<div class="col-sm-5" style="padding:0;top:20px;height:80px;border-left:1px solid #fe7f55"><div class="col-sm-1"><i class="fa fa-at" style="color:#ff5d26"></i></div>'
+                               + '<div class="col-sm-6" style="padding-left:0">' + item.Address + '<br /></div>'
+                               + '<div class="col-sm-4" style="padding:0"><a href="#" id="" onclick="showDirections(\'' + item.Address + '\')" class="btn btn-default btn-sm" style="padding:5px;border:1px solid #ff5d26;background-color:transparent;color:#ff5d26;">'
+                               + 'Directions&nbsp;&nbsp;<img style="float:right" src="/img/Directions_icon.png" /> </a></div> </div>'
+                               + '<div class="col-sm-3" style="text-align:center;padding:0;top:18px;">'
+                               + btn2 + '</div>'
+                               + '</div>'
+                               + '<div class="col-sm-12" style="padding:5px 0px 5px;background-color:#FFF6F2;border-bottom:1px solid #ff5d26"><div class="col-sm-4" style="border-right:1px solid #ff5d26;padding-right:0;line-height:2"><i class="glyphicon glyphicon-calendar" style="color:#ff5d26"></i>&nbsp;&nbsp;' + sdate2
+                               + '&nbsp;&nbsp;&nbsp;<img style="margin-bottom:0" src="/img/watchh.png" />&nbsp;&nbsp;' + stime2 + '</div>'
+                               //+ '<div class="col-sm-4" style="">Status:&nbsp;&nbsp;<select class="selectpicker" id="status"><option>Not set</option><option>Pending</option><option>Confirmed</option></select></div>'
+                               + '<div class="col-sm-4" style="display:none"><a href="#" id="" class="btn btn-default btn-mn" style="padding:3px 60px;font-size:13px;border:1px solid #ff5d26;background-color:transparent;color:#ff5d26;">'
+                               + 'Export to Calendar</a></div> </div>';
+            var trow = $('<tr style="border-bottom: 0.5px solid lightgray"></tr>');
+            trow.append('<td style="background-color: #fbaf8c;width: 50px;text-align: center;"><a href="#" onclick="removeCloserParty(' + item.PK_CloserPartyID + ',\'buyerseller\')"><img src="/img/removebtn_icon.png" /></span></a></td>');
+            trow.append('<td >' + assignedtobuyer + '</td>');
+            table.append(trow);
+            tab.append(table);
+        });
+        $("#assignedtomyagent_div_data").append(table);
+        $("#table_2 tbody tr").find('td:first-child').hide();
+        // $("#assignedtobuyer_Data_Div").append(assignedtobuyer);
+    }//Binding Closer Parties in  in Assigned to My Agent Tab
+    function bindSectionThree(data) {
+      //  $("#editbtn").text('Edit')
+        $("#assignedtolistingagent_div_data").empty();
+        var tab = $('<div style="background-color: white;margin-top:10px" id="table3"></div>');
+        var TableId = "table_3";
+        var table = $('<table id=' + TableId + ' style="width:100%;border-bottom: 1px solid #c0bdbd;"></table>');
+        $.each(data, function (i, item) {
+            if (item.Status == "Not Set" || item.Status == "Pending")
+                btn3 = '<div class="btn-group" style="width:100%"><button type="button" class="btn btn-primary" style="padding:6px;background-color:#EFEFEF;border:none;color:black;width:40%;text-align: left;">Status:</button>'
+                           + '<button type="button" style="background-color:#FF7926;border:none;width:60%" class="btn btn-primary"><div class="orangetail"></div><i class="fa fa-check fa-1" aria-hidden="true" style="float:left;margin-top:3px"></i>Pending</button></div>';
+            else if (item.Status == "Confirmed")
+                btn3 = '<div class="btn-group" style="width:100%"><button type="button" class="btn btn-primary" style="padding:6px;background-color:#EFEFEF;border:none;color:black;width:40%;text-align: left;">Status:</button>'
+                               + '<button type="button" style="background-color:#43B75A;border:none;width:60%" class="btn btn-primary"><div class="greentail"></div><i class="fa fa-check fa-1" aria-hidden="true" style="float:left;margin-top:3px"></i>Confirmed</button></div>';
+            if (item.CloserImage_Path != "" && item.CloserImage_Path != null && item.CloserImage_Path != "null")
+                photosrc = item.CloserImage_Path;
+            else
+                photosrc = '/img/addphotopic.png';
+            var sdate3 = ((item.ScheduleDate != null) ? item.ScheduleDate : '')
+            var stime3 = ((item.ScheduleTime != null) ? item.ScheduleTime : '')
+            var assignedtoagent = ' <div class="col-sm-12" style="border-bottom:1px solid #ff5d26;height:120px;background-color:#fff"> <div class="col-sm-4" style="height:120px;">'
+                               + '<div class="col-sm-12" style="font-size:16px;color:#ff5d26;font-weight:bold;padding: 10px;">' + item.CloserPartyType + '</div>'
+                               + '<div class="col-sm-4" style=""><img class="photos2" src="' + photosrc + '" /></div><div class="col-sm-8" style="padding:0;top:5px">'
+                               + '<div class="col-sm-12" style="padding:0;font-size:16px;font-weight:bold">' + item.Name + '</div><div class="col-sm-12" style="padding:0">' + item.CompanyName + '</div></div></div>'
+                               + '<div class="col-sm-5" style="padding:0;top:20px;height:80px;border-left:1px solid #fe7f55"><div class="col-sm-1"><i class="fa fa-at" style="color:#ff5d26"></i></div>'
+                               + '<div class="col-sm-6" style="padding-left:0">' + item.Address + '<br /></div>'
+                               + '<div class="col-sm-4" style="padding:0"><a href="#" id="" onclick="showDirections(\'' + item.Address + '\')" class="btn btn-default btn-sm" style="padding:5px;border:1px solid #ff5d26;background-color:transparent;color:#ff5d26;">'
+                               + 'Directions&nbsp;&nbsp;<img style="float:right" src="/img/Directions_icon.png" /> </a></div> </div>'
+                               + '<div class="col-sm-3" style="text-align:center;padding:0;top:18px;">'
+                               + btn3 + '</div>'
+                               + '</div>'
+                               + '<div class="col-sm-12" style="padding:5px 0px 5px;background-color:#FFF6F2;border-bottom:1px solid #ff5d26"><div class="col-sm-4" style="border-right:1px solid #ff5d26;padding-right:0;line-height:2"><i class="glyphicon glyphicon-calendar" style="color:#ff5d26"></i>&nbsp;&nbsp;' + sdate3
+                               + '&nbsp;&nbsp;&nbsp;<img style="margin-bottom:0" src="/img/watchh.png" />&nbsp;&nbsp;' + stime3 + '</div>'
+                               //+ '<div class="col-sm-4" style="">Status:&nbsp;&nbsp;<select class="selectpicker" id="status"><option>Not set</option><option>Pending</option><option>Confirmed</option></select></div>'
+                               + '<div class="col-sm-4" style="display:none"><a href="#" id="" class="btn btn-default btn-mn" style="padding:3px 60px;font-size:13px;border:1px solid #ff5d26;background-color:transparent;color:#ff5d26;">'
+                               + 'Export to Calendar</a></div> </div>';
+            var trow = $('<tr style="border-bottom: 0.5px solid lightgray"></tr>');
+            trow.append('<td style="background-color: #fbaf8c;width: 50px;text-align: center;"><a href="#" onclick="removeCloserParty(' + item.PK_CloserPartyID + ',\'agent\')"><img src="/img/removebtn_icon.png" /></span></a></td>');
+            trow.append('<td >' + assignedtoagent + '</td>');
+            table.append(trow);
+            tab.append(table);
+        });
+        $("#assignedtolistingagent_div_data").append(table);
+        $("#table_3 tbody tr").find('td:first-child').hide();
+    }//Binding Agents Buyer/Seller Agent in Assigned to Listing/Buyer Agent Tab
+    function schedule_edit(closingpartyid, action) {
+       // $("#editBtn").hide();
+        closingpartyID = closingpartyid;
+        $("#BacktoManageBtn").show();
+        $("#Btn_Back").hide();
+        if (action == "schedule") {
+            $("#schedule_edit_text").text('Schedule Services');
+            $("#manageDiv").hide();
+            $("#msgdiv").show();
+            $('#CloserManageDiv_Data').hide();
+            $('#ScheduleDiv').show();
+        }
+        else {
+            $("#schedule_edit_text").text('Edit Schedule');
+            $("#manageDiv").hide();
+            $("#msgdiv").hide();
+            $('#CloserManageDiv_Data').hide();
+            $('#ScheduleDiv').show();
+        }
+        var whos = '';
+        if (usertypeid == "1") {
+            whos = "Customer";
+        }
+        else if (usertypeid == "2") {
+            whos = "Agent";
+        }
+        $.ajax({
+            url: "/Agent/AgentCloser/GetClosingListCloserPartyDetailsMessage",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { FK_CloserPartyID: closingpartyid,UserID:userid,Whos:whos },
+            success: function (data) {
+                if (data.length > 0) {
+                    message = data[0].MESSAGE;
+                    if (data[0].CloserImage_Path != "" && data[0].CloserImage_Path != null)
+                        $("#cp_photo").attr('src', data[0].CloserImage_Path);
+                    else
+                        $("#cp_photo").attr('src', '/img/addphotopic.png');
+                    $("#cp_name").text(data[0].Name);
+                    $("#cp_company").text(data[0].CompanyName);
+                    $("#msg").html(data[0].MESSAGE.replace("##TIME##","Any"));
+                    if (action == "editschedule") {
+                        //repdate = "17/01/2018";
+                        // reptime = data[0].ScheduleTime;
+                        $("#S_Service_Date").val(data[0].ScheduleDate);
+                        $("#S_Service_Time").val(data[0].ScheduleTime);
+                    }
+                    else {
+                        $("#S_Service_Date").val('');
+                        $("#S_Service_Time").val('');
+                        repdate = "##DATE##", reptime = "##TIME##";
+                    }
+                }
+            },
+        });
+    }//Schedule and Edit Schedule Button Function
+    $("#editBtn").click(function () {
+        if ($("#editBtn").text() == "Edit") {
+            $("#editBtn").text('Save')
+            //$("#table_1 tbody tr").find('td:first-child').show();
+            $("#table_2 tbody tr").find('td:first-child').show();
+            $("#table_3 tbody tr").find('td:first-child').show();
+        }
+        else {
+            $("#editBtn").text('Edit')
+            //$("#table_1 tbody tr").find('td:first-child').hide();
+            $("#table_2 tbody tr").find('td:first-child').hide();
+            $("#table_3 tbody tr").find('td:first-child').hide();
+        }
+
+    })//Edit Closer Parties Button Event
+    $("#Save_ScheduleService").click(function () {
+        var scheduleobj = [closingpartyID, $("#S_Service_Date").val(), $("#S_Service_Time").val(), $("#msg").val(),'']
+        $.ajax({
+            url: "/Agent/AgentCloser/SaveScheduleforClosingParty",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(scheduleobj),
+            success: function (data) {
+                if (data == "Success") {
+                    $("#assignedtome_div_data").empty()
+                    $("#closerpartyname").text($("#cp_name").text());
+                    $("#MessageSentPopup").modal('show');
+                    $("#CloserManageDiv").show();
+                    $("#CloserManageDiv_Data").show();
+                    $("#ClosoreMsgSentPopup").hide();
+                    $("#ScheduleDiv").hide();
+                    $("#EditScheduleDiv").hide();
+                    jQuery('.collapse').collapse('hide');
+                    //closingpartiesget(closingPKeyID, $("#sellerbuyer_id").text(), tab);
+                }
+                else {
+                    alert('failed')
+                }
+            },
+            error: function (data) {
+                alert(data)
+            }
+        });
+    })//Save New Schedule and Update Schedule Button Events
+    $(document).on('change', ".statusselect", function (e) {
+        e.stopImmediatePropagation();
+        //alert(this.value +"--"+$(this).attr("id"));
+        $.ajax({
+            url: "/Agent/AgentCloser/UpdateCloserListingStatus",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { PK_CloserPartyID: $(this).attr("id"), Status: this.value },
+            success: function (data) {
+                if (data == "Success") {
+                    //BuyingListingManage(closingPKeyID)
+                }
+                else {
+
+                }
+            },
+        });
+    });//event to Update Status of Closing Assigned to Me
+</script>
+

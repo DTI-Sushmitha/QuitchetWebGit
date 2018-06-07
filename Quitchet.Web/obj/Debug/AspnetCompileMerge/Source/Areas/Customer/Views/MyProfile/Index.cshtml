@@ -1,0 +1,240 @@
+﻿@model Quitchet.Core.Models.Customer.MyProfileModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var PkeyUserId = "0";
+
+
+    if (Request.Cookies["UseridCookie"] != null)
+    {
+        if (Request.Cookies["UseridCookie"].Value != null)
+        {
+            PkeyUserId = Request.Cookies["UseridCookie"].Value;
+        }
+    }
+}
+
+<div id="content">
+    <div class="tabs-wrapper text-center">
+        <div class="row landing-toolbar" style="margin-top:58px!important;height:43px!important;color:#ffffff;font-size:15px!important;font-weight:bold;width:1151px!important">
+            <span style="padding-right:181px!important">
+                My Profile
+            </span>
+        </div>
+        <div id="EditUserDetailsDiv" style="padding-top:20px!important">
+            <div style="border-radius:5px;text-align:center;border-color:red;background-color:#F7CDC9;width:388px;margin-left:15px;height:25px;margin-bottom:10px;margin-left:50px!important" hidden="hidden" id="DivUserEditError">
+                <span id="editValidationMessage" style="font-size:x-small;color:red"></span>
+            </div>
+
+            <div class="col-sm-12" style="padding-top:10px;">
+                <div class="col-sm-4" style="text-align:center;bottom:10px;padding-left:0px;width:151px!important">
+                    <img src="~/img/addphotopic.png" class="img-circle avatar" alt="user name" style="height:70px;width:70px;margin-top:0px;" id="editprofilepic" />
+                </div>
+                <div class="col-sm-8" style="padding-left:0px!important;">
+                    <button type="button" class="btn btn-sm" style="height: 31px !important;background-color:#FF5D26;color:#FFFFFF;border-radius:5px;width: 200px !important;padding-top:3px;font-size:11px!important;float:left;margin-top:15px!important;" onclick="OpenEditFileUploader()">
+                        <span class="glyphicon glyphicon-plus-sign" style="padding-right:10px;color:#ffffff;"></span>  Edit Photo
+                    </button>
+                    <div hidden="hidden">
+                        <input type="file" id="EditFileUploader" onchange="showeditimagepreview(this)" />
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-12" style="margin-left:35px!important">
+                <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important">First Name:</label>
+            </div>
+            <div class="col-sm-12" style="margin-left:35px!important">
+
+                @Html.TextBox("EditFirstName", "", new { @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;width:392px;height:25px;font-size:smaller;border-color:dimgrey;cursor-color:#ff5d26", @placeholder="...",@maxLength="20" })
+            </div>
+            <div class="col-sm-12" style="padding-top:5px;margin-left:35px!important">
+                <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important">Last Name:</label>
+            </div>
+            <div class="col-sm-12" style="margin-left:35px!important">
+                @Html.TextBox("EditLastName", "", new { @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;width:392px;height:25px;;font-size:smaller;border-color:dimgrey", @placeholder = "...", @maxLength = "20" })
+            </div>
+
+            <div class="col-sm-12" style="padding-top:5px;padding-right:22px;margin-left:35px!important">
+                <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important">Email:</label>
+            </div>
+            <div class="col-sm-12" style="margin-left:35px!important">
+                @Html.TextBox("EditEmail", "", new { @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;width:392px;height:25px;;font-size:smaller;border-color:dimgrey", @autocomplete = false, @placeholder = "..." })
+            </div>
+
+            <div class="col-sm-12" style="padding-top:5px;padding-right:22px;margin-left:35px!important">
+                <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important">Password:</label>
+            </div>
+            <div class="col-sm-12" style="margin-left:35px!important">
+                @Html.Password("EditUserPassword", "", new { @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;width:392px;height:25px;;font-size:smaller;border-color:dimgrey", @placeholder = "...",@readonly=true })
+            </div>
+            <div class="col-sm-12" style="margin-left:35px!important;padding-top:10px!important">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-6">
+                    <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important;padding-left:40px;"> Show Password:</label>
+                    <span class="togglebutton" style="float:left;">
+                        <label class="switch" style="top:3px!important;">
+                            <input type="checkbox" id="showPass">
+                            <div class="slider-sm round"></div>
+                        </label>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="col-sm-12" style="margin-left:35px!important;">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-6">
+                    <button type="button" class="btn btn-sm" style="height:25px!important;background-color:#F7CDC9;color:#FF5D26;border-radius:5px;width:157px!important;padding-top:3px;font-size:11px!important;float:left;border-color:#FF5D26;margin-left:37px!important">
+                        Change Password
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-sm-12" style="padding-top:0px;padding-right:8px;margin-left:35px!important">
+                <label style="color:#3a3b3d;font-size:smaller;font-weight:bold;float:left!important">Mobile:</label>&nbsp;
+
+            </div>
+            <div class="col-sm-12" style="margin-left:35px!important">
+                @Html.TextBox("EditMobile", "", new { @class = "form-control", style = "border-radius:4px!important;border-color:#FF5D26;width:392px;height:25px;;font-size:smaller;border-color:dimgrey", @placeholder = "...",@maxLength="12" })
+            </div>
+            <div class="col-sm-12" style="padding-top:20px;">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-9">
+                    <button type="button" class="btn btn-sm" id="btnregSignin" style="height:28px;background-color:dimgrey;color:#FFFFFF;padding-bottom:5px;border-radius:5px!important;font-size:11px!important;float:left;">
+                        Cancel
+                    </button>
+                    <button type="button" class="btn btn-sm" id="btnCreateAccount" style="height:28px;background-color:#FF5D26;color:#FFFFFF;padding-bottom:5px;border-radius:5px!important;font-size:11px!important;float:left;">
+                        Save
+                    </button>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- start: Javascript -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.ui.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+@*plugins*@
+<script src="/js/plugins/moment.min.js"></script>
+<script src="/js/plugins/jquery.nicescroll.js"></script>
+@*custom*@
+<script src="/js/main.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetUserDeatailed(@PkeyUserId);
+       
+        
+
+
+        $(".nav-tabs a").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+
+    function GetUserDeatailed(id) {
+        $.ajax({
+            url: "@Url.Action("GetUserDetails", "Main")",
+            type: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            data: { UserId: id },
+            success: function (data) {
+                if (data[0].Image != "") {
+                    $('#editprofilepic').attr('src', "data:image/png; base64," + data[0].Image);
+                }
+                $('#EditFirstName').val(data[0].First_Name);
+                $('#EditLastName').val(data[0].Last_Name);
+                $('#EditEmail').val(data[0].Email);
+                $('#EditUserPassword').val('DummyPassword');
+                $('#EditMobile').val(data[0].MobileNo);
+            },
+        });
+    }
+
+   
+        $('#EditFirstName,#EditLastName').bind('keyup blur', function () {
+            var node = $(this);
+            node.val(node.val().replace(/[^A-Z,a-z]/g, ''));
+        });
+  
+
+    function CheckEditEmailValidorNot() {
+        if (!ValidateEditEmail($("#EditEmail").val())) {
+            $('#editValidationMessage').html('Please enter a valid E-mail address');
+            $('#DivUserEditError').show();
+
+            $('#EditEmail').focus();
+            $('#btnCreateAccount').attr("disabled", true);
+        }
+        else {
+            $('#ValidationMessage').html('');
+            $('#DivUserEditError').hide();
+
+            $('#btnCreateAccount').attr("disabled", false);
+            CheckEmailexistOrnot();
+        }
+    }
+
+    //Code Starts
+ 
+    function validatePhone(txtPhone) {
+       
+        var a = txtPhone;
+       
+        var filter = /^[0-9-+() ]+$/;
+        if (filter.test(a)) {
+            return true;
+        }    else {
+              return false;
+        }
+    }
+    //Code Ends
+
+    $('#EditMobile').change(function () {
+       
+        if (validatePhone($('#EditMobile').val())) {
+            $('#editValidationMessage').html('');
+            $('#DivUserEditError').hide();
+        }
+    else {
+            $('#editValidationMessage').html('Please enter a Valid Phone Number');
+            $('#DivUserEditError').show();
+        }
+    });
+
+    $('#EditEmail').change(function () {
+        CheckEditEmailValidorNot();
+    })
+
+    function ValidateEditEmail(email) {
+        // Validate email format
+        var expr = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        return expr.test(email);
+    };
+
+    function OpenEditFileUploader() {
+        $('#EditFileUploader').click();
+    }
+
+    function showeditimagepreview(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#editprofilepic').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

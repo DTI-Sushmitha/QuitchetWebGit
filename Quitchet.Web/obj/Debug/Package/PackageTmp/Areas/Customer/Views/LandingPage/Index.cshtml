@@ -1,0 +1,957 @@
+﻿@*Landing Page Index*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+<style>
+    #googlemapsss {
+        background-image: url('/img/landingmapdefault.png') !important;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 707px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1; /* Set z-index to 0 as it will be on a layer below the contact form */
+      
+    }
+
+    .nav-tabs.nav-tabs-v6 li {
+        text-align: center;
+    }
+
+    .tabs-area {
+        padding: 0px;
+        margin-top: -14px;
+    }
+
+    .nav-tabs.nav-tabs-v6 li a {
+        height: 40px;
+        margin-right: 0px;
+        border-radius: 0px;
+        padding-top: 9px;
+    }
+
+    /*.nav > li > a {
+        position: relative;
+        display: block;
+        padding: 13px 9px;
+    }*/
+
+    .searchborder {
+        padding: 7px 0px 3px 8px;
+    }
+
+    .searchiconholder {
+        margin: 7px 0px 0px -49px;
+    }
+
+    ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color: #FF6937 !important;
+    }
+
+    .searchcommunicateclose {
+        font-size: 36px;
+        padding: 15px;
+        text-shadow: 0px 3px 3px rgba(75,75,75,1.00);
+        font-weight: 300;
+        color: white;
+    }
+
+    #contactform {
+        position: relative;
+        z-index: 100; /* The z-index should be higher than Google Maps */
+        width: 537px;
+        margin: 15% auto 0;
+        padding: 10px;
+        height: auto;
+        opacity: .85; /* Set the opacity for a slightly transparent Google Form */
+        color: white;
+    }
+
+    .nav-tabs.nav-tabs-v6 > li.active:after {
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(185, 9, 8, 0);
+        border-bottom-color: #A6A6A6;
+        border-width: 30px;
+        margin-left: -30px;
+    }
+
+    .nav-tabs.nav-tabs-v6 {
+        border-bottom: none !important;
+    }
+
+        .nav-tabs.nav-tabs-v6 li {
+            padding: 0;
+            padding-bottom: 5px;
+            width: 167px;
+        }
+
+            .nav-tabs.nav-tabs-v6 li a {
+                background-color: none;
+                border: 1px solid #FFFFFF;
+            }
+
+    .tab-content.tab-content-v6 {
+        padding: 18px !important;
+        width: 524px;
+        margin-left: -15px;
+    }
+
+    .searchiconholder {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        position: absolute;
+        margin: 11px 0px 0px -53px;
+        z-index: 100;
+    }
+
+    .searchborder {
+        background-color: #ACACAC;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border-radius: 5px 5px 5px 5px;
+        padding: 8px 8px 8px 8px;
+        -webkit-box-shadow: 1px 6px 6px 6px #737373;
+        box-shadow: 1px 6px 6px 6px #737373;
+    }
+
+    .navbar .search .form-animate-text {
+        float: right;
+        margin-top: -10px;
+        margin-left: 5px;
+        width: 200px;
+    }
+
+    /*-------------------k-----------------------*/
+
+    #tabs-demo6 > li > a:hover {
+        text-decoration: none;
+        color: white;
+        background-color: #FF6937;
+    }
+    .nav-tabs.nav-tabs-v6 li a
+    {
+        background-color:grey;
+    }
+   
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+        color: white;
+        background-color: #FF6937;
+    }
+
+    .nav-tabs.nav-tabs-v6 > li.active:after {
+        border-width: 23px;
+        top: 17px;
+        left: 90px;
+    }
+
+    .menu-ul li {
+        list-style: none;
+        display: inline-block;
+        margin-right: 30px;
+    }
+
+    .togglebutton1 {
+        float: none;
+        margin: 0px;
+    }
+
+    .switch1 {
+        margin-bottom: 0px;
+    }
+
+    .menuli1 {
+      
+        border-right:1px solid #675f5f;
+        border-left: 1px solid #675f5f;
+    padding-left: 10px;
+    }
+
+    .titletoolsicon {
+        margin: 0 5px;
+    }
+
+    .menuli3 {
+       
+        -webkit-position:relative;
+        -webkit-top: 8px
+    }
+
+    .menulist {
+        background: grey;
+           padding: 3px 0 1px 0;
+        margin-top: -2px;
+        display:table;
+        width:100%;
+
+    }
+
+    .menuli5 {
+      
+            border-left: 1px solid #675f5f;
+    padding-left: 10px;
+    }
+
+    .menu-ul {
+        padding: 0px;
+        float:right;
+        margin-right:27px;
+    }
+    
+
+    .searchspan:hover
+    {
+        color:#FF6937 !important;
+
+    }
+    .communicatespan:hover
+    {
+        color:#FF6937 !important;
+    }
+    .closespan:hover
+    {
+         color:#FF6937 !important;
+    }
+
+    .searchspan img,.communicatespan img,.closespan img
+    {
+        display:none;
+    }
+
+    .searchspan:hover.searchspan img
+    {
+        display: block;
+            position: absolute;
+            width: 70px;
+            height: 139px;
+            left: -62px;
+            top: 51px;
+    }
+    .communicatespan:hover.communicatespan img
+    {
+       display: block;
+    position: absolute;
+    top: -249px;
+    left: -435px;
+    height: 290px;
+
+    }
+     .closespan:hover.closespan img
+    {
+        display: block;
+    position: absolute;
+    top: -254px;
+    height: 310px;
+    left: -54px;
+    width: 502px;
+    }
+
+    /*media starts*/
+    @@media (min-width:1200px) and (max-width:1326px) {
+        .menuli1 {
+            margin-left: 0px;
+        }
+    }
+
+    @@media (min-width:993px) and (max-width:1199px) {
+        .menuli1 {
+            margin-left: 0px;
+        }
+
+        .menuli3 {
+            margin-left: 0px;
+
+        }
+            .menuli3 button
+            {
+                width:134px!important;
+            }
+            .menuli3 button span
+            {
+                font-size:11px!important;
+            }
+            .menu-ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 14px!important;
+}
+        .menu-ul
+        {
+            float:left;width:100%;
+        }
+        #searchfilters {
+            width: 93px !important;
+        }
+
+        .menuli5 {
+            margin-left: 1%;
+        }
+
+        .communicatespan:hover.communicatespan img
+        {
+           display: block!important;
+        position: absolute;
+        top: -249px;
+        left: -435px;
+        height: 290px;
+
+        }
+
+        .closespan:hover.closespan img
+        {
+              display: block!important;
+        position: absolute;
+        top: -171px;
+        height: 201px;
+        left: -505px;
+        width: 941px;
+        }
+        .menuli4 .fa-caret-down
+        {
+            margin-left:12%!important;
+        }
+
+    }
+
+    @@media (min-width:768px) and (max-width:992px) {
+        .menuli1 {
+            margin-left: 0px;
+        }
+
+        .menuli3 {
+            margin-left: 0px;
+        }
+
+        .menuli5 {
+            margin-left: 0px;
+        }
+
+        #searchfilters {
+            width: 92px !important;
+        }
+
+        .menuli6 .form-control {
+            width: 100% !important;
+            font-size: 11px !important;
+            padding: 6px 3px 0px 3px !important;
+        }
+
+        .menuli5 .form-control {
+            margin-top: 0px !important;
+            padding: 6px 4px 3px 4px !important;
+            font-size: 11px !important;
+        }
+        .menuli4 .fa-caret-down
+        {
+            margin-left:12%!important;
+        }
+
+
+    }
+
+
+
+    @@media (min-width:1400px) and (max-width:1500px){
+        
+              .closespan:hover.closespan img {
+                display: block!important;
+    position: absolute;
+    top: -238px;
+    height: 295px;
+    left: -53px;
+    width: 510px;
+            }
+            
+            .communicatespan:hover.communicatespan img {
+            display: block!important;
+            position: absolute;
+            top: -235px;
+            left: -345px;
+            height: 260px;
+            }        
+    
+    }
+
+    @@media (min-width:1501px) and (max-width:1599px){
+        
+             .closespan:hover.closespan img {
+                display: block!important;
+    position: absolute;
+    top: -251px;
+    left: -70px;
+    height: 306px;
+    width: 530px;
+            }
+            
+            .communicatespan:hover.communicatespan img {
+             display: block!important;
+            position: absolute;
+            top: -254px;
+            height: 313px;
+            left: -419px;
+            width: 704px;
+            }        
+    }
+
+
+    @@media (min-width:1200px) and (max-width:1300px){
+        .communicatespan:hover.communicatespan img {
+        display: block!important;
+        position: absolute;
+        top: -207px;
+        left: -249px;
+        height: 271px;
+        width: 538px;
+        }
+         .closespan:hover.closespan img {
+        display: block!important;
+    position: absolute;
+    top: -210px;
+    height: 262px;
+    left: -32px;
+    width: 488px;
+        }
+    }
+
+      @@media (min-width:1301px) and (max-width:1399px){
+        .communicatespan:hover.communicatespan img {
+        display: block!important;
+        position: absolute;
+        top: -224px;
+        left: -306px;
+        height: 289px;
+        width: 576px;
+        }
+         .closespan:hover.closespan img {
+        display: block!important;
+    position: absolute;
+    top: -225px;
+    height: 279px;
+    left: -27px;
+    width: 484px;
+        }
+
+    }
+
+
+
+    @@media (min-width:993px) and (max-width:1099px) {
+        .communicatespan:hover.communicatespan img {
+        display: block!important;
+        position: absolute;
+        top: -185px;
+        left: -167px;
+        height: 241px;
+        width: 433px;
+        }
+
+       .closespan:hover.closespan img {
+        display: block!important;
+    position: absolute;
+    top: -182px;
+    height: 235px;
+    width: 454px;
+    left: 13px;
+      }
+        .menu-ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 12px!important;
+}
+
+        .menuli6 button
+        {
+            padding:6px!important;
+            width:100%!important;
+        }
+        .menu-ul {
+    padding-left: 3px!important;
+    float: right;
+    margin-right: 0px!important;
+}
+
+
+    }
+    @@media (min-width:1100px) and (max-width:1199px)
+    {
+        .communicatespan:hover.communicatespan img {
+        display: block!important;
+        position: absolute;
+        top: -195px;
+        left: -218px;
+        height: 241px;
+        width: 459px;
+        }
+
+        .closespan:hover.closespan img {
+        display: block!important;
+    position: absolute;
+    top: -196px;
+    height: 250px;
+    width: 453px;
+    left: -3px;
+        }
+
+
+    }
+
+    @@media (min-width:768px) and (max-width:992px)
+    {
+        .searchspan:hover.searchspan img,.communicatespan:hover.communicatespan img,.closespan:hover.closespan img
+        {
+
+            display:none!important;
+        }
+
+        .menu-ul li {
+        list-style: none;
+        display: inline-block;
+        margin-right: 5px!important;
+        }
+        .menu-ul {
+    padding: 0px;
+    float: right;
+    margin-right: 10px!important;
+}
+    }
+    /*media ends*/
+   
+     /* Auto complete Search bar style*/
+     .ui-menu {
+        border: 1px solid lightgray;
+        font-family: 'Inder', sans-serif;
+        font-size: 15px;
+        width: 54px;
+    }
+
+        .ui-menu .ui-menu-item a {
+            color: gray;
+        }
+
+        .ui-menu .ui-menu-item:hover {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+            cursor: pointer;
+            background-color: #ff5d26;
+            border: 1px solid lightgray;
+        }
+          .ui-autocomplete-input {
+        z-index: 5000 !important;
+    }
+            .ui-autocomplete {
+        position: absolute;
+        z-index: 5000 !important;
+    }
+</style>
+<link href="~/Content/searcfilterpopups.css" rel="stylesheet" />
+@*Landing Tool Bar*@
+<div class="menulist">
+    <ul class="menu-ul">
+        <li class="menuli1">
+            <img src="/img/icon_mybasicneeds.png" width="24" height="24" alt="" />
+            <span class="titletoolsicon" style="font-size: 12px;color:white; ">My Basic Needs</span>
+            <span class="togglebutton1">
+                <label class="switch switch1" style="left: -3px !important; top: 6px !important; height: 18px !important">
+                    <input type="checkbox" disabled="disabled">
+                    <div class="slider-sm round"></div>
+                </label>
+            </span>
+        </li>
+        <li class="menuli2">
+            <img src="/img/icon_whishlist.png" alt="" style="height: 18px; width: 17px;" />
+            <span class="titletoolsicon" style="font-size: 12px;color:white; ">My Wishlist</span>
+            <span class="togglebutton1">
+                <label class="switch switch1" style="left: -3px !important; top: 6px !important; height: 18px !important">
+                    <input type="checkbox" disabled="disabled">
+                    <div class="slider-sm round"></div>
+                </label>
+            </span>
+
+        </li>
+
+        <li class="menuli3">
+            <div class="dropdown">
+                <button type="button" disabled="disabled" class="form-control" id="PropertyTypes" style="height: 28px !important; width: 142px;padding-top:3px;">
+                    <span style="font-size:12px">Homes > For Sale</span>
+                    <i class="fa fa-caret-down" aria-hidden="true" style="font-size:12px;"></i>
+                </button>
+            </div>
+
+        </li>
+
+        <li class="menuli4">
+            <div class="" style="margin-top: 5px;">
+                <button type="button" disabled="disabled" class="form-control" data-toggle="modal" data-target="#HomeModalFilters" id="searchfilters" style="text-align: left;height: 28px!important; width: 120px; padding-top: 1px; margin-top: -3px; font-size: 12px; padding-top: 6px;">
+                    <img src="/img/Filter.png" alt="" style="top: 2px !important; left: 0px; height: 15px; width: 17px; margin-bottom: 1px" />
+                    Filters
+                    <i class="fa fa-caret-down" aria-hidden="true" style="margin-left: 23%;font-size:12px;"></i>
+                </button>
+
+            </div>
+
+        </li>
+
+
+
+
+
+        <li class="menuli5">
+            <button disabled="disabled" type="button" id="savesearchbtn" data-toggle="modal" data-target="#SaveSearchModal" class="form-control" style="background-color: #ff6937; color: white; height: 28px !important; padding-top: 0px; margin-top: 2px; font-size: 12px; border: 0!important; height: 28px; padding-top: 5px;">
+                Save Search
+            </button>
+
+        </li>
+
+        <li class="menuli6">
+            <div class="dropdown" onclick="myFunction()">
+                <button disabled="disabled" type="button" class="form-control" style="background-color: #ff6937; color: white; width: 125%; height: 28px !important; padding-top: 0px; margin-top: 2px; font-size: 12px; border: 0!important; height: 28px; padding-top: 5px; border-radius: 5px">
+                    <span id="dropdownselected">Sort by</span><i class="glyphicon glyphicon-menu-down" onclick="myFunction()" style="padding-left: 10px; padding-bottom: 8px;"></i>
+                </button>
+
+            </div>
+
+        </li>
+
+
+
+
+
+    </ul>
+
+</div>
+@*<map Image*@
+<div id="googlemapsss" style="height:92vh !important"></div>
+<div id="contactform">
+    <div class="searchcommunicateclose">
+        <span class="searchspan"><img src="/img/Search_Arrow.png" />Search.</span>
+        <span class="communicatespan"><img src="/img/communicate_line.png" />Communicate.</span>
+        <span class="closespan"><img src="~/img/closer_arrow.png" />Close.</span>
+    </div>
+    <div class="tabs-area" style="padding-left: 10px;">
+        <ul id="tabs-demo6" class="nav nav-tabs nav-tabs-v6" role="tablist" style="width: 492px;padding-left:4px;">
+            <li role="presentation" class="active mytab" style="width: 160px;" data-index="1">
+                <a href="#tabs-demo7-area2" role="tab" tabindex="1" id="tabs-demo6-2" style="border-radius:5px 0px 0px 5px" name="filter" data-index="1" data-toggle="tab" aria-expanded="true">Homes</a>
+            </li>
+            <li role="presentation" class="mytab" style="width: 160px;" data-index="2">
+                <a href="#tabs-demo7-area3" id="tabs-demo6-3" tabindex="2" role="tab" name="filter" data-index="2" data-toggle="tab" aria-expanded="false">Rentals</a>
+            </li>
+
+            <li role="presentation" class="mytab" style="width: 160px;" data-index="3">
+                <a href="#tabs-demo7-area4" role="tab" id="tabs-demo6-4" tabindex="3" style="border-radius:0px 5px 5px 0px" name="filter" data-index="3" data-toggle="tab" aria-expanded="false">Lots / Land</a>
+            </li>
+        </ul>
+        <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
+
+            <div role="tabpanel" class="tab-pane active" id="tabs-demo7-area2" aria-labelledby="tabs-demo7-area2" style="left:0px">
+                <div class="search" style="width: 483px; text-align: right; ">
+                    <span class="fa fa- icon-search searchiconholder">
+                        <a href="#" id="s1" style="cursor:none;">
+                            <img src="/img/serchpane.png" width="43" height="43" alt="" id="mysearch" />
+                        </a>
+                    </span>
+                    <div class="searchborder">
+                        <div class="form-group form-animate-text" style="margin-bottom:0px;">
+
+                            @Html.TextBox("Search1", "", new { @class = "form-text", placeholder = "Search: MLS, City, School, etc", @style = "width:100%;height:47px;color:#FD7E4F;font-size:15px;border-radius:5px;padding:5px 10px;" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area3" aria-labelledby="tabs-demo7-area3">
+                <div class="search" style="text-align: right;">
+                    <span class="fa fa- icon-search searchiconholder">
+                        <a href="#" id="s2" style="cursor:none;">
+                            <img src="/img/serchpane.png" width="43" height="43" alt="" />
+                        </a>
+                    </span>
+                    <div class="searchborder">
+                        <div class="form-group form-animate-text" style="margin-bottom:0px;">
+                            @Html.TextBox("Search2", "", new { @class = "form-text", placeholder = "Search: MLS, City, School, etc", @style = "padding: 5px 10px;width:100%;height:47px;color:#FF6937 !important;font-size:15px;border-radius:5px" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area4" aria-labelledby="tabs-demo7-area4">
+                <div class="search" style="text-align: right;">
+                    <span class="fa fa- icon-search searchiconholder">
+                        <a href="#" id="s3" style="cursor:none;">
+                            <img src="/img/serchpane.png" alt="" />
+                        </a>
+                    </span>
+                    <div class="searchborder">
+                        <div class="form-group form-animate-text" style="margin-bottom:0px;">
+                            <div class="col=sm-12">
+
+                                @Html.TextBox("Search3", "", new { @class = "form-text", placeholder = "Search: MLS, City, School, etc", @style = "padding: 5px 10px;width:100%;height:47px;color:#FD7E4F;font-size:15px;border-radius:5px" })
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @*<a href="#" id="iddd">click here</a>*@
+</div>
+<script type="text/javascript">
+    //$('#iddd').click(function () {
+    //    if (confirm("Download app?")) {
+    //        window.location.href = "http://play.google.com/store/apps/details?id=com.devobal.quitchet&referrer=savedSearch";
+    //    }
+    //})
+    var FPUserID;
+    var fpemailid;
+    var fname = "", newPwd = "";
+    $("#LandingSearch").val('');
+    //$(".lotsswerbtngroup>a").on("click", function () {
+    //    var defaultClass = "btn btn-default";
+    //    var toBeAssignedClass = $(this).attr("data-btn-class");
+    //    $(".lotsswerbtngroup>a").attr("class", defaultClass);
+    //    $(this).attr("class", toBeAssignedClass);
+    //});
+    var classtype = "1";
+    $('.mytab').click(function () {
+        //alert($(this).data('index'))
+        classtype = $(this).data('index');
+    })
+    var city = "", type = "1";
+    //To Avoid Autocomplete When Entering '#'
+    $("#Search1,#Search2,#Search3").keyup(function () {
+        var id = $(this).attr("id");
+        var places = document.getElementById(id);
+        var search = $('#'+id).val();
+        if (search.substring(0, 1) == "#") {
+            google.maps.event.clearInstanceListeners(places); $(function () {
+                $("#"+id).autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: '/Customer/LandingPage/SearchMLSByClassType',
+                            data: { mlsid: request.term, classtype: classtype },
+                            dataType: "json",
+                            type: "GET",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                //if (data.length <= 0) {
+                                //}
+                                //else {
+                                response($.map(data, function (item) {
+                                    return { label: "#" + item.MLSNO, value: "M" + item.MLSNO };
+                                }))
+                                // }
+                            },
+                            error: function (response) {
+                                alert(response.responseText);
+                            },
+                            failure: function (response) {
+                                alert(response.responseText);
+                            }
+                        });
+                    },
+                    select: function (e, i) {
+                        $('#'+id).val(i.item.value);
+                       // $('#btnsearch')[0].click();
+                        //getdatabysearchElement(i.item.value, sorybyid,zoomlevel,bondarypath);
+                        //closingMLS_Buying = i.item.value;
+                        searchChange(id)
+                    },
+                    minLength: 3,
+                    dataType: "json",
+                    cache: false
+                });
+            });//Auto Complete for MLSID from RETS to be search Listing
+        }
+        else if (search.substring(0, 1) != "#") {
+            
+            var autocomplete = new google.maps.places.Autocomplete(places);
+            autocomplete.setComponentRestrictions({ 'country': 'us' });
+            autocomplete.addListener('place_changed', function () {
+                codeAddress($("#"+id).val(),id)
+              //if(id=="Search1")
+              //    $('#s1')[0].click();
+              //else if (id == "Search2")
+              //    $('#s2')[0].click();
+              //else if (id == "Search3")
+              //    $('#s3')[0].click();
+            });
+        }
+    });
+    //$("#Search1,#Search2,#Search3").change(function () {
+    //    var id = $(this).attr("id");
+    //    searchChange(id)
+    //});
+    function searchChange(id) {
+        if (id == "Search1")
+            $('#s1')[0].click();
+        else if (id == "Search2")
+            $('#s2')[0].click();
+        else if (id == "Search3")
+            $('#s3')[0].click();
+    }
+    //$("#Search2").keyup(function () {
+    //    var places = document.getElementById('Search2');
+    //    var search = $('#Search2').val();
+    //    if (search.substring(0, 1) == "#") {
+    //        google.maps.event.clearInstanceListeners(places);
+    //    }
+    //    else if (search.substring(0, 1) != "#") {
+    //        var autocomplete = new google.maps.places.Autocomplete(places);
+    //    }
+    //});
+    //$("#Search3").keyup(function () {
+    //    var places = document.getElementById('Search3');
+    //    var search = $('#Search3').val();
+    //    if (search.substring(0, 1) == "#") {
+    //        google.maps.event.clearInstanceListeners(places);
+    //    }
+    //    else if (search.substring(0, 1) != "#") {
+    //        var autocomplete = new google.maps.places.Autocomplete(places);
+    //    }
+    //});
+   function codeAddress(address,id) 
+    {
+        geocoder = new google.maps.Geocoder();
+        geocoder.geocode( {address:address}, function(results, status) 
+        {
+            if (status == google.maps.GeocoderStatus.OK) 
+            {
+                console.log(results[0].formatted_address)
+                $("#" + id).val(results[0].formatted_address)
+                searchChange(id)
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+  
+    $("#s1").click(function () {
+        city = $("#Search1").val();
+        
+        type = "1";
+        if (city.length > 0 || city != "") {
+            //if (city.substring(0, 1) == "#") 
+              //  city = city.substring(1);
+            $("#Search1,#Search2,#Search3").val('');
+            $(location).attr('href', '../SearchFilter/Index?city=' + city + '&t=' + type);
+        }
+        //alert(searc_ele + "," + search_type);
+        //else {
+        //    $(location).attr('href', '../SearchFilter/Index');
+        //}
+       
+    });
+    $("#s2").click(function () {
+        city = $("#Search2").val(); type = "2";
+        if (city.length > 0 || city != "") {
+            if (city.substring(0, 1) == "#")
+                city = city.substring(1);
+            $("#Search1,#Search2,#Search3").val('');
+            $(location).attr('href', '../SearchFilter/Index?city=' + city + '&t=' + type);
+        }
+       
+    });
+    $("#s3").click(function () {
+        city = $("#Search3").val(); type = "3";
+        if (city.length > 0 || city != "") {
+            if (city.substring(0, 1) == "#")
+                city = city.substring(1);
+            $("#Search1,#Search2,#Search3").val('');
+            $(location).attr('href', '../SearchFilter/Index?city=' + city + '&t=' + type);
+        }
+        
+    });
+    $(document).keyup(function (e) {
+        if (e.keyCode == 13) {
+            if ($("#Search1").val().length > 0 || $("#Search1").val() != "") {
+                $('#s1')[0].click();
+            }
+            if ($("#Search2").val().length > 0 || $("#Search2").val() != "") {
+                type = "2"
+                $('#s2')[0].click();
+            }
+            if ($("#Search3").val().length > 0 || $("#Search3").val() != "") {
+                type = "3"
+                $('#s3')[0].click();
+            }
+        }
+    });
+    $(document).ready(function () {
+       
+        //var places1 = new google.maps.places.Autocomplete(document.getElementById('Search1'));
+        //var places2 = new google.maps.places.Autocomplete(document.getElementById('Search2'));
+        //var places3 = new google.maps.places.Autocomplete(document.getElementById('Search3'));
+      
+       
+        $('a[href="/Customer/SearchFilter/Index"]').parents('li,ul').addClass('active');
+        if (window.location.toString().indexOf('?') > -1) {
+            FPUserID = window.location.toString().split('?')[1].split('=')[1].split('&')[0];
+            fpemailid = window.location.toString().split('&')[1].split('=')[1].split('&')[0];
+            if (FPUserID != "0") {
+                $("#SPanEmail").text(fpemailid);
+                $("#formLogin").show();
+                $("#formLogin").css('height', '280px');
+                $('#RegisterDiv').hide();
+                $('#DivForgotError').hide();
+                $('#DivloginFailed').hide();
+                $('#ForgotPasswordDiv').hide();
+
+                $('#SuccessFullForgotSendMessageDiv').hide();
+                $('#SuccessAccountCreatedMessageDiv').hide();
+                $('#UnSuccessAccountCreatedMessageDiv').hide();
+                $('#loginDiv').hide();
+                $('#ResetPassword').show();
+            }
+            else {
+                $("#Search1").focus();
+            }
+        }
+        else {
+        }
+    });
+  
+    $("#ResetbtnSubmitForgotPassord").click(function () {
+        newPwd = $("#UserNewPassword").val()
+        $.ajax({
+            url: "@Url.Action("GetUserDetails", "Main")",
+            type: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            data: { UserId: FPUserID },
+            success: function (data) {
+                fname = data[0].First_Name;
+                resetPassword(fname, newPwd);
+            },
+        });
+    });
+
+    function resetPassword(fname, newPwd) {
+        $.ajax({
+            url: "@Url.Action("SendValuesnewPasswordLink", "Main")",
+            type: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            data: { Fname: fname, EmailID: fpemailid, UserID: FPUserID, Newpassword: newPwd },
+            success: function (data) {
+                if (data == "1") {
+                    alert('Password Changed successfully');
+                    $(location).attr('href', '../Customer/LandingPage/Index');
+                }
+                else {
+                    alert('something went wrong' + data);
+                }
+            }
+        });
+    }
+
+</script>

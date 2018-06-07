@@ -1,0 +1,254 @@
+﻿@model Quitchet.Core.Models.RegistrationModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Quitchet</title>
+    <link rel="shortcut icon" href="/img/logomi.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/AssetsforRegistrationPage/custom.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div id="divMsg">
+            @if (TempData["Message"] != null)
+            {
+                <p class="alert text-success" style="font-size: 15px; font-weight: 900;" id="successMessage">@TempData["Message"]</p>
+                TempData["Message"] = "";
+            }
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2" style="border:1px solid red">
+                <div class="row">
+                    <div class="col-md-12" style="background-color:#ff5d26;padding:10px;">
+                        <img src="/img/quitchetlogo_little.png" class="img-responsive" alt="">
+                    </div>
+                </div>
+                <form id="contact-form" method="post" action="~/Registration/RegisterUser" role="form">
+                    <div class="col-sm-12">&nbsp;
+                    @Html.HiddenFor(x => x.Latitude)
+                    @Html.HiddenFor(x => x.Longitude)
+                    @Html.HiddenFor(x => x.PostalCode)
+                    </div>
+                    <div class="controls">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <img src='~/img/addphotopic.png' id="profilepic" style='border-radius:50px;height:60px;width:60px;'>
+                                </div>
+                            </div>
+                            <div class="col-md-3" style="line-height:4">
+                                <div class="form-group">
+                                    <button onclick="OpenFileUploader()" class="btn btn-send">
+                                        <span class="glyphicon glyphicon-plus-sign" style="padding-right:10px;color:#ffffff"></span>
+                                        Add Photo
+                                    </button>
+                                </div>
+                                <div hidden="hidden">
+                                    @Html.HiddenFor(x => x.ProfilePic)
+                                    <input type="file" id="FileUploader" accept="image/*" onchange="showimagepreview(this)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="form_name">First Name *</label>
+                                    <input id="txtFirstName" autocomplete="off" type="text" name="name" class="form-control" placeholder="Please Enter Your First Name *" required="required" data-error="First Name is required.">
+                                @Html.HiddenFor(x => x.FirstName)
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="form_lastname">Last Name *</label>
+                                    @Html.HiddenFor(x => x.LastName)
+                                    <input id="txtLastName" autocomplete="family-name" type="text" name="surname" class="form-control" placeholder="Please Enter your Last Name *" required="required" data-error="Last Name is required.">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="form_email">Email *</label>
+                                    <span class="labelorangesmall" id="MaileErrormsg" style="display:none">
+                                        This email is already in use. Please sign in to your account or use another email address to create new account
+                                    </span>
+                                    @Html.HiddenFor(x => x.Email)
+                                    <input  id="txtEmail" autocomplete="off" type="text" oninput="checkEmail(this)" name="email" class="form-control" placeholder="Please Enter Your Email *" required="required" data-error="Valid email is required.">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="form_phone">Password *</label>
+                                    @Html.HiddenFor(x => x.Password)
+                                    <input id="txtPassword" autocomplete="tel-local" type="password" name="phone" class="form-control" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})" placeholder="Please Enter Password *" required="required" data-error="Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="form_message">Confirm Password *</label>
+                                    <label class="labelorangesmall">Show Password</label>
+                                    <input id="showPass" type="checkbox" data-toggle="toggle" data-style="ios" data-size="mini">
+                                    <input id="confirmpassword" autocomplete="tel-local" type="password" name="phone" required="required" class="form-control" oninput="check(this)" placeholder="Please Re-enter Password">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <br>
+                                    <input type="submit" id="btnCreateAccount" class="btn btn-send" value="Create Account">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div><!-- /.8 -->
+        </div> <!-- /.row-->
+    </div> <!-- /.container-->
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="~/AssetsforRegistrationPage/validator.js"></script>
+<script src="~/AssetsforRegistrationPage/contact.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.get("https://api.ipdata.co", function (response) {
+            $('#Latitude').val(response.latitude)
+            $('#Longitude').val(response.longitude)
+            $('#PostalCode').val(response.postal)
+          ///  console.log(response.latitude + ',' + response.longitude + '-' + response.postal)
+        }, "jsonp");
+        setTimeout('$("#divMsg").hide()', 1000);
+    })
+    //Password Key up event t restrict special characters
+    $("#txtPassword,#confirmpassword").keypress(function (event) {
+        var character = String.fromCharCode(event.keyCode);
+        return isValid(character);
+    });
+    //Validating entered password with regular expression
+    function isValid(str) {
+        return !/[~`!@@#$%\^&*()+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
+    }
+    //Validating Confirm Password value with given password
+    function check(input) {
+        if (input.value != document.getElementById('txtPassword').value) {
+            // input is in valid -- adding custom error message
+            input.setCustomValidity('Password Must be Matching.');
+        } else {
+            // input is valid -- reset the error message
+            input.setCustomValidity('');
+        }
+    }
+    //Validating email address while entering
+    function checkEmail(input) {
+        var r = CheckEmailValidorNot();
+        if (r == 'no') {
+            input.setCustomValidity('Please enter valid email');
+        } else {
+            input.setCustomValidity('');
+            CheckEmailexistOrnot();//After validation check if its exist or not
+        }
+    }
+    //Validating entered Email address with regular expression
+    function isValidEmail(str) {
+        var expr = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        return expr.test(str);
+    }
+    //Function to validate email address entered by users
+    function CheckEmailValidorNot() {
+        var result = "no";
+        if (!isValidEmail($("#txtEmail").val())) {
+            result = 'no'
+        }
+        else {
+            result = 'yes'
+        }
+        return result;
+    }
+    //Function to if the given email address already existed or not
+    function CheckEmailexistOrnot() {
+        $.ajax({
+            url: "@Url.Action("CheckEmailExistOrNot", "Main")",
+            type: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            data: { EmailID: $("#txtEmail").val() },
+            success: function (data) {
+                if (data != "0") {
+                    $('#MaileErrormsg').show();
+                    $('#btnCreateAccount').attr("disabled", true)
+                }
+                else {
+                    $('#MaileErrormsg').hide();
+                    $('#btnCreateAccount').attr("disabled", false)
+                }
+            },
+            complete: function () {
+                $("#spinner").css("display", "none");
+            },
+            error: function (data) {
+            }
+        });
+    }
+    //-------------Code for open file uploader in registration form----------
+    function OpenFileUploader() {
+        event.preventDefault()
+        $('#FileUploader').click();
+    }
+    $('#FileUploader').change(function () {
+        filename = $('#FileUploader').val().split('\\').pop();
+        //console.dir(this.value);
+        //console.dir(this.files[0])
+    });
+    //---------------------For showing Selected Image--------------
+    function showimagepreview(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#profilepic').attr('src', e.target.result);
+                //  alert(e.target.result)
+                $('#ProfilePic').val(e.target.result.split(',')[1])
+                //$('.labelorangesmall').text(e.target.result)
+            }
+            filerdr.readAsDataURL(input.files[0]);
+            
+        }
+    }
+    //----------------For Showing Password when we select show password-----------------
+    $("#showPass").change(function () {
+        var checked = $(this).is(":checked");
+        if (checked) {
+            $("#txtPassword").attr("type", "text");
+            $("#confirmpassword").attr("type", "text");
+        } else {
+            $("#txtPassword").attr("type", "password");
+            $("#confirmpassword").attr("type", "password");
+        }
+    });
+    var f = $('#contact-form').validator();
+    $('#btnCreateAccount').click(function () {
+        
+        $('#FirstName').val($("#txtFirstName").val())
+        $('#LastName').val($("#txtLastName").val())
+        $('#Email').val($("#txtEmail").val())
+        $('#Password').val($("#txtPassword").val())
+    })
+</script>

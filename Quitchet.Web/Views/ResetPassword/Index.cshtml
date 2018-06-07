@@ -1,0 +1,228 @@
+﻿<title>Quitchet</title>
+<link rel="shortcut icon" href="/img/logomi.png">
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+<link href='https://fonts.googleapis.com/css?family=Inder' rel='stylesheet'>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+        font-family: 'Inder', sans-serif;
+        font-size: 12px;
+        background-color: #f0f3f4;
+        line-height: 1.42857143 !important;
+        color: #58666e !important;
+        text-rendering: optimizeLegibility;
+    }
+</style>
+
+<style>
+    .RedlabelFont {
+        font-weight: bold;
+        color: #f56331;
+    }
+
+    .NormalFont {
+        font-weight: bold;
+    }
+
+    .Resettextboxes {
+        border-radius: 4px !important;
+        height: 25px !important;
+        font-size: smaller;
+    }
+
+    .wrap {
+        white-space: pre-wrap; /* CSS3 */
+        white-space: -moz-pre-wrap; /* Firefox */
+        white-space: -pre-wrap; /* Opera <7 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        word-wrap: break-word; /* IE */
+    }
+</style>
+<div class='col-sm-12'>&nbsp;</div>
+<div class='col-sm-12'>&nbsp;</div>
+<div class='col-sm-12'>&nbsp;</div>
+<div class='col-sm-12'>
+    <div class='col-sm-3'>&nbsp;</div>
+    <div class='col-sm-6' style='text-align:center;background-color:#ff6937;padding:12px;border-radius:10px;'>
+        <img src='http://restapi.devobal.com/Images/quitchetlogo_little.png' style='width:100px;height:30px;'>
+    </div>
+    <div class='col-sm-3'>&nbsp;</div>
+</div>
+<div class='col-sm-3'>&nbsp;</div>
+<div class='col-sm-6' style='text-align:center;padding:12px;border-radius:10px;'>
+    <div class='panel panel-default'>
+        <div class='panel-heading' style='text-align:center;padding:5px;color:#ff6937;'>
+            <h4>
+                Reset Password
+            </h4>
+        </div>
+        <div class='panel-body'>
+            <div class="col-sm-12" id="div_ResetPassword">
+                <div class="col-sm-12">
+                    <label class="RedlabelFont">User Email</label>
+                </div>
+                <div class="col-sm-12">
+                    <label class="NormalFont wrap" id="lbl_UserEmail" style="white-space: pre-line;"></label>
+                </div>
+                <div class="col-sm-12">
+                    <label class="RedlabelFont" style="font-size:15px">Reset Password</label>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12">
+                    @Html.TextBox("UserNewPassword", "", new { @type = "password", @class = "form-control", @placeholder = "New Password", @autocomplete = false })
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12">
+                    @Html.TextBox("UserReNewPassword", "", new { @type = "password", @class = "form-control", @placeholder = "Confirm Password", @autocomplete = false })
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12" style="padding:0px !important" hidden id="div_errormessage">
+                    <div class="col-sm-3">&nbsp;</div>
+                    <div class="col-sm-6" style="background-color:#F7CDC9;border-radius:5px;border-color:red;height: 30px !important;padding-top: 9px !important;" id="err_innerDiv">
+                        <span id="ValidationMessage" style="font-size:x-small;color:red">Password mismatched</span>
+                    </div>
+                    <div class="col-sm-3">&nbsp;</div>
+                    <div class="col-sm-12">&nbsp;</div>
+                </div>
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-sm" id="Btn_ResetPasswordSubmit" style="height:26px!important;background-color:#FF5D26;color:#FFFFFF;border-radius:5px!important;width:75px!important;font-size:11px;padding-top:3px;">
+                        SUBMIT
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-12" id="div_ResetSuccessfully" hidden>
+                <div class="col-sm-12">
+                    <label class="RedlabelFont"><h5>Password Reset successfull..!</h5></label>
+                </div>
+                <div class="col-sm-12">
+                    <label class="NormalFont"><h6>You have successfully reset your password.</h6></label>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-sm" id="btn_mobileapp" style="height:26px!important;background-color:#FF5D26;color:#FFFFFF;border-radius:5px!important;font-size:11px;padding-top:3px;">
+                        OPEN MOBILE APP
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-12" id="div_ResetFailed" hidden>
+                <div class="col-sm-12">
+                    <label class="RedlabelFont"><h5>Failed to Reset Password</h5></label>
+                </div>
+                <div class="col-sm-12">
+                    <label class="NormalFont"><h6>Some thing went wrong. Please, try again later</h6></label>
+                </div>
+                <div class="col-sm-12">&nbsp;</div>
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-sm" id="btn_back" style="height:26px!important;background-color:#FF5D26;color:#FFFFFF;border-radius:5px!important;font-size:11px;padding-top:3px;">
+                        BACK
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class='panel-footer' style='text-align:right;background-color:#fff'></div>
+    </div>
+</div>
+<script type="text/javascript">
+    var User_Id = ''; var User_Email = ''; var UserName = ''; var NewPassword = '';
+    $(document).ready(function () {
+        $('#UserNewPassword').focus();
+        var Url = new URLSearchParams(window.location.search);
+        User_Id = Url.get("UserID");
+        User_Email = Url.get("Email");
+        $('#lbl_UserEmail').html(User_Email);
+    });
+
+    //Password and New Password Validation in REgistration      //err_innerDiv
+    $("#UserNewPassword,#UserReNewPassword").change(function () {
+        if ($("#UserNewPassword").val().trim() != "" && $("#UserReNewPassword").val().trim() != "") {
+            if ($("#UserNewPassword").val() == $("#UserReNewPassword").val()) {
+                $('#div_errormessage').hide();
+                $('#ValidationMessage').empty();
+                $('#Btn_ResetPasswordSubmit').attr("disabled", false);
+                $("#err_innerDiv").css('height', '30px');
+            }
+            else {
+                $('#div_errormessage').show().css('height', ' 30px !important');
+                $('#ValidationMessage').html('Password Mismatched');
+                $('#Btn_ResetPasswordSubmit').attr("disabled", true);
+                $("#err_innerDiv").css('height', '30px');
+            }
+        }
+    });
+    //--------To Restrict Password Format-------------
+    $("#UserNewPassword").change(function () {
+        var pswd = $(this).val();
+        //validate the length
+        if (pswd.length >= 8 && pswd.match(/[a-z]/) && pswd.match(/[A-Z]/) && pswd.match(/\d/)) {
+            $('#div_errormessage').hide();
+            $("#err_innerDiv").css('height', '30px');
+        }
+        else {
+            $('#div_errormessage').show();
+            $('#UserNewPassword').focus();
+            $("#err_innerDiv").css('height', '82px');
+            $('#ValidationMessage').html(' Password must contain<br /> minimum of 8 characters, 1 uppercase, 1 lowercase and 1 Numeric. No  special Characters may be used.');
+        }
+        if (!isValid($("#UserNewPassword").val())) {
+            $('#div_errormessage').show();
+            $('#UserNewPassword').focus();
+            $("#err_innerDiv").css('height', '82px');
+            $('#ValidationMessage').html(' Password must contain<br /> minimum of 8 characters, 1 uppercase, 1 lowercase and 1 Numeric. No  special Characters may be used.');
+        }
+    });
+    function isValid(str) {
+        return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
+    };
+    $('#UserNewPassword').keypress(function (event) {
+        if (event.which == '13') {
+            event.preventDefault();
+            $('#UserReNewPassword').focus();
+        }
+    });
+    $('#UserReNewPassword').keypress(function (event) {
+        if (event.which == '13') {
+            event.preventDefault();
+            $('#Btn_ResetPasswordSubmit').focus();
+        }
+    });
+    $("#Btn_ResetPasswordSubmit").click(function () {
+        $.ajax({
+            url: "@Url.Action("GetUserDetails", "Main")",
+            type: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            data: { UserId: User_Id },
+            success: function (data) {
+                UserName = data[0].First_Name;
+                resetPassword(UserName, $('#UserNewPassword').val());
+            },
+        });
+    });
+    function resetPassword(Username, NewPassword) {
+        $.ajax({
+            url: "@Url.Action("SendValuesnewPasswordLink", "Main")",
+            type: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            data: { Fname: Username, EmailID: User_Email, UserID: User_Id, Newpassword: $('#UserNewPassword').val() },
+            success: function (data) {
+                if (data == "1") {
+                    $('#div_ResetPassword,#div_ResetFailed').hide();
+                    $('#div_ResetSuccessfully').show();
+                }
+                else {
+                    alert('something went wrong' + data);
+                    $('#div_ResetFailed').show();
+                    $('#div_ResetPassword,#div_ResetSuccessfully').hide();
+                }
+            }
+        });
+    };
+    $('#btn_back').click(function () {
+        $('#div_ResetPassword').show();
+        $('#div_ResetFailed,#div_ResetSuccessfully').hide();
+    })
+</script>

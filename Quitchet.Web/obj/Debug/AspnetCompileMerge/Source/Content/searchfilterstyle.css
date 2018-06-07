@@ -1,0 +1,66 @@
+﻿       .landing-toolbar {
+            margin-top:42px;
+            padding: 7px 0px 0px 0px;
+            background-color: gray;
+            -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
+            -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
+            box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
+        }
+
+        #slider-range, #slider-range2, #slider-range3 {
+            background: #FF5D26;
+        }
+
+        .btn-default:hover, .btn-default:active, .btn-default:focus {
+            color: #ffffff !important;
+            background-color: #FF5D26 !important;
+            border-color: #FF5D26 !important;
+        }
+        #popup1search { 
+  position: relative; 
+  z-index: 100; /* The z-index should be higher than Google Maps */
+ 
+  margin: 280px auto 0;
+  padding: 10px;
+  top:-165px;
+ 
+  opacity: .95; /* Set the opacity for a slightly transparent Google Form */ 
+  /*color: white;*/
+  background-color:#FFFFFF; 
+  border:1px solid #333333;
+ /* width:100%; 
+  height:825px;*/
+-webkit-box-shadow: 0px 3px 20px 0px rgba(28,28,28,1);
+-moz-box-shadow: 0px 3px 20px 0px rgba(28,28,28,1);
+box-shadow: 0px 3px 20px 0px rgba(28,28,28,1);
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+
+}
+
+.nav-tabs.nav-tabs-v1 .active a {
+    border: none !important;
+    color: #FFFFFF !important;
+}
+
+.nav-tabs.nav-tabs-v1 a {
+    font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #FF6937;
+    font-weight: noraml;
+}
+.steptabsround {
+    width: 28px;
+    padding: 2px 7px 4px 8px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    background-color: #F8A57D;
+    border-radius: 25px;
+    margin: 0px 10px 0px 5px;
+}
+.btn-success, .label-success, .alert-success, .badge-success {
+    color: #fff !important;
+    border: none !important;
+    background-color: #F8A57D !important;
+}
+    

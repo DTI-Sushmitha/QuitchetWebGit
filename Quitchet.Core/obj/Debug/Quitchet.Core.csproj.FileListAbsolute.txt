@@ -1,0 +1,50 @@
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.pdb
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.dll
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.pdb
+C:\Users\NEW\Desktop\QuitchetNew\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.csprojResolveAssemblyReference.cache
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.pdb
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.csprojResolveAssemblyReference.cache
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.dll
+F:\Quitchet_Material\QuitchetNew2_RS\QuitchetNew2\QuitchetNew\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.pdb
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.pdb
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.csprojResolveAssemblyReference.cache
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.dll
+D:\QCPRoject-Latest-10-8-2017\QCPRoject-Latest-10-8-2017\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.pdb
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.pdb
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.csprojResolveAssemblyReference.cache
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.dll
+D:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.pdb
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.csprojResolveAssemblyReference.cache
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.dll
+E:\20-08-2017 05.20PM\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.dll
+D:\QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.pdb
+D:\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.csprojResolveAssemblyReference.cache
+D:\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.dll
+D:\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.pdb
+E:\QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.dll
+E:\QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.pdb
+E:\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.csprojResolveAssemblyReference.cache
+E:\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.dll
+E:\QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.csprojResolveAssemblyReference.cache
+E:\Final-QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.pdb
+D:\Final-QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\Quitchet.Core.pdb
+D:\Final-QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.csprojResolveAssemblyReference.cache
+D:\Final-QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Core\obj\Debug\Quitchet.Core.pdb
+E:\Final-QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\itextsharp.dll
+E:\Final-QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\itextsharp.xml
+D:\Final-QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\itextsharp.dll
+D:\Final-QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\itextsharp.xml
+E:\Final-QuitchetProject\Quitchet\Quitchet.Core\bin\Debug\smartystreets-dotnet-sdk.dll

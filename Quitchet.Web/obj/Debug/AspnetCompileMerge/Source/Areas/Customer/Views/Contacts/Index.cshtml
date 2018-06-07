@@ -1,0 +1,987 @@
+﻿@* Contacts View*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="/asset_contacts/css/bootstrap.min.css">
+<link href="~/asset_contacts/css/popupstylesincontacts.css" rel="stylesheet" />
+    
+    <!-- Contacts Div-->
+    <div id="contactcanvuss">
+        <div class="row">
+
+            <div class="col-md-9">
+                <div class="headeraddressbook">
+                    <div class="adrbookbtn1 col-sm-12" style="padding-bottom: 5px;">
+                        <div class="col-sm-4" style="text-align: left;">
+                            @*<img src="/asset_contacts/img/sharebtn.png" width="140" height="32" alt="" style="padding-bottom: 8px" />*@
+                            <a href="#" id="sharecontact" style="border: solid 2px white; color: white; padding: 6px 7px 4px 8px; border-radius: 5px">
+                                <i class="fa fa-share-alt"></i>
+                                <span style="padding-left: 10px">Share This Contact</span>
+                            </a>
+                        </div>
+                        <div class="col-sm-4" style="text-align: center;">
+                            <a href="#" id="addcontacts" style="border: solid 2px white; color: white; padding: 6px 7px 4px 8px; border-radius: 5px">
+                                <i class="fa fa-plus"></i>
+                                <span style="padding-left: 10px">Add Contacts</span>
+                            </a>
+                        </div>
+                        <div class="col-sm-4" style="text-align: right">
+
+                            <a href="#" id="editcontact" style="border: solid 2px white; color: white; padding: 6px 7px 4px 8px; border-radius: 5px">
+                                <i class="fa fa-edit"></i>
+                                <span style="padding-left: 10px">Edit</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="maincontactheader">
+                    <div class="col-sm-1">
+                        <div class="adrbookavatar">
+                            <img src="/asset_contacts/img/bob1.png" width="47" height="47" alt="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-9" style="text-align: left">
+                        <div class="adrnametitles">
+                            <div class="adh1">Bob Morgan</div>
+                            <div class="adh2">ABC Realty</div>
+                            <div class="adh3">Contact Type:<a href="#"> Buyer Agent</a></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1" style="text-align: right">
+                        <div class="adrchaticon">
+                            <div>
+                                <img src="/asset_contacts/img/chat_iconMyAgent_MP.png" alt="Chat with Agent" class="chatandphonespaces" />
+                            </div>
+                            <div class="chatandphonespaces">
+                                <img src="/asset_contacts/img/Phoneicon_MyAgent_MP.png" alt="Call Agent" />
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-sm-1 pull-right" style="text-align: right; padding-right: 1px">
+                        <div class="navigatorcontact">
+                            <img src="/asset_contacts/img/navigatorperson.png" width="26" height="58" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="subcontactheader">
+                    <div class="tabphone">
+                        <span class="icontabspad">
+                            <img src="/asset_contacts/img/phone.png" width="18" height="18" alt="" /></span><span class="tablih2">PHONE </span>
+                    </div>
+                </div>
+                <div class="sublistcontact">
+                    <div class="persondatabar">
+                        <span class="icontabspad">
+                            <img src="/asset_contacts/img/mb.png" width="17" height="17" alt="" /></span>
+                        <span class="itemcontacth1">Mobile No.</span><span class="itemcontacth2">(864) 123-1230</span>
+                    </div>
+                    <div class="persondatabar">
+                        <span class="icontabspad">
+                            <img src="/asset_contacts/img/office.png" width="26" height="26" alt="" /></span>
+                        <span class="itemcontacth1">Work No.</span><span class="itemcontacth2">(864) 123-1230</span>
+                    </div>
+                </div>
+                <div class="subactionbar">
+                    <div class="tabphone">
+                        <span class="icontabspad">
+                            <img src="/asset_contacts/img/emailicon.png" width="17" height="17" alt="" /></span><span class="tablih2">E-MAIL</span>
+                    </div>
+                </div>
+                <div class="sublistcontact">
+                    <div class="persondatabar">
+                        <span class="icontabspad">
+                            <img src="/asset_contacts/img/mb.png" width="17" height="17" alt="" /></span>
+                        <span class="itemcontacth1">Mobile No.</span><span class="itemcontacth2">(864) 123-1230</span>
+                    </div>
+                    <div class="persondatabar">
+                        <span class="icontabspad">
+                            <img src="/asset_contacts/img/mb.png" width="17" height="17" alt="" /></span> <span class="itemcontacth1">Mobile No.</span>
+                        <span class="itemcontacth2">(864) 123-1230</span>
+                    </div>
+                </div>
+                <div class="subactionbar">
+                    <div class="tabphone">
+                        <span class="icontabspad">
+                            <img src="/asset_contacts/img/mappin.png" width="20" height="20" alt="" />
+
+                        </span><span class="tablih2">ADRESS</span>
+                    </div>
+                </div>
+                <div class="sublistcontact">
+                    <div class="persondatabar">
+                        <span class="itemcontacth1">Address</span><span class="itemcontacth2">121 Quasay Lane, 
+Greenville SC 9605</span>
+                    </div>
+                    <div class="persondatabar"><span class="itemcontacth1">Address</span><span class="itemcontacth2">121 Quasay Lane, Greenville SC 9605</span></div>
+                </div>
+            </div>
+            <div class="col-md-3 col33">
+                <div style="background-color: #565453; padding: 5px 0px 35px 0px;">
+                    <div class="col-md-6 col99">
+                        <form role="form">
+                            <div class="form-group">
+                                <input class="form-control input-sm" placeholder="Search" />
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DropDownList("dropdown1", new List<SelectListItem>
+                        {
+                            new SelectListItem{ Text="Person-1", Value = "Person-1" },
+                            new SelectListItem{ Text="Person-2", Value = "Person-2" },
+                            new SelectListItem{ Text="Person-3", Value = "Person-3" }
+                         }, "Sort By"
+
+                         , new { @class = "form-control input-sm", @Style = "background-color:#ff6937; color:white; width:100%;" })
+
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span style="float: left">
+                            <img src="/asset_contacts/img/bob1.png" width="47" height="47" alt="" /></span>
+                        <div style="float: right">
+                            <div class="l3ha">Dapibus ac faciin</div>
+
+                            <div class="cl2">(864) 123 - 1234</div>
+                            <div class="cnt3">bmorgan123@gmail.com</div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <span style="float: left">
+                            <img src="/asset_contacts/img/sam.png" width="47" height="47" alt="" /></span>
+                        <div style="float: right">
+                            <div class="l3ha">Dapibus ac faciin</div>
+                            <div class="cl2">(864) 123 - 1234</div>
+                            <div class="cnt3">bmorgan123@gmail.com</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span style="float: left">
+                            <img src="/asset_contacts/img/4th.png" width="47" height="47" alt="" /></span>
+                        <div style="float: right">
+                            <div class="l3ha">Dapibus ac faciin</div>
+                            <div class="cl2">(864) 123 - 1234</div>
+                            <div class="cnt3">bmorgan123@gmail.com</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span style="float: left">
+                            <img src="/asset_contacts/img/4th.png" width="47" height="47" alt="" /></span>
+                        <div style="float: right">
+                            <div class="l3ha">Dapibus ac faciin</div>
+                            <div class="cl2">(864) 123 - 1234</div>
+                            <div class="cnt3">bmorgan123@gmail.com</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span style="float: left">
+                            <img src="/asset_contacts/img/4th.png" width="47" height="47" alt="" /></span>
+                        <div style="float: right">
+                            <div class="l3ha">Dapibus ac faciin</div>
+                            <div class="cl2">(864) 123 - 1234</div>
+                            <div class="cnt3">bmorgan123@gmail.com</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span style="float: left">
+                            <img src="/asset_contacts/img/5th.png" width="47" height="47" alt="" /></span>
+                        <div style="float: right">
+                            <div class="l3ha">Dapibus ac faciin</div>
+                            <div class="cl2">(864) 123 - 1234</div>
+                            <div class="cnt3">bmorgan123@gmail.com</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--Add New Contact Popup-->
+<div class="popup" id="popup2">
+    <div class="row popupblackhedr">Edit Contact</div>
+    <div class="popupcontainer">
+        <div class="myrow">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <img src="/asset_contacts/img/addphotopic.png" width="69" height="69" alt="" />
+            </div>
+            <div class="col-md-3" style="padding-top: 19px;">
+                <button id="editPhotoBtn" type="button" class="btn" style="width: 174px; height: 30px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Edit Contact</button>
+                @*<img class="editphotobtn" src="/asset_contacts/img/editphoto.png" width="174" height="30" alt="" />*@
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="myrow">
+            <hr class="sepratorpopup">
+            <!-- start: 1st row -->
+            <div class="sublistcontactpopup">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label for="inputEmail3" class="control-label">First Name</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    @Html.TextBox("firstName", "", new { @class = "form-controlpopup", placeholder = "First Name", @style = "width:100%;" })
+
+                                    @*<input type="email" class="form-controlpopup" id="inputEmail3" placeholder="Email">*@
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label for="inputEmail3" class="control-label">Company</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    @*<input type="email" class="form-controlpopup" id="inputEmail3" placeholder="Email">*@
+                                    @Html.TextBox("companName", "", new { @class = "form-controlpopup", placeholder = "Company Name", @style = "width:100%;" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- start: 2nd row -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label for="inputEmail3" class="control-label">Last Name</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    @* <input type="email" class="form-controlpopup" id="inputEmail3" placeholder="Email">*@
+                                    @Html.TextBox("lastName", "", new { @class = "form-controlpopup", placeholder = "Last Name", @style = "width:100%;" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label for="inputEmail3" class="control-label">Contact Type</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    @*<input type="email" class="form-controlpopup" id="inputEmail3" placeholder="Email">*@
+                                    @Html.TextBox("contactType", "", new { @class = "form-controlpopup", placeholder = "Contact Type", @style = "width:100%;" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- phone: 1st row -->
+                <div class="row">
+                    <div class="col-md-6 columnnonemargin">
+                        <div class="subcontactheaderpopup">
+                            <div class="tabphone">
+                                <span class="icontabspad">
+                                    <img src="/asset_contacts/img/phone.png" width="18" height="18" alt="" /></span><span class="tablih2">PHONE </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 columnnonemargin">
+                        <div class="subcontactheaderpopup">
+                            <div class="tabphone">
+                                <span class="icontabspad">
+                                    <img src="/asset_contacts/img/phone.png" width="18" height="18" alt="" /></span><span class="tablih2">EMAIL </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 columnseprator">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group" id="phonediv0">
+                                <div class="col-sm-4">
+                                    <label for="inputEmail3" class="control-label">Primary Phone</label>
+                                </div>
+                                <div class="col-sm-5">
+                                    @Html.TextBox("primaryPhone0", "", new { @class = "form-controlpopup", placeholder = "Phone Number", @style = "width:100%;" })
+                                </div>
+                                @*<div class="col-sm-3">
+                                    <button id="add1" class="btn-default" style="color: #FF6937; border: 1px solid #FF6937; border-radius: 5px; padding-right: 10px;">
+                                        <span class="glyphicon glyphicon-plus" style="color: #FF6937; width: 53px;">Add</span></button>
+                                </div>*@
+                                <div class="col-sm-3" style="padding-top: 4px;">
+
+                                    <a id="add1" href="#" class="btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                        @*<span class="glyphicon glyphicon-plus" style="color: #FF6937; ">&nbsp;Add</span>*@
+                                        <i class="fa fa-plus-circle" aria-hidden="true">&nbsp;Add</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group" id="phonediv1">
+                                <div class="col-sm-5">
+                                    @Html.TextBox("primaryPhone1", "", new { @class = "form-controlpopup", placeholder = "Phone Number", @style = "width:100%;" })
+                                </div>
+                                <div class="col-sm-3" style="padding-top: 4px;">
+
+                                    <a id="add2" href="#" class=" btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                        @*<span class="glyphicon glyphicon-plus" style="color: #FF6937;">&nbsp;Add</span>*@
+                                        <i class="fa fa-plus-circle" aria-hidden="true">&nbsp;Add</i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-4" style="padding-top: 4px;">
+
+                                    <a id="del1" href="#" class=" btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                        <span class="glyphicon glyphicon-remove" style="color: #FF6937;">&nbsp;Remove</span></a>
+
+                                </div>
+                                @*<div class="col-sm-3">
+                                    <button id="add2" class="btn-default" style="color: #FF6937; border: 1px solid #FF6937; border-radius: 5px; padding-right: 10px;">
+                                        <span class="glyphicon glyphicon-plus" style="color: #FF6937; width: 53px;">Add</span></button>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button id="del1" class="btn-default" style="color: #FF6937; border: 1px solid #FF6937; border-radius: 5px; padding-right: 10px;">
+                                        <span class="glyphicon glyphicon-delete" style="color: #FF6937; width: 53px;">Remove</span></button>
+
+
+                                </div>*@
+                            </div>
+                            <div class="form-group" id="phonediv2">
+                                <div class="col-sm-5">
+                                    @Html.TextBox("primaryPhone2", "", new { @class = "form-controlpopup", placeholder = "Phone Number", @style = "width:100%;" })
+                                </div>
+
+                                <div class="col-sm-4" style="padding-top: 4px;">
+                                    <a id="del2" href="#" class=" btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                        <span class="glyphicon glyphicon-remove" style="color: #FF6937;">&nbsp;Remove</span></a>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group" id="emaildiv0">
+                                <div class="col-sm-4">
+                                    <label for="inputEmail3" class="control-label">Primary Email</label>
+                                </div>
+                                <div class="col-sm-5">
+                                    @Html.TextBox("primaryEmail0", "", new { @class = "form-controlpopup", placeholder = "Email", @style = "width:100%;" })
+                                </div>
+                                <div class="col-sm-3" style="padding-top: 4px;">
+                                    @*<button  id="addemail2" class="btn-default" style="color:#FF6937;border:1px solid #FF6937; border-radius:5px;padding-right:10px;">
+                                <span class="glyphicon glyphicon-plus" style="color:#FF6937;width:53px;"> Add</span></button>*@
+                                    <a id="addemail1" href="#" class=" btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                        @*<span class="glyphicon glyphicon-plus" style="color: #FF6937;">&nbsp;Add</span>*@
+                                        <i class="fa fa-plus-circle" aria-hidden="true">&nbsp;Add</i>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="form-group" id="emaildiv1">
+                                <div class="col-sm-5">
+                                    @Html.TextBox("email1", "", new { @class = "form-controlpopup", placeholder = "Email", @style = "width:100%;" })
+                                </div>
+                                <div class="col-sm-3" style="padding-top: 4px;">
+                                    @*<button  id="addemail2" class="btn-default" style="color:#FF6937;border:1px solid #FF6937; border-radius:5px;padding-right:10px;">
+                                <span class="glyphicon glyphicon-plus" style="color:#FF6937;width:53px;"> Add</span></button>*@
+                                    <a id="addemail2" href="#" class=" btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                        @*  <span class="glyphicon glyphicon-plus" style="color: #FF6937;">&nbsp;Add</span></a>*@
+                                        <i class="fa fa-plus-circle" aria-hidden="true">&nbsp;Add</i></a>
+                                </div>
+                                <div class="col-sm-4" style="padding-top: 4px;">
+                                    @*<button  id="delemail1" class="btn-default" style="color:#FF6937;border:1px solid #FF6937; border-radius:5px;padding-right:10px;">
+                                <span class="glyphicon glyphicon-delete" style="color:#FF6937;width:53px;">
+                               Remove</span></button>*@
+                                    <a id="delemail1" href="#" class=" btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                        <span class="glyphicon glyphicon-remove" style="color: #FF6937;">&nbsp;Remove</span></a>
+
+                                </div>
+                            </div>
+                            <div class="form-group" id="emaildiv2">
+                                <div class="col-sm-5">
+                                    @Html.TextBox("email2", "", new { @class = "form-controlpopup", placeholder = "Email", @style = "width:100%;" })
+                                </div>
+                                @*  <div class="col-sm-3">
+                                    <button  id="addemail3" class="btn-default" style="color:#FF6937;border:1px solid #FF6937; border-radius:5px;padding-right:10px;">
+                                <span class="glyphicon glyphicon-plus" style="color:#FF6937;width:53px;"> Add</span></button>
+                                </div>*@
+                                <div class="col-sm-4" style="padding-top: 4px;">
+                                    @*  <button  id="delemail2" class="btn-default" style="color:#FF6937;border:1px solid #FF6937; border-radius:5px;padding-right:10px;">
+                                <span class="glyphicon glyphicon-delete" style="color:#FF6937;width:53px;">
+                               Remove</span></button>*@
+                                    <a id="delemail2" href="#" class="btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                        <span class="glyphicon glyphicon-remove" style="color: #FF6937;">&nbsp;Remove</span></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- closed: phone -->
+            </div>
+            <!-- 3rd row -->
+            <div class="subcontactheaderpopup">
+                <div class="tabphone">
+                    <span class="icontabspad">
+                        <img src="/asset_contacts/img/phone.png" width="18" height="18" alt="" /></span><span class="tablih2">Address </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+
+                            <div class="col-sm-6">
+                                @Html.TextArea("street1", "", new { @class = "form-controlpopup", placeholder = "Street Adress 1", @style = "width:100%;" })
+                            </div>
+                            <div class="col-sm-6 twocolumnwidth">
+                                @Html.TextArea("street2", "", new { @class = "form-controlpopup", placeholder = "Street Address 2", @style = "width:100%;" })
+                            </div>
+                            <div class="col-md-12 form-group"></div>
+                            <div class="col-sm-12" style="text-align: center; padding-left: 0px;">
+                                <div class="col-sm-3 twocolumnwidth">
+                                    <select class="form-controlpopup">
+                                        <option>State</option>
+                                        <option>option one</option>
+                                        <option>option two</option>
+                                        <option>option three</option>
+                                        <option>option four</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3 twocolumnwidth">
+                                    <select class="form-controlpopup">
+                                        <option>City</option>
+                                        <option>option one</option>
+                                        <option>option two</option>
+                                        <option>option three</option>
+                                        <option>option four</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 adrbpadding">
+                                    @Html.TextBox("zip", "", new { @class = "form-controlpopup", placeholder = "Zip Code", @style = "width:100%;" })
+                                </div>
+                                <div class="col-sm-4" style="padding-top: 4px;">
+                                    <a id="addaddress1" href="#" class=" btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                        @*<span class="glyphicon glyphicon-plus" style="color: #FF6937;">&nbsp;Add</span>*@
+                                        <i class="fa fa-plus-circle" aria-hidden="true">&nbsp;Add</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="addrdiv1">
+                            <div class="col-sm-6">
+                                @Html.TextArea("street1", "", new { @class = "form-controlpopup", placeholder = "Street Adress 1", @style = "width:100%;" })
+                            </div>
+                            <div class="col-sm-6 twocolumnwidth">
+                                @Html.TextArea("street2", "", new { @class = "form-controlpopup", placeholder = "Street Address 2", @style = "width:100%;" })
+                            </div>
+                            <div class="col-md-12 form-group"></div>
+                            <div class="col-sm-12 form-group" style="text-align: center;">
+                                <div class="col-sm-3 twocolumnwidth">
+                                    <select class="form-controlpopup">
+                                        <option>State</option>
+                                        <option>option one</option>
+                                        <option>option two</option>
+                                        <option>option three</option>
+                                        <option>option four</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3 twocolumnwidth">
+                                    <select class="form-controlpopup">
+                                        <option>City</option>
+                                        <option>option one</option>
+                                        <option>option two</option>
+                                        <option>option three</option>
+                                        <option>option four</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 adrbpadding">
+                                    @Html.TextBox("zip", "", new { @class = "form-controlpopup", placeholder = "Zip Code", @style = "width:100%;" })
+                                </div>
+                                <div class="col-sm-4" style="padding-top: 4px;">
+                                    <a id="addaddress2" href="#" class=" btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                        @*<span class="glyphicon glyphicon-plus" style="color: #FF6937;">&nbsp;Add</span>*@
+                                        <i class="fa fa-plus-circle" aria-hidden="true">&nbsp;Add</i>
+                                    </a>&nbsp;
+                                  <a id="deladdress1" href="#" class=" btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                      <span class="glyphicon glyphicon-remove" style="color: #FF6937;">&nbsp;Remove</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="addrdiv2">
+
+                            <div class="col-sm-6">
+                                @Html.TextArea("street1", "", new { @class = "form-controlpopup", placeholder = "Street Adress 1", @style = "width:100%;" })
+                            </div>
+                            <div class="col-sm-6 twocolumnwidth">
+                                @Html.TextArea("street2", "", new { @class = "form-controlpopup", placeholder = "Street Address 2", @style = "width:100%;" })
+                            </div>
+                            <div class="col-md-12 form-group"></div>
+                            <div class="col-sm-12" style="text-align: center; padding-left: 0px;">
+                                <div class="col-sm-3 twocolumnwidth">
+                                    <select class="form-controlpopup">
+                                        <option>State</option>
+                                        <option>option one</option>
+                                        <option>option two</option>
+                                        <option>option three</option>
+                                        <option>option four</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3 twocolumnwidth">
+                                    <select class="form-controlpopup">
+                                        <option>City</option>
+                                        <option>option one</option>
+                                        <option>option two</option>
+                                        <option>option three</option>
+                                        <option>option four</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 adrbpadding">
+                                    @Html.TextBox("zip", "", new { @class = "form-controlpopup", placeholder = "Zip Code", @style = "width:100%;" })
+                                </div>
+                                <div class="col-sm-4" style="padding-top: 4px;">
+                                    <a id="deladdress2" href="#" class=" btn-sm" accesskey="r" style="color: #FF6937; border: 1px solid #FF6937;">
+                                        <span class="glyphicon glyphicon-remove" style="color: #FF6937;">&nbsp;Remove</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <hr class="sepratorpopup">
+
+        <div class="row btnsrowmargin">
+            <div class="col-md-3">
+                @* <a href="#" onclick="hide('popup1')" class="btn btn-default" style="width:208px;height:45px">
+                    Delete Contact
+                    <img src="/asset_contacts/img/deletecontact_btn.png" width="208" height="45" alt="" /></a>*@
+
+                <button type="button" class="btn" id="deleteBtn" style="width: 200px; height: 40px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                    Delete Contact</button>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                @*<a href="#" onclick="hide('popup2')">
+                    <img src="/asset_contacts/img/cancel_btngray.png" width="151" height="43" alt="" /></a>*@
+                <button id="cancelBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                    Cancel</button>
+            </div>
+            <div class="col-md-2">
+                @*<img src="/asset_contacts/img/savebtn_orange.png" width="151" height="43" alt="" />*@
+                <button id="saveBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                    Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- closed: Add New Contact popup -->
+<!--Delete Contact Confirmation Popup-->
+<div class="popupmessage" id="deletepopup">
+    <div class="row popupcleanhedr">Delete Contact?</div>
+    <hr class="sepratorpopup">
+
+    <div class="col-sm-12" style="text-align:center">
+        <img src="/asset_contacts/img/deleteicon.png" width="44" height="39" alt="" />
+    </div>
+    <div class="delconfirm">
+        <div class="row">
+            <!-- start: 1st row -->
+            <!-- closed: phone -->
+
+            <div class="row btnsrowmargin">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">Are you sure you want to delete this Contact?</div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+            <div style="margin: 20px 0px 10px 30px" class="row">
+           @* <div style="width: 350px; height: 55px; margin: 0 auto">
+                    
+            </div>
+           *@
+                <div style="float: left">
+                    @*<a href="#" onclick="hide('popup2')">
+                        <img src="/asset_contacts/img/no_btn.png" width="141" height="44" alt="" /></a>*@
+                     <button id="noBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                    No</button>
+                </div>
+           @*     <a href="#" onclick="hide('popup2')">
+                    <img src="/asset_contacts/img/yes_orange_btn.png" width="141" height="44" alt="" /></a>*@
+    <button id="yesBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: #FF6937; color: white; font-weight: 500; font-size: 17px;">
+                    Yes</button>
+            </div>
+
+        </div>
+    </div>
+<!--End of delete popup-->
+<!--Share Contact Popup-->
+<div class="popup2" id="sharepopup">
+    <div class="row popupblackhedr2">
+        <span>
+            <img src="/img/share2.png" width="24" height="34" alt="" /></span> Share
+    </div>
+    <div class="sharepopupcontainer">
+
+        <div class="col-md-12" style="text-align: center">
+            <img src="/img/newmessagge.png" width="83" height="65" alt="" />
+        </div>
+    </div>
+    <div class="col-sm-12">&nbsp;</div>
+    <div class="col-sm-12" style="text-align: center">
+        <div class="col-md-1 " style="padding-left: 24px;"></div>
+        <div class="col-md-2 twocolumrem">
+              <a href="http://www.facebook.com" target="_blank">
+            <img class="shareiconpads" src="/img/facebook.png" width="36" height="36" alt="" />
+              </a>
+        </div>
+        <div class="col-md-2 twocolumrem">
+               <a href="http://www.twitter.com" target="_blank">
+            <img class="shareiconpads" src="/img/twitter.png" width="36" height="36" alt="" />
+                   </a>
+        </div>
+        <div class="col-md-2 twocolumrem">
+               <a href="http://www.googleplus.com" target="_blank">
+            <img class="shareiconpads" src="/img/gplus.png" width="36" height="36" alt="" />
+                   </a>
+        </div>
+        <div class="col-md-2 twocolumrem">
+               <a href="http://www.linkedin.com" target="_blank">
+            <img class="shareiconpads" src="/img/linkedin.png" width="36" height="36" alt="" />
+                   </a>
+        </div>
+        <div class="col-md-2 twocolumrem">
+               <a href="http://www.instagram.com" target="_blank">
+                        <img class="shareiconpads" src="/img/nstagram.png" width="36" height="36" alt="" />
+                   </a>
+        </div>
+        <div class="col-md-1 "></div>
+
+    </div>
+    <div class="col-sm-12">&nbsp;</div>
+    <!-- closed: phone -->
+
+    <div class="row btnsrowmargin">
+
+        <div class="col-md-12" style="text-align: center">
+            <a href="#" onclick="hide('popup2')">
+                <img src="/img/copybtn.png" width="245" height="31" alt="" /></a>
+        </div>
+    </div>
+    <div class="col-sm-12">&nbsp;</div>
+    <div class="col-md-2"></div>
+
+    <div class="row btnsrowmargin">
+         <div class="col-md-12" style="text-align:center">//quitchet.com/e565qr0opy\</div>
+    </div>
+    <div class="col-sm-12">&nbsp;</div>
+    <div class="col-md-3"></div>
+
+
+
+    <div class="row btnsrowmargin">
+        <div class="col-md-12" style="text-align: center">
+            @*<a href="#" id="sharecancelbtn" onclick="hide('popup2')">
+                <img src="/img/cancel_btngray.png" width="151" height="43" alt="" />
+
+            </a>*@
+             <button id="cancelshareBtn" type="button" class="btn" style="width: 135px; height: 40px; border-radius: 5px; background-color: gray; color: white; font-weight: 500; font-size: 17px;">
+                    Cancel</button>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+    
+</div>
+<!-- end of share popup -->
+<!-- start: Javascript -->
+<script src="/asset_contacts/js/jquery.min.js"></script>
+<script src="/asset_contacts/js/jquery.ui.min.js"></script>
+<!-- plugins -->
+<script src="/asset_contacts/js/plugins/moment.min.js"></script>
+<script src="/asset_contacts/js/plugins/jquery.nicescroll.js"></script>
+<!-- custom -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#googlemaps').hide();
+        $('#contactcanvuss').show();
+        $('#phonediv1').hide();
+        $('#phonediv2').hide();
+        $('#emaildiv1').hide();
+        $('#emaildiv2').hide();
+        $('#addrdiv1').hide();
+        $('#addrdiv2').hide();
+        $('#deletepopup').hide();
+        $('#sharepopup').hide();
+        $(".nav-tabs a").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+
+    });
+    $("#addcontacts,#editcontact").click(function (e) {
+        $("#popup2").show();
+    });
+
+    $("#add1").click(function () {
+        $('#phonediv1').show();
+    });
+    $("#add2").click(function () {
+        $('#phonediv2').show();
+        $('#add3').hide();
+
+    });
+    $("#del1").click(function () {
+        $('#phonediv1').hide();
+    });
+    $("#del2").click(function () {
+        $('#phonediv2').hide();
+    });
+    $("#addemail1").click(function () {
+        $('#emaildiv1').show();
+    });
+    $("#addemail2").click(function () {
+        $('#emaildiv2').show();
+        $('#addemail3').hide();
+
+    });
+    $("#delemail1").click(function () {
+        $('#emaildiv1').hide();
+    });
+    $("#delemail2").click(function () {
+        $('#emaildiv2').hide();
+    });
+    $("#addaddress1").click(function () {
+        $('#addrdiv1').show();
+    });
+    $("#addaddress2").click(function () {
+        $('#addrdiv2').show();
+
+    });
+    $("#deladdress1").click(function () {
+        $('#addrdiv1').hide();
+    });
+    $("#deladdress2").click(function () {
+        $('#addrdiv2').hide();
+    });
+    $("#cancelBtn").click(function () {
+        $('#popup2').hide();
+    });
+    $("#deleteBtn").click(function () {
+        $('#deletepopup').show();
+        $('#popup2').hide();
+    });
+    $("#noBtn").click(function () {
+        $('#popup2').show();
+        $('#deletepopup').hide();
+    });
+    $("#sharecontact").click(function () {
+        $('#sharepopup').show();
+    });
+    $("#cancelshareBtn").click(function () {
+        $('#sharepopup').hide();
+    });
+</script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<style>
+    .myrow {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+    .subcontactheaderpopup {
+        width: 100%;
+        float: left;
+        height: 30px;
+        background-color: #FFD9CC;
+        margin: 10px 0px 14px 0px;
+        border-bottom: 3px #F05C1C solid;
+    }
+
+    
+    
+    .img-responsive {
+        width: 35px;
+        height: 35px;
+    }
+
+    /*a {
+        font-size: 12px;
+    }*/
+
+    .media-left {
+        text-align: justify;
+    }
+
+    .brand-myagentbtn {
+        line-height: 20px;
+        text-align: left;
+        margin: -5px 60px 0px 0px;
+    }
+
+    .col-lg-1 {
+        text-align: center;
+        padding: 0px 0px 0px 0px;
+    }
+
+    .media-body {
+        width: 330px;
+        float: left;
+    }
+
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+        color: #555;
+        cursor: default;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-bottom-color: transparent;
+    }
+    /*//For Contact List Page*/
+    .maincontactheader {
+        width: 100%;
+        float: left;
+        height: 107px;
+        background-color: #59294C;
+        margin: -2px 0px -30px 0px;
+    }
+
+    /*.navbar {
+        height: 60px;
+        background-color: #FF6937;
+        color: #fff;
+        border: none;
+    }*/
+
+    .headeraddressbook {
+        background-color: #FF5D26;
+        padding: 11px 0px 31px 0px;
+    }
+
+    .tabphone {
+        width: 150px;
+        float: left;
+        height: 28px;
+        background-color: #F05C1C;
+        margin: 2px 0px -4px 0px;
+        -moz-border-radius-topleft: 0px;
+        -moz-border-radius-topright: 5px;
+        -moz-border-radius-bottomleft: 0px;
+        -moz-border-radius-bottomright: 0px;
+        -webkit-border-top-left-radius: 0px;
+        -webkit-border-top-right-radius: 5px;
+        -webkit-border-bottom-left-radius: 0px;
+        -webkit-border-bottom-right-radius: 0px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .persondatabar {
+        height: 44px;
+        width: 98%;
+        float: left;
+        padding: 8px 0px 5px 0px;
+        border-bottom: 1px solid #D2D2D2;
+    }
+
+    .icontabspad {
+        width: 18px;
+        height: 18px;
+        float: left;
+        padding: 1px 20px 10px 20px;
+    }
+
+    .chatandphonespaces {
+        padding: 12px 0px 0px 0px;
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    img {
+        border: 0;
+    }
+
+    .adh2 {
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #FFF2EE;
+        padding: 2px 0px 0px 14px;
+        font-weight: 300;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .adh3 {
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #FF5D26;
+        padding: 2px 0px 0px 14px;
+        font-weight: 300;
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .adh1 {
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #FFF2EE;
+        padding: 8px 0px 0px 14px;
+        font-weight: bold;
+        text-align: left;
+        font-size: 19px;
+    }
+
+    .subactionbar {
+        width: 100%;
+        float: left;
+        height: 32px;
+        background-color: #FFEAE3;
+        margin: -2px 0px -4px 0px;
+        border-bottom: 3px #F05C1C solid;
+    }
+
+    .itemcontacth1 {
+        color: #FF5D26;
+        padding: 3px 0px 50px 20px;
+        font-size: 14px;
+        height: 28px;
+        text-align: left;
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        float: left;
+        width: 100px;
+    }
+
+    .itemcontacth2 {
+        color: #323231;
+        padding: 3px 0px 50px 20px;
+        font-size: 15px;
+        height: 28px;
+        text-align: left;
+        font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        float: left;
+    }
+
+    .tablih2 {
+        color: white;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .col33 {
+        margin: 0px -30px 0px -30px;
+        width: 28%;
+    }
+
+    .selected {
+        color: inherit;
+        box-shadow: #000 2px 2px 10px;
+        border-bottom-right-radius: 10px;
+        margin-bottom: 3px;
+    }
+    .b {
+        border-radius: 20px;
+    }
+</style>
+

@@ -1,0 +1,540 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .iconsdiv {
+        background-color: #525151;
+        color: #f5f5f5;
+        width: 30px;
+        height: 192px;
+        border-radius: 20px 20px 0px 20px;
+        text-align: center;
+        margin-right: -1.5%;
+        float: right;
+        margin-top: 15%;
+    }
+
+    .RightJqueryList {
+        border: 1px #ff5d26 solid !important;
+        border-radius: 5px !important;
+        border-collapse: inherit !important;
+    }
+
+    #RightListView {
+        float: right;
+        margin-right: 0%;
+        background-color: white;
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-height: 610px;
+        max-height: 570px;
+        width: 18%;
+        margin-top: 58px;
+        padding-left: 0px !important;
+    }
+
+        #RightListView::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        #RightListView::-webkit-scrollbar {
+            width: 3%;
+            background-color: #F5F5F5;
+        }
+
+        #RightListView::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #FF5D26;
+        }
+
+    .ddlSortByClass {
+        border: 1px #ff5d26 solid;
+        border-radius: 4px !important;
+        width: 263%;
+        height: 23px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 86%;
+        color: #ff5d26;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSePVWt6a83sB0JECOwilcf11eZsK_ciMNH-eUSpNpXJCKWLav7') no-repeat right;
+        background-position: 197px 5px;
+        text-indent: 0.01px;
+        text-overflow: "";
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+<link href="~/Content/mycustom.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/plugins/font-awesome.min.css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async defer type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD0X4v7eqMFcWCR-VZAJwEMfb47id9IZao"></script>
+
+<div class="col-sm-3" style="background-color: #fff;left: 0.7%;top: 64px;border-radius: 3px;height: 23px;width: 345px;font-size: 12px;padding-left: 1px;margin-left: 17%;">
+    <div style="padding-top:4px; padding-left:5%">
+        <img src="~/img/green_legend_Menu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">For Sale</label>
+
+        <img src="~/img/yellow_legendMenu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Under Contract</label>
+
+        <img src="~/img/red_legendMenu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Sold</label>
+
+        <img src="~/img/gray_legendMenu.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Rental</label>
+
+        <img src="~/img/viewedicon.png" style="height:10px; width:10px; border-radius:50%; margin-bottom:2px">
+        <label style="margin-left: -2px;">Viewed</label>
+    </div>
+</div>
+<div class="col-sm-9" id="googlemaps" style="width:82% !important; margin-top: 4.4% !important; height:91% !important;">
+
+</div>
+<div class="col-sm-2" id="RightListView" style="margin-top:94px!important">
+
+</div>
+<div class="col-sm-1" style="top:66px;float:right;margin-right:-7.9%;background-color:white">
+    @Html.DropDownList("ddlSortBy", new List<SelectListItem>
+        {
+        new SelectListItem{ Text="Priority", Value = "Priority" },
+        new SelectListItem{ Text="Relevance", Value = "Relevance" },
+        new SelectListItem{ Text="Price", Value = "Price" }
+        }, "Sort by"
+        , new { @class = "ddlSortByClass" })
+</div>
+<div id="CollDiv" class="col-sm-1" style="float:right; top:112px; width:2%; height:30px; padding-right:0px; background-color:white; margin-right:-1%">
+    <i class="fa fa-angle-double-left" aria-hidden="true" id="Expand" style="float:right; width:23px;font-size: 29px !important;"></i>
+</div>
+<div class="iconsdiv btn-group" id="over_map" data-toggle="buttons">
+    <img src="~/img/Zoom_In_Normal.png" id="zoomInButton" class="Img_Map_Over" style="margin-top: 3px;margin-left: -1px;height: 33px;">
+    <img src="~/img/ZoomOut_Normal.png" id="zoomOutButton" class="Img_Map_Over" style="margin-top: -10px;margin-left: -3px;height: 37px;">
+    <hr style="margin-top: 8% !important;" />
+    <label id="drawpoly" class="btn btn-sm" style="padding-left: 4px; background-color: #525151; border: none; margin-top:-14px">
+        <input type="radio" id="draw">
+        <img src="~/img/DrawTool_Normal-1.png" class="Img_Map_Over" style="height: 30px !important;width: 29px !important;margin-left: -3px;">
+    </label>
+    <label id="3" class="btn btn-sm" style="padding-left: 4px; background-color: #525151; border: none; margin-left: 1%;">
+        <input type="radio">
+        <img src="~/img/MapTool_Normal-1.png" id="myloc" class="Img_Map_Over" style="height: 30px !important;width: 29px !important;margin-left: -3px;">
+    </label>
+    <hr style="margin-top:93px" />
+    <img src="~/img/MapLayers_Normal-1.png" class="Img_Map_Over" style="height: 30px !important;width: 29px !important;margin-left: 0px; margin-top: -32px;" data-toggle="collapse" data-target="#demo123">
+    <div id="demo123" class="collapse" style="background-color: #525151;">
+        <br>
+        <a href="#" class="mytab" id="mapview">Map</a><br>
+        <br>
+        <a href="#" class="mytab" id="satview">Satellite</a><hr>
+    </div>
+</div>
+
+<div class="modal fade" id="RemoveFavorite" tabindex="-1" role="dialog" aria-labelledby="MessageLabel" aria-hidden="true" style="padding-left:206px">
+    <div class="modal-dialog" role="document" style="padding-top:18%;width:25%;">
+        <div class="modal-content">
+            <div class="modal-body" style="text-align:center;height:234px!important">
+                <img src="~/img/hearticolist.png" style="height:30px!important;width: 29px !important;margin-top:10px!important;">
+                <h4 style="text-align:center;color:#f56331; line-height: 30px; margin-top:10px">Remove From Favorites</h4>
+                <p>Are you sure you want to remove <br />this listing from your Favorites?</p>
+                <div class="col-sm-12">&nbsp;</div>
+                <button type="button" id="btnNotRemoveFavorite" class="btn btn-sm" data-dismiss="modal" style="background-color:rgba(0,0,0,0.3); color:white; width:120px;height:32px!important; border-radius:5px !important">No</button>
+                <button type="button" id="btnYesRemoveFavorite" class="btn btn-sm" data-dismiss="modal" style="background-color:#ff5d26; color:white; width:120px;height:32px!important; border-radius:5px !important">Yes</button>
+                <div class="col-sm-12" style="padding-bottom:10px!important">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var m = []; var pos; var city; var polygon; var mymarkers = [];
+    $(document).ready(function () {
+        $('#ddlSortBy').css('background-image', 'url(/img/Select_Down.png)');
+        $('#ddlSortBy').css('background-size', '6%');
+        $("#Expand").attr('class', 'fa fa-angle-double-left');
+        getdatabycurrentUser();
+    });
+    var flag_RightCollapse = 0;
+    $('#Expand').on('click', function () {
+        if (flag_RightCollapse == 0) {
+            $("#divInRightmenu").css("padding-top", "10%");
+            $("#Expand").attr('class', 'fa fa-angle-double-right');
+            $('#RightListView').animate({ 'width': '35.3%' }, 'slow', function () {
+                $('#RightListView').show();
+
+            });
+            flag_RightCollapse = 1;
+        }
+        else {
+            $("#divInRightmenu").css("padding-top", "18%");
+            $("#Expand").attr('class', 'fa fa-angle-double-left');
+            $('#RightListView').animate({ 'width': '18%' }, 'slow', function () {
+                $('#RightListView').show();
+            });
+            flag_RightCollapse = 0;
+        }
+    });
+    google.maps.event.addDomListener(zoomInButton, 'click', function (e) {
+        map.setZoom(map.getZoom() + 1);
+        var zoom = map.getZoom();
+        zoomchanged(zoom);
+    });
+    google.maps.event.addDomListener(zoomOutButton, 'click', function () {
+        map.setZoom(map.getZoom() - 1);
+        var zoom = map.getZoom();
+        zoomchanged(zoom);
+    });
+    $("#myloc").click(function (e) {
+        geolocate();
+    });
+    $("#drawpoly").click(function (e) {
+
+        if ($('#draw').is(':checked')) {
+            location.reload();
+        }
+        else {
+            for (var i = 0; i < mymarkers.length; i++) {
+                mymarkers[i].setMap(null);
+            }
+            disable()
+            google.maps.event.addDomListener(map.getDiv(), 'mousedown', function (e) {
+                drawFreeHand()
+            });
+        }
+    });
+    $("#mapview").click(function (e) {
+        map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+    });
+    $("#satview").click(function (e) {
+        map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+    });
+    function disable() {
+        map.setOptions({
+            draggable: false,
+            zoomControl: false,
+            scrollwheel: false,
+            disableDoubleClickZoom: false
+        });
+    }
+    function drawFreeHand() {
+        poly = new google.maps.Polyline({ map: map, clickable: false, strokeColor: "red", strokeWeight: 1 });
+        var move = google.maps.event.addListener(map, 'mousemove', function (e) {
+            poly.getPath().push(e.latLng);
+        });
+        google.maps.event.addListenerOnce(map, 'mouseup', function (e) {
+            google.maps.event.removeListener(move);
+
+            var path = poly.getPath();
+            poly.setMap(null);
+            poly = new google.maps.Polygon({ map: map, path: path, fillColor: "#FF0000", fillOpacity: 0.15, strokeColor: "red", strokeWeight: 1, });
+            google.maps.event.clearListeners(map.getDiv(), 'mousedown');
+            getPathVariableCode(poly);
+            enable()
+        });
+    }
+    function enable() {
+        map.setOptions({
+            draggable: true,
+            zoomControl: false,
+            scrollwheel: true,
+            disableDoubleClickZoom: true
+        });
+    }
+    function getPathVariableCode(poly) {
+        for (var i = 0; i < mymarkers.length; i++) {
+            mymarkers[i].setMap(map);
+        }
+        var pathArr = poly.getPath();
+        for (var d = 0; d < mymarkers.length + 1; d++) {
+            var coordinate = new google.maps.LatLng(m[d].split(',')[0], m[d].split(',')[1]);
+            google.maps.geometry.poly.containsLocation(coordinate, poly) ? successmarker() : removemarkers(d);
+        }
+    };
+    function successmarker() {
+
+    }
+    function removemarkers(d) {
+        mymarkers[d].setMap(null);
+    }
+    function RightSideListView(data) {
+        var tab = $('<div id="divInRightmenu" style="background-color: white; padding-top:18%"></div>');
+        var AlinVar = 0;
+        var DivImgId = "div";
+        var ImgfavIdDyn = "FavImg";
+        var CheckBoxIDCompare = "Checkcompareid";
+        var CheckBoxIDRshow = "CheckRshowid";
+        $.each(data, function (i, item) {
+            var icon = {
+                url: '/img/star_Full.png',
+                DsUrl: '/img/star_Full.png',
+                scaledSize: new google.maps.Size(22, 22),
+            };
+            if (item.Sale_Rent == "For Sale") {
+                icon.url = '/img/green_legend_Menu.png',
+               DsUrl = '/img/green_legend_Menu.png'
+            }
+            else if (item.Sale_Rent == "UND") {
+                icon.url = '/img/yellow_legendMenu.png',
+                 DsUrl = '/img/yellow_legendMenu.png'
+            }
+            else if (item.Sale_Rent == "Sold") {
+                icon.url = '/img/red_legendMenu.png',
+                DsUrl = '/img/red_legendMenu.png'
+            }
+            else if (item.Class == 4) {
+                icon.url = '/img/gray_legendMenu.png',
+                DsUrl = '/img/gray_legendMenu.png'
+            }
+            else if (item.Class == 5) {
+                icon.url = '/img/viewedicon.png',
+               DsUrl = '/img/viewedicon.png'
+            }
+            else {
+                icon.url = '/img/star_Full.png',
+                DsUrl = '/img/star_Full.png'
+            }
+
+            var Latt = item.GeoLatitude;
+            var Longg = item.GeoLongitude;
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(Latt, Longg),
+                map: map,
+                icon: icon,
+                anchor: new google.maps.Point(6, 12),
+                optimized: false,
+                title: item.MLSId
+            });
+
+            mymarkers.push(marker);
+            var l = Latt + "," + Longg;
+            m.push(l);
+            var FavUrl = "/img/hearticon.png";
+            var StringView = '';
+            //if (item.Is_Viewd == 'YES') {
+            //    StringView = '<a href="#" style="text-decoration:none;"> <img src="/img/viewedicon.png" width="20" height="20" alt=""/></a>';
+            //}
+            var image0 = "/img/picture_area.png";
+            var image1 = "/img/SliderNextArrow.png";
+            var image2 = "/img/SliderBackArrow.png";
+            DivImgId = DivImgId + item.MLSId;
+            ImgfavIdDyn = ImgfavIdDyn + item.MLSId;
+            CheckBoxIDCompare = CheckBoxIDCompare + item.MLSId;
+            CheckBoxIDRshow = CheckBoxIDRshow + item.MLSId;
+            var JTBID = 'JTBID' + item.MLSId;
+            var table = $('<table id=' + JTBID + ' class="RightJqueryList" style="margin-left:10px; margin-bottom:10px; margin-top:5px; width:42%; float:left"></table>');
+            var Row = $('<tr collapse="2" height="100px"></tr>');
+            Row.append('<div id=' + DivImgId + ' style="background: url(/img/picture_area.png); background-size: 100% 100%;background-repeat: no-repeat; height:100px;  width:215px"><div class="col-sm-12"><div style="float: right;">' + StringView + '<a href="#" style="text-decoration:none;"> <img src=' + FavUrl + ' width="20" height="20" alt="" onclick="return FavouriteChange(\'' + item.MLSId + '\',\'' + item.Is_Favorite + '\',\'' + ImgfavIdDyn + '\',\'' + JTBID + '\')" id=' + ImgfavIdDyn + ' style="text-decoration:none;" /></a></div></div><div class="col-sm-12" style="margin-top: 6%;"><a href="#" style="text-decoration:none;">  <img src="/img/SliderBackArrow.png"  alt="" style="margin-top: -10px; height: 30px; margin-left: -9%;" onclick=ImgSlider(\'1\',\'' + DivImgId + '\')></a> <a href="#">  <img src="/img/SliderNextArrow.png"  alt="" style="float: right;margin-right: -9%; margin-top: -10px; height: 30px;" onclick=ImgSlider(\'2\',\'' + DivImgId + '\')></a></div></div> ');
+            table.append(Row);
+            var trow = $('<tr></tr>');
+            trow.append('<td style="float:left; margin-top: -4%;  border: 0px !important; color:#FF5D26; margin-left:-2%">' + '<img src=' + DsUrl + ' width="20" height="20" alt=""/>' + '$' + item.ListingPrice + '</td>');
+            trow.append('<td style="float:right; margin-top: -4%;  border: 0px !important; font-size:10px; colspan="3">' + 'MLS#' + item.MLSId + '</td>');
+            table.append(trow);
+
+            //var Bathrooms = parseInt(item.FullBaths) + parseInt(item.HalfBaths);
+            //var Bathrooms =item.Bathrooms;
+            var trow1 = $('<tr></tr>');
+            trow1.append('<td style="float:left; margin-top: -8%; border: 0px !important; color:#FF5D26; font-size:11px;">' + item.Bedrooms + '<span style="color:black !important"> Bedrooms</span> ' + '  ' + item.Bathrooms + '&nbsp <span style="color:black !important"> Bathrooms</span>' + '</td>');
+            trow1.append('<td style="float:left; margin-top: -8%; border: 0px !important; color:#FF5D26; font-size:11px; colspan="3"">' + 'sqft ' + item.ApproxAcres + '</td>');
+            table.append(trow1);
+
+            //var Add1 = item.Address1;
+            //var Add2 = item.Address2;
+           
+            //if (item.Address2.length == 0) {
+            //    Add2 = "&nbsp";
+            //}
+
+            var trow2 = $('<tr></tr>');
+            trow2.append('<td style="float:left; margin-top: -6%; border: 0px !important; font-size:11px;" colspan="3">' + item.ADDRESKKS + '</td>');
+            table.append(trow2);
+
+            //var trow3 = $('<tr></tr>');
+            //trow3.append('<td style="float:left; margin-top: -8%; border: 0px !important; font-size:11px;" colspan="3"> <span id="">' + item.ADDRESKKS + '</span> </td>');
+            //table.append(trow3);
+
+            var trow3 = $('<tr id="CheckTR"></tr>');
+            trow3.append('<td style="padding:0px !important; float:left; margin-top: -8%; border: 0px !important; font-size:10px; margin-left:-4px"><table> <tr> <td style="border:0px !important; padding-left:3px !important;"><label for="' + CheckBoxIDCompare + '" style="padding-top: 0px; margin-bottom: 1px; margin-left: 5px;">Compare</label> </td> <td style="border:0px !important; padding-left:0px !important;"> <input type="checkbox" id="' + CheckBoxIDCompare + '" style="height:10px; margin-top:-9%; margin-left: -74%; margin-top:16%" onclick="return CompareFavouritesChanges(\'' + item.MLSId + '\',\'' + CheckBoxIDCompare + '\')"></td>  </tr></table>  </td> ');
+            trow3.append('<td style="padding:0px !important; float:left; margin-top: -27.5%; border: 0px !important; font-size:10px; margin-left:59px"><table> <tr> <td style="border:0px !important; padding-left:6px !important;"><label for="' + CheckBoxIDRshow + '" style="padding-top: 23px; margin-top:-1px; margin-bottom: 0px;">Request Showings</label> </td> <td style="border:0px !important; padding-left:0px !important;"> <input type="checkbox" id="' + CheckBoxIDRshow + '" style="height:10px; margin-top:26.5px !important; margin-left: -74%;" onclick="return RequestShowingFavouritesChanges(\'' + item.MLSId + '\',\'' + CheckBoxIDRshow + '\')"></td>  </tr></table>  </td> ');
+            trow3.append('<td style="padding:0px !important; float:right; margin-top: -27.8%; border: 0px !important; font-size:10px; margin-right:-27px"><table> <tr> <td style="border:0px !important; padding-left:0px !important;"><label for="Share" style="margin-top: 24px; border-top-width: 61px; margin-right:16px">Share</label> </td> <td style="border:0px !important; padding-left:0px !important; padding-right:5px !important"> <input type="checkbox" id="Share" style="height:10px;margin-top: 189%;margin-left: -189%;"></td>  </tr></table>  </td> ');
+            table.append(trow3);
+            
+            ImgfavIdDyn = "FavImg";
+            CheckBoxIDCompare = "Checkcompareid";
+            CheckBoxIDRshow = "CheckRshowid";
+            tab.append(table);
+            DivImgId = "div";
+        });
+        $("#RightListView").html(tab);
+    };
+    function ImgSlider(Status, ImgID) {
+        alert(ImgID);
+        if (Status == 1) {
+            alert('Clicked Back Arrow');
+        }
+        else {
+            alert('Clicked Forward Arrow');
+        }
+        $("#" + ImgID).animate({ opacity: 0 }, 'slow', function () {
+            $(this)
+                .css({ 'background-image': 'url(1.jpg)' })
+                .animate({ opacity: 1 });
+        });
+    }
+    function getdatabycurrentUser(UserID) {
+        $.ajax({
+            url: "/Customer/Favourites/GetFavoriteData/",
+            type: "POST",
+            dataType: "json",
+            data: { UserID: "Hyderabad" },
+            success: function (data) {
+                initialize(data);
+                RightSideListView(data);
+            },
+            error: function () {
+                alert('nodata');
+            }
+        });
+    }
+    function FavouriteChange(MLSId, IsFav, ImgFavID, JTBID) {
+            // show Modal
+        $('#RemoveFavorite').modal('show');
+        $('#btnYesRemoveFavorite').click(function () {
+            var Fav = 0;
+            var ImgSrc = $("#" + ImgFavID).attr('src');
+            if (ImgSrc == "/img/hearticon.png") {
+                $("#" + ImgFavID).attr("src", "/img/heartm.png");
+                Fav = 0;
+            }
+            else {
+                $("#" + ImgFavID).attr("src", "/img/hearticon.png");
+            }
+
+            $.ajax({
+                url: "/Customer/Favourites/FavrouriteChanges/",
+                type: "POST",
+                dataType: "json",
+                data: { MLSId: MLSId, Fav: Fav },
+                success: function (data) {
+                    if (data == "Sucess") {
+                        getdatabycurrentUser();
+                    }
+                    else {
+
+                    }
+                },
+                error: function () {
+
+                }
+            });
+
+        });
+    };
+
+
+    function CompareFavouritesChanges(MLSId, CheckBoxIDCompare) {
+
+        
+        var Is_Compared = "";
+        if ($('#'+CheckBoxIDCompare).is(":checked")) {
+            Is_Compared = true;
+        }
+        else {
+            Is_Compared = false;
+        }
+        $.ajax({
+            url: "/Customer/Favourites/CompareFavrouriteChanges/",
+            type: "POST",
+            dataType: "json",
+            data: { MLSId: MLSId, Is_Compared: Is_Compared},
+            success: function (data) {
+                
+            },
+            error: function () {
+
+            }
+        });
+    };
+
+    function RequestShowingFavouritesChanges(MLSId, CheckBoxIDRshow) {
+        debugger;
+        var Is_RequestShow = "";
+        
+        if ($('#'+CheckBoxIDRshow).is(":checked")) {
+            Is_RequestShow = true;
+        }
+        else {
+            Is_RequestShow = false;
+        }
+
+        $.ajax({
+            url: "/Customer/Favourites/RequestShowFavrouriteChanges/",
+            type: "POST",
+            dataType: "json",
+            data: {MLSId: MLSId, Is_RequestShow: Is_RequestShow},
+            success: function (data) {
+
+            },
+            error: function () {
+
+            }
+        });
+
+
+    };
+
+    function initialize(data) {
+        var latLng = new google.maps.LatLng(34.8526, -82.3940);
+        map = new google.maps.Map(document.getElementById('googlemaps'), {
+            zoom: 9,
+            minZoom: 3,
+            maxZoom: 13,
+            streetViewControl: false,
+            fullscreenControl: false,
+            zoomControl: false,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: latLng,
+        });
+    }
+    function geolocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                // Create a marker and center map on user location
+                marker = new google.maps.Marker({
+                    position: pos,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    map: map
+                });
+                map.setCenter(pos);
+            });
+        }
+    }
+    function zoomchanged(zoom) {
+        if (zoom <= 4) {
+            $('#drawpoly').css("visibility", "hidden");
+            for (var i = 0; i < mymarkers.length; i++) {
+                mymarkers[i].setMap(null);
+            }
+            poly.setMap(null)
+        }
+        else {
+
+            $('#drawpoly').css("visibility", "visible");
+            for (var i = 0; i < mymarkers.length; i++) {
+                mymarkers[i].setMap(map);
+            }
+
+            getPathVariableCode(poly);
+            poly.setMap(map)
+        }
+    }
+</script>
+
